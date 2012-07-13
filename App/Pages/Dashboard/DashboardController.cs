@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Http;
 using System.Web.Mvc;
+using App.Infrastructure.Web;
 using App.Pages.Vehicles;
 using MileageStats.Domain;
 using MileageStats.Domain.Handlers;

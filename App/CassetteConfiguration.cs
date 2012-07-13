@@ -25,7 +25,14 @@ namespace App
                 b => b.EmbedHtmlTemplates().AmdModule()
             );
 
-            bundles.Add<ScriptBundle>("Infrastructure/Scripts", b => b.AmdModule());
+            bundles.AddPerSubDirectory<ScriptBundle>("Modules", b => b.AmdModule());
+
+            bundles.Add<ScriptBundle>(
+                "Infrastructure/Scripts", 
+                b => b.AmdModulePerAsset()
+                      .AmdAlias("jquery.js", "$")
+                      .AmdAlias("knockout.js", "ko")
+            );
         }
     }
 }

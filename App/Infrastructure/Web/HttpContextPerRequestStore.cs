@@ -18,7 +18,7 @@ limitations under the License. */
 using System;
 using System.Web;
 
-namespace App.Infrastructure
+namespace App.Infrastructure.Web
 {
     public class HttpContextPerRequestStore : IPerRequestStore
     {

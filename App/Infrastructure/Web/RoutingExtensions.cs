@@ -2,7 +2,7 @@
 using System.Web.Http.Routing;
 using System.Web.Routing;
 
-namespace App.Infrastructure
+namespace App.Infrastructure.Web
 {
     public static class RoutingExtensions
     {

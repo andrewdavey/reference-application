@@ -21,7 +21,7 @@ using System.Diagnostics;
 using System.Web.Mvc;
 using Microsoft.Practices.Unity;
 
-namespace App.Infrastructure
+namespace App.Infrastructure.Unity
 {
 
     /// <summary>

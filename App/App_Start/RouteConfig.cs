@@ -2,6 +2,7 @@
 using System.Web.Routing;
 using App.Dashboard;
 using App.Infrastructure;
+using App.Infrastructure.Web;
 using App.Pages.Vehicles;
 
 namespace App

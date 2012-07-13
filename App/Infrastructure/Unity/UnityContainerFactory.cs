@@ -15,8 +15,6 @@ MERCHANTABLITY OR NON-INFRINGEMENT.
 See the Apache 2 License for the specific language governing permissions and
 limitations under the License. */
 
-using System.Web.Http;
-using System.Web.Http.Tracing;
 using Microsoft.Practices.Unity;
 using MileageStats.Data.InMemory;
 using MileageStats.Domain;
@@ -24,7 +22,7 @@ using MileageStats.Domain.Contracts;
 using MileageStats.Domain.Contracts.Data;
 using MileageStats.Web.Authentication;
 
-namespace App.Infrastructure
+namespace App.Infrastructure.Unity
 {
     public class UnityContainerFactory
     {

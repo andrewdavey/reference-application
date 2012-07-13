@@ -16,8 +16,9 @@ See the Apache 2 License for the specific language governing permissions and
 limitations under the License. */
 
 using System;
+using App.Infrastructure.Web;
 
-namespace App.Infrastructure
+namespace App.Infrastructure.Unity
 {
     public class UnityPerRequestLifetimeManager : Microsoft.Practices.Unity.LifetimeManager, IDisposable
     {

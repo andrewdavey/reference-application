@@ -184,19 +184,30 @@
   <ItemGroup>
     <Compile Include="CassetteConfiguration.cs" />
     <Compile Include="Infrastructure\Cassette\AddDebugWrapperToAssets.cs" />
+    <Compile Include="Infrastructure\Cassette\AddTransformerToAssets.cs" />
+    <Compile Include="Infrastructure\Cassette\AmdModule.cs" />
+    <Compile Include="Infrastructure\Cassette\AssetReferenceToImportConverter.cs" />
     <Compile Include="Infrastructure\Cassette\BundleAssetFinder.cs" />
     <Compile Include="Infrastructure\Cassette\BundleExtensions.cs" />
     <Compile Include="Infrastructure\Cassette\ConvertAllHtmlTemplatesToScript.cs" />
     <Compile Include="Infrastructure\Cassette\ConvertHtmlTemplateToScript.cs" />
     <Compile Include="Infrastructure\Cassette\DebugDefineBuilder.cs" />
-    <Compile Include="Infrastructure\Cassette\DebugDefines.cs" />
+    <Compile Include="Infrastructure\Cassette\DebugModuleCollectionBuilder.cs" />
+    <Compile Include="Infrastructure\Cassette\DebugModuleDefinitionsProvider.cs" />
+    <Compile Include="Infrastructure\Cassette\DebugModuleAssetWrapper.cs" />
+    <Compile Include="Infrastructure\Cassette\DebugModuleBuilder.cs" />
     <Compile Include="Infrastructure\Cassette\DebugWrapper.cs" />
+    <Compile Include="Infrastructure\Cassette\ExportedModuleVariablesHelper.cs" />
     <Compile Include="Infrastructure\Cassette\GlobalJavaScriptVariableParser.cs" />
+    <Compile Include="Infrastructure\Cassette\Import.cs" />
     <Compile Include="Infrastructure\Cassette\MetaData.cs" />
-    <Compile Include="Infrastructure\Cassette\RecordGlobalVariables.cs" />
+    <Compile Include="Infrastructure\Cassette\RecordAssetImports.cs" />
+    <Compile Include="Infrastructure\Cassette\RecordExportedVariables.cs" />
+    <Compile Include="Infrastructure\Cassette\RewriteDefineCalls.cs" />
     <Compile Include="Infrastructure\Cassette\StringAssetTransformer.cs" />
-    <Compile Include="Infrastructure\HtmlFormatter.cs" />
-    <Compile Include="Infrastructure\RoutingExtensions.cs" />
+    <Compile Include="Infrastructure\Cassette\VendorAmdModulePathsProvider.cs" />
+    <Compile Include="Infrastructure\Web\HtmlFormatter.cs" />
+    <Compile Include="Infrastructure\Web\RoutingExtensions.cs" />
     <Compile Include="Pages\Dashboard\DashboardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -208,13 +219,13 @@
     <Compile Include="Infrastructure\Authentication\LocalFakeRelyingParty.cs" />
     <Compile Include="Infrastructure\Authentication\OutgoingRequestActionResult.cs" />
     <Compile Include="Infrastructure\Authentication\UserAuthenticationTicketBuilder.cs" />
-    <Compile Include="Infrastructure\HttpContextPerRequestStore.cs" />
-    <Compile Include="Infrastructure\IPerRequestStore.cs" />
-    <Compile Include="Infrastructure\UnityContainerFactory.cs" />
-    <Compile Include="Infrastructure\UnityDependencyResolver.cs" />
-    <Compile Include="Infrastructure\UnityHttpContextPerRequestLifetimeManager.cs" />
-    <Compile Include="Infrastructure\UnityPerRequestLifetimeManager.cs" />
-    <Compile Include="Infrastructure\UrlExtensions.cs" />
+    <Compile Include="Infrastructure\Web\HttpContextPerRequestStore.cs" />
+    <Compile Include="Infrastructure\Web\IPerRequestStore.cs" />
+    <Compile Include="Infrastructure\Unity\UnityContainerFactory.cs" />
+    <Compile Include="Infrastructure\Unity\UnityDependencyResolver.cs" />
+    <Compile Include="Infrastructure\Unity\UnityHttpContextPerRequestLifetimeManager.cs" />
+    <Compile Include="Infrastructure\Unity\UnityPerRequestLifetimeManager.cs" />
+    <Compile Include="Infrastructure\Web\UrlExtensions.cs" />
     <Compile Include="Pages\Vehicles\VehiclesController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -222,11 +233,24 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="app.html" />
     <Content Include="Global.asax" />
-    <Content Include="Infrastructure\Scripts\Object.js" />
+    <Content Include="Modules\Common\Application.js" />
+    <Content Include="Modules\Common\Event.js" />
+    <Content Include="Modules\Common\FlashMessage.js" />
+    <Content Include="Modules\Common\httpCommand.js" />
+    <Content Include="Modules\Common\Navigation.js" />
+    <Content Include="Modules\Common\Object.js" />
+    <Content Include="Infrastructure\Scripts\bundle.txt" />
+    <Content Include="Infrastructure\Scripts\domReady.js" />
+    <Content Include="Infrastructure\Scripts\jquery.history.js" />
+    <Content Include="Infrastructure\Scripts\jquery.js" />
+    <Content Include="Infrastructure\Scripts\knockout.js" />
+    <Content Include="Infrastructure\Scripts\require.js" />
+    <Content Include="Infrastructure\Scripts\template.js" />
+    <Content Include="Infrastructure\Scripts\text.js" />
+    <Content Include="Modules\Common\start.js" />
     <Content Include="Pages\Dashboard\bar.js" />
     <Content Include="Pages\Dashboard\dashboard.htm" />
     <Content Include="Pages\Dashboard\foo.js" />
-    <Content Include="require.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -247,9 +271,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

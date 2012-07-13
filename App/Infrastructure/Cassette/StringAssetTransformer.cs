@@ -4,7 +4,7 @@ using Cassette;
 
 namespace App.Infrastructure.Cassette
 {
-    abstract class StringAssetTransformer : IAssetTransformer
+    public abstract class StringAssetTransformer : IAssetTransformer
     {
         public Func<Stream> Transform(Func<Stream> openSourceStream, IAsset asset)
         {

@@ -17,7 +17,7 @@ limitations under the License. */
 
 using System;
 
-namespace App.Infrastructure
+namespace App.Infrastructure.Web
 {
     public interface IPerRequestStore
     {

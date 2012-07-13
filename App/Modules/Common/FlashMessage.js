@@ -1,4 +1,4 @@
-﻿/// <reference path="../knockout.js" />
+﻿/// <reference path="~/Infrastructure/Scripts/knockout.js" />
 /// <reference path="Object.js" />
 
 var FlashMessage = Object.inherit({

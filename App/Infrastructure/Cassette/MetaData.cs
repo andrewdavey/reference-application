@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace App.Infrastructure.Cassette
 {
-    static class MetaData
+    public static class MetaData
     {
         static readonly Dictionary<object, Dictionary<string, object>> objectsWithMetadata =
             new Dictionary<object, Dictionary<string, object>>();

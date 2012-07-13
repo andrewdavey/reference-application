@@ -5,9 +5,26 @@
 </head>
 <body>
     <h1>MileStats Sample Application</h1>
-    <script src="/require.js"></script>
+
+    <script>
+        var require = {
+            map: {
+                "*": {
+                    'Infrastructure/Scripts/jquery': 'jquery'
+                }
+            },
+            paths: {
+                $paths$
+            }  
+        };
+    </script>
+    <script src="/Infrastructure/Scripts/require.js"></script>
     <script>
         $shims$
+
+        require(["Modules/Common"], function(module) {
+            module.start();
+        });
     </script>
 </body>
 </html>

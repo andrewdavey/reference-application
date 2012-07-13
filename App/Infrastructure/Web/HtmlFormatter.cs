@@ -6,7 +6,7 @@ using System.Text;
 using System.Web;
 using App.Infrastructure.Cassette;
 
-namespace App.Infrastructure
+namespace App.Infrastructure.Web
 {
     public class HtmlFormatter : MediaTypeFormatter
     {
@@ -36,7 +36,8 @@ namespace App.Infrastructure
                 using (var reader = new StreamReader(file))
                 {
                     var html = await reader.ReadToEndAsync();
-                    html = html.Replace("$shims$", DebugDefines.Shims);
+                    html = html.Replace("$paths$", VendorAmdModulePathsProvider.Paths);
+                    html = html.Replace("$shims$", DebugModuleDefinitionsProvider.ModuleDefinitions);
 
                     var bytes = Encoding.UTF8.GetBytes(html);
                     await stream.WriteAsync(bytes, 0, bytes.Length);

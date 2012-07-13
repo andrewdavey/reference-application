@@ -1,8 +1,8 @@
 ﻿/// <reference path="Event.js" />
 /// <reference path="Object.js" />
-/// <reference path="../jquery.history.js" />
-/// <reference path="../jquery.js" />
-/// <reference path="../knockout.js" />
+/// <reference path="~/Infrastructure/Scripts/jquery.history.js" />
+/// <reference path="~/Infrastructure/Scripts/jquery.js" />
+/// <reference path="~/Infrastructure/Scripts/knockout.js" />
 
 var Application = Object.inherit({
     init: function(document) {

@@ -19,7 +19,7 @@ using System;
 using System.Web;
 using System.Web.Mvc;
 
-namespace App.Infrastructure
+namespace App.Infrastructure.Web
 {
     public static class UrlExtensions
     {

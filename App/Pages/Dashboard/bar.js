@@ -1,4 +1,4 @@
-﻿/// <reference path="~/Infrastructure/Scripts/Object.js"/>
+﻿/// <reference path="~/Modules/Common/Object.js"/>
 /// <reference path="foo.js"/>
 
 var Bar = Object.inherit({
