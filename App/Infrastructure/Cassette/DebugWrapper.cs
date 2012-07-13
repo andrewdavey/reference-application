@@ -5,10 +5,12 @@ namespace App.Infrastructure.Cassette
 {
     class DebugWrapper : StringAssetTransformer
     {
+        readonly int assetIndex;
         readonly string modulePath;
 
-        public DebugWrapper(Bundle bundle)
+        public DebugWrapper(Bundle bundle, int assetIndex)
         {
+            this.assetIndex = assetIndex;
             modulePath = bundle.Path.Substring(2);
         }
 
@@ -19,7 +21,8 @@ namespace App.Infrastructure.Cassette
                 source, 
                 modulePath, 
                 asset.GetImports(),
-                asset.GetExportedVariables()
+                asset.GetExportedVariables(),
+                assetIndex
             );
         }
     }

@@ -4,11 +4,15 @@ using Cassette.BundleProcessing;
 
 namespace App.Infrastructure.Cassette
 {
-    class AddDebugWrapperToAssets : AddTransformerToAssets<Bundle>
+    class AddDebugWrapperToAssets : IBundleProcessor<Bundle>
     {
-        protected override IAssetTransformer CreateAssetTransformer(Bundle bundle)
+        public void Process(Bundle bundle)
         {
-            return new DebugWrapper(bundle);
+            var index = 0;
+            foreach (var asset in bundle.Assets)
+            {
+                asset.AddAssetTransformer(new DebugWrapper(bundle, index++));
+            }
         }
     }
 }

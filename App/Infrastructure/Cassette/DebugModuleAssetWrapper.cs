@@ -12,15 +12,15 @@ namespace App.Infrastructure.Cassette
         /// <param name="modulePath">The path of the AMD module the JavaScript is part of.</param>
         /// <param name="imports">The imports variables, as pairs of aliases and module paths</param>
         /// <param name="exportedVariables">The variables, exported by the JavaScript, to be added to the module.</param>
-        public string Wrap(string originalJavaScript, string modulePath, IEnumerable<Import> imports, IEnumerable<string> exportedVariables)
+        public string Wrap(string originalJavaScript, string modulePath, IEnumerable<Import> imports, IEnumerable<string> exportedVariables, int assetIndex)
         {
             originalJavaScript += "\r\n"; // Add newline in case the original script ends with a comment.
 
-            return "debugModules['" + modulePath + "'].push(function(module,deps){" +
+            return "debugModules['" + modulePath + "'][" + assetIndex + "] = function(module,deps){" +
                    ImportVars(imports) +
                    originalJavaScript +
                    ExportAssignments(exportedVariables) +
-                   "});";
+                   "};";
         }
 
         string ImportVars(IEnumerable<Import> imports)
