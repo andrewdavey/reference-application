@@ -12,7 +12,7 @@ namespace App
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapResource<DashboardController>("dashboard");
+            routes.MapResource<DashboardController>("");
             routes.MapResource<VehiclesController>("vehicles");
 
         }

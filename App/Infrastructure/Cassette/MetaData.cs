@@ -40,5 +40,19 @@ namespace App.Infrastructure.Cassette
         {
             return (T)objectsWithMetadata[obj][key];
         }
+
+        public static T GetMetaDataOrDefault<T>(this object obj, string key, T defaultValue)
+        {
+            Dictionary<string, object> metadata;
+            if (objectsWithMetadata.TryGetValue(obj, out metadata))
+            {
+                object result;
+                return metadata.TryGetValue(key, out result) ? (T) result : defaultValue;
+            }
+            else
+            {
+                return defaultValue;
+            }
+        }
     }
 }

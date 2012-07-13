@@ -183,19 +183,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CassetteConfiguration.cs" />
-    <Compile Include="Infrastructure\Cassette\AddExportVars.cs" />
-    <Compile Include="Infrastructure\Cassette\AddIifeWrappers.cs" />
-    <Compile Include="Infrastructure\Cassette\AddPrependNamespaceToAssets.cs" />
+    <Compile Include="Infrastructure\Cassette\AddDebugWrapperToAssets.cs" />
+    <Compile Include="Infrastructure\Cassette\BundleAssetFinder.cs" />
     <Compile Include="Infrastructure\Cassette\BundleExtensions.cs" />
     <Compile Include="Infrastructure\Cassette\ConvertAllHtmlTemplatesToScript.cs" />
     <Compile Include="Infrastructure\Cassette\ConvertHtmlTemplateToScript.cs" />
     <Compile Include="Infrastructure\Cassette\DebugDefineBuilder.cs" />
     <Compile Include="Infrastructure\Cassette\DebugDefines.cs" />
-    <Compile Include="Infrastructure\Cassette\ExportVars.cs" />
+    <Compile Include="Infrastructure\Cassette\DebugWrapper.cs" />
     <Compile Include="Infrastructure\Cassette\GlobalJavaScriptVariableParser.cs" />
-    <Compile Include="Infrastructure\Cassette\IifeWrapper.cs" />
     <Compile Include="Infrastructure\Cassette\MetaData.cs" />
-    <Compile Include="Infrastructure\Cassette\PrependNamespace.cs" />
     <Compile Include="Infrastructure\Cassette\RecordGlobalVariables.cs" />
     <Compile Include="Infrastructure\Cassette\StringAssetTransformer.cs" />
     <Compile Include="Infrastructure\HtmlFormatter.cs" />
@@ -225,6 +222,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="app.html" />
     <Content Include="Global.asax" />
+    <Content Include="Infrastructure\Scripts\Object.js" />
     <Content Include="Pages\Dashboard\bar.js" />
     <Content Include="Pages\Dashboard\dashboard.htm" />
     <Content Include="Pages\Dashboard\foo.js" />
@@ -253,6 +251,7 @@
   <ItemGroup>
     <Content Include="Views\Web.config" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

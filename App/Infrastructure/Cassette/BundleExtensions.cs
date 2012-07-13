@@ -11,9 +11,7 @@ namespace App.Infrastructure.Cassette
             var sortIndex = bundle.Pipeline.IndexOf<SortAssetsByDependency>();
 
             bundle.Pipeline.Insert<RecordGlobalVariables>(sortIndex);
-            bundle.Pipeline.Insert<AddPrependNamespaceToAssets>(sortIndex + 1);
-            bundle.Pipeline.Insert<AddExportVars>(sortIndex + 2);
-            bundle.Pipeline.Insert<AddIifeWrappers>(sortIndex + 3);
+            bundle.Pipeline.Insert<AddDebugWrapperToAssets>(sortIndex + 1);
 
             return bundle;
         }

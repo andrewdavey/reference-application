@@ -24,6 +24,8 @@ namespace App
                 fileSearch,
                 b => b.EmbedHtmlTemplates().AmdModule()
             );
+
+            bundles.Add<ScriptBundle>("Infrastructure/Scripts", b => b.AmdModule());
         }
     }
 }

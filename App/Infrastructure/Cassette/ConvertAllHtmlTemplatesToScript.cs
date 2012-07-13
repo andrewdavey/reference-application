@@ -11,7 +11,7 @@ namespace App.Infrastructure.Cassette
             {
                 if (asset.Path.EndsWith(".htm"))
                 {
-                    asset.AddAssetTransformer(new ConvertHtmlTemplateToScript(bundle));
+                    asset.AddAssetTransformer(new ConvertHtmlTemplateToScript());
                 }
             }
         }

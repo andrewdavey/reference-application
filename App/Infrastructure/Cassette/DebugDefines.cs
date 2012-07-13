@@ -1,4 +1,6 @@
+using System.Linq;
 using Cassette;
+using Cassette.Scripts;
 
 namespace App.Infrastructure.Cassette
 {
@@ -22,7 +24,10 @@ namespace App.Infrastructure.Cassette
 
         private void BundlesOnChanged(object sender, BundleCollectionChangedEventArgs bundleCollectionChangedEventArgs)
         {
-            var shimBuilder = new DebugDefineBuilder(urlGenerator);
+            var shimBuilder = new DebugDefineBuilder(
+                urlGenerator, 
+                path => bundles.FindBundlesContainingPath(path).OfType<ScriptBundle>().First()
+            );
             bundleCollectionChangedEventArgs.Bundles.Accept(shimBuilder);
             Shims = shimBuilder.ToString();
         }
