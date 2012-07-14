@@ -21,14 +21,21 @@ namespace App.Infrastructure.Cassette
         public static ScriptBundle AmdModulePerAsset(this ScriptBundle bundle)
         {
             bundle.SetMetaData("AmdModulePerAsset", true);
-            //bundle.Pipeline.Insert<AddTransformerToAssets<RewriteDefineCalls, ScriptBundle>>(0);
             return bundle;
         }
 
         public static ScriptBundle AmdAlias(this ScriptBundle bundle, string assetFilename, string alias)
         {
-            var assetToAlias = bundle.Assets.First(asset => asset.Path.EndsWith(assetFilename, StringComparison.OrdinalIgnoreCase));
+            var assetToAlias = GetAsset(bundle, assetFilename);
             assetToAlias.SetMetaData("AmdAlias", alias);
+            return bundle;
+        }
+
+        public static ScriptBundle AmdShim(this ScriptBundle bundle, string assetFilename, string moduleVariable, params string[] dependencies)
+        {
+            var assetToShim = GetAsset(bundle, assetFilename);
+            assetToShim.SetMetaData("AmdAlias", moduleVariable);
+            assetToShim.SetMetaData("AmdShim", moduleVariable);
             return bundle;
         }
 
@@ -44,6 +51,11 @@ namespace App.Infrastructure.Cassette
                 .Path
                 .Substring(2)
                 .Replace('/', '.');
+        }
+
+        static IAsset GetAsset(ScriptBundle bundle, string assetFilename)
+        {
+            return bundle.Assets.First(asset => asset.Path.EndsWith(assetFilename, StringComparison.OrdinalIgnoreCase));
         }
     }
 }

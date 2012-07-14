@@ -1,28 +1,25 @@
-﻿using System.Linq;
-using System.Web.Http;
-using System.Web.Mvc;
+﻿using System.Web.Http;
 using App.Infrastructure.Web;
 using App.Pages.Vehicles;
-using MileageStats.Domain;
 using MileageStats.Domain.Handlers;
-using App.Infrastructure;
 
-namespace App.Dashboard
+namespace App.Pages.Dashboard
 {
     public class DashboardController : ApiController
     {
-        private readonly GetFleetSummaryStatistics _getFleetSummaryStatistics;
+        readonly GetFleetSummaryStatistics getFleetSummaryStatistics;
 
         public DashboardController(GetFleetSummaryStatistics getFleetSummaryStatistics)
         {
-            _getFleetSummaryStatistics = getFleetSummaryStatistics;
+            this.getFleetSummaryStatistics = getFleetSummaryStatistics;
         }
 
         public object GetDashboard()
         {
-            var statistics = _getFleetSummaryStatistics.Execute(1);
+            var statistics = getFleetSummaryStatistics.Execute(1);
             var resource = new
             {
+                script = "Pages/Dashboard",
                 statistics,
                 vehicles = new { get = Url.Resource<VehiclesController>() }
             };

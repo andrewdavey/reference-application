@@ -5,17 +5,22 @@
 </head>
 <body>
     <h1>MileStats Sample Application</h1>
+    
+    <div data-bind="template: { data: viewModel, name: viewModel().templateId }"></div>
+    
+    <script type="text/html" id="loading">Loading...</script>
 
     <script>
         var require = {
-            map: {
-                "*": {
-                    'Infrastructure/Scripts/jquery': 'jquery'
-                }
-            },
             paths: {
                 $paths$
-            }  
+            },
+            shim: {
+                "Infrastructure/Scripts/jquery.history.js": {
+                    deps: ["jquery"],
+                    exports: "History"
+                }
+            }
         };
     </script>
     <script src="/Infrastructure/Scripts/require.js"></script>

@@ -52,8 +52,9 @@ var Application = Object.inherit({
 
     downloadedPageResult: function(pageResult) {
         var app = this;
-        require([pageResult.script], function(page) {
-            page.init(pageResult.data, app);
+        require([pageResult.script], function (page) {
+            app.addTemplates(page);
+            page.init(pageResult, app);
             document.title = pageResult.title;
             app.pageLoaded.trigger(pageResult, app);
         });
@@ -76,10 +77,26 @@ var Application = Object.inherit({
         History.pushState(null, null, url);
     },
 
+    addTemplates: function (pageModule) {
+        for (var property in pageModule) {
+            if (property.match(/\.htm$/)) {
+                this.addTemplate(property, pageModule[property]);
+            }
+        }
+    },
+    
+    addTemplate: function (id, content) {
+        if (document.getElementById(id)) return;
+        
+        var script = document.createElement("script");
+        script.setAttribute("type", "text/html");
+        script.setAttribute("id", id);
+        script.textContent = content;
+
+        document.body.appendChild(script);
+    },
+    
     setViewModel: function(viewModel) {
-        var app = this;
-        require(["template!" + viewModel.templateId], function() {
-            app.viewModel(viewModel);
-        });
+        this.viewModel(viewModel);
     }
 });

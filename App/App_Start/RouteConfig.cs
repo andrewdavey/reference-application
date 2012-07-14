@@ -1,8 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using App.Dashboard;
-using App.Infrastructure;
 using App.Infrastructure.Web;
+using App.Pages.Dashboard;
 using App.Pages.Vehicles;
 
 namespace App

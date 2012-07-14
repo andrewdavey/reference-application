@@ -248,9 +248,10 @@
     <Content Include="Infrastructure\Scripts\template.js" />
     <Content Include="Infrastructure\Scripts\text.js" />
     <Content Include="Modules\Common\start.js" />
-    <Content Include="Pages\Dashboard\bar.js" />
+    <Content Include="Pages\Dashboard\DashboardViewModel.js" />
+    <Content Include="Pages\Dashboard\statistics.htm" />
+    <Content Include="Pages\Dashboard\init.js" />
     <Content Include="Pages\Dashboard\dashboard.htm" />
-    <Content Include="Pages\Dashboard\foo.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -32,6 +32,7 @@ namespace App
                 b => b.AmdModulePerAsset()
                       .AmdAlias("jquery.js", "$")
                       .AmdAlias("knockout.js", "ko")
+                      .AmdShim("jquery.history.js", "History", "jquery")
             );
         }
     }
