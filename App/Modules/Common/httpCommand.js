@@ -1,4 +1,4 @@
-﻿var httpCommand = function (httpMethodObject) {
+﻿var httpCommand = function (httpMethodObject, context) {
 
     // httpMethodObject is an object with a single property 
     // representing the HTTP method and URL for a command.
@@ -17,7 +17,7 @@
             type: httpMethod,
             url: url,
             data: data,
-            context: this
+            context: context
         });
     };
 };

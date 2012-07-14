@@ -252,6 +252,7 @@
     <Content Include="Pages\Dashboard\statistics.htm" />
     <Content Include="Pages\Dashboard\init.js" />
     <Content Include="Pages\Dashboard\dashboard.htm" />
+    <Content Include="Pages\Dashboard\VehicleViewModel.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
