@@ -3,7 +3,8 @@
 var VehicleViewModel = Object.inherit({
     
     init: function (data) {
-        this.name = data.Name;
+        this.name = data.name;
+        this.href = data.href;
     }
     
 });

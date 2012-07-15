@@ -256,6 +256,7 @@
     <Content Include="Pages\Dashboard\dashboard.htm" />
     <Content Include="Pages\Dashboard\VehiclesList.htm" />
     <Content Include="Pages\Dashboard\VehicleViewModel.js" />
+    <Content Include="Pages\Vehicle\page.css" />
     <Content Include="Pages\Vehicle\init.js" />
     <Content Include="Pages\Vehicle\Vehicle.htm" />
     <Content Include="Web.config" />

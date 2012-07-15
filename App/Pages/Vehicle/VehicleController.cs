@@ -1,4 +1,6 @@
 ﻿using System.Web.Http;
+using Cassette.Stylesheets;
+using Cassette.Views;
 using MileageStats.Domain.Handlers;
 
 namespace App.Pages.Vehicle
@@ -17,7 +19,8 @@ namespace App.Pages.Vehicle
             return new
             {
                 vehicle = getVehicleById.Execute(1, id),
-                script = "Pages/Vehicle"
+                script = "Pages/Vehicle",
+                stylesheet = Bundles.Url<StylesheetBundle>("Pages/Vehicle")
             };
         }
     }

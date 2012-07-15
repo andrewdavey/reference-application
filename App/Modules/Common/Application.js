@@ -53,6 +53,7 @@ var Application = Object.inherit({
     downloadedPageResult: function(pageResult) {
         var app = this;
 
+        this.removePageStylesheet();
         if (pageResult.stylesheet) app.addPageStylesheet(pageResult.stylesheet);
         
         require([pageResult.script], function (page) {
@@ -102,10 +103,6 @@ var Application = Object.inherit({
     addPageStylesheet: function (stylesheetUrl) {
         var head = document.querySelector("head");
 
-        if (this.currentPageStylesheet) {
-            head.removeChild(this.currentPageStylesheet);
-        }
-
         var link = document.createElement("link");
         link.setAttribute("type", "text/css");
         link.setAttribute("rel", "stylesheet");
@@ -113,6 +110,13 @@ var Application = Object.inherit({
         head.appendChild(link);
 
         this.currentPageStylesheet = link;
+    },
+    
+    removePageStylesheet: function () {
+        var head = document.querySelector("head");
+        if (this.currentPageStylesheet) {
+            head.removeChild(this.currentPageStylesheet);
+        }
     },
     
     setViewModel: function(viewModel) {
