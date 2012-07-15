@@ -1,23 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Formatting;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
+using System.Web.Http.Controllers;
+using System.Web.Http.Filters;
 using System.Web.Routing;
-using App.Infrastructure;
 using App.Infrastructure.Unity;
 using App.Infrastructure.Web;
-using Microsoft.Practices.ServiceLocation;
+using Cassette.Stylesheets;
+using Cassette.Views;
 using Microsoft.Practices.Unity;
 using MileageStats.Data.InMemory;
+using Unity.WebApi;
 
 namespace App
 {
     public class MvcApplication : HttpApplication
     {
-        private static IUnityContainer container;
+        static IUnityContainer _container;
 
         protected void Application_Start()
         {
@@ -25,9 +30,10 @@ namespace App
 
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            container.Resolve<PopulateSampleData>().Seed(null);
+            _container.Resolve<PopulateSampleData>().Seed(null);
 
             GlobalConfiguration.Configuration.Formatters.Add(new HtmlFormatter());
+            GlobalConfiguration.Configuration.Filters.Add(new PageFilter());
         }
 
         public override void Init()
@@ -37,12 +43,12 @@ namespace App
             base.Init();
         }
 
-        private void EndRequestHandler(object sender, EventArgs e)
+        void EndRequestHandler(object sender, EventArgs e)
         {
             // This is a workaround since subscribing to HttpContext.Current.ApplicationInstance.EndRequest 
             // from HttpContext.Current.ApplicationInstance.BeginRequest does not work. 
             IEnumerable<UnityHttpContextPerRequestLifetimeManager> perRequestManagers =
-                container.Registrations
+                _container.Registrations
                     .Select(r => r.LifetimeManager)
                     .OfType<UnityHttpContextPerRequestLifetimeManager>()
                     .ToArray();
@@ -53,19 +59,37 @@ namespace App
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability",
-            "CA2000:Dispose objects before losing scope",
-            Justification = "This should survive the lifetime of the application.")]
-        private void InitializeDependencyInjectionContainer()
+        void InitializeDependencyInjectionContainer()
         {
-            container = new UnityContainerFactory().CreateConfiguredContainer();
-            var serviceLocator = new UnityServiceLocator(container);
-            ServiceLocator.SetLocatorProvider(() => serviceLocator);
-            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
-
-            GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
-
+            _container = new UnityContainerFactory().CreateConfiguredContainer();
+            GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(_container);
         }
     }
 
+    public class PageFilter : IActionFilter
+    {
+        public bool AllowMultiple { get; private set; }
+
+        public async Task<HttpResponseMessage> ExecuteActionFilterAsync(HttpActionContext actionContext, CancellationToken cancellationToken, Func<Task<HttpResponseMessage>> continuation)
+        {
+            var response = await continuation();
+            response.Headers.Vary.Add("Content-Type");
+
+            var objectContent = response.Content as ObjectContent;
+            if (objectContent != null && actionContext.ControllerContext.ControllerDescriptor.ControllerType.Namespace.Contains(".Pages"))
+            {
+                var bundle = "Pages/" + actionContext.ControllerContext.ControllerDescriptor.ControllerName;
+                var value = new
+                {
+                    script = bundle,
+                    stylesheet = Bundles.Url<StylesheetBundle>(bundle),
+                    data = objectContent.Value
+                };
+                var pageObject = new ObjectContent(typeof (object), value, objectContent.Formatter);
+                response.Content = pageObject;
+            }
+
+            return response;
+        }
+    }
 }

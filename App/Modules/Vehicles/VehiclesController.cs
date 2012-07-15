@@ -4,7 +4,7 @@ using App.Infrastructure.Web;
 using App.Pages.Vehicle;
 using MileageStats.Domain.Handlers;
 
-namespace App.Pages.Vehicles
+namespace App.Modules.Vehicles
 {
     public class VehiclesController : ApiController
     {

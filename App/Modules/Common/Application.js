@@ -58,7 +58,7 @@ var Application = Object.inherit({
         
         require([pageResult.script], function (page) {
             app.addTemplates(page);
-            page.init(pageResult, app);
+            page.init(pageResult.data, app);
             document.title = pageResult.title;
             app.pageLoaded.trigger(pageResult, app);
         });

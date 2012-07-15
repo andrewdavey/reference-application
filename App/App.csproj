@@ -222,11 +222,10 @@
     <Compile Include="Infrastructure\Web\HttpContextPerRequestStore.cs" />
     <Compile Include="Infrastructure\Web\IPerRequestStore.cs" />
     <Compile Include="Infrastructure\Unity\UnityContainerFactory.cs" />
-    <Compile Include="Infrastructure\Unity\UnityDependencyResolver.cs" />
     <Compile Include="Infrastructure\Unity\UnityHttpContextPerRequestLifetimeManager.cs" />
     <Compile Include="Infrastructure\Unity\UnityPerRequestLifetimeManager.cs" />
     <Compile Include="Infrastructure\Web\UrlExtensions.cs" />
-    <Compile Include="Pages\Vehicles\VehiclesController.cs" />
+    <Compile Include="Modules\Vehicles\VehiclesController.cs" />
     <Compile Include="Pages\Vehicle\VehicleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
