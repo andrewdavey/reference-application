@@ -2,6 +2,7 @@ using System.IO;
 using App.Infrastructure.Cassette;
 using Cassette;
 using Cassette.Scripts;
+using Cassette.Stylesheets;
 
 namespace App
 {
@@ -15,7 +16,7 @@ namespace App
             // Custom search for script and HTML templates.
             var fileSearch = new FileSearch
             {
-                Pattern = "*.js;*.htm",
+                Pattern = "*.js;*.htm;*.html",
                 SearchOption = SearchOption.AllDirectories
             };
 
@@ -24,6 +25,7 @@ namespace App
                 fileSearch,
                 b => b.EmbedHtmlTemplates().AmdModule()
             );
+            bundles.AddPerSubDirectory<StylesheetBundle>("Pages");
 
             bundles.AddPerSubDirectory<ScriptBundle>("Modules", b => b.AmdModule());
 

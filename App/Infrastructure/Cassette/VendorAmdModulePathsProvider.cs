@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Cassette;
+using Cassette.Scripts;
 
 namespace App.Infrastructure.Cassette
 {
@@ -26,7 +27,8 @@ namespace App.Infrastructure.Cassette
         {
             var vendorBundles = bundleCollectionChangedEventArgs
                 .Bundles
-                .Where(b => MetaData.GetMetaDataOrDefault(b, "AmdModulePerAsset", false));
+                .OfType<ScriptBundle>()
+                .Where(b => b.GetMetaDataOrDefault("AmdModulePerAsset", false));
 
             var collector = new CollectAssets();
             vendorBundles.Accept(collector);
@@ -46,7 +48,6 @@ namespace App.Infrastructure.Cassette
 
         string AssetPath(IAsset asset)
         {
-            if (asset.Path.EndsWith("jquery.js")) return "jquery";
             return asset.Path.Substring(2).TrimEnd('.','j','s');
         }
 

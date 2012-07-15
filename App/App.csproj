@@ -227,6 +227,7 @@
     <Compile Include="Infrastructure\Unity\UnityPerRequestLifetimeManager.cs" />
     <Compile Include="Infrastructure\Web\UrlExtensions.cs" />
     <Compile Include="Pages\Vehicles\VehiclesController.cs" />
+    <Compile Include="Pages\Vehicle\VehicleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -248,11 +249,15 @@
     <Content Include="Infrastructure\Scripts\template.js" />
     <Content Include="Infrastructure\Scripts\text.js" />
     <Content Include="Modules\Common\start.js" />
+    <Content Include="Pages\Dashboard\dashboard.css" />
     <Content Include="Pages\Dashboard\DashboardViewModel.js" />
     <Content Include="Pages\Dashboard\statistics.htm" />
     <Content Include="Pages\Dashboard\init.js" />
     <Content Include="Pages\Dashboard\dashboard.htm" />
+    <Content Include="Pages\Dashboard\VehiclesList.htm" />
     <Content Include="Pages\Dashboard\VehicleViewModel.js" />
+    <Content Include="Pages\Vehicle\init.js" />
+    <Content Include="Pages\Vehicle\Vehicle.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

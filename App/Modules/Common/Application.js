@@ -52,6 +52,9 @@ var Application = Object.inherit({
 
     downloadedPageResult: function(pageResult) {
         var app = this;
+
+        if (pageResult.stylesheet) app.addPageStylesheet(pageResult.stylesheet);
+        
         require([pageResult.script], function (page) {
             app.addTemplates(page);
             page.init(pageResult, app);
@@ -94,6 +97,22 @@ var Application = Object.inherit({
         script.textContent = content;
 
         document.body.appendChild(script);
+    },
+    
+    addPageStylesheet: function (stylesheetUrl) {
+        var head = document.querySelector("head");
+
+        if (this.currentPageStylesheet) {
+            head.removeChild(this.currentPageStylesheet);
+        }
+
+        var link = document.createElement("link");
+        link.setAttribute("type", "text/css");
+        link.setAttribute("rel", "stylesheet");
+        link.setAttribute("href", stylesheetUrl);
+        head.appendChild(link);
+
+        this.currentPageStylesheet = link;
     },
     
     setViewModel: function(viewModel) {

@@ -28,7 +28,14 @@ namespace App.Infrastructure.Cassette
         {
             foreach (var path in dependencyPathsToAdd)
             {
-                dependencyPaths.Add(path);
+                if (path.EndsWith(".js"))
+                {
+                    dependencyPaths.Add(path.Substring(0, path.Length - 3));
+                }
+                else
+                {
+                    dependencyPaths.Add(path);
+                }
             }
         }
 
@@ -39,7 +46,7 @@ namespace App.Infrastructure.Cassette
             // Each asset will add an initialization function to the array.
             // Once all the assets have been loaded by require.js, we call each initialization function.
 
-            var urlsList = UrlsList(assetUrls, dependencyPaths);
+            var urlsList = UrlsList(dependencyPaths, assetUrls);
             var parameters = Parameters(dependencyPaths);
             var dependencyObjectProperties = DependencyObjectProperties(dependencyPaths);
 
@@ -57,7 +64,7 @@ namespace App.Infrastructure.Cassette
                    ");";
         }
 
-        string UrlsList(IEnumerable<string> assetUrls, IEnumerable<string> dependencyPaths)
+        string UrlsList(IEnumerable<string> dependencyPaths, IEnumerable<string> assetUrls)
         {
             var urls = dependencyPaths.Concat(assetUrls);
             return CommaSeparated(urls.Select(d => string.Format("'{0}'", d)));

@@ -1,5 +1,6 @@
 using System.Linq;
 using Cassette;
+using Cassette.Scripts;
 
 namespace App.Infrastructure.Cassette
 {
@@ -25,6 +26,7 @@ namespace App.Infrastructure.Cassette
         {
             var bundles = bundleCollectionChangedEventArgs
                 .Bundles
+                .OfType<ScriptBundle>()
                 .Where(b => !b.GetMetaDataOrDefault("AmdModulePerAsset", false));
 
             var builder = new DebugModuleCollectionBuilder(urlGenerator);

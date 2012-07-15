@@ -79,6 +79,8 @@ namespace App.Infrastructure.Cassette
 
             public AmdAsset(string modulePath, string variableName)
             {
+                if (modulePath.EndsWith(".js")) modulePath = modulePath.Substring(0, modulePath.Length - 3);
+
                 this.modulePath = modulePath;
                 this.variableName = variableName;
             }
