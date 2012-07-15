@@ -182,6 +182,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="CassetteConfiguration.cs" />
     <Compile Include="Infrastructure\Cassette\AddDebugWrapperToAssets.cs" />
     <Compile Include="Infrastructure\Cassette\AddTransformerToAssets.cs" />
@@ -207,6 +208,7 @@
     <Compile Include="Infrastructure\Cassette\StringAssetTransformer.cs" />
     <Compile Include="Infrastructure\Cassette\VendorAmdModulePathsProvider.cs" />
     <Compile Include="Infrastructure\Web\HtmlFormatter.cs" />
+    <Compile Include="Infrastructure\Web\PageResourceMetadataWrappingFilter.cs" />
     <Compile Include="Infrastructure\Web\RoutingExtensions.cs" />
     <Compile Include="Pages\Dashboard\DashboardController.cs" />
     <Compile Include="Global.asax.cs">

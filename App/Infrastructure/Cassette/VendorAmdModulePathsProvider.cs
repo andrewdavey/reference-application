@@ -43,7 +43,7 @@ namespace App.Infrastructure.Cassette
                     })
                     .Select(x => string.Format("'{0}':'{1}'", x.path, x.url));
 
-            Paths = string.Join(",\n", paths);
+            Paths = "{" + string.Join(",\n", paths) + "}";
         }
 
         string AssetPath(IAsset asset)

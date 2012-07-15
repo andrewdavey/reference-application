@@ -13,29 +13,50 @@ namespace App
     {
         public void Configure(BundleCollection bundles)
         {
-            // Custom search for script and HTML templates.
-            var fileSearch = new FileSearch
+            AddPageBundles(bundles);
+            AddModuleBundles(bundles);
+            AddInfrastructureBundles(bundles);
+        }
+
+        void AddPageBundles(BundleCollection bundles)
+        {
+            bundles.AddPerSubDirectory<ScriptBundle>(
+                "Pages",
+                ScriptAndHtmlTemplateFileSearch(),
+                b => b.EmbedHtmlTemplates().AmdModule()
+            );
+            bundles.AddPerSubDirectory<StylesheetBundle>("Pages");
+        }
+
+        void AddModuleBundles(BundleCollection bundles)
+        {
+            bundles.AddPerSubDirectory<ScriptBundle>(
+                "Modules",
+                b => b.AmdModule()
+            );
+        }
+
+        void AddInfrastructureBundles(BundleCollection bundles)
+        {
+            bundles.Add<ScriptBundle>(
+                "Infrastructure/Scripts",
+                b => b.AmdModulePerAsset()
+                      .AmdAlias("jquery.js", "$")
+                      .AmdAlias("knockout.js", "ko")
+                      .AmdShim("jquery.history.js", "History", "jquery") // TODO: fix this shim helper
+            );
+        }
+
+        /// <summary>
+        /// Custom file search that finds all script and HTML templates.
+        /// </summary>
+        FileSearch ScriptAndHtmlTemplateFileSearch()
+        {
+            return new FileSearch
             {
                 Pattern = "*.js;*.htm;*.html",
                 SearchOption = SearchOption.AllDirectories
             };
-
-            bundles.AddPerSubDirectory<ScriptBundle>(
-                "Pages",
-                fileSearch,
-                b => b.EmbedHtmlTemplates().AmdModule()
-            );
-            bundles.AddPerSubDirectory<StylesheetBundle>("Pages");
-
-            bundles.AddPerSubDirectory<ScriptBundle>("Modules", b => b.AmdModule());
-
-            bundles.Add<ScriptBundle>(
-                "Infrastructure/Scripts", 
-                b => b.AmdModulePerAsset()
-                      .AmdAlias("jquery.js", "$")
-                      .AmdAlias("knockout.js", "ko")
-                      .AmdShim("jquery.history.js", "History", "jquery")
-            );
         }
     }
 }
