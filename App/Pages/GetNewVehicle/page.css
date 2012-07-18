@@ -1,0 +1,15 @@
+﻿.field {
+    margin-bottom: 16px;    
+}
+
+input, label {
+    display: block;
+}
+
+.error label {
+    color: #a00;
+}
+
+.error input {
+    border: 1px solid #a00;
+}

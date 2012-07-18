@@ -1,3 +1,9 @@
-﻿body {
-    background-color: #afafef;
+﻿.reminders {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.reminders li {
+    margin-bottom: 16px;
 }

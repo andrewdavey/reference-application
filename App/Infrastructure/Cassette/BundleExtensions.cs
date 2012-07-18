@@ -35,7 +35,7 @@ namespace App.Infrastructure.Cassette
         {
             var assetToShim = GetAsset(bundle, assetFilename);
             assetToShim.SetMetaData("AmdAlias", moduleVariable);
-            assetToShim.SetMetaData("AmdShim", moduleVariable);
+            //assetToShim.SetMetaData("AmdShim", new Shim(moduleVariable, dependencies));
             return bundle;
         }
 

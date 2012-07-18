@@ -1,0 +1,34 @@
+﻿<h1>Add Vehicle</h1>
+
+<form data-bind="submit: save">
+    <div class="field" data-bind="css: { error: name.validation.message }">
+        <label for="vehicle-name">Vehicle name</label>
+        <input type="text" data-bind="value: name" id="vehicle-name"/>
+        <label class="error" data-bind="text: name.validation.message" for="vehicle-name"></label>
+    </div>
+    <div class="field">
+        <label>Model year</label>
+        <select data-bind="options: years, optionsText: 'year', optionsCaption: '(Select)', value: year"></select>
+    </div>
+    <div class="field">
+        <label>Make</label>
+        <select data-bind="options: makes, optionsText: 'make', optionsCaption: '(Select)', value: make"></select>
+    </div>
+    <div class="field">
+        <label>Model</label>
+        <select data-bind="options: models, optionsCaption: '(Select)', value: model"></select>
+    </div>
+    <div class="field">
+        <label>Photo</label>
+        <input type="file" />
+    </div>
+    <div>
+        <button type="submit">Save</button>
+    </div>
+
+    <p>
+        Note: Year, Make, Model and Photo are optional, 
+        but by providing them you get access to vehicle 
+        performance reports.
+    </p>
+</form>
