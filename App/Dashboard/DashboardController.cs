@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Http;
 using App.Infrastructure;
 using App.Infrastructure.Web;
+using App.Profile;
 using App.Vehicles;
 using MileageStats.Domain.Handlers;
 
@@ -33,7 +34,8 @@ namespace App.Dashboard
                     statistics,
                     reminders,
                     vehicles = new { get = Url.Resource<VehiclesController>() },
-                    addVehicle = Url.Resource<GetNewVehicleController>()
+                    addVehicle = Url.Resource<GetNewVehicleController>(),
+                    profile = new { get = Url.Resource<ProfileController>() }
                 }
             };
             

@@ -1,0 +1,15 @@
+﻿<h2>Complete your registration</h2>
+<form data-bind="submit: save">
+    <div class="field" data-bind="css: { error: name.validation.message }">
+        <label id="profile-name">Name</label>
+        <input type="text" data-bind="value: name" id="profile-name" />
+        <label for="profile-name" data-bind="text: name.validation.message"></label>
+    </div>
+    
+    <div class="field">
+        <label>Country or region</label>
+        <select data-bind="options: countries, optionsCaption: '(Select)', value: country"></select>
+    </div>
+
+    <button type="submit">Save</button>
+</form>

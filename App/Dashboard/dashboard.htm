@@ -1,4 +1,8 @@
-﻿<section data-bind="template: { data: statistics, name: 'Dashboard/statistics.htm' }"></section>
+﻿<!-- ko if: profile -->
+<section data-bind="template: { data: profile, name: 'Profile/ProfileForm.htm' }"></section>
+<!-- /ko -->
+
+<section data-bind="template: { data: statistics, name: 'Dashboard/statistics.htm' }"></section>
 
 <section data-bind="template: { name: 'Dashboard/vehicles.htm' }"></section>
 

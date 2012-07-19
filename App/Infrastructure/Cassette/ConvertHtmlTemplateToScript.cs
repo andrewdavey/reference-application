@@ -1,5 +1,4 @@
 using Cassette;
-using Cassette.Scripts;
 using Newtonsoft.Json;
 
 namespace App.Infrastructure.Cassette
@@ -8,7 +7,10 @@ namespace App.Infrastructure.Cassette
     {
         protected override string Transform(string source, IAsset asset)
         {
-            return "module['" + asset.Path.Substring(2) + "']=" + JsonConvert.SerializeObject(source);
+            return "deps['Infrastructure/Scripts/App'].addTemplate(" +
+                   JsonConvert.SerializeObject(asset.Path.Substring(2)) + "," +
+                   JsonConvert.SerializeObject(source) + 
+                   ")";
         }
     }
 }

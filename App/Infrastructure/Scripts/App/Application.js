@@ -57,7 +57,6 @@ var Application = Object.inherit({
         if (pageResult.Stylesheet) app.addPageStylesheet(pageResult.Stylesheet);
         
         require([pageResult.Script], function (page) {
-            app.addTemplates(page);
             page.init(pageResult.Data, app);
             document.title = pageResult.Title || "Mileage Stats";
             app.pageLoaded.trigger(pageResult, app);
@@ -79,25 +78,6 @@ var Application = Object.inherit({
 
     navigate: function(url) {
         History.pushState(null, null, url);
-    },
-
-    addTemplates: function (pageModule) {
-        for (var property in pageModule) {
-            if (property.match(/\.htm$/)) {
-                this.addTemplate(property, pageModule[property]);
-            }
-        }
-    },
-    
-    addTemplate: function (id, content) {
-        if (document.getElementById(id)) return;
-        
-        var script = document.createElement("script");
-        script.setAttribute("type", "text/html");
-        script.setAttribute("id", id);
-        script.textContent = content;
-
-        document.body.appendChild(script);
     },
     
     addPageStylesheet: function (stylesheetUrl) {

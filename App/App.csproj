@@ -182,6 +182,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CountriesController.cs" />
     <Compile Include="Infrastructure\Web\WebApiConfig.cs" />
     <Compile Include="Infrastructure\Cassette\CassetteConfiguration.cs" />
     <Compile Include="Infrastructure\Cassette\AddDebugWrapperToAssets.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Infrastructure\Web\HtmlFormatter.cs" />
     <Compile Include="Infrastructure\Web\PageResourceMetadataWrappingFilter.cs" />
     <Compile Include="Infrastructure\Web\RoutingExtensions.cs" />
+    <Compile Include="Profile\ProfileController.cs" />
     <Compile Include="Vehicles\ReferenceData\MakesController.cs" />
     <Compile Include="Vehicles\ReferenceData\ModelsController.cs" />
     <Compile Include="Vehicles\ReferenceData\YearsController.cs" />
@@ -243,6 +245,8 @@
   <ItemGroup>
     <Compile Include="Infrastructure\Web\RouteConfig.cs" />
     <Content Include="app.html" />
+    <Content Include="Infrastructure\Scripts\App\addTemplate.js" />
+    <Content Include="Profile\ProfileForm.htm" />
     <Content Include="Global.asax" />
     <Content Include="Infrastructure\Scripts\App\Application.js" />
     <Content Include="Infrastructure\Scripts\App\Event.js" />
@@ -257,6 +261,7 @@
     <Content Include="Infrastructure\Scripts\Vendor\knockout.js" />
     <Content Include="Infrastructure\Scripts\Vendor\require.js" />
     <Content Include="Infrastructure\Scripts\App\start.js" />
+    <Content Include="Profile\ProfileForm.js" />
     <Content Include="Vehicles\NewVehiclePage\NewVehicleForm.js" />
     <Content Include="Vehicles\NewVehiclePage\NewVehicleForm.htm" />
     <Content Include="Vehicles\NewVehiclePage\init.js" />

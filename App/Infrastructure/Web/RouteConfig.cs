@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 using App.Dashboard;
+using App.Profile;
 using App.Vehicles;
 using App.Vehicles.ReferenceData;
 
@@ -21,9 +22,13 @@ namespace App.Infrastructure.Web
             routes.MapResource<VehicleController>("vehicles/{id}");
             routes.MapResource<VehiclePhotoController>("vehicles-photo/{id}");
 
+            routes.MapResource<ProfileController>("profile");
+
             routes.MapResource<YearsController>("reference/years");
             routes.MapResource<MakesController>("reference/years/{year}");
             routes.MapResource<ModelsController>("reference/years/{year}/{make}");
+
+            routes.MapResource<CountriesController>("reference/countries");
         }
     }
 }

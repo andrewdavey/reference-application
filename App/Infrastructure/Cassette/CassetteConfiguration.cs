@@ -15,6 +15,7 @@ namespace App.Infrastructure.Cassette
             AddInfrastructureBundles(bundles);
             AddAppBundle(bundles);
             AddPageBundle("Dashboard", bundles);
+            AddPageBundle("Profile", bundles);
             AddPageBundle("Vehicles/NewVehiclePage", bundles);
             AddPageBundle("Vehicles/VehiclePage", bundles);
         }
