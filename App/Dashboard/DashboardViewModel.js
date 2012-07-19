@@ -8,7 +8,8 @@ var DashboardViewModel = Object.inherit({
 
     templateId: "Dashboard/dashboard.htm",
 
-    init: function (pageData) {
+    init: function (pageData, flashMessage) {
+        this.flashMessage = flashMessage;
         this.initStatistics(pageData);
         this.initVehicles(pageData);
         this.initReminders(pageData);
@@ -51,6 +52,7 @@ var DashboardViewModel = Object.inherit({
     },
     
     hideProfile: function () {
+        this.flashMessage.show("Profile saved");
         this.profile(null);
     }
     
