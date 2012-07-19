@@ -2,10 +2,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using App.Infrastructure.Web;
-using App.Pages.Vehicle;
 using MileageStats.Domain.Handlers;
 
-namespace App.Modules.Vehicles
+namespace App.Vehicles
 {
     public class PostVehicleController : ApiController
     {

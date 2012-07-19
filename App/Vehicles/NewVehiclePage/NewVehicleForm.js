@@ -1,10 +1,10 @@
-﻿/// <reference path="~/Modules/Common/Object.js"/>
-/// <reference path="~/Modules/Common/httpCommand.js" />
-/// <reference path="~/Infrastructure/Scripts/knockout.js"/>
+﻿/// <reference path="~/Infrastructure/Scripts/App/Object.js"/>
+/// <reference path="~/Infrastructure/Scripts/App/httpCommand.js" />
+/// <reference path="~/Infrastructure/Scripts/Vendor/knockout.js"/>
 
 var NewVehicleForm = Object.inherit({
 
-    templateId: "Pages/GetNewVehicle/NewVehicleForm.htm",
+    templateId: "Vehicles/NewVehiclePage/NewVehicleForm.htm",
 
     init: function (pageData, app) {
         this.app = app;

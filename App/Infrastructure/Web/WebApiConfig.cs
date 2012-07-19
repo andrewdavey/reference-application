@@ -1,9 +1,8 @@
 ﻿using System.Web.Http;
-using App.Infrastructure.Web;
 using Microsoft.Practices.Unity;
 using Unity.WebApi;
 
-namespace App.App_Start
+namespace App.Infrastructure.Web
 {
     public static class WebApiConfig
     {
@@ -11,7 +10,7 @@ namespace App.App_Start
         {
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
             GlobalConfiguration.Configuration.Formatters.Add(new HtmlFormatter());
-            GlobalConfiguration.Configuration.Filters.Add(new PageResourceMetadataWrappingFilter());
+            //GlobalConfiguration.Configuration.Filters.Add(new PageResourceMetadataWrappingFilter());
         }
     }
 }

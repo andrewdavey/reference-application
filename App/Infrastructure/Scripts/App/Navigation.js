@@ -1,4 +1,4 @@
-﻿/// <reference path="~/Infrastructure/Scripts/knockout.js" />
+﻿/// <reference path="../Vendor/knockout.js" />
 /// <reference path="Object.js" />
 
 var Navigation = Object.inherit({

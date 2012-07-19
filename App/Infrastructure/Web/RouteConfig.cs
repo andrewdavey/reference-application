@@ -1,18 +1,17 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using App.Infrastructure.Web;
-using App.Modules.ReferenceData;
-using App.Modules.Vehicles;
-using App.Pages.GetNewVehicle;
-using App.Pages.Dashboard;
-using App.Pages.Vehicle;
+using App.Dashboard;
+using App.Vehicles;
+using App.Vehicles.ReferenceData;
 
-namespace App
+namespace App.Infrastructure.Web
 {
-    public class RouteConfig
+    public static class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.RouteExistingFiles = true;
+
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             
             routes.MapResource<DashboardController>("");
@@ -20,6 +19,7 @@ namespace App
             routes.PostResource<PostVehicleController>("vehicles");
             routes.MapResource<GetNewVehicleController>("vehicles/add");
             routes.MapResource<VehicleController>("vehicles/{id}");
+            routes.MapResource<VehiclePhotoController>("vehicles-photo/{id}");
 
             routes.MapResource<YearsController>("reference/years");
             routes.MapResource<MakesController>("reference/years/{year}");

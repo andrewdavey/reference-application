@@ -4,7 +4,7 @@ using System.Web.Http;
 using App.Infrastructure.Web;
 using MileageStats.Domain.Handlers;
 
-namespace App.Modules.ReferenceData
+namespace App.Vehicles.ReferenceData
 {
     public class YearsController : ApiController
     {

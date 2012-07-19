@@ -182,8 +182,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="CassetteConfiguration.cs" />
+    <Compile Include="Infrastructure\Web\WebApiConfig.cs" />
+    <Compile Include="Infrastructure\Cassette\CassetteConfiguration.cs" />
     <Compile Include="Infrastructure\Cassette\AddDebugWrapperToAssets.cs" />
     <Compile Include="Infrastructure\Cassette\AddTransformerToAssets.cs" />
     <Compile Include="Infrastructure\Cassette\AmdModule.cs" />
@@ -208,16 +208,17 @@
     <Compile Include="Infrastructure\Cassette\ShimProvider.cs" />
     <Compile Include="Infrastructure\Cassette\StringAssetTransformer.cs" />
     <Compile Include="Infrastructure\Cassette\VendorAmdModulePathsProvider.cs" />
+    <Compile Include="Infrastructure\Page.cs" />
     <Compile Include="Infrastructure\Web\HtmlFormatter.cs" />
     <Compile Include="Infrastructure\Web\PageResourceMetadataWrappingFilter.cs" />
     <Compile Include="Infrastructure\Web\RoutingExtensions.cs" />
-    <Compile Include="Modules\ReferenceData\MakesController.cs" />
-    <Compile Include="Modules\ReferenceData\ModelsController.cs" />
-    <Compile Include="Modules\ReferenceData\YearsController.cs" />
-    <Compile Include="Modules\Vehicles\PostVehicleController.cs" />
-    <Compile Include="Modules\Vehicles\NewVehicleForm.cs" />
-    <Compile Include="Pages\GetNewVehicle\GetNewVehicleController.cs" />
-    <Compile Include="Pages\Dashboard\DashboardController.cs" />
+    <Compile Include="Vehicles\ReferenceData\MakesController.cs" />
+    <Compile Include="Vehicles\ReferenceData\ModelsController.cs" />
+    <Compile Include="Vehicles\ReferenceData\YearsController.cs" />
+    <Compile Include="Vehicles\PostVehicleController.cs" />
+    <Compile Include="Vehicles\NewVehicleForm.cs" />
+    <Compile Include="Vehicles\GetNewVehicleController.cs" />
+    <Compile Include="Dashboard\DashboardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -234,44 +235,44 @@
     <Compile Include="Infrastructure\Unity\UnityHttpContextPerRequestLifetimeManager.cs" />
     <Compile Include="Infrastructure\Unity\UnityPerRequestLifetimeManager.cs" />
     <Compile Include="Infrastructure\Web\UrlExtensions.cs" />
-    <Compile Include="Modules\Vehicles\VehiclesController.cs" />
-    <Compile Include="Pages\Vehicle\VehicleController.cs" />
+    <Compile Include="Vehicles\VehiclePhotoController.cs" />
+    <Compile Include="Vehicles\VehiclesController.cs" />
+    <Compile Include="Vehicles\VehicleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Infrastructure\Web\RouteConfig.cs" />
     <Content Include="app.html" />
     <Content Include="Global.asax" />
-    <Content Include="Modules\Common\Application.js" />
-    <Content Include="Modules\Common\Event.js" />
-    <Content Include="Modules\Common\FlashMessage.js" />
-    <Content Include="Modules\Common\httpCommand.js" />
-    <Content Include="Modules\Common\Navigation.js" />
-    <Content Include="Modules\Common\Object.js" />
-    <Content Include="Infrastructure\Scripts\bundle.txt" />
-    <Content Include="Infrastructure\Scripts\domReady.js" />
-    <Content Include="Infrastructure\Scripts\jquery.history.js" />
-    <Content Include="Infrastructure\Scripts\jquery.js" />
-    <Content Include="Infrastructure\Scripts\knockout.js" />
-    <Content Include="Infrastructure\Scripts\require.js" />
-    <Content Include="Infrastructure\Scripts\template.js" />
-    <Content Include="Infrastructure\Scripts\text.js" />
-    <Content Include="Modules\Common\start.js" />
-    <Content Include="Pages\GetNewVehicle\NewVehicleForm.js" />
-    <Content Include="Pages\GetNewVehicle\NewVehicleForm.htm" />
-    <Content Include="Pages\GetNewVehicle\init.js" />
-    <Content Include="Pages\GetNewVehicle\page.css" />
-    <Content Include="Pages\Dashboard\dashboard.css" />
-    <Content Include="Pages\Dashboard\DashboardViewModel.js" />
-    <Content Include="Pages\Dashboard\reminders.htm" />
-    <Content Include="Pages\Dashboard\statistics.htm" />
-    <Content Include="Pages\Dashboard\init.js" />
-    <Content Include="Pages\Dashboard\dashboard.htm" />
-    <Content Include="Pages\Dashboard\Vehicle.js" />
-    <Content Include="Pages\Dashboard\vehicles.htm" />
-    <Content Include="Pages\Vehicle\page.css" />
-    <Content Include="Pages\Vehicle\init.js" />
-    <Content Include="Pages\Vehicle\Vehicle.htm" />
+    <Content Include="Infrastructure\Scripts\App\Application.js" />
+    <Content Include="Infrastructure\Scripts\App\Event.js" />
+    <Content Include="Infrastructure\Scripts\App\FlashMessage.js" />
+    <Content Include="Infrastructure\Scripts\App\httpCommand.js" />
+    <Content Include="Infrastructure\Scripts\App\Navigation.js" />
+    <Content Include="Infrastructure\Scripts\App\Object.js" />
+    <Content Include="Infrastructure\Scripts\Vendor\bundle.txt" />
+    <Content Include="Infrastructure\Scripts\Vendor\domReady.js" />
+    <Content Include="Infrastructure\Scripts\Vendor\jquery.history.js" />
+    <Content Include="Infrastructure\Scripts\Vendor\jquery.js" />
+    <Content Include="Infrastructure\Scripts\Vendor\knockout.js" />
+    <Content Include="Infrastructure\Scripts\Vendor\require.js" />
+    <Content Include="Infrastructure\Scripts\App\start.js" />
+    <Content Include="Vehicles\NewVehiclePage\NewVehicleForm.js" />
+    <Content Include="Vehicles\NewVehiclePage\NewVehicleForm.htm" />
+    <Content Include="Vehicles\NewVehiclePage\init.js" />
+    <Content Include="Vehicles\NewVehiclePage\page.css" />
+    <Content Include="Dashboard\dashboard.css" />
+    <Content Include="Dashboard\DashboardViewModel.js" />
+    <Content Include="Dashboard\reminders.htm" />
+    <Content Include="Dashboard\statistics.htm" />
+    <Content Include="Dashboard\init.js" />
+    <Content Include="Dashboard\dashboard.htm" />
+    <Content Include="Dashboard\Vehicle.js" />
+    <Content Include="Dashboard\vehicles.htm" />
+    <Content Include="Vehicles\VehiclePage\page.css" />
+    <Content Include="Vehicles\VehiclePage\init.js" />
+    <Content Include="Vehicles\VehiclePage\Vehicle.htm" />
+    <Content Include="Vehicles\VehiclePage\VehicleViewModel.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

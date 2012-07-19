@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using App.Infrastructure;
 using App.Infrastructure.Web;
-using App.Modules.Vehicles;
-using App.Pages.GetNewVehicle;
+using App.Vehicles;
 using MileageStats.Domain.Handlers;
-using MileageStats.Domain.Models;
 
-namespace App.Pages.Dashboard
+namespace App.Dashboard
 {
     public class DashboardController : ApiController
     {
@@ -26,12 +25,16 @@ namespace App.Pages.Dashboard
             var statistics = getFleetSummaryStatistics.Execute(1);
             var reminders = GetReminders();
 
-            var resource = new
+            var resource = new Page
             {
-                statistics,
-                reminders,
-                vehicles = new { get = Url.Resource<VehiclesController>() },
-                addVehicle = Url.Resource<GetNewVehicleController>()
+                Script = "Dashboard",
+                Data = new
+                {
+                    statistics,
+                    reminders,
+                    vehicles = new { get = Url.Resource<VehiclesController>() },
+                    addVehicle = Url.Resource<GetNewVehicleController>()
+                }
             };
             
             return resource;

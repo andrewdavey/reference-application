@@ -14,18 +14,18 @@
         var require = {
             paths: $paths$,
             shim: {
-                "Infrastructure/Scripts/jquery.history": {
-                    deps: ["Infrastructure/Scripts/jquery"],
+                "Infrastructure/Scripts/Vendor/jquery.history": {
+                    deps: ["Infrastructure/Scripts/Vendor/jquery"],
                     exports: "History"
                 }
             }
         };
     </script>
-    <script src="/Infrastructure/Scripts/require.js"></script>
+    <script src="/Infrastructure/Scripts/Vendor/require.js"></script>
     <script>
         $shims$
 
-        require(["Modules/Common"], function(module) {
+        require(["Infrastructure/Scripts/App"], function(module) {
             module.start();
         });
     </script>

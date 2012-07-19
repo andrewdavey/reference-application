@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
 using MileageStats.Domain.Handlers;
 
-namespace App.Modules.ReferenceData
+namespace App.Vehicles.ReferenceData
 {
     public class ModelsController : ApiController
     {

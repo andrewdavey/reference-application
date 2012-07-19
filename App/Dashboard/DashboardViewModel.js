@@ -1,11 +1,11 @@
-﻿/// <reference path="~/Modules/Common/httpCommand.js"/>
-/// <reference path="~/Modules/Common/Object.js"/>
-/// <reference path="~/Infrastructure/Scripts/knockout.js"/>
+﻿/// <reference path="~/Infrastructure/Scripts/App/httpCommand.js"/>
+/// <reference path="~/Infrastructure/Scripts/App/Object.js"/>
+/// <reference path="~/Infrastructure/Scripts/Vendor/knockout.js"/>
 /// <reference path="Vehicle.js" />
 
 var DashboardViewModel = Object.inherit({
 
-    templateId: "Pages/Dashboard/dashboard.htm",
+    templateId: "Dashboard/dashboard.htm",
 
     init: function (pageData) {
         this.initStatistics(pageData);

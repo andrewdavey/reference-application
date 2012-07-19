@@ -1,8 +1,8 @@
 ﻿/// <reference path="Event.js" />
 /// <reference path="Object.js" />
-/// <reference path="~/Infrastructure/Scripts/jquery.history.js" />
-/// <reference path="~/Infrastructure/Scripts/jquery.js" />
-/// <reference path="~/Infrastructure/Scripts/knockout.js" />
+/// <reference path="../Vendor/jquery.history.js" />
+/// <reference path="../Vendor/jquery.js" />
+/// <reference path="../Vendor/knockout.js" />
 
 var Application = Object.inherit({
     init: function(document) {
@@ -54,12 +54,12 @@ var Application = Object.inherit({
         var app = this;
 
         this.removePageStylesheet();
-        if (pageResult.stylesheet) app.addPageStylesheet(pageResult.stylesheet);
+        if (pageResult.Stylesheet) app.addPageStylesheet(pageResult.Stylesheet);
         
-        require([pageResult.script], function (page) {
+        require([pageResult.Script], function (page) {
             app.addTemplates(page);
-            page.init(pageResult.data, app);
-            document.title = pageResult.title;
+            page.init(pageResult.Data, app);
+            document.title = pageResult.Title || "Mileage Stats";
             app.pageLoaded.trigger(pageResult, app);
         });
     },

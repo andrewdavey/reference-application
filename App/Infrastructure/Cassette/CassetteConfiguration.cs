@@ -1,10 +1,9 @@
 using System.IO;
-using App.Infrastructure.Cassette;
 using Cassette;
 using Cassette.Scripts;
 using Cassette.Stylesheets;
 
-namespace App
+namespace App.Infrastructure.Cassette
 {
     /// <summary>
     /// Configures the Cassette asset bundles for the web application.
@@ -13,25 +12,27 @@ namespace App
     {
         public void Configure(BundleCollection bundles)
         {
-            AddPageBundles(bundles);
-            AddModuleBundles(bundles);
             AddInfrastructureBundles(bundles);
+            AddAppBundle(bundles);
+            AddPageBundle("Dashboard", bundles);
+            AddPageBundle("Vehicles/NewVehiclePage", bundles);
+            AddPageBundle("Vehicles/VehiclePage", bundles);
         }
 
-        void AddPageBundles(BundleCollection bundles)
+        void AddPageBundle(string path, BundleCollection bundles)
         {
-            bundles.AddPerSubDirectory<ScriptBundle>(
-                "Pages",
+            bundles.Add<ScriptBundle>(
+                path,
                 ScriptAndHtmlTemplateFileSearch(),
                 b => b.EmbedHtmlTemplates().AmdModule()
             );
-            bundles.AddPerSubDirectory<StylesheetBundle>("Pages");
+            bundles.AddPerSubDirectory<StylesheetBundle>(path);
         }
 
-        void AddModuleBundles(BundleCollection bundles)
+        void AddAppBundle(BundleCollection bundles)
         {
             bundles.AddPerSubDirectory<ScriptBundle>(
-                "Modules",
+                "Infrastructure/Scripts/App",
                 b => b.AmdModule()
             );
         }
@@ -39,7 +40,7 @@ namespace App
         void AddInfrastructureBundles(BundleCollection bundles)
         {
             bundles.Add<ScriptBundle>(
-                "Infrastructure/Scripts",
+                "Infrastructure/Scripts/Vendor",
                 b => b.AmdModulePerAsset()
                       .AmdAlias("jquery.js", "$")
                       .AmdAlias("knockout.js", "ko")
