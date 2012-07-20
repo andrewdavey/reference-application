@@ -7,12 +7,11 @@ namespace App.Infrastructure.Cassette
     {
         public void Process(ScriptBundle bundle)
         {
-            bundle.AddReference("~/Infrastructure/Scripts/App");
-
             foreach (var asset in bundle.Assets)
             {
                 if (asset.Path.EndsWith(".htm") || asset.Path.EndsWith(".html"))
                 {
+                    asset.AddReference("~/Infrastructure/Scripts/App/addTemplate.js", 0);
                     asset.AddAssetTransformer(new ConvertHtmlTemplateToScript());
                 }
             }
