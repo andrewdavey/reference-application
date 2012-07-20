@@ -23,8 +23,12 @@ namespace App.Vehicles
                 Script = "Vehicles/VehiclePage",
                 Data = new
                 {
-                    vehicle.Name,
-                    Photo = Url.Resource<VehiclePhotoController>(new {id = vehicle.PhotoId})
+                    name = vehicle.Name,
+                    year = vehicle.Year,
+                    make = vehicle.MakeName,
+                    model = vehicle.ModelName,
+                    odometer = vehicle.Odometer,
+                    photo = Url.Resource<VehiclePhotoController>(new {id = vehicle.PhotoId})
                 }
             };
         }
