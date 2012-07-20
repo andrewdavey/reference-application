@@ -2,7 +2,7 @@
 /// <reference path="~/Infrastructure/Scripts/App/Object.js"/>
 /// <reference path="~/Infrastructure/Scripts/Vendor/knockout.js"/>
 /// <reference path="../Profile/ProfileForm.js" />
-/// <reference path="Vehicle.js" />
+/// <reference path="../Vehicles/List/VehicleSummaryList.js" />
 
 var DashboardViewModel = Object.inherit({
 
@@ -21,15 +21,8 @@ var DashboardViewModel = Object.inherit({
     },
     
     initVehicles: function(pageData) {
-        this.vehicles = ko.observableArray();
+        this.vehicles = VehicleSummaryList.create(pageData.vehicles);
         this.addVehicleUrl = pageData.addVehicle;
-        var getVehicles = httpCommand(pageData.vehicles, this);
-        getVehicles().then(this.displayVehicles);
-    },
-    
-    displayVehicles: function(response) {
-        var vehicles = response.vehicles.map(Vehicle.create);
-        this.vehicles(vehicles);
     },
     
     initReminders: function(pageData) {

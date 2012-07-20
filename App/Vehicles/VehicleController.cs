@@ -28,7 +28,8 @@ namespace App.Vehicles
                     make = vehicle.MakeName,
                     model = vehicle.ModelName,
                     odometer = vehicle.Odometer,
-                    photo = Url.Resource<VehiclePhotoController>(new {id = vehicle.PhotoId})
+                    photo = Url.Resource<VehiclePhotoController>(new {id = vehicle.PhotoId}),
+                    vehicles = new {get = Url.Resource<VehiclesController>()}
                 }
             };
         }

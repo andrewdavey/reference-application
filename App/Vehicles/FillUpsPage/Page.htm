@@ -1,0 +1,21 @@
+﻿<div class="row">
+    <div class="span3">
+        
+    </div>
+    <div class="span3">
+        <ul class="fill-ups unstyled" data-bind="foreach: fillUps">
+            <li data-bind="css: { selected: $data === $parent.selectedFillUp() }">
+                <a href="javascript:void(0)" data-bind="click: $parent.showFillUpDetails.bind($parent)">
+                    <span data-bind="text: date"></span>
+                    <span data-bind="text: vendor"></span>
+                    <span data-bind="text: totalCost"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="span6">
+        <!-- ko if: selectedFillUp -->
+        <div data-bind="template: { data: selectedFillUp, name: 'Vehicles/FillUpsPage/FillUpDetails.htm' }"></div>
+        <!-- /ko -->
+    </div>
+</div>

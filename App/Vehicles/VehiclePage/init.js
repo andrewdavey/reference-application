@@ -1,6 +1,6 @@
 ﻿/// <reference path="~/Infrastructure/Scripts/App/Object.js"/>
-/// <reference path="VehicleViewModel.js"/>
+/// <reference path="Page.js"/>
 
 var init = function (pageData, app) {
-    app.setViewModel(VehicleViewModel.create(pageData));
+    app.setViewModel(Page.create(pageData));
 };

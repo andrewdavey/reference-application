@@ -1,32 +1,4 @@
-﻿<ul data-bind="foreach: vehicles">
-    <li>
-        <div>
-            <span data-bind="visible: year, text: year"></span>
-            <span data-bind="text: make"></span>
-            <span data-bind="text: model"></span>
-        </div>
-        <h2 data-bind="text: name"></h2>
-
-        <img data-bind="attr: { src: photo }" alt=""/>
-        
-        <a data-bind="attr: { href: details }">Details</a>
-        <a data-bind="attr: { href: fillUps }">Fill Ups</a>
-        <a data-bind="attr: { href: reminders }">Reminders</a>
-        
-        <div>
-            <span data-bind="text: averageFuelEfficiency"></span> mpg
-        </div>
-        
-        <div>
-            $<span data-bind="text: averageCostToDrive"></span> per mile            
-        </div>
-        
-        <div>
-            $<span data-bind="text: averageCostPerMonth"></span> per month            
-        </div>
-
-    </li>
-</ul>
+﻿<ul data-bind="template: { foreach: vehicles.vehicles, name: 'Vehicles/List/VehicleSummary.htm' }"></ul>
 
 <div>
     <a data-bind="attr: { href: addVehicleUrl }">Add Vehicle</a>

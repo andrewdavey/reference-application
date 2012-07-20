@@ -14,13 +14,15 @@ namespace App.Infrastructure.Cassette
         {
             AddInfrastructureBundles(bundles);
             AddAppBundle(bundles);
-            AddPageBundle("Dashboard", bundles);
-            AddPageBundle("Profile", bundles);
-            AddPageBundle("Vehicles/NewVehiclePage", bundles);
-            AddPageBundle("Vehicles/VehiclePage", bundles);
+            AddBundle("Dashboard", bundles);
+            AddBundle("Profile", bundles);
+            AddBundle("Vehicles/List", bundles);
+            AddBundle("Vehicles/NewVehiclePage", bundles);
+            AddBundle("Vehicles/VehiclePage", bundles);
+            AddBundle("Vehicles/FillUpsPage", bundles);
         }
 
-        void AddPageBundle(string path, BundleCollection bundles)
+        void AddBundle(string path, BundleCollection bundles)
         {
             bundles.Add<ScriptBundle>(
                 path,

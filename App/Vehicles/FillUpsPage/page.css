@@ -1,0 +1,9 @@
+﻿.fill-ups a {
+    display: block;
+    padding: 1em;
+}
+
+.fill-ups .selected a {
+    background: #08C;
+    color: #fff;
+}

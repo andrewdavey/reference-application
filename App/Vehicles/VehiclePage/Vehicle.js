@@ -1,5 +1,4 @@
-﻿var VehicleViewModel = Object.inherit({
-    templateId: "Vehicles/VehiclePage/Vehicle.htm",
+﻿var Vehicle = Object.inherit({
 
     init: function (pageData) {
         this.name = pageData.name;
@@ -9,4 +8,5 @@
         this.odometer = pageData.odometer;
         this.photo = pageData.photo;
     }
+    
 });

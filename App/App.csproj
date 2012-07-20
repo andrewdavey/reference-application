@@ -215,6 +215,7 @@
     <Compile Include="Infrastructure\Web\PageResourceMetadataWrappingFilter.cs" />
     <Compile Include="Infrastructure\Web\RoutingExtensions.cs" />
     <Compile Include="Profile\ProfileController.cs" />
+    <Compile Include="Vehicles\FillUpsController.cs" />
     <Compile Include="Vehicles\ReferenceData\MakesController.cs" />
     <Compile Include="Vehicles\ReferenceData\ModelsController.cs" />
     <Compile Include="Vehicles\ReferenceData\YearsController.cs" />
@@ -267,6 +268,15 @@
     <Content Include="Infrastructure\Scripts\Vendor\require.js" />
     <Content Include="Infrastructure\Scripts\App\start.js" />
     <Content Include="Profile\ProfileForm.js" />
+    <Content Include="Vehicles\FillUpsPage\FillUp.js" />
+    <Content Include="Vehicles\FillUpsPage\FillUpDetails.htm" />
+    <Content Include="Vehicles\FillUpsPage\init.js" />
+    <Content Include="Vehicles\FillUpsPage\page.css" />
+    <Content Include="Vehicles\FillUpsPage\Page.htm" />
+    <Content Include="Vehicles\FillUpsPage\Page.js" />
+    <Content Include="Vehicles\List\VehicleSummary.js" />
+    <Content Include="Vehicles\List\VehicleSummary.htm" />
+    <Content Include="Vehicles\List\VehicleSummaryList.js" />
     <Content Include="Vehicles\NewVehiclePage\NewVehicleForm.js" />
     <Content Include="Vehicles\NewVehiclePage\NewVehicleForm.htm" />
     <Content Include="Vehicles\NewVehiclePage\init.js" />
@@ -277,12 +287,13 @@
     <Content Include="Dashboard\statistics.htm" />
     <Content Include="Dashboard\init.js" />
     <Content Include="Dashboard\dashboard.htm" />
-    <Content Include="Dashboard\Vehicle.js" />
     <Content Include="Dashboard\vehicles.htm" />
+    <Content Include="Vehicles\VehiclePage\Page.htm" />
     <Content Include="Vehicles\VehiclePage\page.css" />
     <Content Include="Vehicles\VehiclePage\init.js" />
+    <Content Include="Vehicles\VehiclePage\Page.js" />
     <Content Include="Vehicles\VehiclePage\Vehicle.htm" />
-    <Content Include="Vehicles\VehiclePage\VehicleViewModel.js" />
+    <Content Include="Vehicles\VehiclePage\Vehicle.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
