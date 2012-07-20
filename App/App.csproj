@@ -215,6 +215,7 @@
     <Compile Include="Infrastructure\Web\PageResourceMetadataWrappingFilter.cs" />
     <Compile Include="Infrastructure\Web\RoutingExtensions.cs" />
     <Compile Include="Profile\ProfileController.cs" />
+    <Compile Include="Specs\SpecController.cs" />
     <Compile Include="Vehicles\FillUpsController.cs" />
     <Compile Include="Vehicles\ReferenceData\MakesController.cs" />
     <Compile Include="Vehicles\ReferenceData\ModelsController.cs" />
@@ -247,6 +248,7 @@
   <ItemGroup>
     <Compile Include="Infrastructure\Web\RouteConfig.cs" />
     <Content Include="app.html" />
+    <Content Include="specs.html" />
     <Content Include="Infrastructure\Scripts\App\addTemplate.js" />
     <Content Include="Infrastructure\Scripts\Vendor\bootstrap\css\bootstrap.css" />
     <Content Include="Infrastructure\Scripts\Vendor\bootstrap\img\glyphicons-halflings-white.png" />
@@ -268,6 +270,12 @@
     <Content Include="Infrastructure\Scripts\Vendor\require.js" />
     <Content Include="Infrastructure\Scripts\App\start.js" />
     <Content Include="Profile\ProfileForm.js" />
+    <Content Include="Specs\matchers.js" />
+    <Content Include="Specs\ProfileForm.js" />
+    <Content Include="Specs\init.js" />
+    <Content Include="Specs\jasmine-html.js" />
+    <Content Include="Specs\jasmine.css" />
+    <Content Include="Specs\jasmine.js" />
     <Content Include="Vehicles\FillUpsPage\FillUp.js" />
     <Content Include="Vehicles\FillUpsPage\FillUpDetails.htm" />
     <Content Include="Vehicles\FillUpsPage\init.js" />

@@ -8,7 +8,7 @@ var ProfileForm = Object.inherit({
         this.initInputs();
         this.initCountries(data.countries);
         this.initValidation();
-        this.saveCommand = httpCommand(data.save, this);
+        this.saveCommand = data.save;
     },
     
     initInputs: function () {
@@ -16,11 +16,10 @@ var ProfileForm = Object.inherit({
         this.country = ko.observable();
     },
     
-    initCountries: function (countriesHref) {
+    initCountries: function (getCountries) {
         this.countries = ko.observableArray();
 
-        var getCountries = httpCommand(countriesHref, this);
-        getCountries().done(function (countriesResponse) {
+        getCountries(this).done(function (countriesResponse) {
             this.countries(countriesResponse.countries);
         });
     },

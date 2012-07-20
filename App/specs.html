@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MileStats Sample Application</title>
+    $styles$
+</head>
+    <body>
+        <script type="text/html" id="loading">Loading...</script>
+        <script>
+            var styleMap = $styleMap$;
+            var require = {
+                paths: $paths$,
+                shim: {
+                    "Infrastructure/Scripts/Vendor/jquery.history": {
+                        deps: ["Infrastructure/Scripts/Vendor/jquery"],
+                        exports: "History"
+                    }
+                }
+            };
+        </script>
+        <script src="/Infrastructure/Scripts/Vendor/require.js"></script>
+        <script>
+            $shims$
+
+            require(["Infrastructure/Scripts/App"], function(module) {
+                module.start();
+            });
+        </script>
+    </body>
+</html>

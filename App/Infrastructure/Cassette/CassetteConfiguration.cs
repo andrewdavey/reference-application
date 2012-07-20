@@ -20,6 +20,8 @@ namespace App.Infrastructure.Cassette
             AddBundle("Vehicles/NewVehiclePage", bundles);
             AddBundle("Vehicles/VehiclePage", bundles);
             AddBundle("Vehicles/FillUpsPage", bundles);
+
+            AddBundle("Specs", bundles);
         }
 
         void AddBundle(string path, BundleCollection bundles)

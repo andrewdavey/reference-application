@@ -2,6 +2,7 @@
 using System.Web.Routing;
 using App.Dashboard;
 using App.Profile;
+using App.Specs;
 using App.Vehicles;
 using App.Vehicles.ReferenceData;
 
@@ -30,6 +31,8 @@ namespace App.Infrastructure.Web
             routes.MapResource<ModelsController>("reference/years/{year}/{make}");
 
             routes.MapResource<CountriesController>("reference/countries");
+
+            routes.MapResource<SpecController>("specs");
         }
     }
 }

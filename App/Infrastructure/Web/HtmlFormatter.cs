@@ -31,8 +31,10 @@ namespace App.Infrastructure.Web
         public override async System.Threading.Tasks.Task WriteToStreamAsync(Type type, object value, Stream stream, HttpContentHeaders contentHeaders, System.Net.TransportContext transportContext)
         {
             contentHeaders.ContentType = new MediaTypeHeaderValue("text/html");
-            
-            var filename = Path.Combine(HttpRuntime.AppDomainAppPath, "app.html");
+
+            var page = value as Page;
+
+            var filename = Path.Combine(HttpRuntime.AppDomainAppPath, page.HtmlFile ?? "app.html");
             using (var file = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 using (var reader = new StreamReader(file))
