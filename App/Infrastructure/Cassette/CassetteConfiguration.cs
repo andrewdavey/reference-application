@@ -31,7 +31,7 @@ namespace App.Infrastructure.Cassette
                 ScriptAndHtmlTemplateFileSearch(),
                 b => b.EmbedHtmlTemplates().AmdModule()
             );
-            bundles.AddPerSubDirectory<StylesheetBundle>(path);
+            bundles.Add<StylesheetBundle>(path);
         }
 
         void AddAppBundle(BundleCollection bundles)
