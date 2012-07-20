@@ -29,6 +29,7 @@ namespace App.Dashboard
             var resource = new Page
             {
                 Script = "Dashboard",
+                Stylesheet = "Dashboard",
                 Data = new
                 {
                     statistics,

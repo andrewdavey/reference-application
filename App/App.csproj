@@ -183,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CountriesController.cs" />
+    <Compile Include="Infrastructure\Cassette\StylesheetPathProvider.cs" />
     <Compile Include="Infrastructure\Web\WebApiConfig.cs" />
     <Compile Include="Infrastructure\Cassette\CassetteConfiguration.cs" />
     <Compile Include="Infrastructure\Cassette\AddDebugWrapperToAssets.cs" />
@@ -246,6 +247,10 @@
     <Compile Include="Infrastructure\Web\RouteConfig.cs" />
     <Content Include="app.html" />
     <Content Include="Infrastructure\Scripts\App\addTemplate.js" />
+    <Content Include="Infrastructure\Scripts\Vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Infrastructure\Scripts\Vendor\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Infrastructure\Scripts\Vendor\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Infrastructure\Scripts\Vendor\bootstrap\js\bootstrap.js" />
     <Content Include="Profile\ProfileForm.htm" />
     <Content Include="Global.asax" />
     <Content Include="Infrastructure\Scripts\App\Application.js" />
@@ -254,7 +259,7 @@
     <Content Include="Infrastructure\Scripts\App\httpCommand.js" />
     <Content Include="Infrastructure\Scripts\App\Navigation.js" />
     <Content Include="Infrastructure\Scripts\App\Object.js" />
-    <Content Include="Infrastructure\Scripts\Vendor\bundle.txt" />
+    <Content Include="Infrastructure\Scripts\Vendor\ScriptBundle.txt" />
     <Content Include="Infrastructure\Scripts\Vendor\domReady.js" />
     <Content Include="Infrastructure\Scripts\Vendor\jquery.history.js" />
     <Content Include="Infrastructure\Scripts\Vendor\jquery.js" />

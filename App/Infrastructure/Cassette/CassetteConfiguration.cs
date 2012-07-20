@@ -47,6 +47,9 @@ namespace App.Infrastructure.Cassette
                       .AmdAlias("knockout.js", "ko")
                       .AmdShim("jquery.history.js", "History", "jquery") // TODO: fix this shim helper
             );
+            bundles.Add<StylesheetBundle>(
+                "Infrastructure/Scripts/Vendor"
+            );
         }
 
         /// <summary>

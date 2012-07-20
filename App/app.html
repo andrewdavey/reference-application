@@ -2,38 +2,49 @@
 <html lang="en">
 <head>
     <title>MileStats Sample Application</title>
+    $styles$
 </head>
-<body>
-    <div data-bind="visible: flashMessage.visible, text: flashMessage.message"></div>
+    <body style="padding-top: 60px">
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="/">Mileage Stats</a>
+                    <ul class="nav">
+                        <li><a href="/">Dashboard</a></li>
+                        <li><a href="#">Log Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-    <h1>MileStats Sample Application</h1>
+        <div class="container">
+            <div data-bind="visible: flashMessage.visible, text: flashMessage.message"></div>
+
+
+            <div data-bind="template: { data: viewModel, name: viewModel().templateId }"></div>
+        </div>
     
-    <nav>
-        <a href="/">Dashboard</a>
-    </nav>
+        <script type="text/html" id="loading">Loading...</script>
 
-    <div data-bind="template: { data: viewModel, name: viewModel().templateId }"></div>
-    
-    <script type="text/html" id="loading">Loading...</script>
-
-    <script>
-        var require = {
-            paths: $paths$,
-            shim: {
-                "Infrastructure/Scripts/Vendor/jquery.history": {
-                    deps: ["Infrastructure/Scripts/Vendor/jquery"],
-                    exports: "History"
+        <script>
+            var styleMap = $styleMap$;
+            var require = {
+                paths: $paths$,
+                shim: {
+                    "Infrastructure/Scripts/Vendor/jquery.history": {
+                        deps: ["Infrastructure/Scripts/Vendor/jquery"],
+                        exports: "History"
+                    }
                 }
-            }
-        };
-    </script>
-    <script src="/Infrastructure/Scripts/Vendor/require.js"></script>
-    <script>
-        $shims$
+            };
+        </script>
+        <script src="/Infrastructure/Scripts/Vendor/require.js"></script>
+        <script>
+            $shims$
 
-        require(["Infrastructure/Scripts/App"], function(module) {
-            module.start();
-        });
-    </script>
-</body>
+            require(["Infrastructure/Scripts/App"], function(module) {
+                module.start();
+            });
+        </script>
+    </body>
 </html>

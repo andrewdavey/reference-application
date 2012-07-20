@@ -47,7 +47,7 @@ var ProfileForm = Object.inherit({
     
     validate: function () {
         if (!this.name()) {
-            this.name.validation.message("Name is required.");
+            this.name.validation.message("Name is required");
             return false;
         }
         return true;

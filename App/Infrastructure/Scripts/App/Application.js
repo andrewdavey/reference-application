@@ -53,7 +53,7 @@ var Application = Object.inherit({
     downloadedPageResult: function(pageResult) {
         var app = this;
 
-        this.removePageStylesheet();
+        this.removePageStylesheets();
         if (pageResult.Stylesheet) app.addPageStylesheet(pageResult.Stylesheet);
         
         require([pageResult.Script], function (page) {
@@ -80,22 +80,29 @@ var Application = Object.inherit({
         History.pushState(null, null, url);
     },
     
-    addPageStylesheet: function (stylesheetUrl) {
+    addPageStylesheet: function (stylesheetPath) {
+        var stylesheetUrls = styleMap[stylesheetPath];
+
         var head = document.querySelector("head");
-
-        var link = document.createElement("link");
-        link.setAttribute("type", "text/css");
-        link.setAttribute("rel", "stylesheet");
-        link.setAttribute("href", stylesheetUrl);
-        head.appendChild(link);
-
-        this.currentPageStylesheet = link;
+        var links = stylesheetUrls.map(function(url) {
+            var link = document.createElement("link");
+            link.setAttribute("type", "text/css");
+            link.setAttribute("rel", "stylesheet");
+            link.setAttribute("href", url);
+            head.appendChild(link);
+            return link;
+        });
+        
+        this.currentPageStylesheets = links;
     },
     
-    removePageStylesheet: function () {
-        var head = document.querySelector("head");
-        if (this.currentPageStylesheet) {
-            head.removeChild(this.currentPageStylesheet);
+    removePageStylesheets: function () {
+        if (this.currentPageStylesheets) {
+            var head = document.querySelector("head");
+            this.currentPageStylesheets.forEach(function (linkElement) {
+                head.removeChild(linkElement);
+            });
+            this.currentPageStylesheets = [];
         }
     },
     
