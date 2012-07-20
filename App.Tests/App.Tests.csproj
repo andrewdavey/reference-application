@@ -36,7 +36,7 @@
       <HintPath>..\packages\AjaxMin.4.51.4507.18296\lib\net20\AjaxMin.dll</HintPath>
     </Reference>
     <Reference Include="Cassette">
-      <HintPath>..\packages\Cassette.2.0.0-beta4\lib\net40-client\Cassette.dll</HintPath>
+      <HintPath>..\packages\Cassette.2.0.0-beta5\lib\net40-client\Cassette.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>

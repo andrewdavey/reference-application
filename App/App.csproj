@@ -45,13 +45,13 @@
       <HintPath>..\packages\AjaxMin.4.51.4507.18296\lib\net20\AjaxMin.dll</HintPath>
     </Reference>
     <Reference Include="Cassette">
-      <HintPath>..\packages\Cassette.2.0.0-beta4\lib\net40-client\Cassette.dll</HintPath>
+      <HintPath>..\packages\Cassette.2.0.0-beta5\lib\net40-client\Cassette.dll</HintPath>
     </Reference>
     <Reference Include="Cassette.Aspnet">
-      <HintPath>..\packages\Cassette.Aspnet.2.0.0-beta4\lib\net40\Cassette.Aspnet.dll</HintPath>
+      <HintPath>..\packages\Cassette.Aspnet.2.0.0-beta5\lib\net40\Cassette.Aspnet.dll</HintPath>
     </Reference>
     <Reference Include="Cassette.Views">
-      <HintPath>..\packages\Cassette.Views.2.0.0-beta4\lib\net40\Cassette.Views.dll</HintPath>
+      <HintPath>..\packages\Cassette.Views.2.0.0-beta5\lib\net40\Cassette.Views.dll</HintPath>
     </Reference>
     <Reference Include="DotNetOpenAuth.Core">
       <HintPath>..\packages\DotNetOpenAuth.Core.4.1.0.12182\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
@@ -315,7 +315,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
