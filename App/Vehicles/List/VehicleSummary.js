@@ -2,6 +2,7 @@
 
 var VehicleSummary = Object.inherit({
     init: function (data) {
+        this.name = data.name;
         this.photo = data.photo ? data.photo.url : "";
         this.year = data.year ? data.year : "";
         this.make = data.make ? data.make : "";
