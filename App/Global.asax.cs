@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Routing;
 using App.Infrastructure.Unity;
-using App.Infrastructure.Web;
 using Microsoft.Practices.Unity;
 using MileageStats.Data.InMemory;
 

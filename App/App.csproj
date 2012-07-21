@@ -184,8 +184,8 @@
   <ItemGroup>
     <Compile Include="CountriesController.cs" />
     <Compile Include="Infrastructure\Cassette\StylesheetPathProvider.cs" />
-    <Compile Include="Infrastructure\Web\WebApiConfig.cs" />
-    <Compile Include="Infrastructure\Cassette\CassetteConfiguration.cs" />
+    <Compile Include="WebApiConfig.cs" />
+    <Compile Include="CassetteConfiguration.cs" />
     <Compile Include="Infrastructure\Cassette\AddDebugWrapperToAssets.cs" />
     <Compile Include="Infrastructure\Cassette\AddTransformerToAssets.cs" />
     <Compile Include="Infrastructure\Cassette\AmdModule.cs" />
@@ -246,7 +246,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\Web\RouteConfig.cs" />
+    <Compile Include="RouteConfig.cs" />
     <Content Include="app.html" />
     <Content Include="Infrastructure\Scripts\App\http.js" />
     <Content Include="specs.html" />

@@ -1,9 +1,10 @@
 using System.IO;
+using App.Infrastructure.Cassette;
 using Cassette;
 using Cassette.Scripts;
 using Cassette.Stylesheets;
 
-namespace App.Infrastructure.Cassette
+namespace App
 {
     /// <summary>
     /// Configures the Cassette asset bundles for the web application.

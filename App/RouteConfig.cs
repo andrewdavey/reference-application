@@ -1,12 +1,13 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 using App.Dashboard;
+using App.Infrastructure.Web;
 using App.Profile;
 using App.Specs;
 using App.Vehicles;
 using App.Vehicles.ReferenceData;
 
-namespace App.Infrastructure.Web
+namespace App
 {
     public static class RouteConfig
     {
