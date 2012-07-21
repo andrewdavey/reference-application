@@ -21,6 +21,7 @@ namespace App
             AddBundle("Vehicles/NewVehiclePage", bundles);
             AddBundle("Vehicles/VehiclePage", bundles);
             AddBundle("Vehicles/FillUpsPage", bundles);
+            AddBundle("Vehicles/NewFillUpPage", bundles);
 
             AddBundle("Specs", bundles);
         }

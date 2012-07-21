@@ -7,6 +7,7 @@ namespace App.Vehicles
     public class FillUpsController : ApiController
     {
         readonly GetFillupsForVehicle getFillupsForVehicle;
+        readonly AddFillupToVehicle addFillupToVehicle;
 
         public FillUpsController(GetFillupsForVehicle getFillupsForVehicle)
         {
@@ -26,6 +27,11 @@ namespace App.Vehicles
                     fillUps
                 }
             };
+        }
+
+        public void Post(int id, NewFillUp fillUp)
+        {
+            addFillupToVehicle.Execute(1, id, fillUp);
         }
     }
 }

@@ -184,6 +184,8 @@
   <ItemGroup>
     <Compile Include="CountriesController.cs" />
     <Compile Include="Infrastructure\Cassette\StylesheetPathProvider.cs" />
+    <Compile Include="Vehicles\NewFillUp.cs" />
+    <Compile Include="Vehicles\NewFillUpController.cs" />
     <Compile Include="WebApiConfig.cs" />
     <Compile Include="CassetteConfiguration.cs" />
     <Compile Include="Infrastructure\Cassette\AddDebugWrapperToAssets.cs" />
@@ -273,6 +275,7 @@
     <Content Include="Specs\jasmine\mockHttp.js" />
     <Content Include="Specs\jasmine\specs.js" />
     <Content Include="Specs\jasmine\matchers.js" />
+    <Content Include="Specs\NewFillUpForm.js" />
     <Content Include="Specs\ProfileForm.js" />
     <Content Include="Specs\jasmine\init.js" />
     <Content Include="Specs\jasmine\jasmine-html.js" />
@@ -288,6 +291,9 @@
     <Content Include="Vehicles\List\VehicleSummary.js" />
     <Content Include="Vehicles\List\VehicleSummary.htm" />
     <Content Include="Vehicles\List\VehicleSummaryList.js" />
+    <Content Include="Vehicles\NewFillUpPage\init.js" />
+    <Content Include="Vehicles\NewFillUpPage\NewFillUpForm.htm" />
+    <Content Include="Vehicles\NewFillUpPage\NewFillUpForm.js" />
     <Content Include="Vehicles\NewVehiclePage\NewVehicleForm.js" />
     <Content Include="Vehicles\NewVehiclePage\NewVehicleForm.htm" />
     <Content Include="Vehicles\NewVehiclePage\init.js" />
