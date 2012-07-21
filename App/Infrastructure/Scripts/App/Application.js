@@ -33,7 +33,7 @@ var Application = Object.inherit({
     handleClick: function(event) {
         var clickedLink = event.srcElement || event.target;
         var href = clickedLink.getAttribute("href");
-        if (href) {
+        if (href && href.indexOf("/") === 0) {
             event.preventDefault();
             History.pushState(null, null, href);
         }
