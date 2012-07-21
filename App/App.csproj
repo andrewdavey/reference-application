@@ -260,7 +260,6 @@
     <Content Include="Infrastructure\Scripts\App\Application.js" />
     <Content Include="Infrastructure\Scripts\App\Event.js" />
     <Content Include="Infrastructure\Scripts\App\FlashMessage.js" />
-    <Content Include="Infrastructure\Scripts\App\httpCommand.js" />
     <Content Include="Infrastructure\Scripts\App\Navigation.js" />
     <Content Include="Infrastructure\Scripts\App\Object.js" />
     <Content Include="Infrastructure\Scripts\Vendor\ScriptBundle.txt" />

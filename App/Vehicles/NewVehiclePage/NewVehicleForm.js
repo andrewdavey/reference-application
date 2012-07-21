@@ -1,5 +1,5 @@
 ﻿/// <reference path="~/Infrastructure/Scripts/App/Object.js"/>
-/// <reference path="~/Infrastructure/Scripts/App/httpCommand.js" />
+/// <reference path="~/Infrastructure/Scripts/App/http.js"/>
 /// <reference path="~/Infrastructure/Scripts/Vendor/knockout.js"/>
 
 var NewVehicleForm = Object.inherit({
@@ -8,7 +8,8 @@ var NewVehicleForm = Object.inherit({
 
     init: function (pageData, app) {
         this.app = app;
-        this.saveCommand = httpCommand(pageData.save, this);
+        this.http = http;
+        this.saveCommand = pageData.save;
 
         this.initInputProperties();
         this.initReferenceData(pageData);
@@ -46,14 +47,14 @@ var NewVehicleForm = Object.inherit({
         this.make.subscribe(this.downloadModels, this);
 
         // Download the years now.
-        var getYears = httpCommand(pageData.years, this);
-        getYears().done(this.displayYears);
+        this.http(pageData.years)
+            .done(this.displayYears);
     },
     
     downloadMakes: function (year) {
         if (year) {
-            var getMakes = httpCommand(year.makes, this);
-            getMakes().done(this.displayMakes);
+            this.http(year.makes)
+                .done(this.displayMakes);
         } else {
             this.displayMakes([]);
             this.make(null);
@@ -62,8 +63,8 @@ var NewVehicleForm = Object.inherit({
     
     downloadModels: function (make) {
         if (make) {
-            var getModels = httpCommand(make.models, this);
-            getModels().done(this.displayModels);
+            this.http(make.models)
+                .done(this.displayModels);
         } else {
             this.displayModels([]);
             this.model(null);
@@ -84,7 +85,7 @@ var NewVehicleForm = Object.inherit({
 
     save: function () {
         if (!this.validate()) return;
-        this.saveCommand(this.serializeForm())
+        this.http(this.saveCommand, this.serializeForm())
             .done(this.saved);
     },
     
