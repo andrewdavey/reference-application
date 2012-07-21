@@ -248,6 +248,7 @@
   <ItemGroup>
     <Compile Include="Infrastructure\Web\RouteConfig.cs" />
     <Content Include="app.html" />
+    <Content Include="Infrastructure\Scripts\App\http.js" />
     <Content Include="specs.html" />
     <Content Include="Infrastructure\Scripts\App\addTemplate.js" />
     <Content Include="Infrastructure\Scripts\Vendor\bootstrap\css\bootstrap.css" />
@@ -270,12 +271,15 @@
     <Content Include="Infrastructure\Scripts\Vendor\require.js" />
     <Content Include="Infrastructure\Scripts\App\start.js" />
     <Content Include="Profile\ProfileForm.js" />
-    <Content Include="Specs\matchers.js" />
+    <Content Include="Specs\jasmine\mockHttp.js" />
+    <Content Include="Specs\jasmine\specs.js" />
+    <Content Include="Specs\jasmine\matchers.js" />
     <Content Include="Specs\ProfileForm.js" />
-    <Content Include="Specs\init.js" />
-    <Content Include="Specs\jasmine-html.js" />
-    <Content Include="Specs\jasmine.css" />
-    <Content Include="Specs\jasmine.js" />
+    <Content Include="Specs\jasmine\init.js" />
+    <Content Include="Specs\jasmine\jasmine-html.js" />
+    <Content Include="Specs\jasmine\jasmine.css" />
+    <Content Include="Specs\jasmine\jasmine.js" />
+    <Content Include="Specs\VehicleSummaryList.js" />
     <Content Include="Vehicles\FillUpsPage\FillUp.js" />
     <Content Include="Vehicles\FillUpsPage\FillUpDetails.htm" />
     <Content Include="Vehicles\FillUpsPage\init.js" />

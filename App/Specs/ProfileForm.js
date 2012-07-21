@@ -1,87 +1,91 @@
-﻿/// <reference path="jasmine.js" />
-/// <reference path="matchers.js" />
-/// <reference path="../Profile/ProfileForm.js" />
-/// <reference path="../Infrastructure/Scripts/Vendor/jquery.js" />
+﻿/// <reference path="jasmine/jasmine.js" />
+/// <reference path="jasmine/matchers.js" />
+/// <reference path="jasmine/specs.js"/>
+/// <reference path="jasmine/mockHttp.js"/>
 
-function deferredFactory(value) {
-    return function(context) {
-        return $.Deferred().resolveWith(context, [value]);
-    };
-}
+specs.define(["Profile"], function(profile) {
+    var ProfileForm = profile.ProfileForm;
 
-describe("Profile form", function () {
 
-    describe("Properties", function() {
+    describe("Profile form", function() {
+
         var pageData = {
-            countries: deferredFactory({ countries: ["US", "UK"] }),
-            save: deferredFactory()
+            countries: { method: "get", url: "/countries" },
+            save: { method: "post", url: "/save" }
         };
-        var form = ProfileForm.create(pageData);
 
-        it("has name input", function() {
-            expect(form.name).toBeObservable();
+
+        describe("Properties", function() {
+            mockHttp.reset();
+            mockHttp.get("/countries").respondsWith({ countries: ["US", "UK"] });
+
+            var form = ProfileForm.create(pageData);
+
+            it("has name input", function() {
+                expect(form.name).toBeObservable();
+            });
+
+            it("has country input", function() {
+                expect(form.country).toBeObservable();
+            });
+
+            it("has countries array", function() {
+                expect(form.countries()).toEqual(["US", "UK"]);
+            });
         });
 
-        it("has country input", function() {
-            expect(form.country).toBeObservable();
-        });
 
-        it("has countries array", function() {
-            expect(form.countries()).toEqual(["US", "UK"]);
-        });
-    });
-    
-    describe("Save profile with empty name", function () {
-        var saveCommandCalled = false;
-        var pageData = {
-            countries: deferredFactory({ countries: ["US", "UK"] }),
-            save: function () {
+        describe("Save profile with empty name", function () {
+            var saveCommandCalled = false;
+            mockHttp.reset();
+            mockHttp.get("/countries").respondsWith({ countries: ["US", "UK"] });
+            mockHttp.post("/save").calls(function () {
                 saveCommandCalled = true;
-                return $.Deferred().resolve();
-            }
-        };
-        var form = ProfileForm.create(pageData);
-        
-        form.name("");
-        form.save();
+            });
 
-        it("has name validation error", function () {
-            expect(form.name.validation.message()).toBe("Name is required");
-        });
-        
-        it("doesn't call the save command", function() {
-            expect(saveCommandCalled).toBeFalsy();
-        });
-    });
+            var form = ProfileForm.create(pageData);
 
-    describe("Save with valid inputs", function () {
-        var savedData;
-        var savedCalled;
-        var pageData = {
-            countries: deferredFactory({ countries: ["US", "UK"] }),
-            save: function (data) {
+            form.name("");
+            form.save();
+
+            it("has name validation error", function() {
+                expect(form.name.validation.message()).toBe("Name is required");
+            });
+
+            it("doesn't call the save command", function() {
+                expect(saveCommandCalled).toBeFalsy();
+            });
+        });
+
+
+        describe("Save with valid inputs", function () {
+            var savedData;
+            mockHttp.reset();
+            mockHttp.get("/countries").respondsWith({ countries: ["US", "UK"] });
+            mockHttp.post("/save").calls(function (_, data) {
                 savedData = data;
-                return $.Deferred().resolve();
-            } 
-        };
-        
-        var form = ProfileForm.create(pageData);
-        form.saved = function () { savedCalled = true; };
-        form.name("John");
-        form.country("US");
-        form.save();
+            });
 
-        it("saves name", function() {
-            expect(savedData.name).toEqual("John");
+            var form = ProfileForm.create(pageData);
+            var savedCalled;
+            form.saved = function () { savedCalled = true; };
+            form.name("John");
+            form.country("US");
+            form.save();
+
+            it("saves name", function() {
+                expect(savedData.name).toEqual("John");
+            });
+
+            it("saves country", function() {
+                expect(savedData.country).toEqual("US");
+            });
+
+            it("calls `saved` method after save", function() {
+                expect(savedCalled).toBeTruthy();
+            });
         });
-        
-        it("saves country", function() {
-            expect(savedData.country).toEqual("US");
-        });
-        
-        it("calls `saved` method after save", function() {
-            expect(savedCalled).toBeTruthy();
-        });
+
     });
 
 });

@@ -21,8 +21,8 @@ namespace App.Profile
             return new
             {
                 name = "",
-                countries = new {get = Url.Resource<CountriesController>()},
-                save = new {put = Url.Resource<ProfileController>()}
+                countries = Url.Get<CountriesController>(),
+                save = Url.Put<ProfileController>()
             };
         }
 

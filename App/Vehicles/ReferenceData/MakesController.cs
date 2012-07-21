@@ -22,7 +22,7 @@ namespace App.Vehicles.ReferenceData
             return makes.Select(make => new
             {
                 make,
-                models = new {get = Url.Resource<ModelsController>(new {year, make})}
+                models = Url.Get<ModelsController>(new {year, make})
             });
         }
     }

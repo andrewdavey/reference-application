@@ -1,17 +1,24 @@
 ﻿/// <reference path="~/Infrastructure/Scripts/App/Object.js"/>
-/// <reference path="~/Infrastructure/Scripts/App/httpCommand.js"/>
+/// <reference path="~/Infrastructure/Scripts/App/http.js"/>
 /// <reference path="~/Infrastructure/Scripts/Vendor/knockout.js"/>
 /// <reference path="VehicleSummary.js" />
 
 var VehicleSummaryList = Object.inherit({
-    init: function (vehiclesHref) {
+    
+    init: function (vehiclesLink) {
+        this.http = http;
         this.vehicles = ko.observableArray();
-        var getVehicles = httpCommand(vehiclesHref, this);
-        getVehicles().then(this.displayVehicles);
+        this.downloadVehicles(vehiclesLink);
+    },
+    
+    downloadVehicles: function (vehiclesLink) {
+        this.http(vehiclesLink)
+            .then(this.displayVehicles);
     },
     
     displayVehicles: function (response) {
         var vehicles = response.vehicles.map(VehicleSummary.create);
         this.vehicles(vehicles);
     }
+    
 });

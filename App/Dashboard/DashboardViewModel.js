@@ -1,4 +1,4 @@
-﻿/// <reference path="~/Infrastructure/Scripts/App/httpCommand.js"/>
+﻿/// <reference path="~/Infrastructure/Scripts/App/http.js"/>
 /// <reference path="~/Infrastructure/Scripts/App/Object.js"/>
 /// <reference path="~/Infrastructure/Scripts/Vendor/knockout.js"/>
 /// <reference path="../Profile/ProfileForm.js" />
@@ -9,6 +9,7 @@ var DashboardViewModel = Object.inherit({
     templateId: "Dashboard/dashboard.htm",
 
     init: function (pageData, flashMessage) {
+        this.http = http;
         this.flashMessage = flashMessage;
         this.initStatistics(pageData);
         this.initVehicles(pageData);
@@ -22,7 +23,7 @@ var DashboardViewModel = Object.inherit({
     
     initVehicles: function(pageData) {
         this.vehicles = VehicleSummaryList.create(pageData.vehicles);
-        this.addVehicleUrl = pageData.addVehicle;
+        this.addVehicleUrl = pageData.addVehicle.url;
     },
     
     initReminders: function(pageData) {
@@ -32,8 +33,8 @@ var DashboardViewModel = Object.inherit({
     initProfile: function (pageData) {
         this.profile = ko.observable();
         
-        var getProfile = httpCommand(pageData.profile, this);
-        getProfile().then(this.displayProfileFormIfProfileIncomplete);
+        this.http(pageData.profile)
+            .then(this.displayProfileFormIfProfileIncomplete);
     },
     
     displayProfileFormIfProfileIncomplete: function (profileData) {

@@ -22,7 +22,7 @@ namespace App.Vehicles.ReferenceData
             return years.Select(year => new
             {
                 year,
-                makes = new { get = Url.Resource<MakesController>(new { year }) }
+                makes = Url.Get<MakesController>(new { year })
             });
         }
     }

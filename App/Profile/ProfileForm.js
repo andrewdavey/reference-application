@@ -1,10 +1,11 @@
 ﻿/// <reference path="~/Infrastructure/Scripts/Vendor/knockout.js"/>
 /// <reference path="~/Infrastructure/Scripts/App/Object.js"/>
-/// <reference path="~/Infrastructure/Scripts/App/httpCommand.js"/>
+/// <reference path="~/Infrastructure/Scripts/App/http.js"/>
 
 var ProfileForm = Object.inherit({
     
     init: function (data) {
+        this.http = http;
         this.initInputs();
         this.initCountries(data.countries);
         this.initValidation();
@@ -19,9 +20,10 @@ var ProfileForm = Object.inherit({
     initCountries: function (getCountries) {
         this.countries = ko.observableArray();
 
-        getCountries(this).done(function (countriesResponse) {
-            this.countries(countriesResponse.countries);
-        });
+        this.http(getCountries)
+            .done(function (countriesResponse) {
+                this.countries(countriesResponse.countries);
+            });
     },
     
     initValidation: function () {
@@ -37,7 +39,7 @@ var ProfileForm = Object.inherit({
             name: this.name(),
             country: this.country()
         };
-        this.saveCommand(profileData)
+        this.http(this.saveCommand, profileData)
             .done(this.saved);
     },
     

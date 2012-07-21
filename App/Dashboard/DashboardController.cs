@@ -34,9 +34,9 @@ namespace App.Dashboard
                 {
                     statistics,
                     reminders,
-                    vehicles = new { get = Url.Resource<VehiclesController>() },
-                    addVehicle = Url.Resource<GetNewVehicleController>(),
-                    profile = new { get = Url.Resource<ProfileController>() }
+                    vehicles = Url.Get<VehiclesController>(),
+                    addVehicle = Url.Get<GetNewVehicleController>(),
+                    profile = Url.Get<ProfileController>()
                 }
             };
             

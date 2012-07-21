@@ -41,7 +41,36 @@ namespace App.Infrastructure.Web
             return url.Link(name, routeValues);
         }
 
-        private static string ControllerName<T>()
+        public static object Get<T>(this UrlHelper url, object routeValues = null)
+        {
+            return HttpLink<T>(url, "get", routeValues);
+        }
+
+        public static object Put<T>(this UrlHelper url, object routeValues = null)
+        {
+            return HttpLink<T>(url, "put", routeValues);
+        }
+
+        public static object Post<T>(this UrlHelper url, object routeValues = null)
+        {
+            return HttpLink<T>(url, "post", routeValues);
+        }
+
+        public static object Delete<T>(this UrlHelper url, object routeValues = null)
+        {
+            return HttpLink<T>(url, "delete", routeValues);
+        }
+
+        static object HttpLink<T>(UrlHelper url, string httpMethod, object routeValues = null)
+        {
+            return new
+            {
+                method = httpMethod,
+                url = url.Resource<T>(routeValues)
+            };
+        }
+
+        static string ControllerName<T>()
         {
             var name = typeof (T).Name;
             name = name.Substring(0, name.Length - "Controller".Length);
