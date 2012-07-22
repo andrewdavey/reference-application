@@ -3,6 +3,7 @@
 /// <reference path="~/Infrastructure/Scripts/Vendor/knockout.js"/>
 /// <reference path="~/Infrastructure/Scripts/Vendor/moment.js"/>
 /// <reference path="~/Infrastructure/Scripts/App/validation/validation-extender.js" />
+/// <reference path="~/Infrastructure/Scripts/App/validation/objectWithValidateableProperties.js" />
 
 var NewFillUpForm = Object.inherit({
     
@@ -11,15 +12,26 @@ var NewFillUpForm = Object.inherit({
     init: function (data) {
         this.saveLink = data.save;
         this.http = http;
-        
-        this.date = ko.observable(moment().sod().format("LL"));
+
+        this.initInputs();
+        this.initValidation();
+        this.initTotalCost();
+    },
+    
+    initInputs: function () {
+        var today = moment().sod().format("LL");
+        this.date = ko.observable(today);
         this.odometer = ko.observable();
         this.pricePerUnit = ko.observable();
         this.totalUnits = ko.observable();
         this.vendor = ko.observable();
         this.transactionFee = ko.observable();
         this.remarks = ko.observable();
-
+    },
+    
+    initValidation: function () {
+        this.validate = objectWithValidateableProperties.validate;
+        
         this.date.extend({
             validation: {
                 required: "Date is required"
@@ -48,9 +60,14 @@ var NewFillUpForm = Object.inherit({
                 money: true
             }
         });
-
-        this.totalCost = ko.computed(function() {
-            var total = parseFloat(this.pricePerUnit()) * parseFloat(this.totalUnits()) + parseFloat(this.transactionFee());
+    },
+    
+    initTotalCost: function () {
+        this.totalCost = ko.computed(function () {
+            var pricePerUnit = parseFloat(this.pricePerUnit());
+            var totalUnits = parseFloat(this.totalUnits());
+            var transactionFee = parseFloat(this.transactionFee());
+            var total = pricePerUnit * totalUnits + transactionFee;
             return isNaN(total) ? "" : total.toFixed(2);
         }, this);
     },
@@ -58,7 +75,12 @@ var NewFillUpForm = Object.inherit({
     save: function () {
         if (!this.validate()) return;
 
-        var data = {
+        var data = this.getSaveData();
+        this.http(this.saveLink, data);
+    },
+    
+    getSaveData: function () {
+        return {
             date: moment(this.date()).format("YYYY-MM-DD"),
             odometer: parseInt(this.odometer()),
             pricePerUnit: parseFloat(this.pricePerUnit()),
@@ -67,20 +89,6 @@ var NewFillUpForm = Object.inherit({
             remarks: this.remarks(),
             vendor: this.vendor()
         };
-
-        this.http(this.saveLink, data);
-    },
-    
-    validate: function () {
-        var allValid = true;
-        for (var propertyName in this) {
-            if (this[propertyName].validation) {
-                if (!this[propertyName].validation.validate()) {
-                    allValid = false;
-                }
-            }
-        }
-        return allValid;
     }
     
 });

@@ -252,6 +252,7 @@
     <Compile Include="RouteConfig.cs" />
     <Content Include="app.html" />
     <Content Include="Infrastructure\Scripts\App\http.js" />
+    <Content Include="Infrastructure\Scripts\App\validation\objectWithValidateableProperties.js" />
     <Content Include="Infrastructure\Scripts\App\validation\validation-binding-handler.js" />
     <Content Include="Infrastructure\Scripts\App\validation\validation-extender.js" />
     <Content Include="Infrastructure\Scripts\App\validation\validators.js" />
