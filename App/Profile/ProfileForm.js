@@ -1,6 +1,7 @@
 ﻿/// <reference path="~/Infrastructure/Scripts/Vendor/knockout.js"/>
 /// <reference path="~/Infrastructure/Scripts/App/Object.js"/>
 /// <reference path="~/Infrastructure/Scripts/App/http.js"/>
+/// <reference path="~/Infrastructure/Scripts/App/validation/objectWithValidateableProperties.js" />
 
 var ProfileForm = Object.inherit({
     
@@ -17,19 +18,22 @@ var ProfileForm = Object.inherit({
         this.country = ko.observable();
     },
     
-    initCountries: function (getCountries) {
+    initCountries: function (countriesLink) {
         this.countries = ko.observableArray();
 
-        this.http(getCountries)
+        this.http(countriesLink)
             .done(function (countriesResponse) {
                 this.countries(countriesResponse.countries);
             });
     },
     
     initValidation: function () {
-        this.name.validation = {
-            message: ko.observable()
-        };
+        this.validate = objectWithValidateableProperties.validate;
+        this.name.extend({
+            validation: {
+                required: "Name is required"
+            }
+        });
     },
     
     save: function () {
@@ -44,13 +48,5 @@ var ProfileForm = Object.inherit({
     },
     
     saved: function () {
-    },
-    
-    validate: function () {
-        if (!this.name()) {
-            this.name.validation.message("Name is required");
-            return false;
-        }
-        return true;
     }
 });
