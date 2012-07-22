@@ -38,7 +38,7 @@ namespace App
 
         void AddAppBundle(BundleCollection bundles)
         {
-            bundles.AddPerSubDirectory<ScriptBundle>(
+            bundles.Add<ScriptBundle>(
                 "Infrastructure/Scripts/App",
                 b => b.AmdModule()
             );
