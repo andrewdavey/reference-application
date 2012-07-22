@@ -51,7 +51,12 @@ namespace App
                 b => b.AmdModulePerAsset()
                       .AmdAlias("jquery.js", "$")
                       .AmdAlias("knockout.js", "ko")
+                      .AmdAlias("moment.js", "moment") // TODO: Un-hack the define() call in moment.js!
                       .AmdShim("jquery.history.js", "History", "jquery") // TODO: fix this shim helper
+            );
+            bundles.AddPerSubDirectory<ScriptBundle>(
+                "Infrastructure/Scripts/lang",
+                b => b.AmdModule()
             );
             bundles.Add<StylesheetBundle>(
                 "Infrastructure/Scripts/Vendor"

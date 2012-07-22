@@ -184,6 +184,7 @@
   <ItemGroup>
     <Compile Include="CountriesController.cs" />
     <Compile Include="Infrastructure\Cassette\StylesheetPathProvider.cs" />
+    <Compile Include="Infrastructure\Web\PageLanguageFilter.cs" />
     <Compile Include="Vehicles\NewFillUp.cs" />
     <Compile Include="Vehicles\NewFillUpController.cs" />
     <Compile Include="WebApiConfig.cs" />
@@ -251,6 +252,9 @@
     <Compile Include="RouteConfig.cs" />
     <Content Include="app.html" />
     <Content Include="Infrastructure\Scripts\App\http.js" />
+    <Content Include="Infrastructure\Scripts\lang\en-GB\moment.js" />
+    <Content Include="Infrastructure\Scripts\lang\en-US\todo.js" />
+    <Content Include="Infrastructure\Scripts\Vendor\moment.js" />
     <Content Include="specs.html" />
     <Content Include="Infrastructure\Scripts\App\addTemplate.js" />
     <Content Include="Infrastructure\Scripts\Vendor\bootstrap\css\bootstrap.css" />
@@ -332,6 +336,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

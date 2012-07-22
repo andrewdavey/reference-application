@@ -6,6 +6,7 @@
         public string Title { get; set; }
         public string Script { get; set; }
         public string Stylesheet { get; set; }
+        public string Language { get; set; }
         public object Data { get; set; }
     }
 }

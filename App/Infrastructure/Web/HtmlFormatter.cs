@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Web;
 using App.Infrastructure.Cassette;
+using Cassette.Scripts;
 using Cassette.Stylesheets;
 using Cassette.Views;
 
@@ -40,8 +41,10 @@ namespace App.Infrastructure.Web
                 using (var reader = new StreamReader(file))
                 {
                     Bundles.Reference<StylesheetBundle>("Infrastructure/Scripts/Vendor");
-
+                    
                     var html = await reader.ReadToEndAsync();
+
+                    html = html.Replace("$lang$", page.Language);
                     html = html.Replace("$styles$", Bundles.RenderStylesheets().ToHtmlString());
                     html = html.Replace("$styleMap$", StylesheetPathProvider.PathMapJson);
                     html = html.Replace("$paths$", VendorAmdModulePathsProvider.Paths);

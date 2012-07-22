@@ -5,6 +5,8 @@
 </head>
     <body>
         <script type="text/html" id="loading">Loading...</script>
+        
+        
         <script>
             var styleMap = $styleMap$;
             var require = {
@@ -21,7 +23,7 @@
         <script>
             $shims$
 
-            require(["Infrastructure/Scripts/App"], function(module) {
+            require(["Infrastructure/Scripts/App", "Infrastructure/Scripts/lang/$lang$"], function(module) {
                 module.start();
             });
         </script>

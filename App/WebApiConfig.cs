@@ -11,6 +11,7 @@ namespace App
         {
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
             GlobalConfiguration.Configuration.Formatters.Add(new HtmlFormatter());
+            GlobalConfiguration.Configuration.Filters.Add(new PageLanguageFilter());
         }
     }
 }

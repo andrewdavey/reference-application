@@ -1,5 +1,7 @@
 ﻿/// <reference path="~/Infrastructure/Scripts/App/Object.js"/>
+/// <reference path="~/Infrastructure/Scripts/App/http.js"/>
 /// <reference path="~/Infrastructure/Scripts/Vendor/knockout.js"/>
+/// <reference path="~/Infrastructure/Scripts/Vendor/moment.js"/>
 
 var validators = {
     required: function(value, message) {
@@ -74,8 +76,11 @@ var NewFillUpForm = Object.inherit({
     
     templateId: "Vehicles/NewFillUpPage/NewFillUpForm.htm",
     
-    init: function () {
-        this.date = ko.observable();
+    init: function (data) {
+        this.saveLink = data.save;
+        this.http = http;
+        
+        this.date = ko.observable(moment().sod().format("LL"));
         this.odometer = ko.observable();
         this.pricePerUnit = ko.observable();
         this.totalUnits = ko.observable();
@@ -120,6 +125,18 @@ var NewFillUpForm = Object.inherit({
     
     save: function () {
         if (!this.validate()) return;
+
+        var data = {
+            date: moment(this.date()).format("YYYY-MM-DD"),
+            odometer: parseInt(this.odometer()),
+            pricePerUnit: parseFloat(this.pricePerUnit()),
+            totalUnits: parseInt(this.totalUnits(), 10),
+            transactionFee: parseFloat(this.transactionFee()),
+            remarks: this.remarks(),
+            vendor: this.vendor()
+        };
+
+        this.http(this.saveLink, data);
     },
     
     validate: function () {
