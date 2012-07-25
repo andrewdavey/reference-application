@@ -256,6 +256,7 @@
     <Content Include="Infrastructure\Scripts\App\validation\validation-binding-handler.js" />
     <Content Include="Infrastructure\Scripts\App\validation\validation-extender.js" />
     <Content Include="Infrastructure\Scripts\App\validation\validators.js" />
+    <Content Include="Infrastructure\Scripts\App\ViewDataStack.js" />
     <Content Include="Infrastructure\Scripts\lang\en-GB\moment.js" />
     <Content Include="Infrastructure\Scripts\lang\en-US\todo.js" />
     <Content Include="Infrastructure\Scripts\Vendor\moment.js" />
@@ -290,6 +291,7 @@
     <Content Include="Specs\jasmine\jasmine.css" />
     <Content Include="Specs\jasmine\jasmine.js" />
     <Content Include="Specs\VehicleSummaryList.js" />
+    <Content Include="Specs\ViewDataStackSpecs.js" />
     <Content Include="Vehicles\FillUpsPage\FillUp.js" />
     <Content Include="Vehicles\FillUpsPage\FillUpDetails.htm" />
     <Content Include="Vehicles\FillUpsPage\init.js" />

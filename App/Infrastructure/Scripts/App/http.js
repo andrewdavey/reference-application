@@ -1,4 +1,4 @@
-﻿var http = function(action, data) {
+﻿var http = function (action, data) {
     return $.ajax({
         type: action.method,
         url: action.url,
