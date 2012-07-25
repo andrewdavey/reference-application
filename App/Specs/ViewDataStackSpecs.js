@@ -31,7 +31,7 @@ specs.define([], function() {
 
         describe("Loading page that has a master page", function() {
             var stack;
-            var page = { master: "/master" };
+            var page = { Master: "/master" };
             var master = {};
 
             beforeEach(function() {
@@ -51,8 +51,8 @@ specs.define([], function() {
 
         describe("Given page1 -> master loaded, when load page2 which also references 'master'", function () {
             var stack;
-            var page1 = { master: "/master" };
-            var page2 = { master: "/master" };
+            var page1 = { Master: "/master" };
+            var page2 = { Master: "/master" };
             var master = {};
 
             beforeEach(function () {
@@ -78,8 +78,8 @@ specs.define([], function() {
         
         describe("Loading page2 that has different master from page1, which was already loaded", function () {
             var stack;
-            var page1 = { master: "/master1" };
-            var page2 = { master: "/master2" };
+            var page1 = { Master: "/master1" };
+            var page2 = { Master: "/master2" };
             var master1 = {};
             var master2 = {};
 

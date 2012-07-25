@@ -6,5 +6,6 @@
     script.setAttribute("id", id);
     script.textContent = content;
 
-    document.body.appendChild(script);
+    var head = document.getElementsByTagName("head")[0];
+    head.appendChild(script);
 };

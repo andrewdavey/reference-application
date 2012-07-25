@@ -38,7 +38,7 @@ namespace App.Infrastructure.Web
         public static string Resource<T>(this UrlHelper url, object routeValues = null)
         {
             var name = ControllerName<T>();
-            return url.Link(name, routeValues);
+            return url.Route(name, routeValues);
         }
 
         public static object Get<T>(this UrlHelper url, object routeValues = null)

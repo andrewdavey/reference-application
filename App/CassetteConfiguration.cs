@@ -15,8 +15,11 @@ namespace App
         {
             AddInfrastructureBundles(bundles);
             AddAppBundle(bundles);
+
+            AddBundle("Application", bundles);
             AddBundle("Dashboard", bundles);
             AddBundle("Profile", bundles);
+            AddBundle("Vehicles/VehicleMasterPage", bundles);
             AddBundle("Vehicles/List", bundles);
             AddBundle("Vehicles/NewVehiclePage", bundles);
             AddBundle("Vehicles/VehiclePage", bundles);

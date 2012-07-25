@@ -6,6 +6,7 @@ using App.Profile;
 using App.Specs;
 using App.Vehicles;
 using App.Vehicles.ReferenceData;
+using App.Vehicles.VehicleMasterPage;
 
 namespace App
 {
@@ -18,6 +19,7 @@ namespace App
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             
             routes.MapResource<DashboardController>("");
+            routes.GetResource<VehicleMasterPageController>("vehicles/master");
             routes.GetResource<VehiclesController>("vehicles");
             routes.PostResource<PostVehicleController>("vehicles");
             routes.MapResource<GetNewVehicleController>("vehicles/add");

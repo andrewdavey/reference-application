@@ -1,32 +1,9 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>MileStats Sample Application</title>
-    $styles$
-</head>
-    <body style="padding-top: 60px">
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="brand" href="/">Mileage Stats</a>
-                    <ul class="nav">
-                        <li><a href="/">Dashboard</a></li>
-                        <li><a href="#">Log Out</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div data-bind="visible: flashMessage.visible, text: flashMessage.message"></div>
-
-
-            <div data-bind="template: { data: viewModel, name: viewModel().templateId }"></div>
-        </div>
-    
+    <head>
+        <title>MileageStats Sample Application</title>
+        $styles$
         <script type="text/html" id="loading">Loading...</script>
-        
-
         <script>
             var styleMap = $styleMap$;
             var require = {
@@ -42,10 +19,13 @@
         <script src="/Infrastructure/Scripts/Vendor/require.js"></script>
         <script>
             $shims$
-
-            require(["Infrastructure/Scripts/App", "Infrastructure/Scripts/lang/$lang$"], function (module) {
-                module.start();
+            require(["Application", "Infrastructure/Scripts/lang/$lang$"], function (module) {
+                var app = module.MileageStatsApplication.create(document);
+                app.start();
             });
         </script>
+    </head>
+    <body data-bind="template: { name: templateId }">
+        Loading...
     </body>
 </html>

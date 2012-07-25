@@ -11,7 +11,7 @@ namespace App.Infrastructure.Cassette
         public DebugWrapper(Bundle bundle, int assetIndex)
         {
             this.assetIndex = assetIndex;
-            modulePath = bundle.Path.Substring(2);
+            modulePath = bundle.Path.TrimStart('~', '/');
         }
 
         protected override string Transform(string source, IAsset asset)

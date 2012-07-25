@@ -1,5 +1,7 @@
 ﻿/// <reference path="Event.js" />
 /// <reference path="Object.js" />
+/// <reference path="http.js" />
+/// <reference path="ViewModelStack.js" />
 /// <reference path="../Vendor/jquery.history.js" />
 /// <reference path="../Vendor/jquery.js" />
 /// <reference path="../Vendor/knockout.js" />
@@ -7,8 +9,9 @@
 var Application = Object.inherit({
     init: function(document) {
         this.document = document;
-        this.viewModel = ko.observable({ templateId: "loading" });
+        this.viewModelStack = ViewModelStack.create(this, http);
         this.pageLoaded = Event.create();
+        this.content = ko.observable({ templateId: "loading" });
     },
     
     start: function() {
@@ -39,15 +42,17 @@ var Application = Object.inherit({
         }
     },
 
-    loadPage: function(url) {
-        var request = $.ajax({
-            type: "GET",
-            url: url,
-            dataType: "json",
-            context: this
-        });
-        request.done(this.downloadedPageResult)
-            .fail(this.downloadFailed);
+    loadPage: function (url) {
+        this.viewModelStack
+            .navigate(url)
+            .done(function () {
+                var viewModels = this.viewModelStack.toArray();
+                // e.g. [ FillUps, VehicleMasterPage, App ]
+                for (var i = 1; i < viewModels.length; i++) {
+                    viewModels[i].content(viewModels[i - 1]);
+                }
+                this.content(viewModels[viewModels.length - 1]);
+            }.bind(this));
     },
 
     downloadedPageResult: function(pageResult) {
@@ -65,11 +70,11 @@ var Application = Object.inherit({
 
     downloadFailed: function(xhr) {
         if (xhr.status === 404) {
-            this.setViewModel({
+            this.content({
                 templateId: "Errors/NotFound.htm"
             });
         } else {
-            this.setViewModel({
+            this.content({
                 templateId: "Errors/ServerError.htm",
                 html: xhr.responseText
             });
@@ -104,9 +109,5 @@ var Application = Object.inherit({
             });
             this.currentPageStylesheets = [];
         }
-    },
-    
-    setViewModel: function(viewModel) {
-        this.viewModel(viewModel);
     }
 });

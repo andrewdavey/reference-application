@@ -18,7 +18,7 @@ namespace App.Infrastructure.Cassette
 
         public void Visit(Bundle bundle)
         {
-            currentBuilder = new DebugModuleBuilder(bundle.Path.Substring(2));
+            currentBuilder = new DebugModuleBuilder(bundle.Path.TrimStart('~', '/'));
 
             builders.Add(currentBuilder);
         }

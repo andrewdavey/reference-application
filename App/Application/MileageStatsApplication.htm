@@ -1,0 +1,16 @@
+﻿<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/">Mileage Stats</a>
+            <ul class="nav">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="#">Log Out</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div data-bind="visible: flashMessage.visible, text: flashMessage.message"></div>
+    <div data-bind="template: { data: content, name: content().templateId }"></div>
+</div>

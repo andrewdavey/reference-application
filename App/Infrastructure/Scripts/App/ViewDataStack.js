@@ -1,4 +1,5 @@
 ﻿/// <reference path="~/Infrastructure/Scripts/App/Object.js"/>
+/// <reference path="~/Infrastructure/Scripts/Vendor/jquery.js"/>
 
 var ViewDataStack = Object.inherit({
     init: function (http) {
@@ -15,29 +16,34 @@ var ViewDataStack = Object.inherit({
         return this
             .download(url)
             .pipe(function (response) {
-                var item = { url: url, data: response };
-                if (isNewTop) {
-                    this.current = this.newTop = item;
-                } else {
-                    this.current.master = item;
-                    this.current = item;
-                }
-                if (response.master) {
-                    var existingMaster = this.viewDataByUrl[response.master];
-                    if (existingMaster) {
-                        item.master = existingMaster;
-                        return this.newTop;
+                return this.createItem(url, response).pipe(function (item) {
+                    if (isNewTop) {
+                        this.current = this.newTop = item;
                     } else {
-                        return this.load(response.master);
+                        this.current.master = item;
+                        this.current = item;
                     }
-                } else {
-                    return this.newTop;
-                }
+                    if (response.Master) {
+                        var existingMaster = this.viewDataByUrl[response.Master];
+                        if (existingMaster) {
+                            item.master = existingMaster;
+                            return this.newTop;
+                        } else {
+                            return this.load(response.Master);
+                        }
+                    } else {
+                        return this.newTop;
+                    }
+                });
             });
+    },
+    
+    createItem: function (url, data) {
+        return $.Deferred().resolveWith(this, [{ url: url, data: data }]);
     },
 
     navigate: function (url) {
-        this.load(url, true).done(function (newTop) {
+        return this.load(url, true).done(function (newTop) {
             this.top = newTop;
             this.rebuildViewDataByUrl();
         });

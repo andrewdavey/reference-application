@@ -1,6 +1,7 @@
 ﻿using System.Web.Http;
 using App.Infrastructure;
 using App.Infrastructure.Web;
+using App.Vehicles.VehicleMasterPage;
 using MileageStats.Domain.Handlers;
 
 namespace App.Vehicles
@@ -21,6 +22,7 @@ namespace App.Vehicles
             {
                 Title = vehicle.Name,
                 Script = "Vehicles/VehiclePage",
+                Master = Url.Resource<VehicleMasterPageController>(),
                 Data = new
                 {
                     name = vehicle.Name,
@@ -28,8 +30,7 @@ namespace App.Vehicles
                     make = vehicle.MakeName,
                     model = vehicle.ModelName,
                     odometer = vehicle.Odometer,
-                    photo = Url.Get<VehiclePhotoController>(new {id = vehicle.PhotoId}),
-                    vehicles = Url.Get<VehiclesController>()
+                    photo = Url.Get<VehiclePhotoController>(new {id = vehicle.PhotoId})
                 }
             };
         }

@@ -187,6 +187,7 @@
     <Compile Include="Infrastructure\Web\PageLanguageFilter.cs" />
     <Compile Include="Vehicles\NewFillUp.cs" />
     <Compile Include="Vehicles\NewFillUpController.cs" />
+    <Compile Include="Vehicles\VehicleMasterPage\VehicleMasterPageController.cs" />
     <Compile Include="WebApiConfig.cs" />
     <Compile Include="CassetteConfiguration.cs" />
     <Compile Include="Infrastructure\Cassette\AddDebugWrapperToAssets.cs" />
@@ -251,15 +252,19 @@
   <ItemGroup>
     <Compile Include="RouteConfig.cs" />
     <Content Include="app.html" />
+    <Content Include="Application\MileageStatsApplication.css" />
+    <Content Include="Application\MileageStatsApplication.htm" />
     <Content Include="Infrastructure\Scripts\App\http.js" />
     <Content Include="Infrastructure\Scripts\App\validation\objectWithValidateableProperties.js" />
     <Content Include="Infrastructure\Scripts\App\validation\validation-binding-handler.js" />
     <Content Include="Infrastructure\Scripts\App\validation\validation-extender.js" />
     <Content Include="Infrastructure\Scripts\App\validation\validators.js" />
     <Content Include="Infrastructure\Scripts\App\ViewDataStack.js" />
+    <Content Include="Infrastructure\Scripts\App\ViewModelStack.js" />
     <Content Include="Infrastructure\Scripts\lang\en-GB\moment.js" />
     <Content Include="Infrastructure\Scripts\lang\en-US\todo.js" />
     <Content Include="Infrastructure\Scripts\Vendor\moment.js" />
+    <Content Include="Application\MileageStatsApplication.js" />
     <Content Include="specs.html" />
     <Content Include="Infrastructure\Scripts\App\addTemplate.js" />
     <Content Include="Infrastructure\Scripts\Vendor\bootstrap\css\bootstrap.css" />
@@ -279,7 +284,6 @@
     <Content Include="Infrastructure\Scripts\Vendor\jquery.js" />
     <Content Include="Infrastructure\Scripts\Vendor\knockout.js" />
     <Content Include="Infrastructure\Scripts\Vendor\require.js" />
-    <Content Include="Infrastructure\Scripts\App\start.js" />
     <Content Include="Profile\ProfileForm.js" />
     <Content Include="Specs\jasmine\mockHttp.js" />
     <Content Include="Specs\jasmine\specs.js" />
@@ -315,10 +319,11 @@
     <Content Include="Dashboard\init.js" />
     <Content Include="Dashboard\dashboard.htm" />
     <Content Include="Dashboard\vehicles.htm" />
-    <Content Include="Vehicles\VehiclePage\Page.htm" />
+    <Content Include="Vehicles\VehicleMasterPage\init.js" />
+    <Content Include="Vehicles\VehicleMasterPage\MasterPage.htm" />
+    <Content Include="Vehicles\VehicleMasterPage\MasterPage.js" />
     <Content Include="Vehicles\VehiclePage\page.css" />
     <Content Include="Vehicles\VehiclePage\init.js" />
-    <Content Include="Vehicles\VehiclePage\Page.js" />
     <Content Include="Vehicles\VehiclePage\Vehicle.htm" />
     <Content Include="Vehicles\VehiclePage\Vehicle.js" />
     <Content Include="Web.config" />

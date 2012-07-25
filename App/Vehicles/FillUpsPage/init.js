@@ -1,5 +1,5 @@
 ﻿/// <reference path="Page.js" />
 
-var init = function (pageData, app) {
-    app.setViewModel(Page.create(pageData));
+var init = function (pageData) {
+    return Page.create(pageData);
 };
