@@ -326,6 +326,7 @@
     <Content Include="Vehicles\Reminders\AddReminderForm.htm" />
     <Content Include="Vehicles\Reminders\AddReminderForm.js" />
     <Content Include="Vehicles\Reminders\init.js" />
+    <Content Include="Vehicles\Reminders\ReminderDetails.htm" />
     <Content Include="Vehicles\Reminders\RemindersPage.htm" />
     <Content Include="Vehicles\Reminders\RemindersPage.js" />
     <Content Include="Vehicles\VehicleMasterPage\init.js" />
