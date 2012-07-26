@@ -24,6 +24,17 @@ namespace App.Infrastructure.Web
             );
         }
 
+        public static void DeleteResource<T>(this RouteCollection routes, string urlTemplate)
+        {
+            var name = ControllerName<T>();
+            routes.MapHttpRoute(
+                name,
+                urlTemplate,
+                new { controller = name },
+                new { get = new System.Web.Http.Routing.HttpMethodConstraint(new HttpMethod("DELETE")) }
+            );
+        }
+
         public static void PostResource<T>(this RouteCollection routes, string urlTemplate)
         {
             var name = ControllerName<T>();

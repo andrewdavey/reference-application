@@ -187,6 +187,7 @@
     <Compile Include="Infrastructure\Web\PageLanguageFilter.cs" />
     <Compile Include="Vehicles\AddFillUpController.cs" />
     <Compile Include="Vehicles\AddReminderController.cs" />
+    <Compile Include="Vehicles\DeleteVehicleController.cs" />
     <Compile Include="Vehicles\NewFillUp.cs" />
     <Compile Include="Vehicles\ReminderController.cs" />
     <Compile Include="Vehicles\ReminderResource.cs" />

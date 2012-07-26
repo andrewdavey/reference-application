@@ -1,5 +1,5 @@
 ﻿/// <reference path="Vehicle.js"/>
 
-var init = function (pageData) {
-    return Vehicle.create(pageData);
+var init = function (pageData, app) {
+    return Vehicle.create(pageData, app);
 };

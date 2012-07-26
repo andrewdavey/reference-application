@@ -30,7 +30,8 @@ namespace App.Vehicles
                     make = vehicle.MakeName,
                     model = vehicle.ModelName,
                     odometer = vehicle.Odometer,
-                    photo = Url.Get<VehiclePhotoController>(new {id = vehicle.PhotoId})
+                    photo = Url.Get<VehiclePhotoController>(new {id = vehicle.PhotoId}),
+                    delete = Url.Delete<DeleteVehicleController>()
                 }
             };
         }
