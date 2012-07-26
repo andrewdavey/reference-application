@@ -22,7 +22,7 @@ var Reminder = Object.inherit({
     
     createDueSummary: function (data) {
         var dueDateSummary = data.DueDate && "on " + this.dueDate;
-        var dueDistanceSummary = data.DueDistance && "at " + this.dueDistance + " miles";
+        var dueDistanceSummary = data.DueDistance && "at " + this.dueDistance;
 
         return dueDateSummary && dueDistanceSummary ?
                    "Due " + dueDateSummary + " or " + dueDistanceSummary :

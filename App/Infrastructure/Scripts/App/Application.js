@@ -52,37 +52,38 @@ var Application = Object.inherit({
                     viewModels[i].content(viewModels[i - 1]);
                 }
                 this.content(viewModels[viewModels.length - 1]);
+                this.updateStylesheets();
             }.bind(this));
-    },
-
-    downloadedPageResult: function(pageResult) {
-        var app = this;
-
-        this.removePageStylesheets();
-        if (pageResult.Stylesheet) app.addPageStylesheet(pageResult.Stylesheet);
-        
-        require([pageResult.Script], function (page) {
-            page.init(pageResult.Data, app);
-            document.title = pageResult.Title || "Mileage Stats";
-            app.pageLoaded.trigger(pageResult, app);
-        });
-    },
-
-    downloadFailed: function(xhr) {
-        if (xhr.status === 404) {
-            this.content({
-                templateId: "Errors/NotFound.htm"
-            });
-        } else {
-            this.content({
-                templateId: "Errors/ServerError.htm",
-                html: xhr.responseText
-            });
-        }
     },
 
     navigate: function(url) {
         History.pushState(null, null, url);
+    },
+    
+    updateStylesheets: function () {
+        var currentViewModel = this.content();
+        var head = document.querySelector("head");
+        
+        while (currentViewModel) {
+            if (currentViewModel.stylesheets) {
+                currentViewModel.stylesheets.forEach(function(url) {
+                    var existing = document.querySelector("link[href='" + url + "']");
+                    if (!existing) {
+                        var link = document.createElement("link");
+                        link.setAttribute("type", "text/css");
+                        link.setAttribute("rel", "stylesheet");
+                        link.setAttribute("href", url);
+                        head.appendChild(link);
+                    }
+                });
+            }
+            
+            if (currentViewModel.content) {
+                currentViewModel = currentViewModel.content();
+            } else {
+                currentViewModel = null;
+            }
+        }
     },
     
     addPageStylesheet: function (stylesheetPath) {

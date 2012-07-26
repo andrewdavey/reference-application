@@ -1,3 +1,7 @@
-﻿.reminder.overdue a {
+﻿.reminders-list .selected {
+    border-left: 4px solid #888;
+}
+
+.reminders-list .overdue a {
     color: #a00;
 }

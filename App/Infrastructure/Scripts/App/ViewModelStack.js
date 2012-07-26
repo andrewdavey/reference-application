@@ -12,6 +12,7 @@ var ViewModelStack = ViewDataStack.inherit({
         var stack = this;
         require([data.Script], function (module) {
             var viewModel = module.init(data.Data, stack.app);
+            viewModel.stylesheets = styleMap[data.Stylesheet];
             creating.resolveWith(stack, [{ url: url, data: viewModel }]);
         });
         return creating;
