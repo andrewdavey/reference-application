@@ -26,6 +26,7 @@ namespace App
             routes.MapResource<VehicleController>("vehicles/{id}");
             routes.MapResource<FillUpsController>("vehicles/{id}/fillups");
             routes.MapResource<NewFillUpController>("vehicles/{id}/fillups/add");
+            routes.MapResource<RemindersController>("vehicles/{id}/reminders");
             routes.MapResource<VehiclePhotoController>("vehicles-photo/{id}");
 
             routes.MapResource<ProfileController>("profile");

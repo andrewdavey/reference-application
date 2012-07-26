@@ -187,6 +187,7 @@
     <Compile Include="Infrastructure\Web\PageLanguageFilter.cs" />
     <Compile Include="Vehicles\NewFillUp.cs" />
     <Compile Include="Vehicles\NewFillUpController.cs" />
+    <Compile Include="Vehicles\RemindersController.cs" />
     <Compile Include="Vehicles\VehicleMasterPage\VehicleMasterPageController.cs" />
     <Compile Include="WebApiConfig.cs" />
     <Compile Include="CassetteConfiguration.cs" />
@@ -319,6 +320,9 @@
     <Content Include="Dashboard\init.js" />
     <Content Include="Dashboard\dashboard.htm" />
     <Content Include="Dashboard\vehicles.htm" />
+    <Content Include="Vehicles\Reminders\init.js" />
+    <Content Include="Vehicles\Reminders\RemindersPage.htm" />
+    <Content Include="Vehicles\Reminders\RemindersPage.js" />
     <Content Include="Vehicles\VehicleMasterPage\init.js" />
     <Content Include="Vehicles\VehicleMasterPage\MasterPage.htm" />
     <Content Include="Vehicles\VehicleMasterPage\MasterPage.js" />

@@ -19,12 +19,7 @@ namespace App
             AddBundle("Application", bundles);
             AddBundle("Dashboard", bundles);
             AddBundle("Profile", bundles);
-            AddBundle("Vehicles/VehicleMasterPage", bundles);
-            AddBundle("Vehicles/List", bundles);
-            AddBundle("Vehicles/NewVehiclePage", bundles);
-            AddBundle("Vehicles/VehiclePage", bundles);
-            AddBundle("Vehicles/FillUpsPage", bundles);
-            AddBundle("Vehicles/NewFillUpPage", bundles);
+            AddBundlePerSubDirectory("Vehicles", bundles);
 
             AddBundle("Specs", bundles);
         }
@@ -37,6 +32,17 @@ namespace App
                 b => b.EmbedHtmlTemplates().AmdModule()
             );
             bundles.Add<StylesheetBundle>(path);
+        }
+
+
+        void AddBundlePerSubDirectory(string path, BundleCollection bundles)
+        {
+            bundles.AddPerSubDirectory<ScriptBundle>(
+                path,
+                ScriptAndHtmlTemplateFileSearch(),
+                b => b.EmbedHtmlTemplates().AmdModule()
+            );
+            bundles.AddPerSubDirectory<StylesheetBundle>(path);
         }
 
         void AddAppBundle(BundleCollection bundles)

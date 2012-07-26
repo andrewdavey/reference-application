@@ -27,7 +27,7 @@ namespace App.Vehicles
             {
                 details = Url.Get<VehicleController>(new { id = vehicle.VehicleId }),
                 fillUps = Url.Get<FillUpsController>(new { id = vehicle.VehicleId }),
-                reminders = Url.Get<VehicleController>(new { id = vehicle.VehicleId }),
+                reminders = Url.Get<RemindersController>(new { id = vehicle.VehicleId }),
                 photo = Url.Get<VehiclePhotoController>(new { id = vehicle.PhotoId }), // TODO: get photo url
                 name = vehicle.Name,
                 year = vehicle.Year,
