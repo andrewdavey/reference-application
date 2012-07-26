@@ -61,6 +61,7 @@ namespace App
                       .AmdAlias("jquery.js", "$")
                       .AmdAlias("knockout.js", "ko")
                       .AmdAlias("moment.js", "moment") // TODO: Un-hack the define() call in moment.js!
+                      .AmdShim("bootstrap/js/bootstrap.js", "bootstrap", "jquery") // TODO: fix this shim helper
                       .AmdShim("jquery.history.js", "History", "jquery") // TODO: fix this shim helper
             );
             bundles.AddPerSubDirectory<ScriptBundle>(

@@ -25,7 +25,8 @@ namespace App.Vehicles
                 Script = "Vehicles/Reminders",
                 Data = new
                 {
-                    reminders
+                    reminders,
+                    add = Url.Post<AddReminderController>()
                 }
             };
         }

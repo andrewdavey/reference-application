@@ -35,6 +35,17 @@ namespace App.Infrastructure.Web
             );
         }
 
+        public static void PutResource<T>(this RouteCollection routes, string urlTemplate)
+        {
+            var name = ControllerName<T>();
+            routes.MapHttpRoute(
+                name,
+                urlTemplate,
+                new { controller = name },
+                new { get = new System.Web.Http.Routing.HttpMethodConstraint(new HttpMethod("PUT")) }
+            );
+        }
+
         public static string Resource<T>(this UrlHelper url, object routeValues = null)
         {
             var name = ControllerName<T>();

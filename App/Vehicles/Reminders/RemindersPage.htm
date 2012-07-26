@@ -1,4 +1,8 @@
-﻿<ul data-bind="foreach: reminders">
+﻿<div>
+    <button class="btn" data-bind="click: showAddReminderForm">Add Reminder</button>
+</div>
+
+<ul data-bind="foreach: reminders">
     <li>
         <span data-bind="text: Title"></span>
     </li>

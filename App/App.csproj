@@ -185,8 +185,10 @@
     <Compile Include="CountriesController.cs" />
     <Compile Include="Infrastructure\Cassette\StylesheetPathProvider.cs" />
     <Compile Include="Infrastructure\Web\PageLanguageFilter.cs" />
+    <Compile Include="Vehicles\AddReminderController.cs" />
     <Compile Include="Vehicles\NewFillUp.cs" />
     <Compile Include="Vehicles\NewFillUpController.cs" />
+    <Compile Include="Vehicles\ReminderController.cs" />
     <Compile Include="Vehicles\RemindersController.cs" />
     <Compile Include="Vehicles\VehicleMasterPage\VehicleMasterPageController.cs" />
     <Compile Include="WebApiConfig.cs" />
@@ -256,6 +258,7 @@
     <Content Include="Application\MileageStatsApplication.css" />
     <Content Include="Application\MileageStatsApplication.htm" />
     <Content Include="Infrastructure\Scripts\App\http.js" />
+    <Content Include="Infrastructure\Scripts\App\popups.js" />
     <Content Include="Infrastructure\Scripts\App\validation\objectWithValidateableProperties.js" />
     <Content Include="Infrastructure\Scripts\App\validation\validation-binding-handler.js" />
     <Content Include="Infrastructure\Scripts\App\validation\validation-extender.js" />
@@ -320,6 +323,8 @@
     <Content Include="Dashboard\init.js" />
     <Content Include="Dashboard\dashboard.htm" />
     <Content Include="Dashboard\vehicles.htm" />
+    <Content Include="Vehicles\Reminders\AddReminderForm.htm" />
+    <Content Include="Vehicles\Reminders\AddReminderForm.js" />
     <Content Include="Vehicles\Reminders\init.js" />
     <Content Include="Vehicles\Reminders\RemindersPage.htm" />
     <Content Include="Vehicles\Reminders\RemindersPage.js" />

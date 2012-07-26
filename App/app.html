@@ -12,6 +12,10 @@
                     "Infrastructure/Scripts/Vendor/jquery.history": {
                         deps: ["Infrastructure/Scripts/Vendor/jquery"],
                         exports: "History"
+                    },
+                    "Infrastructure/Scripts/Vendor/bootstrap/js/bootstrap": {
+                        deps: ["Infrastructure/Scripts/Vendor/jquery"],
+                        exports: "bootstrap"
                     }
                 }
             };
@@ -25,7 +29,7 @@
             });
         </script>
     </head>
-    <body data-bind="template: { name: templateId }">
+    <body data-bind="template: { name: templateId }" style="padding-top: 60px">
         Loading...
     </body>
 </html>

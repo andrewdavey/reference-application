@@ -42,7 +42,7 @@
     ko.bindingHandlers.validation = {
         init: function (element, valueAccessor) {
             var validation = valueAccessor().validation;
-            if (!validation) throw "The object passed to the validation binding handler must be extended with the validation extender.";
+            if (!validation) return;
             
             var controlsDiv = element.querySelector(".controls");
             addErrorMessageSpan(controlsDiv);
@@ -50,9 +50,11 @@
 
         update: function(element, valueAccessor) {
             var validation = valueAccessor().validation;
+            if (!validation) return;
+            
             bindCssErrorClass(element, validation);
             bindTextToValidationMessage(element, validation);
         }
     };
 
-});
+}());

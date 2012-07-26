@@ -1,0 +1,35 @@
+﻿<form class="modal form-horizontal" data-bind="submit: submit">
+    <div class="modal-header">
+        Add Reminder
+    </div>
+    <div class="modal-body">
+        <div class="control-group" data-bind="validation: title">
+            <label class="control-label">Title</label>
+            <div class="controls">
+                <input type="text" data-bind="value: title"/>                
+            </div>
+        </div>
+        <div class="control-group" data-bind="validation: remarks">
+            <label class="control-label">Remarks</label>
+            <div class="controls">
+                <textarea rows="3" data-bind="value: remarks"></textarea>
+            </div>
+        </div>
+        <div class="control-group" data-bind="validation: dueDate">
+            <label class="control-label">Due date</label>
+            <div class="controls">
+                <input type="text" data-bind="value: dueDate"/>                
+            </div>
+        </div>
+        <div class="control-group" data-bind="validation: dueDistance">
+            <label class="control-label">Due when odometer reads</label>
+            <div class="controls">
+                <input type="text" data-bind="value: dueDistance"/>                
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Add Reminder</button>
+        <button class="btn" data-bind="click: cancel">Cancel</button>
+    </div>
+</form>

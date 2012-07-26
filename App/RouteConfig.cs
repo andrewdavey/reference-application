@@ -19,14 +19,20 @@ namespace App
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             
             routes.MapResource<DashboardController>("");
+            
             routes.GetResource<VehicleMasterPageController>("vehicles/master");
             routes.GetResource<VehiclesController>("vehicles");
             routes.PostResource<PostVehicleController>("vehicles");
             routes.MapResource<GetNewVehicleController>("vehicles/add");
             routes.MapResource<VehicleController>("vehicles/{id}");
+            
             routes.MapResource<FillUpsController>("vehicles/{id}/fillups");
             routes.MapResource<NewFillUpController>("vehicles/{id}/fillups/add");
-            routes.MapResource<RemindersController>("vehicles/{id}/reminders");
+            
+            routes.GetResource<RemindersController>("vehicles/{id}/reminders");
+            routes.PostResource<AddReminderController>("vehicles/{id}/reminders");
+            routes.MapResource<ReminderController>("vehicles/{vehicleId}/reminders/{id}");
+
             routes.MapResource<VehiclePhotoController>("vehicles-photo/{id}");
 
             routes.MapResource<ProfileController>("profile");
@@ -34,8 +40,8 @@ namespace App
             routes.MapResource<YearsController>("reference/years");
             routes.MapResource<MakesController>("reference/years/{year}");
             routes.MapResource<ModelsController>("reference/years/{year}/{make}");
-
             routes.MapResource<CountriesController>("reference/countries");
+
 
             routes.MapResource<SpecController>("specs");
         }
