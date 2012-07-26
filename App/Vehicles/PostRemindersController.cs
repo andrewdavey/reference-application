@@ -8,11 +8,11 @@ using MileageStats.Domain.Handlers;
 
 namespace App.Vehicles
 {
-    public class AddReminderController : ApiController
+    public class PostRemindersController : ApiController
     {
         readonly AddReminderToVehicle addReminderToVehicle;
 
-        public AddReminderController(AddReminderToVehicle addReminderToVehicle)
+        public PostRemindersController(AddReminderToVehicle addReminderToVehicle)
         {
             this.addReminderToVehicle = addReminderToVehicle;
         }
@@ -36,7 +36,7 @@ namespace App.Vehicles
 
         Uri ReminderUrl(NewReminder reminder)
         {
-            var url = Url.Resource<ReminderController>(new
+            var url = Url.Resource<GetReminderController>(new
             {
                 vehicleId = reminder.VehicleId,
                 id = reminder.ReminderId

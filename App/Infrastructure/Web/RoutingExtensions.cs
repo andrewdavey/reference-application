@@ -2,59 +2,24 @@
 using System.Web.Http;
 using System.Web.Http.Routing;
 using System.Web.Routing;
+using HttpMethodConstraint = System.Web.Http.Routing.HttpMethodConstraint;
 
 namespace App.Infrastructure.Web
 {
     public static class RoutingExtensions
     {
-        public static void MapResource<T>(this RouteCollection routes, string urlTemplate)
+        public static void Resource(this RouteCollection routes, string name, string urlTemplate)
         {
-            var name = ControllerName<T>();
-            routes.MapHttpRoute(name, urlTemplate, new {controller = name});
-        }
-
-        public static void GetResource<T>(this RouteCollection routes, string urlTemplate)
-        {
-            var name = ControllerName<T>();
-            routes.MapHttpRoute(
-                name,
-                urlTemplate,
-                new { controller = name },
-                new{get = new System.Web.Http.Routing.HttpMethodConstraint(new HttpMethod("GET"))}
-            );
-        }
-
-        public static void DeleteResource<T>(this RouteCollection routes, string urlTemplate)
-        {
-            var name = ControllerName<T>();
-            routes.MapHttpRoute(
-                name,
-                urlTemplate,
-                new { controller = name },
-                new { get = new System.Web.Http.Routing.HttpMethodConstraint(new HttpMethod("DELETE")) }
-            );
-        }
-
-        public static void PostResource<T>(this RouteCollection routes, string urlTemplate)
-        {
-            var name = ControllerName<T>();
-            routes.MapHttpRoute(
-                name,
-                urlTemplate,
-                new { controller = name },
-                new { get = new System.Web.Http.Routing.HttpMethodConstraint(new HttpMethod("POST")) }
-            );
-        }
-
-        public static void PutResource<T>(this RouteCollection routes, string urlTemplate)
-        {
-            var name = ControllerName<T>();
-            routes.MapHttpRoute(
-                name,
-                urlTemplate,
-                new { controller = name },
-                new { get = new System.Web.Http.Routing.HttpMethodConstraint(new HttpMethod("PUT")) }
-            );
+            var methods = new[] {"Get", "Put", "Post", "Patch", "Delete"};
+            foreach (var method in methods)
+            {
+                routes.MapHttpRoute(
+                    method + name,
+                    urlTemplate,
+                    new { controller = method + name },
+                    new { method = new HttpMethodConstraint(new HttpMethod(method.ToUpperInvariant())) }
+                );                
+            }
         }
 
         public static string Resource<T>(this UrlHelper url, object routeValues = null)

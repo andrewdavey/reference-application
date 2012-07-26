@@ -3,7 +3,7 @@ using App.Infrastructure;
 
 namespace App.Specs
 {
-    public class SpecController : ApiController
+    public class GetSpecsController : ApiController
     {
         public object GetSpecs()
         {

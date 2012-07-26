@@ -6,11 +6,11 @@ using MileageStats.Domain.Handlers;
 
 namespace App.Vehicles
 {
-    public class VehicleController : ApiController
+    public class GetVehicleController : ApiController
     {
         readonly GetVehicleById getVehicleById;
 
-        public VehicleController(GetVehicleById getVehicleById)
+        public GetVehicleController(GetVehicleById getVehicleById)
         {
             this.getVehicleById = getVehicleById;
         }
@@ -22,7 +22,7 @@ namespace App.Vehicles
             {
                 Title = vehicle.Name,
                 Script = "Vehicles/VehiclePage",
-                Master = Url.Resource<VehicleMasterPageController>(),
+                Master = Url.Resource<GetVehicleMasterPageController>(),
                 Data = new
                 {
                     name = vehicle.Name,
@@ -30,7 +30,7 @@ namespace App.Vehicles
                     make = vehicle.MakeName,
                     model = vehicle.ModelName,
                     odometer = vehicle.Odometer,
-                    photo = Url.Get<VehiclePhotoController>(new {id = vehicle.PhotoId}),
+                    photo = Url.Get<GetVehiclePhotoController>(new {id = vehicle.PhotoId}),
                     delete = Url.Delete<DeleteVehicleController>()
                 }
             };

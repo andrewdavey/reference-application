@@ -5,12 +5,12 @@ using MileageStats.Domain.Models;
 
 namespace App.Profile
 {
-    public class ProfileController : ApiController
+    public class GetProfileController : ApiController
     {
         readonly GetUserByClaimId getUser;
         readonly UpdateUser updateUser;
 
-        public ProfileController(GetUserByClaimId getUser, UpdateUser updateUser)
+        public GetProfileController(GetUserByClaimId getUser, UpdateUser updateUser)
         {
             this.getUser = getUser;
             this.updateUser = updateUser;
@@ -22,7 +22,7 @@ namespace App.Profile
             {
                 name = "",
                 countries = Url.Get<CountriesController>(),
-                save = Url.Put<ProfileController>()
+                save = Url.Put<GetProfileController>()
             };
         }
 

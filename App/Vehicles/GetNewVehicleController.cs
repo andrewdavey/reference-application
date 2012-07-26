@@ -15,8 +15,8 @@ namespace App.Vehicles
                 Script = "Vehicles/NewVehiclePage",
                 Data = new
                 {
-                    years = Url.Get<YearsController>(),
-                    save = Url.Post<VehiclesController>()
+                    years = Url.Get<GetYearsController>(),
+                    save = Url.Post<GetVehiclesController>()
                 }
             };
         }

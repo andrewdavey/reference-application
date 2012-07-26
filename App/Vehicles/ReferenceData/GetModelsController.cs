@@ -4,11 +4,11 @@ using MileageStats.Domain.Handlers;
 
 namespace App.Vehicles.ReferenceData
 {
-    public class ModelsController : ApiController
+    public class GetModelsController : ApiController
     {
         readonly GetYearsMakesAndModels getYearsMakesAndModels;
 
-        public ModelsController(GetYearsMakesAndModels getYearsMakesAndModels)
+        public GetModelsController(GetYearsMakesAndModels getYearsMakesAndModels)
         {
             this.getYearsMakesAndModels = getYearsMakesAndModels;
         }

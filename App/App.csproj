@@ -185,15 +185,16 @@
     <Compile Include="CountriesController.cs" />
     <Compile Include="Infrastructure\Cassette\StylesheetPathProvider.cs" />
     <Compile Include="Infrastructure\Web\PageLanguageFilter.cs" />
-    <Compile Include="Vehicles\AddFillUpController.cs" />
-    <Compile Include="Vehicles\AddReminderController.cs" />
+    <Compile Include="Vehicles\PatchReminderController.cs" />
+    <Compile Include="Vehicles\PostFillUpController.cs" />
+    <Compile Include="Vehicles\PostRemindersController.cs" />
     <Compile Include="Vehicles\DeleteVehicleController.cs" />
     <Compile Include="Vehicles\NewFillUp.cs" />
-    <Compile Include="Vehicles\ReminderController.cs" />
+    <Compile Include="Vehicles\GetReminderController.cs" />
     <Compile Include="Vehicles\ReminderResource.cs" />
-    <Compile Include="Vehicles\RemindersController.cs" />
+    <Compile Include="Vehicles\GetRemindersController.cs" />
     <Compile Include="Vehicles\ReminderUpdate.cs" />
-    <Compile Include="Vehicles\VehicleMasterPage\VehicleMasterPageController.cs" />
+    <Compile Include="Vehicles\VehicleMasterPage\GetVehicleMasterPageController.cs" />
     <Compile Include="WebApiConfig.cs" />
     <Compile Include="CassetteConfiguration.cs" />
     <Compile Include="Infrastructure\Cassette\AddDebugWrapperToAssets.cs" />
@@ -224,16 +225,16 @@
     <Compile Include="Infrastructure\Web\HtmlFormatter.cs" />
     <Compile Include="Infrastructure\Web\PageResourceMetadataWrappingFilter.cs" />
     <Compile Include="Infrastructure\Web\RoutingExtensions.cs" />
-    <Compile Include="Profile\ProfileController.cs" />
-    <Compile Include="Specs\SpecController.cs" />
-    <Compile Include="Vehicles\FillUpsController.cs" />
-    <Compile Include="Vehicles\ReferenceData\MakesController.cs" />
-    <Compile Include="Vehicles\ReferenceData\ModelsController.cs" />
-    <Compile Include="Vehicles\ReferenceData\YearsController.cs" />
+    <Compile Include="Profile\GetProfileController.cs" />
+    <Compile Include="Specs\GetSpecsController.cs" />
+    <Compile Include="Vehicles\GetFillUpsController.cs" />
+    <Compile Include="Vehicles\ReferenceData\GetMakesController.cs" />
+    <Compile Include="Vehicles\ReferenceData\GetModelsController.cs" />
+    <Compile Include="Vehicles\ReferenceData\GetYearsController.cs" />
     <Compile Include="Vehicles\PostVehicleController.cs" />
     <Compile Include="Vehicles\NewVehicleForm.cs" />
     <Compile Include="Vehicles\GetNewVehicleController.cs" />
-    <Compile Include="Dashboard\DashboardController.cs" />
+    <Compile Include="Dashboard\GetDashboardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -250,9 +251,9 @@
     <Compile Include="Infrastructure\Unity\UnityHttpContextPerRequestLifetimeManager.cs" />
     <Compile Include="Infrastructure\Unity\UnityPerRequestLifetimeManager.cs" />
     <Compile Include="Infrastructure\Web\UrlExtensions.cs" />
-    <Compile Include="Vehicles\VehiclePhotoController.cs" />
-    <Compile Include="Vehicles\VehiclesController.cs" />
-    <Compile Include="Vehicles\VehicleController.cs" />
+    <Compile Include="Vehicles\GetVehiclePhotoController.cs" />
+    <Compile Include="Vehicles\GetVehiclesController.cs" />
+    <Compile Include="Vehicles\GetVehicleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

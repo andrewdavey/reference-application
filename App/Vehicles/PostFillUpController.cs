@@ -3,11 +3,11 @@ using MileageStats.Domain.Handlers;
 
 namespace App.Vehicles
 {
-    public class AddFillUpController : ApiController
+    public class PostFillUpController : ApiController
     {
         readonly AddFillupToVehicle addFillupToVehicle;
 
-        public AddFillUpController(AddFillupToVehicle addFillupToVehicle)
+        public PostFillUpController(AddFillupToVehicle addFillupToVehicle)
         {
             this.addFillupToVehicle = addFillupToVehicle;
         }

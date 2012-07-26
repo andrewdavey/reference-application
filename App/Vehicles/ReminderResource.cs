@@ -17,7 +17,7 @@ namespace App.Vehicles
             DueDistance = reminder.DueDistance;
             IsFulfilled = reminder.IsFulfilled;
             IsOverdue = reminder.IsOverdue;
-            Update = url.Patch<ReminderController>(new {vehicleId = reminder.VehicleId, id = reminder.ReminderId});
+            Update = url.Patch<GetReminderController>(new {vehicleId = reminder.VehicleId, id = reminder.ReminderId});
         }
 
         public string Title { get; set; }

@@ -5,11 +5,11 @@ using MileageStats.Domain.Handlers;
 
 namespace App.Vehicles
 {
-    public class VehiclePhotoController : ApiController
+    public class GetVehiclePhotoController : ApiController
     {
         readonly GetVehiclePhoto getVehiclePhoto;
 
-        public VehiclePhotoController(GetVehiclePhoto getVehiclePhoto)
+        public GetVehiclePhotoController(GetVehiclePhoto getVehiclePhoto)
         {
             this.getVehiclePhoto = getVehiclePhoto;
         }

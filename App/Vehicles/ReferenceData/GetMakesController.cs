@@ -6,11 +6,11 @@ using MileageStats.Domain.Handlers;
 
 namespace App.Vehicles.ReferenceData
 {
-    public class MakesController : ApiController
+    public class GetMakesController : ApiController
     {
         readonly GetYearsMakesAndModels getYearsMakesAndModels;
 
-        public MakesController(GetYearsMakesAndModels getYearsMakesAndModels)
+        public GetMakesController(GetYearsMakesAndModels getYearsMakesAndModels)
         {
             this.getYearsMakesAndModels = getYearsMakesAndModels;
         }
@@ -22,7 +22,7 @@ namespace App.Vehicles.ReferenceData
             return makes.Select(make => new
             {
                 make,
-                models = Url.Get<ModelsController>(new {year, make})
+                models = Url.Get<GetModelsController>(new {year, make})
             });
         }
     }

@@ -3,17 +3,15 @@ using MileageStats.Domain.Handlers;
 
 namespace App.Vehicles
 {
-    public class ReminderController : ApiController
+    public class GetReminderController : ApiController
     {
         readonly GetReminder getReminder;
         readonly GetVehicleById getVehicleById;
-        readonly FulfillReminder fulfillReminder;
 
-        public ReminderController(GetReminder getReminder, GetVehicleById getVehicleById, FulfillReminder fulfillReminder)
+        public GetReminderController(GetReminder getReminder, GetVehicleById getVehicleById)
         {
             this.getReminder = getReminder;
             this.getVehicleById = getVehicleById;
-            this.fulfillReminder = fulfillReminder;
         }
 
         public object GetReminder(int vehicleId, int id)
@@ -23,12 +21,5 @@ namespace App.Vehicles
             return new ReminderResource(reminder, vehicle, Url);
         }
 
-        public void PatchReminder(int id, ReminderUpdate update)
-        {
-            if (update.IsFulfilled)
-            {
-                fulfillReminder.Execute(1, id);
-            }
-        }
     }
 }

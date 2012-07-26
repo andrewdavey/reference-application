@@ -7,12 +7,12 @@ using MileageStats.Domain.Handlers;
 
 namespace App.Vehicles
 {
-    public class RemindersController : ApiController
+    public class GetRemindersController : ApiController
     {
         readonly GetAllRemindersForVehicle getAllRemindersForVehicle;
         readonly GetVehicleById getVehicleById;
 
-        public RemindersController(GetAllRemindersForVehicle getAllRemindersForVehicle, GetVehicleById getVehicleById)
+        public GetRemindersController(GetAllRemindersForVehicle getAllRemindersForVehicle, GetVehicleById getVehicleById)
         {
             this.getAllRemindersForVehicle = getAllRemindersForVehicle;
             this.getVehicleById = getVehicleById;
@@ -24,14 +24,14 @@ namespace App.Vehicles
             
             return new Page
             {
-                Master = Url.Resource<VehicleMasterPageController>(),
+                Master = Url.Resource<GetVehicleMasterPageController>(),
                 Script = "Vehicles/Reminders",
                 Stylesheet = "Vehicles/Reminders",
                 Data = new
                 {
                     // TODO: Seems like a nasty SELECT N+1 bug here!
                     reminders = reminders.Select(r => new ReminderResource(r, getVehicleById.Execute(1, r.VehicleId), Url)),
-                    add = Url.Post<AddReminderController>()
+                    add = Url.Post<PostRemindersController>()
                 }
             };
         }

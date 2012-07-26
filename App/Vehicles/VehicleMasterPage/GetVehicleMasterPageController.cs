@@ -4,7 +4,7 @@ using App.Infrastructure.Web;
 
 namespace App.Vehicles.VehicleMasterPage
 {
-    public class VehicleMasterPageController : ApiController
+    public class GetVehicleMasterPageController : ApiController
     {
         public object GetMasterPage()
         {
@@ -13,7 +13,7 @@ namespace App.Vehicles.VehicleMasterPage
                 Script = "Vehicles/VehicleMasterPage",
                 Data = new
                 {
-                    vehicles = Url.Get<VehiclesController>()
+                    vehicles = Url.Get<GetVehiclesController>()
                 }
             };
         }

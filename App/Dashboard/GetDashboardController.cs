@@ -10,12 +10,12 @@ using MileageStats.Domain.Handlers;
 
 namespace App.Dashboard
 {
-    public class DashboardController : ApiController
+    public class GetDashboardController : ApiController
     {
         readonly GetFleetSummaryStatistics getFleetSummaryStatistics;
         readonly GetImminentRemindersForUser getImminentReminders;
 
-        public DashboardController(GetFleetSummaryStatistics getFleetSummaryStatistics, GetImminentRemindersForUser getImminentReminders)
+        public GetDashboardController(GetFleetSummaryStatistics getFleetSummaryStatistics, GetImminentRemindersForUser getImminentReminders)
         {
             this.getFleetSummaryStatistics = getFleetSummaryStatistics;
             this.getImminentReminders = getImminentReminders;
@@ -34,9 +34,9 @@ namespace App.Dashboard
                 {
                     statistics,
                     reminders,
-                    vehicles = Url.Get<VehiclesController>(),
+                    vehicles = Url.Get<GetVehiclesController>(),
                     addVehicle = Url.Get<GetNewVehicleController>(),
-                    profile = Url.Get<ProfileController>()
+                    profile = Url.Get<GetProfileController>()
                 }
             };
             

@@ -22,7 +22,7 @@ namespace App.Vehicles
             {
                 Headers =
                 {
-                    {"Location", Url.Resource<VehicleController>(new {id = vehicleId})}
+                    {"Location", Url.Resource<GetVehicleController>(new {id = vehicleId})}
                 }
             };
         }

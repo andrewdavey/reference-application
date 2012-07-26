@@ -6,11 +6,11 @@ using MileageStats.Domain.Handlers;
 
 namespace App.Vehicles
 {
-    public class FillUpsController : ApiController
+    public class GetFillUpsController : ApiController
     {
         readonly GetFillupsForVehicle getFillupsForVehicle;
 
-        public FillUpsController(GetFillupsForVehicle getFillupsForVehicle)
+        public GetFillUpsController(GetFillupsForVehicle getFillupsForVehicle)
         {
             this.getFillupsForVehicle = getFillupsForVehicle;
         }
@@ -23,11 +23,11 @@ namespace App.Vehicles
                 Title = "Fill ups",
                 Script = "Vehicles/FillUpsPage",
                 Stylesheet = "Vehicles/FillUpsPage",
-                Master = Url.Resource<VehicleMasterPageController>(),
+                Master = Url.Resource<GetVehicleMasterPageController>(),
                 Data = new
                 {
                     fillUps,
-                    add = Url.Post<FillUpsController>()
+                    add = Url.Post<GetFillUpsController>()
                 }
             };
         }

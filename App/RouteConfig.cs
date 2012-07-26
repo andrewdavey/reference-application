@@ -1,12 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using App.Dashboard;
 using App.Infrastructure.Web;
-using App.Profile;
-using App.Specs;
-using App.Vehicles;
-using App.Vehicles.ReferenceData;
-using App.Vehicles.VehicleMasterPage;
 
 namespace App
 {
@@ -17,34 +11,23 @@ namespace App
             routes.RouteExistingFiles = true;
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            
-            routes.MapResource<DashboardController>("");
-            
-            routes.GetResource<VehicleMasterPageController>("vehicles/master");
-            routes.GetResource<VehiclesController>("vehicles");
-            routes.PostResource<PostVehicleController>("vehicles");
-            routes.MapResource<GetNewVehicleController>("vehicles/add");
-            routes.GetResource<VehicleController>("vehicles/{id}");
-            routes.DeleteResource<DeleteVehicleController>("vehicles/{id}");
 
-            routes.GetResource<FillUpsController>("vehicles/{id}/fillups");
-            routes.PostResource<AddFillUpController>("vehicles/{id}/fillups");
-            
-            routes.GetResource<RemindersController>("vehicles/{id}/reminders");
-            routes.PostResource<AddReminderController>("vehicles/{id}/reminders");
-            routes.MapResource<ReminderController>("vehicles/{vehicleId}/reminders/{id}");
+            routes.Resource("Dashboard", "");
+            routes.Resource("Vehicles", "vehicles");
+            routes.Resource("NewVehicle", "vehicles/new");
+            routes.Resource("VehicleMasterPage", "vehicles/master");
+            routes.Resource("Vehicle", "vehicles/{id}");
+            routes.Resource("VehiclePhoto", "vehicles/{id}/photo");
+            routes.Resource("FillUps", "vehicles/{id}/fillUps");
+            routes.Resource("Reminders", "vehicles/{id}/reminders");
+            routes.Resource("Reminder", "vehicles/{vehicleId}/reminders/{id}");
+            routes.Resource("Profile", "profile");
+            routes.Resource("Years", "reference/years");
+            routes.Resource("Makes", "reference/years/{year}");
+            routes.Resource("Models", "reference/years/{year}/{make}");
+            routes.Resource("Countries", "reference/countries");
 
-            routes.MapResource<VehiclePhotoController>("vehicles-photo/{id}");
-
-            routes.MapResource<ProfileController>("profile");
-
-            routes.MapResource<YearsController>("reference/years");
-            routes.MapResource<MakesController>("reference/years/{year}");
-            routes.MapResource<ModelsController>("reference/years/{year}/{make}");
-            routes.MapResource<CountriesController>("reference/countries");
-
-
-            routes.MapResource<SpecController>("specs");
+            routes.Resource("Specs", "specs");
         }
     }
 }

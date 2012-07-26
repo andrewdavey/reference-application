@@ -6,11 +6,11 @@ using MileageStats.Domain.Models;
 
 namespace App.Vehicles
 {
-    public class VehiclesController : ApiController
+    public class GetVehiclesController : ApiController
     {
         readonly GetVehicleListForUser getVehicleListForUser;
 
-        public VehiclesController(GetVehicleListForUser getVehicleListForUser)
+        public GetVehiclesController(GetVehicleListForUser getVehicleListForUser)
         {
             this.getVehicleListForUser = getVehicleListForUser;
         }
@@ -25,10 +25,10 @@ namespace App.Vehicles
         {
             return new
             {
-                details = Url.Get<VehicleController>(new { id = vehicle.VehicleId }),
-                fillUps = Url.Get<FillUpsController>(new { id = vehicle.VehicleId }),
-                reminders = Url.Get<RemindersController>(new { id = vehicle.VehicleId }),
-                photo = Url.Get<VehiclePhotoController>(new { id = vehicle.PhotoId }), // TODO: get photo url
+                details = Url.Get<GetVehicleController>(new { id = vehicle.VehicleId }),
+                fillUps = Url.Get<GetFillUpsController>(new { id = vehicle.VehicleId }),
+                reminders = Url.Get<GetRemindersController>(new { id = vehicle.VehicleId }),
+                photo = Url.Get<GetVehiclePhotoController>(new { id = vehicle.PhotoId }), // TODO: get photo url
                 name = vehicle.Name,
                 year = vehicle.Year,
                 make = vehicle.MakeName,
