@@ -5,10 +5,12 @@
     <dd data-bind="text: dueDate"></dd>
     <dt>Due distance</dt>
     <dd data-bind="text: dueDistance"></dd>
+    <!-- ko if: remarks -->
     <dt>Remarks</dt>
     <dd data-bind="text: remarks"></dd>
+    <!-- /ko -->
 </dl>
 
 <div>
-    <button class="btn">Fulfill</button>
+    <button class="btn" data-bind="click: fulfill">Fulfill</button>
 </div>

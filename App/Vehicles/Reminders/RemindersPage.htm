@@ -4,8 +4,8 @@
 
 <div class="row-fluid">
     <div class="span3">
-        <ul data-bind="foreach: reminders">
-            <li>
+        <ul class="unstyled" data-bind="foreach: reminders">
+            <li data-bind="css: { overdue: isOverdue }">
                 <a href="javascript:void(0)" data-bind="click: $parent.showReminderDetails.bind($parent)">
                     <div data-bind="text: title"></div>
                     <div data-bind="text: dueSummary"></div>
@@ -13,7 +13,9 @@
             </li>
         </ul>
     </div>
-    <div class="span9" data-bind="template: { data: selectedReminder, name: 'Vehicles/Reminders/ReminderDetails.htm' }">
-        
+    <div class="span9">
+        <!-- ko if: selectedReminder -->
+            <!-- ko template: { data: selectedReminder, name: 'Vehicles/Reminders/ReminderDetails.htm' } --><!-- /ko -->
+        <!-- /ko -->
     </div>
 </div>

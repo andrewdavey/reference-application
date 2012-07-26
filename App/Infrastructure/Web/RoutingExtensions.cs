@@ -62,6 +62,11 @@ namespace App.Infrastructure.Web
             return HttpLink<T>(url, "put", routeValues);
         }
 
+        public static object Patch<T>(this UrlHelper url, object routeValues = null)
+        {
+            return HttpLink<T>(url, "patch", routeValues);
+        }
+
         public static object Post<T>(this UrlHelper url, object routeValues = null)
         {
             return HttpLink<T>(url, "post", routeValues);

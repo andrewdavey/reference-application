@@ -57,7 +57,7 @@ var AddReminderForm = Object.inherit({
         return {
             title: this.title(),
             remarks: this.remarks(),
-            dueDate: moment(this.dueDate()).format("YYYY-MM-DD"),
+            dueDate: moment(this.dueDate(), moment.longDateFormat.L).format("YYYY-MM-DD"),
             dueDistance: parseInt(this.dueDistance(), 10)
         };
     },

@@ -189,7 +189,9 @@
     <Compile Include="Vehicles\NewFillUp.cs" />
     <Compile Include="Vehicles\NewFillUpController.cs" />
     <Compile Include="Vehicles\ReminderController.cs" />
+    <Compile Include="Vehicles\ReminderResource.cs" />
     <Compile Include="Vehicles\RemindersController.cs" />
+    <Compile Include="Vehicles\ReminderUpdate.cs" />
     <Compile Include="Vehicles\VehicleMasterPage\VehicleMasterPageController.cs" />
     <Compile Include="WebApiConfig.cs" />
     <Compile Include="CassetteConfiguration.cs" />
@@ -325,8 +327,10 @@
     <Content Include="Dashboard\vehicles.htm" />
     <Content Include="Vehicles\Reminders\AddReminderForm.htm" />
     <Content Include="Vehicles\Reminders\AddReminderForm.js" />
+    <Content Include="Vehicles\Reminders\Reminder.js" />
     <Content Include="Vehicles\Reminders\init.js" />
     <Content Include="Vehicles\Reminders\ReminderDetails.htm" />
+    <Content Include="Vehicles\Reminders\reminders.css" />
     <Content Include="Vehicles\Reminders\RemindersPage.htm" />
     <Content Include="Vehicles\Reminders\RemindersPage.js" />
     <Content Include="Vehicles\VehicleMasterPage\init.js" />

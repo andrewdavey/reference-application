@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Linq;
+using System.Web.Http;
 using App.Infrastructure;
 using App.Infrastructure.Web;
 using App.Vehicles.VehicleMasterPage;
@@ -9,23 +10,27 @@ namespace App.Vehicles
     public class RemindersController : ApiController
     {
         readonly GetAllRemindersForVehicle getAllRemindersForVehicle;
+        readonly GetVehicleById getVehicleById;
 
-        public RemindersController(GetAllRemindersForVehicle getAllRemindersForVehicle)
+        public RemindersController(GetAllRemindersForVehicle getAllRemindersForVehicle, GetVehicleById getVehicleById)
         {
             this.getAllRemindersForVehicle = getAllRemindersForVehicle;
+            this.getVehicleById = getVehicleById;
         }
 
         public object GetReminders(int id)
         {
-            var reminders = getAllRemindersForVehicle.Execute(id);
+            var reminders = getAllRemindersForVehicle.Execute(id).Where(r => !r.IsFulfilled);
             
             return new Page
             {
                 Master = Url.Resource<VehicleMasterPageController>(),
                 Script = "Vehicles/Reminders",
+                Stylesheet = "Vehicles/Reminders",
                 Data = new
                 {
-                    reminders,
+                    // TODO: Seems like a nasty SELECT N+1 bug here!
+                    reminders = reminders.Select(r => new ReminderResource(r, getVehicleById.Execute(1, r.VehicleId), Url)),
                     add = Url.Post<AddReminderController>()
                 }
             };
