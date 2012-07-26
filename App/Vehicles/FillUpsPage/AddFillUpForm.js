@@ -1,16 +1,17 @@
-﻿/// <reference path="~/Infrastructure/Scripts/App/Object.js"/>
-/// <reference path="~/Infrastructure/Scripts/App/http.js"/>
+﻿/// <reference path="~/Infrastructure/Scripts/App/http.js"/>
 /// <reference path="~/Infrastructure/Scripts/Vendor/knockout.js"/>
 /// <reference path="~/Infrastructure/Scripts/Vendor/moment.js"/>
 /// <reference path="~/Infrastructure/Scripts/App/validation/validation-extender.js" />
 /// <reference path="~/Infrastructure/Scripts/App/validation/objectWithValidateableProperties.js" />
+/// <reference path="~/Infrastructure/Scripts/App/popups.js" />
+/// <reference path="~/Infrastructure/Scripts/App/Object.js"/>
 
-var NewFillUpForm = Object.inherit({
+var AddFillUpForm = Object.inherit({
     
-    templateId: "Vehicles/NewFillUpPage/NewFillUpForm.htm",
+    templateId: "Vehicles/FillUpsPage/AddFillUpForm.htm",
     
-    init: function (data) {
-        this.saveLink = data.save;
+    init: function (addCommand) {
+        this.addCommand = addCommand;
         this.http = http;
 
         this.initInputs();
@@ -72,23 +73,38 @@ var NewFillUpForm = Object.inherit({
         }, this);
     },
     
+    show: function () {
+        this.closed = $.Deferred();
+        popups.modal(this);
+        return this.closed;
+    },
+    
     save: function () {
         if (!this.validate()) return;
 
         var data = this.getSaveData();
-        this.http(this.saveLink, data);
+        this.http(this.addCommand, data)
+            .done(function () {
+                data.TotalCost = data.TotalUnits * data.PricePerUnit + data.TransactionFee;
+                this.close(data);
+            });
     },
     
     getSaveData: function () {
         return {
-            date: moment(this.date()).format("YYYY-MM-DD"),
-            odometer: parseInt(this.odometer()),
-            pricePerUnit: parseFloat(this.pricePerUnit()),
-            totalUnits: parseInt(this.totalUnits(), 10),
-            transactionFee: parseFloat(this.transactionFee()),
-            remarks: this.remarks(),
-            vendor: this.vendor()
+            Date: moment(this.date()).format("YYYY-MM-DD"),
+            Odometer: parseInt(this.odometer()),
+            PricePerUnit: parseFloat(this.pricePerUnit()),
+            TotalUnits: parseInt(this.totalUnits(), 10),
+            TransactionFee: parseFloat(this.transactionFee()),
+            Remarks: this.remarks(),
+            Vendor: this.vendor()
         };
+    },
+    
+    close: function(fillUpData) {
+        popups.closeModal(this);
+        this.closed.resolve(fillUpData);
     }
     
 });

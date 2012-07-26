@@ -1,0 +1,67 @@
+﻿<form data-bind="submit: save" class="modal form-horizontal">
+    <div class="modal-header">
+        <h3>Add fill up</h3>
+    </div>
+    <div class="modal-body">
+        <div class="control-group" data-bind="validation: date">
+            <label class="control-label">Date</label>
+            <div class="controls">
+                <input type="text" data-bind="value: date"/>
+            </div>
+        </div>
+        <div class="control-group" data-bind="validation: odometer">
+            <label class="control-label">Odometer</label>
+            <div class="controls">
+                <input type="text" data-bind="value: odometer"/>
+            </div>
+        </div>
+        <div class="control-group" data-bind="validation: pricePerUnit">
+            <label class="control-label">Price per unit</label>
+            <div class="controls">
+                <div class="input-prepend">
+                    <span class="add-on">$</span><input type="text" data-bind="value: pricePerUnit" class="span1"/>
+                </div>
+            </div>
+        </div>
+        <div class="control-group" data-bind="validation: totalUnits">
+            <label class="control-label">Total units</label>
+            <div class="controls">
+                <input type="text" data-bind="value: totalUnits"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Fill up station</label>
+            <div class="controls">
+                <input type="text" data-bind="value: vendor"/>
+            </div>
+        </div>
+        <div class="control-group" data-bind="validation: transactionFee">
+            <label class="control-label">Transaction fee</label>
+            <div class="controls">
+                <div class="input-prepend">
+                    <span class="add-on">$</span><input type="text" data-bind="value: transactionFee" class="span1"/>
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Remarks</label>
+            <div class="controls">
+                <textarea data-bind="value: remarks" rows="3"></textarea>
+            </div>
+        </div>
+    
+        <div class="control-group">
+            <label class="control-label">Total cost</label>
+            <div class="controls">
+                <div class="input-prepend">
+                    <span class="add-on">$</span><input type="text" readonly="readonly" data-bind="value: totalCost" class="span1"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">Add Fill Up</button>
+        <button class="btn" data-bind="click: close">Cancel</button>
+    </div>
+</form>

@@ -25,9 +25,9 @@ namespace App
             routes.PostResource<PostVehicleController>("vehicles");
             routes.MapResource<GetNewVehicleController>("vehicles/add");
             routes.MapResource<VehicleController>("vehicles/{id}");
-            
-            routes.MapResource<FillUpsController>("vehicles/{id}/fillups");
-            routes.MapResource<NewFillUpController>("vehicles/{id}/fillups/add");
+
+            routes.GetResource<FillUpsController>("vehicles/{id}/fillups");
+            routes.PostResource<AddFillUpController>("vehicles/{id}/fillups");
             
             routes.GetResource<RemindersController>("vehicles/{id}/reminders");
             routes.PostResource<AddReminderController>("vehicles/{id}/reminders");

@@ -1,5 +1,5 @@
-﻿/// <reference path="Page.js" />
+﻿/// <reference path="FillUpsPage.js" />
 
-var init = function (pageData) {
-    return Page.create(pageData);
+var init = function (pageData, app) {
+    return FillUpsPage.create(pageData, app.flashMessage);
 };

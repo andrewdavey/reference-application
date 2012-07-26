@@ -9,12 +9,10 @@ namespace App.Vehicles
     public class FillUpsController : ApiController
     {
         readonly GetFillupsForVehicle getFillupsForVehicle;
-        readonly AddFillupToVehicle addFillupToVehicle;
 
-        public FillUpsController(GetFillupsForVehicle getFillupsForVehicle, AddFillupToVehicle addFillupToVehicle)
+        public FillUpsController(GetFillupsForVehicle getFillupsForVehicle)
         {
             this.getFillupsForVehicle = getFillupsForVehicle;
-            this.addFillupToVehicle = addFillupToVehicle;
         }
 
         public object GetFillUps(int id)
@@ -28,14 +26,10 @@ namespace App.Vehicles
                 Master = Url.Resource<VehicleMasterPageController>(),
                 Data = new
                 {
-                    fillUps
+                    fillUps,
+                    add = Url.Post<FillUpsController>()
                 }
             };
-        }
-
-        public void Post(int id, NewFillUp fillUp)
-        {
-            addFillupToVehicle.Execute(1, id, fillUp);
         }
     }
 }
