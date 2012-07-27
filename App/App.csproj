@@ -186,7 +186,7 @@
     <Compile Include="Infrastructure\Cassette\StylesheetPathProvider.cs" />
     <Compile Include="Infrastructure\Web\PageLanguageFilter.cs" />
     <Compile Include="Vehicles\PatchReminderController.cs" />
-    <Compile Include="Vehicles\PostFillUpController.cs" />
+    <Compile Include="Vehicles\PostFillUpsController.cs" />
     <Compile Include="Vehicles\PostRemindersController.cs" />
     <Compile Include="Vehicles\DeleteVehicleController.cs" />
     <Compile Include="Vehicles\NewFillUp.cs" />
