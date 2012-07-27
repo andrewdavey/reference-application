@@ -3,19 +3,17 @@
 /// <reference path="jasmine/jasmine.js"/>
 /// <reference path="jasmine/mockHttp.js"/>
 
-specs.define(["Vehicles/NewFillUpPage"], function (module) {
-    var NewFillUpForm = module.NewFillUpForm;
+specs.define(["Vehicles/FillUpsPage"], function (module) {
+    var AddFillUpForm = module.AddFillUpForm;
     
-    describe("NewFillUpForm", function() {
+    describe("AddFillUpForm", function () {
         var form;
 
         beforeEach(function () {
-            Date.now = function() {
-                return new Date(2012, 6, 22, 0, 0, 0);
-            };
-            form = NewFillUpForm.create({
-                save: { method: "post", url: "/fillups" }
+            require(["Infrastructure/Scripts/Vendor/moment"], function (moment) {
+                moment.fn.sod = function() { return moment(new Date(2012, 6, 22, 0, 0, 0)); };
             });
+            form = AddFillUpForm.create({ method: "post", url: "/fillups" });
         });
 
 
@@ -113,13 +111,13 @@ specs.define(["Vehicles/NewFillUpPage"], function (module) {
                 form.save();
                 
                 expect(savedData).toEqual({
-                    date: "2012-07-22", // ISO-8601 compatible date string
-                    odometer: 1000,
-                    pricePerUnit: 0.5,
-                    totalUnits: 100,
-                    transactionFee: 1,
-                    remarks: "remarks",
-                    vendor: "vendor"
+                    Date: "2012-07-22", // ISO-8601 compatible date string
+                    Odometer: 1000,
+                    PricePerUnit: 0.5,
+                    TotalUnits: 100,
+                    TransactionFee: 1,
+                    Remarks: "remarks",
+                    Vendor: "vendor"
                 });
             });
         });

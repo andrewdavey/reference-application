@@ -85,8 +85,9 @@ var AddFillUpForm = Object.inherit({
         var data = this.getSaveData();
         this.http(this.addCommand, data)
             .done(function () {
-                data.TotalCost = data.TotalUnits * data.PricePerUnit + data.TransactionFee;
-                this.close(data);
+                var newFillUp = Object.create(data);
+                newFillUp.TotalCost = newFillUp.TotalUnits * newFillUp.PricePerUnit + newFillUp.TransactionFee;
+                this.close(newFillUp);
             });
     },
     
@@ -103,8 +104,10 @@ var AddFillUpForm = Object.inherit({
     },
     
     close: function(fillUpData) {
-        popups.closeModal(this);
-        this.closed.resolve(fillUpData);
+        if (this.closed) {
+            popups.closeModal(this);
+            this.closed.resolve(fillUpData);
+        }
     }
     
 });

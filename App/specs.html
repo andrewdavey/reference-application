@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <title>MileStats Sample Application</title>
+    <link href="/Specs/jasmine/jasmine.css" type="text/css" rel="stylesheet"/>
 </head>
     <body>
         <script type="text/html" id="loading">Loading...</script>
@@ -15,6 +16,9 @@
                     "Infrastructure/Scripts/Vendor/jquery.history": {
                         deps: ["Infrastructure/Scripts/Vendor/jquery"],
                         exports: "History"
+                    },
+                    "Infrastructure/Scripts/Vendor/bootstrap/js/bootstrap": {
+                        deps: ["Infrastructure/Scripts/Vendor/jquery"]
                     }
                 }
             };
@@ -23,8 +27,8 @@
         <script>
             $shims$
 
-            require(["Infrastructure/Scripts/App", "Infrastructure/Scripts/lang/$lang$"], function(module) {
-                module.start();
+            require(["Specs", "Infrastructure/Scripts/lang/$lang$"], function (module) {
+                module.init();
             });
         </script>
     </body>

@@ -296,7 +296,7 @@
     <Content Include="Specs\jasmine\mockHttp.js" />
     <Content Include="Specs\jasmine\specs.js" />
     <Content Include="Specs\jasmine\matchers.js" />
-    <Content Include="Specs\NewFillUpForm.js" />
+    <Content Include="Specs\AddFillUpForm.js" />
     <Content Include="Specs\ProfileForm.js" />
     <Content Include="Specs\jasmine\init.js" />
     <Content Include="Specs\jasmine\jasmine-html.js" />
