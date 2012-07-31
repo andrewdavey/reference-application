@@ -313,6 +313,7 @@
     <Content Include="Specs\jasmine\jasmine.js" />
     <Content Include="Specs\VehicleSummaryList.js" />
     <Content Include="Specs\ViewDataStackSpecs.js" />
+    <Content Include="Vehicles\Details\VehicleFormInputs.htm" />
     <Content Include="Vehicles\FillUps\FillUp.js" />
     <Content Include="Vehicles\FillUps\FillUpDetails.htm" />
     <Content Include="Vehicles\FillUps\init.js" />

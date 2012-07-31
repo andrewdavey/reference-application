@@ -3,36 +3,8 @@
 </div>
 
 <form data-bind="submit: save" class="form-horizontal">
-    <div class="control-group" data-bind="validation: name">
-        <label for="vehicle-name" class="control-label">Vehicle name</label>
-        <div class="controls">
-            <input type="text" data-bind="value: name" id="vehicle-name"/>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">Model year</label>
-        <div class="controls">
-            <select data-bind="options: years, optionsText: 'year', optionsCaption: '(Select)', value: year"></select>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">Make</label>
-        <div class="controls">
-            <select data-bind="options: makes, optionsText: 'make', optionsCaption: '(Select)', value: make"></select>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">Model</label>
-        <div class="controls">
-            <select data-bind="options: models, optionsCaption: '(Select)', value: model"></select>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">Photo</label>
-        <div class="controls">
-            <input type="file" />
-        </div>
-    </div>
+    <!-- ko template: 'Vehicles/Details/VehicleFormInputs.htm' --><!-- /ko -->
+
     <div class="form-actions">
         <button class="btn btn-primary" type="submit">Save</button>
     </div>

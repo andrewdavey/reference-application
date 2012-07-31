@@ -45,21 +45,6 @@ var EditVehicleForm = Object.inherit({
                 required: "Name is required"
             }
         });
-        this.year.extend({
-            validation: {
-                required: "Year is required"
-            }
-        });
-        this.make.extend({
-            validation: {
-                required: "Make is required"
-            }
-        });
-        this.model.extend({
-            validation: {
-                required: "Model is required"
-            }
-        });
     },
     
     show: function () {
