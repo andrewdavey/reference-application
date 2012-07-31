@@ -191,6 +191,7 @@
     <Compile Include="Vehicles\DeleteVehicleController.cs" />
     <Compile Include="Vehicles\NewFillUp.cs" />
     <Compile Include="Vehicles\GetReminderController.cs" />
+    <Compile Include="Vehicles\PutVehicleController.cs" />
     <Compile Include="Vehicles\ReminderResource.cs" />
     <Compile Include="Vehicles\GetRemindersController.cs" />
     <Compile Include="Vehicles\ReminderUpdate.cs" />
@@ -337,6 +338,8 @@
     <Content Include="Vehicles\VehicleMasterPage\init.js" />
     <Content Include="Vehicles\VehicleMasterPage\MasterPage.htm" />
     <Content Include="Vehicles\VehicleMasterPage\MasterPage.js" />
+    <Content Include="Vehicles\VehiclePage\EditVehicleForm.htm" />
+    <Content Include="Vehicles\VehiclePage\EditVehicleForm.js" />
     <Content Include="Vehicles\VehiclePage\page.css" />
     <Content Include="Vehicles\VehiclePage\init.js" />
     <Content Include="Vehicles\VehiclePage\Vehicle.htm" />

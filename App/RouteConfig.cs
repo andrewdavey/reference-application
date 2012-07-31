@@ -16,7 +16,7 @@ namespace App
             routes.Resource("Vehicles", "vehicles");
             routes.Resource("NewVehicle", "vehicles/new");
             routes.Resource("VehicleMasterPage", "vehicles/master");
-            routes.Resource("Vehicle", "vehicles/{id}");
+            routes.Resource("Vehicle", "vehicles/{vehicleId}");
             routes.Resource("VehiclePhoto", "vehicles/{id}/photo");
             routes.Resource("FillUps", "vehicles/{id}/fillUps");
             routes.Resource("Reminders", "vehicles/{id}/reminders");

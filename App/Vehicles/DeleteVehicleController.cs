@@ -12,9 +12,9 @@ namespace App.Vehicles
             this.deleteVehicle = deleteVehicle;
         }
 
-        public void DeleteVehicle(int id)
+        public void DeleteVehicle(int vehicleId)
         {
-            deleteVehicle.Execute(1, id);
+            deleteVehicle.Execute(1, vehicleId);
         }
     }
 }
