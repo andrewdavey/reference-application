@@ -47,6 +47,8 @@ var Vehicle = Object.inherit({
     },
     
     updateProperties: function (updatedVehicleData) {
+        if (!updatedVehicleData) return;
+        
         updateObservableProperties(updatedVehicleData, this);
         this.eventHub.publish("VehicleUpdated", updatedVehicleData);
     },

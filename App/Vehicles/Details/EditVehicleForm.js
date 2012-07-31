@@ -152,5 +152,9 @@ var EditVehicleForm = Object.inherit({
     saved: function (vehicleData) {
         this.app.flashMessage.show("Saved");
         this.close(vehicleData);
+    },
+    
+    cancel: function () {
+        this.close(null);
     }
 });
