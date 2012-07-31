@@ -6,7 +6,7 @@
 
 var EditVehicleForm = Object.inherit({
 
-    templateId: "Vehicles/VehiclePage/EditVehicleForm.htm",
+    templateId: "Vehicles/Details/EditVehicleForm.htm",
 
     init: function (viewData, app) {
         this.viewData = viewData;

@@ -5,16 +5,16 @@
 
 var FillUpsPage = Object.inherit({
     
-    templateId: "Vehicles/FillUpsPage/FillUpsPage.htm",
+    templateId: "Vehicles/FillUps/FillUpsPage.htm",
     
     init: function (viewData, flashMessage) {
         this.addCommand = viewData.add;
         this.flashMessage = flashMessage;
         this.fillUps = ko.observableArray(viewData.fillUps.map(FillUp.create));
-        this.selectedFillUp = ko.observable(this.fillUps()[0]);
+        this.selectedFillUp = ko.observable();
         
-        if (this.fillUps.length) {
-            this.showFillUpDetails(this.fillUps[0]);
+        if (this.fillUps().length) {
+            this.showFillUpDetails(this.fillUps()[0]);
         }
     },
     
@@ -29,6 +29,8 @@ var FillUpsPage = Object.inherit({
     },
     
     insertNewFillUpAtTop: function (fillUpData) {
+        if (!fillUpData) return;
+        
         var fillUp = FillUp.create(fillUpData);
         this.fillUps.splice(0, 0, fillUp);
         this.selectedFillUp(fillUp);

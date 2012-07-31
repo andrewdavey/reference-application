@@ -2,15 +2,16 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using App.Infrastructure.Web;
+using App.Vehicles.Details;
 using MileageStats.Domain.Handlers;
 
-namespace App.Vehicles
+namespace App.Vehicles.New
 {
-    public class PostVehicleController : ApiController
+    public class PostVehiclesController : ApiController
     {
         readonly CreateVehicle createVehicle;
 
-        public PostVehicleController(CreateVehicle createVehicle)
+        public PostVehiclesController(CreateVehicle createVehicle)
         {
             this.createVehicle = createVehicle;
         }
@@ -22,7 +23,7 @@ namespace App.Vehicles
             {
                 Headers =
                 {
-                    {"Location", Url.Resource<GetVehicleController>(new {id = vehicleId})}
+                    {"Location", Url.Resource<GetVehicleController>(new {vehicleId})}
                 }
             };
         }

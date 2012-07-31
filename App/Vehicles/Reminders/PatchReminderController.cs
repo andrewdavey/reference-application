@@ -1,7 +1,7 @@
 using System.Web.Http;
 using MileageStats.Domain.Handlers;
 
-namespace App.Vehicles
+namespace App.Vehicles.Reminders
 {
     public class PatchReminderController : ApiController
     {
@@ -12,11 +12,11 @@ namespace App.Vehicles
             this.fulfillReminder = fulfillReminder;
         }
 
-        public void PatchReminder(int id, ReminderUpdate update)
+        public void PatchReminder(int reminderId, ReminderUpdate update)
         {
             if (update.IsFulfilled)
             {
-                fulfillReminder.Execute(1, id);
+                fulfillReminder.Execute(1, reminderId);
             }
         }
         

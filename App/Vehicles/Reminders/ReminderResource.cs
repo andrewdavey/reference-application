@@ -3,7 +3,7 @@ using System.Web.Http.Routing;
 using App.Infrastructure.Web;
 using MileageStats.Domain.Models;
 
-namespace App.Vehicles
+namespace App.Vehicles.Reminders
 {
     public class ReminderResource
     {
@@ -17,7 +17,7 @@ namespace App.Vehicles
             DueDistance = reminder.DueDistance;
             IsFulfilled = reminder.IsFulfilled;
             IsOverdue = reminder.IsOverdue;
-            Update = url.Patch<GetReminderController>(new {vehicleId = reminder.VehicleId, id = reminder.ReminderId});
+            Update = url.Patch<GetReminderController>(new {reminder.VehicleId, reminder.ReminderId});
         }
 
         public string Title { get; set; }

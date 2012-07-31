@@ -1,7 +1,7 @@
 using System.Web.Http;
 using MileageStats.Domain.Handlers;
 
-namespace App.Vehicles
+namespace App.Vehicles.Details
 {
     public class DeleteVehicleController : ApiController
     {

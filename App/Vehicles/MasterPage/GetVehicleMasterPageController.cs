@@ -1,8 +1,9 @@
 ﻿using System.Web.Http;
 using App.Infrastructure;
 using App.Infrastructure.Web;
+using App.Vehicles.List;
 
-namespace App.Vehicles.VehicleMasterPage
+namespace App.Vehicles.MasterPage
 {
     public class GetVehicleMasterPageController : ApiController
     {
@@ -10,7 +11,7 @@ namespace App.Vehicles.VehicleMasterPage
         {
             return new Page
             {
-                Script = "Vehicles/VehicleMasterPage",
+                Script = "Vehicles/MasterPage",
                 Data = new
                 {
                     vehicles = Url.Get<GetVehiclesController>()

@@ -14,9 +14,9 @@ namespace App.Vehicles
             this.getVehiclePhoto = getVehiclePhoto;
         }
 
-        public HttpResponseMessage GetPhoto(int id)
+        public HttpResponseMessage GetPhoto(int photoId)
         {
-            var photo = getVehiclePhoto.Execute(id);
+            var photo = getVehiclePhoto.Execute(photoId);
             return new HttpResponseMessage
             {
                 Content = new ByteArrayContent(photo.Image)

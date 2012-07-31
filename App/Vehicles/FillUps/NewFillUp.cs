@@ -2,7 +2,7 @@ using System;
 using MileageStats.Domain.Contracts;
 using MileageStats.Domain.Models;
 
-namespace App.Vehicles
+namespace App.Vehicles.FillUps
 {
     public class NewFillUp : ICreateFillupEntryCommand
     {

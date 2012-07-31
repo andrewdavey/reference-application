@@ -4,7 +4,7 @@
 
 var NewVehicleForm = Object.inherit({
 
-    templateId: "Vehicles/NewVehiclePage/NewVehicleForm.htm",
+    templateId: "Vehicles/New/NewVehicleForm.htm",
 
     init: function (pageData, app) {
         this.app = app;

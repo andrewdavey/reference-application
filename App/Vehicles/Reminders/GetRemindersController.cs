@@ -2,10 +2,10 @@
 using System.Web.Http;
 using App.Infrastructure;
 using App.Infrastructure.Web;
-using App.Vehicles.VehicleMasterPage;
+using App.Vehicles.MasterPage;
 using MileageStats.Domain.Handlers;
 
-namespace App.Vehicles
+namespace App.Vehicles.Reminders
 {
     public class GetRemindersController : ApiController
     {
@@ -18,9 +18,9 @@ namespace App.Vehicles
             this.getVehicleById = getVehicleById;
         }
 
-        public object GetReminders(int id)
+        public object GetReminders(int vehicleId)
         {
-            var reminders = getAllRemindersForVehicle.Execute(id).Where(r => !r.IsFulfilled);
+            var reminders = getAllRemindersForVehicle.Execute(vehicleId).Where(r => !r.IsFulfilled);
             
             return new Page
             {

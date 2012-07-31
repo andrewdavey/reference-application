@@ -6,7 +6,7 @@ using App.Infrastructure.Web;
 using MileageStats.Domain.Contracts;
 using MileageStats.Domain.Handlers;
 
-namespace App.Vehicles
+namespace App.Vehicles.Reminders
 {
     public class PostRemindersController : ApiController
     {
@@ -17,9 +17,9 @@ namespace App.Vehicles
             this.addReminderToVehicle = addReminderToVehicle;
         }
 
-        public HttpResponseMessage PostReminder(int id, NewReminder reminder)
+        public HttpResponseMessage PostReminder(int vehicleId, NewReminder reminder)
         {
-            addReminderToVehicle.Execute(1, id, reminder);
+            addReminderToVehicle.Execute(1, vehicleId, reminder);
             return ReminderCreated(reminder);
         }
 

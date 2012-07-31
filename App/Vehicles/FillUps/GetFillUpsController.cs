@@ -1,10 +1,10 @@
 ﻿using System.Web.Http;
 using App.Infrastructure;
 using App.Infrastructure.Web;
-using App.Vehicles.VehicleMasterPage;
+using App.Vehicles.MasterPage;
 using MileageStats.Domain.Handlers;
 
-namespace App.Vehicles
+namespace App.Vehicles.FillUps
 {
     public class GetFillUpsController : ApiController
     {
@@ -15,14 +15,14 @@ namespace App.Vehicles
             this.getFillupsForVehicle = getFillupsForVehicle;
         }
 
-        public object GetFillUps(int id)
+        public object GetFillUps(int vehicleId)
         {
-            var fillUps = getFillupsForVehicle.Execute(id);
+            var fillUps = getFillupsForVehicle.Execute(vehicleId);
             return new Page
             {
                 Title = "Fill ups",
-                Script = "Vehicles/FillUpsPage",
-                Stylesheet = "Vehicles/FillUpsPage",
+                Script = "Vehicles/FillUps",
+                Stylesheet = "Vehicles/FillUps",
                 Master = Url.Resource<GetVehicleMasterPageController>(),
                 Data = new
                 {

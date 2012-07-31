@@ -8,6 +8,6 @@ var MasterPage = Object.inherit({
         this.content = ko.observable();
     },
     
-    templateId: "Vehicles/VehicleMasterPage/MasterPage.htm"
+    templateId: "Vehicles/MasterPage/MasterPage.htm"
     
 });

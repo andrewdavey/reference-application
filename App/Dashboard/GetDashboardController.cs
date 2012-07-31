@@ -6,6 +6,8 @@ using App.Infrastructure;
 using App.Infrastructure.Web;
 using App.Profile;
 using App.Vehicles;
+using App.Vehicles.List;
+using App.Vehicles.New;
 using MileageStats.Domain.Handlers;
 
 namespace App.Dashboard

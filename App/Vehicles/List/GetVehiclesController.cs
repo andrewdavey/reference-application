@@ -1,10 +1,13 @@
 ﻿using System.Linq;
 using System.Web.Http;
 using App.Infrastructure.Web;
+using App.Vehicles.Details;
+using App.Vehicles.FillUps;
+using App.Vehicles.Reminders;
 using MileageStats.Domain.Handlers;
 using MileageStats.Domain.Models;
 
-namespace App.Vehicles
+namespace App.Vehicles.List
 {
     public class GetVehiclesController : ApiController
     {
@@ -26,9 +29,9 @@ namespace App.Vehicles
             return new
             {
                 details = Url.Get<GetVehicleController>(new { vehicle.VehicleId }),
-                fillUps = Url.Get<GetFillUpsController>(new { id = vehicle.VehicleId }),
-                reminders = Url.Get<GetRemindersController>(new { id = vehicle.VehicleId }),
-                photo = Url.Get<GetVehiclePhotoController>(new { id = vehicle.PhotoId }), // TODO: get photo url
+                fillUps = Url.Get<GetFillUpsController>(new { vehicle.VehicleId }),
+                reminders = Url.Get<GetRemindersController>(new { vehicle.VehicleId }),
+                photo = Url.Get<GetVehiclePhotoController>(new { vehicle.VehicleId, vehicle.PhotoId }),
                 name = vehicle.Name,
                 year = vehicle.Year,
                 make = vehicle.MakeName,

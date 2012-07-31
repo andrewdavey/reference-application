@@ -1,4 +1,4 @@
-namespace App.Vehicles
+namespace App.Vehicles.Reminders
 {
     public class ReminderUpdate
     {

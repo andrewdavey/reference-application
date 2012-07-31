@@ -30,7 +30,7 @@ var Vehicle = Object.inherit({
         this.photo = viewData.photo;
     },
     
-    templateId: "Vehicles/VehiclePage/Vehicle.htm",
+    templateId: "Vehicles/Details/Vehicle.htm",
     
     showEditForm: function () {
         var formData = {

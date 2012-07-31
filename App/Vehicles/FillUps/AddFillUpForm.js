@@ -8,7 +8,7 @@
 
 var AddFillUpForm = Object.inherit({
     
-    templateId: "Vehicles/FillUpsPage/AddFillUpForm.htm",
+    templateId: "Vehicles/FillUps/AddFillUpForm.htm",
     
     init: function (addCommand) {
         this.addCommand = addCommand;
@@ -101,6 +101,10 @@ var AddFillUpForm = Object.inherit({
             Remarks: this.remarks(),
             Vendor: this.vendor()
         };
+    },
+    
+    cancel: function () {
+        this.close(null);
     },
     
     close: function(fillUpData) {

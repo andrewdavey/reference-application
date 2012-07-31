@@ -3,7 +3,7 @@
 /// <reference path="jasmine/jasmine.js"/>
 /// <reference path="jasmine/mockHttp.js"/>
 
-specs.define(["Vehicles/FillUpsPage"], function (module) {
+specs.define(["Vehicles/FillUps"], function (module) {
     var AddFillUpForm = module.AddFillUpForm;
     
     describe("AddFillUpForm", function () {

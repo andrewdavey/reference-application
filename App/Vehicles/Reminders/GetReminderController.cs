@@ -1,7 +1,7 @@
 using System.Web.Http;
 using MileageStats.Domain.Handlers;
 
-namespace App.Vehicles
+namespace App.Vehicles.Reminders
 {
     public class GetReminderController : ApiController
     {
@@ -14,9 +14,9 @@ namespace App.Vehicles
             this.getVehicleById = getVehicleById;
         }
 
-        public object GetReminder(int vehicleId, int id)
+        public object GetReminder(int vehicleId, int reminderId)
         {
-            var reminder = getReminder.Execute(id);
+            var reminder = getReminder.Execute(reminderId);
             var vehicle = getVehicleById.Execute(1, vehicleId);
             return new ReminderResource(reminder, vehicle, Url);
         }

@@ -1,9 +1,10 @@
 ﻿using System.Web.Http;
 using App.Infrastructure;
 using App.Infrastructure.Web;
+using App.Vehicles.List;
 using App.Vehicles.ReferenceData;
 
-namespace App.Vehicles
+namespace App.Vehicles.New
 {
     public class GetNewVehicleController : ApiController
     {
@@ -12,7 +13,7 @@ namespace App.Vehicles
             return new Page
             {
                 Title = "New Vehicle",
-                Script = "Vehicles/NewVehiclePage",
+                Script = "Vehicles/New",
                 Data = new
                 {
                     years = Url.Get<GetYearsController>(),

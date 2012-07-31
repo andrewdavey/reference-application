@@ -1,6 +1,6 @@
 using MileageStats.Domain.Contracts;
 
-namespace App.Vehicles
+namespace App.Vehicles.New
 {
     public class NewVehicleForm : ICreateVehicleCommand
     {

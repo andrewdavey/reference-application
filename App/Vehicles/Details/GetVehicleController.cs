@@ -1,11 +1,11 @@
 ﻿using System.Web.Http;
 using App.Infrastructure;
 using App.Infrastructure.Web;
+using App.Vehicles.MasterPage;
 using App.Vehicles.ReferenceData;
-using App.Vehicles.VehicleMasterPage;
 using MileageStats.Domain.Handlers;
 
-namespace App.Vehicles
+namespace App.Vehicles.Details
 {
     public class GetVehicleController : ApiController
     {
@@ -22,7 +22,7 @@ namespace App.Vehicles
             return new Page
             {
                 Title = vehicle.Name,
-                Script = "Vehicles/VehiclePage",
+                Script = "Vehicles/Details",
                 Master = Url.Resource<GetVehicleMasterPageController>(),
                 Data = new
                 {
@@ -31,7 +31,7 @@ namespace App.Vehicles
                     make = vehicle.MakeName,
                     model = vehicle.ModelName,
                     odometer = vehicle.Odometer,
-                    photo = Url.Get<GetVehiclePhotoController>(new {id = vehicle.PhotoId}),
+                    photo = Url.Get<GetVehiclePhotoController>(new {vehicle.PhotoId}),
                     save = Url.Put<PutVehicleController>(),
                     delete = Url.Delete<DeleteVehicleController>(),
                     years = Url.Get<GetYearsController>()
