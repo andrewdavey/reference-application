@@ -6,18 +6,28 @@
 
 var Vehicle = Object.inherit({
 
-    init: function (viewData, app, eventHub) {
-        this.viewData = viewData;
+    init: function (viewData, app, eventHub, flashMessage) {
         this.app = app;
         this.eventHub = eventHub;
+        this.flashMessage = flashMessage;
         this.http = http;
+        this.years = viewData.years;
+        this.initHttpCommands(viewData);
+        this.initDisplayProperties(viewData);
+    },
+    
+    initHttpCommands: function (viewData) {
+        this.saveCommand = viewData.save;
+        this.deleteCommand = viewData["delete"];
+    },
+    
+    initDisplayProperties: function (viewData) {
         this.name = ko.observable(viewData.name);
         this.year = ko.observable(viewData.year);
         this.make = ko.observable(viewData.make);
         this.model = ko.observable(viewData.model);
         this.odometer = viewData.odometer;
         this.photo = viewData.photo;
-        this.deleteCommand = viewData["delete"];
     },
     
     templateId: "Vehicles/VehiclePage/Vehicle.htm",
@@ -28,8 +38,8 @@ var Vehicle = Object.inherit({
             year: this.year(),
             make: this.make(),
             model: this.model(),
-            years: this.viewData.years,
-            save: this.viewData.save
+            years: this.years,
+            save: this.saveCommand
         };
         var form = EditVehicleForm.create(formData, this.app);
         form.show()
@@ -48,7 +58,7 @@ var Vehicle = Object.inherit({
     },
     
     afterDelete: function () {
-        this.app.flashMessage.show("Vehicle deleted");
+        this.flashMessage.show("Vehicle deleted");
         this.app.navigate("/");
     }
 });
