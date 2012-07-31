@@ -262,6 +262,7 @@
     <Content Include="app.html" />
     <Content Include="Application\MileageStatsApplication.css" />
     <Content Include="Application\MileageStatsApplication.htm" />
+    <Content Include="Infrastructure\Scripts\App\EventHub.js" />
     <Content Include="Infrastructure\Scripts\App\http.js" />
     <Content Include="Infrastructure\Scripts\App\popups.js" />
     <Content Include="Infrastructure\Scripts\App\validation\objectWithValidateableProperties.js" />
@@ -294,6 +295,7 @@
     <Content Include="Infrastructure\Scripts\Vendor\knockout.js" />
     <Content Include="Infrastructure\Scripts\Vendor\require.js" />
     <Content Include="Profile\ProfileForm.js" />
+    <Content Include="Specs\EventHubSpecs.js" />
     <Content Include="Specs\jasmine\mockHttp.js" />
     <Content Include="Specs\jasmine\specs.js" />
     <Content Include="Specs\jasmine\matchers.js" />
