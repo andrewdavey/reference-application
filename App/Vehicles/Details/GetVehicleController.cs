@@ -22,7 +22,6 @@ namespace App.Vehicles.Details
             return new Page
             {
                 Title = vehicle.Name,
-                Script = "Vehicles/Details",
                 Master = Url.Resource<GetVehicleMasterPageController>(),
                 Data = new
                 {

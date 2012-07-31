@@ -25,8 +25,6 @@ namespace App.Vehicles.Reminders
             return new Page
             {
                 Master = Url.Resource<GetVehicleMasterPageController>(),
-                Script = "Vehicles/Reminders",
-                Stylesheet = "Vehicles/Reminders",
                 Data = new
                 {
                     // TODO: Seems like a nasty SELECT N+1 bug here!

@@ -13,7 +13,6 @@ namespace App.Vehicles.New
             return new Page
             {
                 Title = "New Vehicle",
-                Script = "Vehicles/New",
                 Data = new
                 {
                     years = Url.Get<GetYearsController>(),

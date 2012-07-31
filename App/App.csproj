@@ -184,7 +184,10 @@
   <ItemGroup>
     <Compile Include="GetCountriesController.cs" />
     <Compile Include="Infrastructure\Cassette\StylesheetPathProvider.cs" />
+    <Compile Include="Infrastructure\Web\PageConventionsFilter.cs" />
+    <Compile Include="Infrastructure\Web\PageFilterBase.cs" />
     <Compile Include="Infrastructure\Web\PageLanguageFilter.cs" />
+    <Compile Include="Infrastructure\Web\PageVaryHeaderFilter.cs" />
     <Compile Include="Profile\PutProfileController.cs" />
     <Compile Include="Vehicles\Details\VehicleUpdate.cs" />
     <Compile Include="Vehicles\Reminders\PatchReminderController.cs" />
@@ -345,7 +348,6 @@
     <Content Include="Vehicles\MasterPage\MasterPage.js" />
     <Content Include="Vehicles\Details\EditVehicleForm.htm" />
     <Content Include="Vehicles\Details\EditVehicleForm.js" />
-    <Content Include="Vehicles\Details\page.css" />
     <Content Include="Vehicles\Details\init.js" />
     <Content Include="Vehicles\Details\Vehicle.htm" />
     <Content Include="Vehicles\Details\Vehicle.js" />

@@ -21,8 +21,6 @@ namespace App.Vehicles.FillUps
             return new Page
             {
                 Title = "Fill ups",
-                Script = "Vehicles/FillUps",
-                Stylesheet = "Vehicles/FillUps",
                 Master = Url.Resource<GetVehicleMasterPageController>(),
                 Data = new
                 {

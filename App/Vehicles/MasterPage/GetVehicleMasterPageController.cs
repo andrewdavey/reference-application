@@ -11,7 +11,6 @@ namespace App.Vehicles.MasterPage
         {
             return new Page
             {
-                Script = "Vehicles/MasterPage",
                 Data = new
                 {
                     vehicles = Url.Get<GetVehiclesController>()
