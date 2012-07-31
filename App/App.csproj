@@ -182,7 +182,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CountriesController.cs" />
+    <Compile Include="GetCountriesController.cs" />
     <Compile Include="Infrastructure\Cassette\StylesheetPathProvider.cs" />
     <Compile Include="Infrastructure\Web\PageLanguageFilter.cs" />
     <Compile Include="Vehicles\PatchReminderController.cs" />

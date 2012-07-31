@@ -3,11 +3,11 @@ using MileageStats.Domain.Handlers;
 
 namespace App
 {
-    public class CountriesController : ApiController
+    public class GetCountriesController : ApiController
     {
         readonly GetCountries getCountries;
 
-        public CountriesController(GetCountries getCountries)
+        public GetCountriesController(GetCountries getCountries)
         {
             this.getCountries = getCountries;
         }
