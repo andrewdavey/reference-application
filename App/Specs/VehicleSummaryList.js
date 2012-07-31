@@ -1,28 +1,50 @@
 ﻿/// <reference path="jasmine/jasmine.js" />
 /// <reference path="jasmine/specs.js"/>
 /// <reference path="jasmine/mockHttp.js"/>
+/// <reference path="~/Infrastructure/Scripts/App/EventHub.js" />
 
-specs.define(["Vehicles/List"], function(module) {
+specs.define(["Vehicles/List"], function (module) {
     var VehicleSummaryList = module.VehicleSummaryList;
+    var eventHub = EventHub.create();
 
     describe("VehicleSummaryList", function () {
         var vehicles = [
-            { year: 2012, make: "Test1", model: "Car1", details: { }, fillUps: { }, reminders: { } },
-            { year: 2011, make: "Test2", model: "Car2", details: { }, fillUps: { }, reminders: { } }
+            { name: "Vehicle1", year: 2012, make: "Test1", model: "Model1", details: { url: "/vehicles/1" }, fillUps: { }, reminders: { } },
+            { name: "Vehicle2", year: 2011, make: "Test2", model: "Model2", details: { url: "/vehicles/2" }, fillUps: { }, reminders: { } }
         ];
         mockHttp.get("/vehicles").respondsWith({ vehicles: vehicles });
         
         var vehiclesLink = { method: "get", url: "/vehicles" };
-        var summaryList = VehicleSummaryList.create(vehiclesLink);
+        var summaryList = VehicleSummaryList.create(vehiclesLink, eventHub);
 
         it("downloads vehicles", function () {
             var vehicles = summaryList.vehicles();
-            expect(vehicles[0].year).toEqual(2012);
-            expect(vehicles[0].make).toEqual("Test1");
-            expect(vehicles[0].model).toEqual("Car1");
-            expect(vehicles[1].year).toEqual(2011);
-            expect(vehicles[1].make).toEqual("Test2");
-            expect(vehicles[1].model).toEqual("Car2");
+            expect(vehicles[0].year()).toEqual(2012);
+            expect(vehicles[0].make()).toEqual("Test1");
+            expect(vehicles[0].model()).toEqual("Model1");
+            expect(vehicles[1].year()).toEqual(2011);
+            expect(vehicles[1].make()).toEqual("Test2");
+            expect(vehicles[1].model()).toEqual("Model2");
+        });
+
+        describe("when VehicleUpdated event published", function () {
+            var eventData = {
+                href: "/vehicles/1",
+                name: "New Name",
+                year: 2000,
+                make: "New Make",
+                model: "New Model"
+            };
+            beforeEach(function() {
+                eventHub.publish("VehicleUpdated", eventData);
+            });
+            it("updates the vehicle summary", function() {
+                var vehicles = summaryList.vehicles();
+                expect(vehicles[0].name()).toEqual("New Name");
+                expect(vehicles[0].year()).toEqual(2000);
+                expect(vehicles[0].make()).toEqual("New Make");
+                expect(vehicles[0].model()).toEqual("New Model");
+            });
         });
     });
     

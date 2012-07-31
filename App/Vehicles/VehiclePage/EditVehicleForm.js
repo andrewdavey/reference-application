@@ -141,10 +141,11 @@ var EditVehicleForm = Object.inherit({
     
     serializeForm: function () {
         return {
-            Name: this.name(),
-            Year: this.year() ? parseInt(this.year().year, 10) : null,
-            MakeName: this.make() ? this.make().make : null,
-            ModelName: this.model()
+            href: this.saveCommand.url,
+            name: this.name(),
+            year: this.year() ? parseInt(this.year().year, 10) : null,
+            make: this.make() ? this.make().make : null,
+            model: this.model()
         };
     },
 

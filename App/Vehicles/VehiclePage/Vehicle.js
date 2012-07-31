@@ -1,13 +1,15 @@
 ﻿/// <reference path="~/Infrastructure/Scripts/Vendor/knockout.js"/>
 /// <reference path="~/Infrastructure/Scripts/App/Object.js"/>
 /// <reference path="~/Infrastructure/Scripts/App/http.js"/>
+/// <reference path="~/Infrastructure/Scripts/App/knockout-helpers.js"/>
 /// <reference path="EditVehicleForm.js" />
 
 var Vehicle = Object.inherit({
 
-    init: function (viewData, app) {
+    init: function (viewData, app, eventHub) {
         this.viewData = viewData;
         this.app = app;
+        this.eventHub = eventHub;
         this.http = http;
         this.name = ko.observable(viewData.name);
         this.year = ko.observable(viewData.year);
@@ -34,11 +36,9 @@ var Vehicle = Object.inherit({
             .done(this.updateProperties.bind(this));
     },
     
-    updateProperties: function(updatedVehicleData) {
-        this.name(updatedVehicleData.Name);
-        this.year(updatedVehicleData.Year);
-        this.make(updatedVehicleData.MakeName);
-        this.model(updatedVehicleData.ModelName);
+    updateProperties: function (updatedVehicleData) {
+        updateObservableProperties(updatedVehicleData, this);
+        this.eventHub.publish("VehicleUpdated", updatedVehicleData);
     },
     
     confirmDelete: function () {

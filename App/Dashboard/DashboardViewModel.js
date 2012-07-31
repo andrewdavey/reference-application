@@ -8,11 +8,11 @@ var DashboardViewModel = Object.inherit({
 
     templateId: "Dashboard/dashboard.htm",
 
-    init: function (pageData, flashMessage) {
+    init: function (pageData, flashMessage, eventHub) {
         this.http = http;
         this.flashMessage = flashMessage;
         this.initStatistics(pageData);
-        this.initVehicles(pageData);
+        this.initVehicles(pageData, eventHub);
         this.initReminders(pageData);
         this.initProfile(pageData);
     },
@@ -21,8 +21,8 @@ var DashboardViewModel = Object.inherit({
         this.statistics = pageData.statistics;
     },
     
-    initVehicles: function(pageData) {
-        this.vehicles = VehicleSummaryList.create(pageData.vehicles);
+    initVehicles: function(pageData, eventHub) {
+        this.vehicles = VehicleSummaryList.create(pageData.vehicles, eventHub);
         this.addVehicleUrl = pageData.addVehicle.url;
     },
     
