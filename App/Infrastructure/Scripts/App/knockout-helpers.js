@@ -11,3 +11,10 @@ var updateObservableProperties = function (source, target) {
         .keys(source)
         .forEach(updateProperty);
 };
+
+ko.bindingHandlers["file"] = {
+    init: function (element, valueAccessor) {
+        var value = valueAccessor();
+        value(element);
+    }
+};

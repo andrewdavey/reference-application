@@ -31,7 +31,7 @@ namespace App.Vehicles.List
                 details = Url.Get<GetVehicleController>(new { vehicle.VehicleId }),
                 fillUps = Url.Get<GetFillUpsController>(new { vehicle.VehicleId }),
                 reminders = Url.Get<GetRemindersController>(new { vehicle.VehicleId }),
-                photo = Url.Get<GetVehiclePhotoController>(new { vehicle.VehicleId, vehicle.PhotoId }),
+                photo = Url.Get<GetVehiclePhotoController>(new { vehicle.VehicleId }),
                 name = vehicle.Name,
                 year = vehicle.Year,
                 make = vehicle.MakeName,

@@ -26,6 +26,7 @@ var EditVehicleForm = Object.inherit({
         this.year = ko.observable(); // year info object i.e. { year: <number>, makes: { get: <URL-for-the-makes> } }
         this.make = ko.observable(); // make info object i.e. { make: <string>, models: { get: <URL-for-the-models> } }
         this.model = ko.observable(); // model name string
+        this.photo = ko.observable();
     },
     
     initReferenceData: function(pageData) {
@@ -118,7 +119,8 @@ var EditVehicleForm = Object.inherit({
     save: function () {
         if (!this.validate()) return;
         var vehicleData = this.serializeForm();
-        this.http(this.saveCommand, vehicleData)
+        var files = [ this.photo() ];
+        this.http(this.saveCommand, vehicleData, files)
             .done(function () {
                 this.saved(vehicleData);
             });

@@ -1,4 +1,9 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
+using System.Web.Http;
 using App.Infrastructure.Web;
 using Microsoft.Practices.Unity;
 using Unity.WebApi;

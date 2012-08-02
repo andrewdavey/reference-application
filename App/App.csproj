@@ -184,6 +184,7 @@
   <ItemGroup>
     <Compile Include="GetCountriesController.cs" />
     <Compile Include="Infrastructure\Cassette\StylesheetPathProvider.cs" />
+    <Compile Include="Infrastructure\Web\OverrideableHttpMethodConstraint.cs" />
     <Compile Include="Infrastructure\Web\PageConventionsFilter.cs" />
     <Compile Include="Infrastructure\Web\PageFilterBase.cs" />
     <Compile Include="Infrastructure\Web\PageLanguageFilter.cs" />
@@ -229,7 +230,6 @@
     <Compile Include="Infrastructure\Cassette\VendorAmdModulePathsProvider.cs" />
     <Compile Include="Infrastructure\Page.cs" />
     <Compile Include="Infrastructure\Web\HtmlFormatter.cs" />
-    <Compile Include="Infrastructure\Web\PageResourceMetadataWrappingFilter.cs" />
     <Compile Include="Infrastructure\Web\RoutingExtensions.cs" />
     <Compile Include="Profile\GetProfileController.cs" />
     <Compile Include="Specs\GetSpecsController.cs" />
@@ -269,6 +269,7 @@
     <Content Include="Application\MileageStatsApplication.htm" />
     <Content Include="Infrastructure\Scripts\App\EventHub.js" />
     <Content Include="Infrastructure\Scripts\App\http.js" />
+    <Content Include="Infrastructure\Scripts\App\IframeSubmission.js" />
     <Content Include="Infrastructure\Scripts\App\knockout-helpers.js" />
     <Content Include="Infrastructure\Scripts\App\popups.js" />
     <Content Include="Infrastructure\Scripts\App\validation\objectWithValidateableProperties.js" />

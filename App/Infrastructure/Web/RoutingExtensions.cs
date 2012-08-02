@@ -2,7 +2,6 @@
 using System.Web.Http;
 using System.Web.Http.Routing;
 using System.Web.Routing;
-using HttpMethodConstraint = System.Web.Http.Routing.HttpMethodConstraint;
 
 namespace App.Infrastructure.Web
 {
@@ -17,7 +16,7 @@ namespace App.Infrastructure.Web
                     method + name,
                     urlTemplate,
                     new { controller = method + name },
-                    new { method = new HttpMethodConstraint(new HttpMethod(method.ToUpperInvariant())) }
+                    new { method = new OverrideableHttpMethodConstraint(new HttpMethod(method.ToUpperInvariant())) }
                 );                
             }
         }
