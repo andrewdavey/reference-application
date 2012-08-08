@@ -13,6 +13,7 @@ namespace App.Vehicles.FillUps
 
         public PostFillUpsController(CanAddFillup canAddFillup, AddFillupToVehicle addFillupToVehicle)
         {
+            this.canAddFillup = canAddFillup;
             this.addFillupToVehicle = addFillupToVehicle;
         }
 

@@ -124,7 +124,7 @@ var AddFillUpForm = Object.inherit({
                 }
             }, this);
         } else {
-            alert("There was a problem adding the reminder. Please try again.");
+            alert("There was a problem adding the fill-up. Please try again.");
         }
     }
     
