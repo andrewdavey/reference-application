@@ -111,7 +111,7 @@ specs.define(["Vehicles/FillUps"], function (module) {
                 form.save();
                 
                 expect(savedData).toEqual({
-                    Date: "2012-07-22", // ISO-8601 compatible date string
+                    Date: new Date(2012, 6, 22, 0, 0, 0),
                     Odometer: 1000,
                     PricePerUnit: 0.5,
                     TotalUnits: 100,

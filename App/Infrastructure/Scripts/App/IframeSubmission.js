@@ -8,6 +8,7 @@
         this.initForm(method, url, uniqueName);
         this.addFormInputs(data);
         this.addFiles(files);
+        this.submit();
     },
 
     initIframe: function (uniqueName) {
@@ -69,17 +70,15 @@
     },
 
     submit: function () {
-        var request = $.Deferred();
+        this.request = $.Deferred();
 
         $(this.iframe).load(function () {
             this.restoreFiles();
             this.removeIframe();
-            request.resolveWith(this.context, []);
+            this.request.resolveWith(this.context, []);
         }.bind(this));
 
         this.form.submit();
-
-        return request;
     },
 
     restoreFiles: function () {

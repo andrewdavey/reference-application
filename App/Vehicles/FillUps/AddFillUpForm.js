@@ -94,7 +94,7 @@ var AddFillUpForm = Object.inherit({
     
     getSaveData: function () {
         return {
-            Date: moment(this.date()).format("YYYY-MM-DD"),
+            Date: this.date(),
             Odometer: this.odometer(),
             PricePerUnit: this.pricePerUnit(),
             TotalUnits: this.totalUnits(),
