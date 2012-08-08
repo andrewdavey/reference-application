@@ -43,9 +43,9 @@ specs.define(["Vehicles/FillUps"], function (module) {
                 expect(form.remarks).toBeObservable();
             });
             it("computes total cost", function() {
-                form.pricePerUnit(".1");
-                form.totalUnits("100");
-                form.transactionFee("5");
+                form.pricePerUnit(.1);
+                form.totalUnits(100);
+                form.transactionFee(5);
                 expect(form.totalCost()).toBe("15.00");
             });
             it("has empty total cost when pricePerUnit is missing", function () {
@@ -101,11 +101,11 @@ specs.define(["Vehicles/FillUps"], function (module) {
             });
             
             it("saves inputed data", function () {
-                form.date("2012/07/22");
-                form.odometer("1000");
-                form.pricePerUnit("0.50");
-                form.totalUnits("100");
-                form.transactionFee("1");
+                form.date(new Date(2012, 6, 22, 0, 0, 0));
+                form.odometer(1000);
+                form.pricePerUnit(0.5);
+                form.totalUnits(100);
+                form.transactionFee(1);
                 form.remarks("remarks");
                 form.vendor("vendor");
                 form.save();

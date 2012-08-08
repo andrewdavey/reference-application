@@ -65,9 +65,9 @@ var AddFillUpForm = Object.inherit({
     
     initTotalCost: function () {
         this.totalCost = ko.computed(function () {
-            var pricePerUnit = parseFloat(this.pricePerUnit());
-            var totalUnits = parseFloat(this.totalUnits());
-            var transactionFee = parseFloat(this.transactionFee());
+            var pricePerUnit = this.pricePerUnit();
+            var totalUnits = this.totalUnits();
+            var transactionFee = this.transactionFee();
             var total = pricePerUnit * totalUnits + transactionFee;
             return isNaN(total) ? "" : total.toFixed(2);
         }, this);
@@ -95,10 +95,10 @@ var AddFillUpForm = Object.inherit({
     getSaveData: function () {
         return {
             Date: moment(this.date()).format("YYYY-MM-DD"),
-            Odometer: parseInt(this.odometer()),
-            PricePerUnit: parseFloat(this.pricePerUnit()),
-            TotalUnits: parseInt(this.totalUnits(), 10),
-            TransactionFee: parseFloat(this.transactionFee()),
+            Odometer: this.odometer(),
+            PricePerUnit: this.pricePerUnit(),
+            TotalUnits: this.totalUnits(),
+            TransactionFee: this.transactionFee(),
             Remarks: this.remarks(),
             Vendor: this.vendor()
         };

@@ -47,7 +47,13 @@ ko.extenders["as"]["money"] = function(originalObservable) {
 
     originalObservable.asString = ko.computed({
         read: function () {
-            return (invalidStringValue() || originalObservable() || "").toString();
+            if (invalidStringValue()) {
+                return invalidStringValue();
+            } else if (originalObservable()) {
+                return originalObservable().toFixed(2);
+            } else {
+                return "";
+            }
         },
         write: function (stringValue) {
             var floatValue = parseFloat(stringValue);
@@ -55,7 +61,7 @@ ko.extenders["as"]["money"] = function(originalObservable) {
                 originalObservable(null);
                 invalidStringValue(stringValue);
             } else {
-                originalObservable(floatValue.toFixed(2));
+                originalObservable(Math.round(floatValue * 100) / 100);
                 invalidStringValue(null);
             }
         }
