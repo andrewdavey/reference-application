@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Http;
 using MileageStats.Domain.Handlers;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace App.Vehicles.Details
 {
@@ -17,7 +18,7 @@ namespace App.Vehicles.Details
             this.updateVehicle = updateVehicle;
         }
 
-        public async void PutVehicle(int vehicleId)
+        public async Task PutVehicle(int vehicleId)
         {
             var update = new VehicleUpdate
             {
