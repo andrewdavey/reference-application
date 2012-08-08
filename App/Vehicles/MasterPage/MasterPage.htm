@@ -1,8 +1,8 @@
 ﻿<div class="row">
-    <div class="span3">
-        <ul data-bind="template: { name: 'Vehicles/List/VehicleSummary.htm', foreach: vehicles }"></ul>
+    <div class="span3"
+         data-bind="template: { name: 'Vehicles/List/VehicleSummaryList.htm', data: vehicles }">
     </div>
-    <div class="span9">
-        <section data-bind="template: { name: content().templateId, data: content }"></section>
+    <div class="span9"
+         data-bind="template: { name: content().templateId, data: content }">
     </div>
 </div>

@@ -10,7 +10,13 @@
     </div>
 
     <div class="span9">
-        <section data-bind="template: { name: 'Dashboard/vehicles.htm' }"></section>
+        
+        <!-- ko template: { data: vehicles, name: 'Vehicles/List/VehicleSummaryList.htm' } --><!-- /ko -->
+
+        <div>
+            <a data-bind="attr: { href: addVehicleUrl }">Add Vehicle</a>
+        </div>
+
     </div>
     
 </div>

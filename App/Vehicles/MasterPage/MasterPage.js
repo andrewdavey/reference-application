@@ -4,7 +4,7 @@
 var MasterPage = Object.inherit({
     
     init: function (viewData, eventHub) {
-        this.vehicles = VehicleSummaryList.create(viewData.vehicles, eventHub).vehicles;
+        this.vehicles = VehicleSummaryList.create(viewData.vehicles, eventHub);
         this.content = ko.observable();
     },
     

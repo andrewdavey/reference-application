@@ -322,7 +322,7 @@
     <Content Include="Vehicles\FillUps\FillUpsPage.htm" />
     <Content Include="Vehicles\FillUps\FillUpsPage.js" />
     <Content Include="Vehicles\List\VehicleSummary.js" />
-    <Content Include="Vehicles\List\VehicleSummary.htm" />
+    <Content Include="Vehicles\List\VehicleSummaryList.htm" />
     <Content Include="Vehicles\List\VehicleSummaryList.js" />
     <Content Include="Vehicles\FillUps\AddFillUpForm.htm" />
     <Content Include="Vehicles\FillUps\AddFillUpForm.js" />
@@ -336,7 +336,6 @@
     <Content Include="Dashboard\statistics.htm" />
     <Content Include="Dashboard\init.js" />
     <Content Include="Dashboard\dashboard.htm" />
-    <Content Include="Dashboard\vehicles.htm" />
     <Content Include="Vehicles\Reminders\AddReminderForm.htm" />
     <Content Include="Vehicles\Reminders\AddReminderForm.js" />
     <Content Include="Vehicles\Reminders\Reminder.js" />
