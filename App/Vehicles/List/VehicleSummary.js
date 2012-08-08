@@ -5,7 +5,7 @@
 var VehicleSummary = Object.inherit({
     init: function(data) {
         this.name = ko.observable(data.name);
-        this.photo = data.photo ? data.photo.url : "";
+        this.photo = ko.observable(data.photo ? data.photo.url : "");
         this.year = ko.observable(data.year ? data.year : "");
         this.make = ko.observable(data.make ? data.make : "");
         this.model = ko.observable(data.model ? data.model : "");
@@ -19,5 +19,21 @@ var VehicleSummary = Object.inherit({
 
     update: function (data) {
         updateObservableProperties(data, this);
+        this.forcePhotoUpdate();
+    },
+
+    forcePhotoUpdate: function () {
+        var newUrl = this.appendCacheBreakerToUrl(this.photo());
+        this.photo(newUrl);
+    },
+
+    appendCacheBreakerToUrl: function (url) {
+        var questionMarkIndex = url.indexOf("?");
+        var cacheBreaker = (new Date()).getTime().toString();
+        if (questionMarkIndex < 0) {
+            return url + "?" + cacheBreaker;
+        } else {
+            return url.substr(0, questionMarkIndex + 1) + cacheBreaker;
+        }
     }
 });
