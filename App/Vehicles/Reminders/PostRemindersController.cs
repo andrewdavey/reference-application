@@ -38,8 +38,8 @@ namespace App.Vehicles.Reminders
         {
             var url = Url.Resource<GetReminderController>(new
             {
-                vehicleId = reminder.VehicleId,
-                id = reminder.ReminderId
+                reminder.VehicleId,
+                reminder.ReminderId
             });
             return new Uri(url, UriKind.Relative);
         }
