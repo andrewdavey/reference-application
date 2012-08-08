@@ -18,13 +18,13 @@
         <div class="control-group" data-bind="validation: dueDate">
             <label class="control-label">Due date</label>
             <div class="controls">
-                <input type="text" data-bind="value: dueDate"/>                
+                <input type="text" data-bind="datepicker: dueDate"/>                
             </div>
         </div>
         <div class="control-group" data-bind="validation: dueDistance">
             <label class="control-label">Due when odometer reads</label>
             <div class="controls">
-                <input type="text" data-bind="value: dueDistance"/>                
+                <input type="text" data-bind="value: dueDistance.asString"/>                
             </div>
         </div>
     </div>

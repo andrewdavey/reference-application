@@ -22,7 +22,7 @@ specs.define(["Vehicles/FillUps"], function (module) {
                 expect(form.date).toBeObservable();
             });
             it("defaults date to today", function() {
-                expect(form.date()).toBe("22 July 2012");
+                expect(form.date()).toEqual(moment().sod().toDate());
             });
             it("has odometer input", function() {
                 expect(form.odometer).toBeObservable();
@@ -69,23 +69,23 @@ specs.define(["Vehicles/FillUps"], function (module) {
                 expect(form.date.validation.message()).toBe("Date is required");
             });
             it("odometer is required", function () {
-                form.odometer("");
+                form.odometer.asString("");
                 expect(form.odometer.validation.message()).toBe("Odometer is required");
             });
-            it("odometer must be a whole number", function() {
-                form.odometer("123fail");
-                expect(form.odometer.validation.message()).toBe("Enter a whole number");
+            it("odometer must be greater than 0", function() {
+                form.odometer.asString("-1");
+                expect(form.odometer.validation.message()).toBe("Must be greater than 0");
             });
             it("requires price per unit", function () {
-                form.pricePerUnit("");
+                form.pricePerUnit.asString("");
                 expect(form.pricePerUnit.validation.message()).toBe("Price per unit is required");
             });
             it("requires total units", function () {
-                form.totalUnits("");
+                form.totalUnits.asString("");
                 expect(form.totalUnits.validation.message()).toBe("Total units is required");
             });
             it("requires transaction fee", function () {
-                form.transactionFee("");
+                form.transactionFee.asString("");
                 expect(form.transactionFee.validation.message()).toBe("Transaction fee is required");
             });
         });

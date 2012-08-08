@@ -19,6 +19,10 @@ ko.extenders.validation.validators = {
                 message: "Please enter an amount of money"
             }
         );
+    },
+    
+    greaterThan: function (value, min) {
+        return value > min ? true : ("Must be greater than " + min);
     }
     
 };

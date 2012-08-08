@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.ModelBinding;
 using App.Infrastructure.Web;
 using MileageStats.Domain.Contracts;
 using MileageStats.Domain.Handlers;
@@ -11,16 +12,30 @@ namespace App.Vehicles.Reminders
     public class PostRemindersController : ApiController
     {
         readonly AddReminderToVehicle addReminderToVehicle;
+        readonly CanAddReminder canAddReminder;
 
-        public PostRemindersController(AddReminderToVehicle addReminderToVehicle)
+        public PostRemindersController(CanAddReminder canAddReminder, AddReminderToVehicle addReminderToVehicle)
         {
             this.addReminderToVehicle = addReminderToVehicle;
+            this.canAddReminder = canAddReminder;
         }
 
         public HttpResponseMessage PostReminder(int vehicleId, NewReminder reminder)
         {
-            addReminderToVehicle.Execute(1, vehicleId, reminder);
-            return ReminderCreated(reminder);
+            reminder.VehicleId = vehicleId;
+
+            var errors = canAddReminder.Execute(1, reminder);
+            ModelState.AddModelErrors(errors);
+
+            if (ModelState.IsValid)
+            {
+                addReminderToVehicle.Execute(1, vehicleId, reminder);
+                return ReminderCreated(reminder);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+            }
         }
 
         HttpResponseMessage ReminderCreated(NewReminder reminder)

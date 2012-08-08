@@ -20,13 +20,13 @@ var AddFillUpForm = Object.inherit({
     },
     
     initInputs: function () {
-        var today = moment().sod().format("LL");
+        var today = moment().sod().toDate();
         this.date = ko.observable(today);
-        this.odometer = ko.observable();
-        this.pricePerUnit = ko.observable();
-        this.totalUnits = ko.observable();
+        this.odometer = ko.observable().extend({ as: "integer" });
+        this.pricePerUnit = ko.observable().extend({ as: "money" });
+        this.totalUnits = ko.observable().extend({ as: "integer" });
         this.vendor = ko.observable();
-        this.transactionFee = ko.observable();
+        this.transactionFee = ko.observable().extend({ as: "money" });
         this.remarks = ko.observable();
     },
     
@@ -41,7 +41,7 @@ var AddFillUpForm = Object.inherit({
         this.odometer.extend({
             validation: {
                 required: "Odometer is required",
-                pattern: { regex: /^\d+$/, message: "Enter a whole number" }
+                greaterThan: 0
             }
         });
         this.pricePerUnit.extend({
@@ -88,7 +88,8 @@ var AddFillUpForm = Object.inherit({
                 var newFillUp = Object.create(data);
                 newFillUp.TotalCost = newFillUp.TotalUnits * newFillUp.PricePerUnit + newFillUp.TransactionFee;
                 this.close(newFillUp);
-            });
+            })
+            .fail(this.saveFailed);
     },
     
     getSaveData: function () {
@@ -111,6 +112,19 @@ var AddFillUpForm = Object.inherit({
         if (this.closed) {
             popups.closeModal(this);
             this.closed.resolve(fillUpData);
+        }
+    },
+
+    saveFailed: function (response) {
+        if (response.validationErrors) {
+            Object.keys(response.validationErrors).forEach(function (key) {
+                var property = this[key];
+                if (property && property.validation) {
+                    property.validation.message(response.validationErrors[key].join(". "));
+                }
+            }, this);
+        } else {
+            alert("There was a problem adding the reminder. Please try again.");
         }
     }
     
