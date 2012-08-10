@@ -1,6 +1,6 @@
 ﻿/// <reference path="~/Infrastructure/Scripts/App/Object.js"/>
 /// <reference path="~/Infrastructure/Scripts/App/http.js"/>
-/// <reference path="~/Infrastructure/Scripts/App/popups.js"/>
+/// <reference path="~/Infrastructure/Scripts/App/Modal.js"/>
 /// <reference path="~/Infrastructure/Scripts/App/validation/objectWithValidateableProperties.js"/>
 /// <reference path="~/Infrastructure/Scripts/Vendor/knockout.js"/>
 
@@ -49,14 +49,12 @@ var EditVehicleForm = Object.inherit({
     },
     
     show: function () {
-        this.closed = $.Deferred();
-        popups.modal(this);
-        return this.closed;
+        this.modal = Modal.create(this);
+        return this.modal.showing;
     },
     
     close: function (vehicleData) {
-        popups.closeModal(this);
-        this.closed.resolve(vehicleData);
+        this.modal.closeWithResult(vehicleData);
     },
     
     subscribeToReferenceData: function (viewData) {
@@ -142,6 +140,6 @@ var EditVehicleForm = Object.inherit({
     },
     
     cancel: function () {
-        this.close(null);
+        this.modal.close();
     }
 });

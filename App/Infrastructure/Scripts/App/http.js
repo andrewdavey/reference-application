@@ -56,7 +56,7 @@ var http = (function () {
         if (files) {
             return IframeSubmission.create(action.method, action.url, data, files, this).request;
         } else {
-            return ajaxRequest(action, data);
+            return ajaxRequest.call(this, action, data);
         }
     };
 }());

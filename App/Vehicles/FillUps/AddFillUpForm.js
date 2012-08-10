@@ -3,7 +3,7 @@
 /// <reference path="~/Infrastructure/Scripts/Vendor/moment.js"/>
 /// <reference path="~/Infrastructure/Scripts/App/validation/validation-extender.js" />
 /// <reference path="~/Infrastructure/Scripts/App/validation/objectWithValidateableProperties.js" />
-/// <reference path="~/Infrastructure/Scripts/App/popups.js" />
+/// <reference path="~/Infrastructure/Scripts/App/Modal.js" />
 /// <reference path="~/Infrastructure/Scripts/App/Object.js"/>
 
 var AddFillUpForm = Object.inherit({
@@ -74,9 +74,8 @@ var AddFillUpForm = Object.inherit({
     },
     
     show: function () {
-        this.closed = $.Deferred();
-        popups.modal(this);
-        return this.closed;
+        this.modal = Modal.create(this);
+        return this.modal.showing;
     },
     
     save: function () {
@@ -105,14 +104,11 @@ var AddFillUpForm = Object.inherit({
     },
     
     cancel: function () {
-        this.close(null);
+        this.modal.close();
     },
     
-    close: function(fillUpData) {
-        if (this.closed) {
-            popups.closeModal(this);
-            this.closed.resolve(fillUpData);
-        }
+    close: function (fillUpData) {
+        this.modal.closeWithResult(fillUpData);
     },
 
     saveFailed: function (response) {

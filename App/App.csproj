@@ -275,7 +275,7 @@
     <Content Include="Infrastructure\Scripts\App\http.js" />
     <Content Include="Infrastructure\Scripts\App\IframeSubmission.js" />
     <Content Include="Infrastructure\Scripts\App\knockout-helpers.js" />
-    <Content Include="Infrastructure\Scripts\App\popups.js" />
+    <Content Include="Infrastructure\Scripts\App\Modal.js" />
     <Content Include="Infrastructure\Scripts\App\validation\objectWithValidateableProperties.js" />
     <Content Include="Infrastructure\Scripts\App\validation\validation-binding-handler.js" />
     <Content Include="Infrastructure\Scripts\App\validation\validation-extender.js" />

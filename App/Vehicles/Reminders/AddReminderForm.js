@@ -2,7 +2,7 @@
 /// <reference path="~/Infrastructure/Scripts/Vendor/moment.js"/>
 /// <reference path="~/Infrastructure/Scripts/App/http.js"/>
 /// <reference path="~/Infrastructure/Scripts/App/validation/objectWithValidateableProperties.js"/>
-/// <reference path="~/Infrastructure/Scripts/App/popups.js" />
+/// <reference path="~/Infrastructure/Scripts/App/Modal.js" />
 
 var AddReminderForm = Object.inherit({
     init: function (viewData) {
@@ -33,14 +33,12 @@ var AddReminderForm = Object.inherit({
     },
     
     show: function () {
-        this.closed = $.Deferred();
-        popups.modal(this);
-        return this.closed;
+        this.modal = Modal.create(this);
+        return this.modal.showing;
     },
     
     close: function (reminderData) {
-        popups.closeModal(this);
-        this.closed.resolve(reminderData);
+        this.modal.closeWithResult(reminderData);
     },
     
     submit: function () {
@@ -70,7 +68,7 @@ var AddReminderForm = Object.inherit({
     },
     
     cancel: function () {
-        this.close();
+        this.modal.close();
     },
 
     submitFailed: function (response) {
