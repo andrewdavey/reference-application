@@ -29,14 +29,27 @@ namespace App.Infrastructure.Web
 
         public override Task WriteToStreamAsync(Type type, object value, Stream stream, HttpContentHeaders contentHeaders, TransportContext transportContext)
         {
+            // Convert the model state dictionary into a simpler format that will serialize nicely into JSON.
+            // Output is something like:
+            //     { propertyA: [ "First error", "Second Error" ], propertyB: [ "Another error" ] }
+            
+            // Also, property names are converted to camelCase to make mapping back to client-side properties easier.
+
             var modelState = (ModelStateDictionary)value;
             var objectToSend = modelState
                 .Where(x => x.Value.Errors.Any())
                 .ToDictionary(
-                    x => x.Key.Length > 0 ? (x.Key.Substring(0,1).ToLowerInvariant() + x.Key.Substring(1)) : x.Key,
+                    x => CamelCase(x.Key),
                     x => x.Value.Errors.Select(e => e.ErrorMessage)
                 );
             return base.WriteToStreamAsync(type, objectToSend, stream, contentHeaders, transportContext);
+        }
+
+        static string CamelCase(string input)
+        {
+            return input.Length > 0 
+                ? (input.Substring(0,1).ToLowerInvariant() + input.Substring(1)) 
+                : input;
         }
     }
 }
