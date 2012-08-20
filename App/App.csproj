@@ -41,8 +41,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxMin">
-      <HintPath>..\packages\AjaxMin.4.51.4507.18296\lib\net20\AjaxMin.dll</HintPath>
+    <Reference Include="AjaxMin, Version=4.60.4609.17023, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AjaxMin.4.60.4609.17023\lib\net20\AjaxMin.dll</HintPath>
     </Reference>
     <Reference Include="Cassette">
       <HintPath>..\packages\Cassette.2.0.0-beta5\lib\net40-client\Cassette.dll</HintPath>
@@ -183,6 +184,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GetCountriesController.cs" />
+    <Compile Include="Infrastructure\Amd\GlobalJavaScriptVariableParser.cs" />
+    <Compile Include="Infrastructure\Amd\IAmdModule.cs" />
+    <Compile Include="Infrastructure\Amd\AmdModuleFromBundle.cs" />
+    <Compile Include="Infrastructure\Amd\ScriptReferenceParser.cs" />
     <Compile Include="Infrastructure\Cassette\StylesheetPathProvider.cs" />
     <Compile Include="Infrastructure\Web\ModelStateDictionaryFormatter.cs" />
     <Compile Include="Infrastructure\Web\ModelStateHelpers.cs" />
