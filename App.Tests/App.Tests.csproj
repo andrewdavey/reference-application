@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\Amd\ScriptReferenceParserTests.cs" />
     <Compile Include="Infrastructure\Cassette\AmdModuleTests.cs" />
     <Compile Include="Infrastructure\Cassette\DebugModuleAssetWrapperTests.cs" />
     <Compile Include="Infrastructure\Cassette\DebugModuleBuilderTests.cs" />
