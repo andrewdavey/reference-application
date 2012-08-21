@@ -109,7 +109,7 @@ namespace App.Infrastructure.Amd
             get { return Path.Replace('/', '_'); }
         }
 
-        public ScriptBundle Bundle
+        protected ScriptBundle Bundle
         {
             get { return bundle; }
         }

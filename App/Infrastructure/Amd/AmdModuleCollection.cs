@@ -27,39 +27,19 @@ namespace App.Infrastructure.Amd
         {
             get
             {
-                if (settings.IsDebuggingEnabled)
+                return new Require
                 {
-                    return new Require
-                    {
-                        Paths = DebugPaths()
-                    };
-                }
-                else
-                {
-                    return new Require
-                    {
-                        Paths = ProductionPaths()
-                    };
-                }
+                    Paths = PathMaps()
+                };
             }
         }
 
-        Dictionary<string, string> DebugPaths()
+        Dictionary<string, string> PathMaps()
         {
             return modules
                 .OfType<AmdModuleFromBundle>()
                 .SelectMany(m => m.PathMaps())
                 .ToDictionary(p => p.Key, p => p.Value);
-        }
-
-        Dictionary<string, string> ProductionPaths()
-        {
-            return modules
-                .OfType<AmdModuleFromBundle>()
-                .ToDictionary(
-                    m => m.Path,
-                    m => urlGenerator.CreateBundleUrl(m.Bundle)
-                );
         }
 
         public void AddModuleFromBundle(ScriptBundle bundle)
@@ -71,7 +51,7 @@ namespace App.Infrastructure.Amd
             }
             else
             {
-                modules.Add(new ProductionAmdModuleFromBundle(bundle, ResolveModuleFromPath));
+                modules.Add(new ProductionAmdModuleFromBundle(bundle, ResolveModuleFromPath, urlGenerator));
             }
         }
 

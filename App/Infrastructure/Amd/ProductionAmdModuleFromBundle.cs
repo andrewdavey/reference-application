@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Cassette;
 using Cassette.BundleProcessing;
@@ -9,9 +10,12 @@ namespace App.Infrastructure.Amd
 {
     public class ProductionAmdModuleFromBundle : AmdModuleFromBundle, IBundleProcessor<ScriptBundle>
     {
-        public ProductionAmdModuleFromBundle(ScriptBundle bundle, Func<string, IAmdModule> resolveReferencePathIntoAmdModule)
+        readonly IUrlGenerator urlGenerator;
+
+        public ProductionAmdModuleFromBundle(ScriptBundle bundle, Func<string, IAmdModule> resolveReferencePathIntoAmdModule, IUrlGenerator urlGenerator)
             : base(bundle, resolveReferencePathIntoAmdModule)
         {
+            this.urlGenerator = urlGenerator;
             WillWrapConcatenatedAssetsInDefineCall(bundle);
         }
 
@@ -55,6 +59,11 @@ namespace App.Infrastructure.Amd
             {
                 return module.WrapScriptInDefineCall(source);
             }
+        }
+
+        public override IEnumerable<KeyValuePair<string, string>> PathMaps()
+        {
+            yield return new KeyValuePair<string, string>(Path, urlGenerator.CreateBundleUrl(Bundle));
         }
     }
 }

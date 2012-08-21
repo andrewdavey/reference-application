@@ -84,7 +84,7 @@ namespace App.Infrastructure.Amd
 
         ProductionAmdModuleFromBundle CreateModule()
         {
-            return new ProductionAmdModuleFromBundle(bundle, GetReferencedModule);
+            return new ProductionAmdModuleFromBundle(bundle, GetReferencedModule, Mock.Of<IUrlGenerator>());
         }
 
         IAmdModule GetReferencedModule(string path)
