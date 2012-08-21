@@ -48,7 +48,7 @@ namespace App.Infrastructure.Amd
         {
             return modules
                 .OfType<AmdModuleFromBundle>()
-                .SelectMany(m => m.PathMaps(urlGenerator))
+                .SelectMany(m => m.PathMaps())
                 .ToDictionary(p => p.Key, p => p.Value);
         }
 
@@ -75,22 +75,74 @@ namespace App.Infrastructure.Amd
             }
         }
 
-        public void AddVendorModulesPerAsset(Bundle bundle, Dictionary<string, string> identifiers)
+        public void AddVendorModulesPerAsset(Bundle bundle, Action<Func<string, VendorModuleConfiguration>> build)
         {
+            var configurations = new Dictionary<string, VendorModuleConfiguration>();
+            build(assetFilename =>
+            {
+                var configuration = new VendorModuleConfiguration(assetFilename);
+                configurations[assetFilename] = configuration;
+                return configuration;
+            });
+
             foreach (var asset in bundle.Assets)
             {
-                string identifier;
                 var filename = asset.Path.Split('/').Last();
-                if (identifiers.TryGetValue(filename, out identifier))
+                VendorModuleConfiguration config;
+                if (configurations.TryGetValue(filename, out config))
                 {
-                    modules.Add(new VendorAmdModule(asset, identifier));
+                    modules.Add(config.Build(asset));
                 }
                 else
                 {
-                    modules.Add(new VendorAmdModule(asset, filename.Substring(0, filename.Length - 3).Replace('.', '_')));
+                    modules.Add(new VendorAmdModule(asset, filename.Substring(0, filename.Length - 3).Replace('.', '_')));                    
                 }
             }
-            // TODO: Add shims
+        }
+
+        public class VendorModuleConfiguration
+        {
+            readonly string assetFilename;
+            string identifier;
+            bool shim;
+            string shimExports;
+            string[] dependencies;
+
+            public VendorModuleConfiguration(string assetFilename)
+            {
+                this.assetFilename = assetFilename;
+            }
+
+            public string AssetFilename
+            {
+                get { return assetFilename; }
+            }
+
+            public VendorModuleConfiguration Identifier(string identifier)
+            {
+                this.identifier = identifier;
+                return this;
+            }
+
+            public VendorModuleConfiguration Shim(string exports = null)
+            {
+                shim = true;
+                shimExports = exports;
+                return this;
+            }
+
+            public VendorModuleConfiguration DependsOn(params string[] dependencies)
+            {
+                this.dependencies = dependencies;
+                return this;
+            }
+
+            public VendorAmdModule Build(IAsset asset)
+            {
+                var module = new VendorAmdModule(asset, identifier);
+                if (shim) module.Shim(shimExports, dependencies ?? new string[0]);
+                return module;
+            }
         }
 
         IAmdModule ResolveModuleFromPath(string bundleOrAssetPath)

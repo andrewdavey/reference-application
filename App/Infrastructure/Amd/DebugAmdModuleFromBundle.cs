@@ -11,13 +11,11 @@ namespace App.Infrastructure.Amd
     public class DebugAmdModuleFromBundle : AmdModuleFromBundle, IBundleProcessor<ScriptBundle>
     {
         readonly IUrlGenerator urlGenerator;
-        readonly IAsset[] originalAssets;
 
         public DebugAmdModuleFromBundle(ScriptBundle bundle, Func<string, IAmdModule> resolveReferencePathIntoAmdModule, IUrlGenerator urlGenerator)
             : base(bundle, resolveReferencePathIntoAmdModule)
         {
             this.urlGenerator = urlGenerator;
-            originalAssets = bundle.Assets.ToArray();
             bundle.Pipeline.Insert(bundle.Pipeline.IndexOf<SortAssetsByDependency>(), this);
         }
 
@@ -74,7 +72,7 @@ namespace App.Infrastructure.Amd
             }
         }
 
-        public override IEnumerable<KeyValuePair<string, string>> PathMaps(IUrlGenerator urlGenerator)
+        public override IEnumerable<KeyValuePair<string, string>> PathMaps()
         {
             var maps = new List<KeyValuePair<string, string>>();
 
@@ -86,14 +84,14 @@ namespace App.Infrastructure.Amd
                     {
                         maps.Add(new KeyValuePair<string, string>(
                             Path,
-                            urlGenerator.CreateAssetUrl(asset)
+                            urlGenerator.CreateAssetUrl(asset) + "&noext=1"
                         ));
                     }
                     else
                     {
                         maps.Add(new KeyValuePair<string, string>(
                             asset.Path.TrimStart('~', '/'),
-                            urlGenerator.CreateAssetUrl(asset)
+                            urlGenerator.CreateAssetUrl(asset) + "&noext=1"
                         ));
                     }
                 }

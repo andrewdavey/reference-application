@@ -198,6 +198,7 @@
     <Compile Include="Infrastructure\Amd\RewriteDefineCalls.cs" />
     <Compile Include="Infrastructure\Amd\ScriptReferenceParser.cs" />
     <Compile Include="Infrastructure\Amd\ShimAsset.cs" />
+    <Compile Include="Infrastructure\Amd\ShimVendorModule.cs" />
     <Compile Include="Infrastructure\Amd\SingleValueExport.cs" />
     <Compile Include="Infrastructure\Amd\StringAssetTransformer.cs" />
     <Compile Include="Infrastructure\Amd\VendorAmdModule.cs" />
@@ -224,30 +225,10 @@
     <Compile Include="Vehicles\MasterPage\GetVehicleMasterPageController.cs" />
     <Compile Include="WebApiConfig.cs" />
     <Compile Include="CassetteConfiguration.cs" />
-    <Compile Include="Infrastructure\Cassette\AddDebugWrapperToAssets.cs" />
-    <Compile Include="Infrastructure\Cassette\AddTransformerToAssets.cs" />
-    <Compile Include="Infrastructure\Cassette\AmdModule.cs" />
-    <Compile Include="Infrastructure\Cassette\AssetReferenceToImportConverter.cs" />
     <Compile Include="Infrastructure\Cassette\BundleAssetFinder.cs" />
     <Compile Include="Infrastructure\Cassette\BundleExtensions.cs" />
     <Compile Include="Infrastructure\Cassette\ConvertAllHtmlTemplatesToScript.cs" />
     <Compile Include="Infrastructure\Cassette\ConvertHtmlTemplateToScript.cs" />
-    <Compile Include="Infrastructure\Cassette\DebugDefineBuilder.cs" />
-    <Compile Include="Infrastructure\Cassette\DebugModuleCollectionBuilder.cs" />
-    <Compile Include="Infrastructure\Cassette\DebugModuleDefinitionsProvider.cs" />
-    <Compile Include="Infrastructure\Cassette\DebugModuleAssetWrapper.cs" />
-    <Compile Include="Infrastructure\Cassette\DebugModuleBuilder.cs" />
-    <Compile Include="Infrastructure\Cassette\DebugWrapper.cs" />
-    <Compile Include="Infrastructure\Cassette\ExportedModuleVariablesHelper.cs" />
-    <Compile Include="Infrastructure\Cassette\GlobalJavaScriptVariableParser.cs" />
-    <Compile Include="Infrastructure\Cassette\Import.cs" />
-    <Compile Include="Infrastructure\Cassette\MetaData.cs" />
-    <Compile Include="Infrastructure\Cassette\RecordAssetImports.cs" />
-    <Compile Include="Infrastructure\Cassette\RecordExportedVariables.cs" />
-    <Compile Include="Infrastructure\Cassette\RewriteDefineCalls.cs" />
-    <Compile Include="Infrastructure\Cassette\ShimProvider.cs" />
-    <Compile Include="Infrastructure\Cassette\StringAssetTransformer.cs" />
-    <Compile Include="Infrastructure\Cassette\VendorAmdModulePathsProvider.cs" />
     <Compile Include="Infrastructure\Page.cs" />
     <Compile Include="Infrastructure\Web\HtmlFormatter.cs" />
     <Compile Include="Infrastructure\Web\RoutingExtensions.cs" />
@@ -415,7 +396,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>6160</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:3221/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

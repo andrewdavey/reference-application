@@ -15,21 +15,24 @@ namespace App.Infrastructure.Amd
         readonly Dictionary<IAsset, IEnumerable<string>> exportsByAsset = new Dictionary<IAsset, IEnumerable<string>>();
         readonly List<string> allExports = new List<string>(); 
         readonly Dictionary<IAsset, string> originalSources = new Dictionary<IAsset, string>();
+        List<string> presetDependencies;
 
         public AmdModuleFromBundle(ScriptBundle bundle, Func<string, IAmdModule> resolveReferencePathIntoAmdModule)
         {
             this.bundle = bundle;
             this.resolveReferencePathIntoAmdModule = resolveReferencePathIntoAmdModule;
             Path = bundle.Path.TrimStart('~', '/');
-            // Dependencies must be lazy because resolveReferencePathIntoAmdModule 
-            // may need to return a module that hasn't yet been created.
-            // Lazy means we can avoid parsing the dependencies until all modules
-            // have been created.
             foreach (var asset in bundle.Assets)
             {
                 originalSources[asset] = Read(asset);
             }
+            // Dependencies must be lazy because resolveReferencePathIntoAmdModule 
+            // may need to return a module that hasn't yet been created.
+            // Lazy means we can avoid parsing the dependencies until all modules
+            // have been created.
             dependencies = new Lazy<IAmdModule[]>(ParseDependencies);
+            // TODO: Remove the following hack
+            presetDependencies = new List<string> { "~/Infrastructure/Scripts/App" };
             ParseExports();
             Export = new ObjectExport(PathAsModuleIdentifier, allExports);
         }
@@ -78,6 +81,7 @@ namespace App.Infrastructure.Amd
                 .Where(a => originalSources.ContainsKey(a))
                 .Select(a => new {source = originalSources[a], path = a.Path})
                 .SelectMany(x => ScriptReferenceParser.ParseReferences(x.source, x.path))
+                .Concat(presetDependencies)
                 .Distinct()
                 .Select(resolveReferencePathIntoAmdModule)
                 .Distinct()
@@ -142,7 +146,7 @@ namespace App.Infrastructure.Amd
             return exports;
         }
 
-        public virtual IEnumerable<KeyValuePair<string, string>> PathMaps(IUrlGenerator urlGenerator)
+        public virtual IEnumerable<KeyValuePair<string, string>> PathMaps()
         {
             yield break;
         }

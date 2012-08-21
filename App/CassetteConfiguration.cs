@@ -74,28 +74,19 @@ namespace App
         {
             bundles.Add<ScriptBundle>(
                 "Infrastructure/Scripts/Vendor",
-                b =>
+                b => amdModuleCollection.AddVendorModulesPerAsset(b, config =>
                 {
-                    amdModuleCollection.AddVendorModulesPerAsset(b, new Dictionary<string,string>
-                    {
-                        {"jquery.js", "$"},
-                        {"knockout.js", "ko"},
-                        {"moment.js", "moment"}
-                    });
-                    
-                    /*
-                        .AmdAlias("jquery.js", "$")
-                        .AmdAlias("knockout.js", "ko")
-                        .AmdAlias("moment.js", "moment") // TODO: Un-hack the define() call in moment.js!
-                        .AmdShim("bootstrap/js/bootstrap.js", "bootstrap", "jquery") // TODO: fix this shim helper
-                        .AmdAlias("bootstrap/js/datepicker.js", "datepicker") // TODO: fix this shim helper
-                        .AmdShim("jquery.history.js", "History", "jquery");// TODO: fix this shim helper
-                     */
-                }
+                    config("jquery.js").Identifier("$");
+                    config("knockout.js").Identifier("ko");
+                    config("moment.js").Identifier("moment");// TODO: Un-hack the define() call in moment.js!
+                    config("jquery.history.js").Identifier("History").Shim("History").DependsOn("Infrastructure/Scripts/Vendor/jquery");
+                    config("bootstrap.js").Identifier("bootstrap").Shim().DependsOn("Infrastructure/Scripts/Vendor/jquery");
+                    config("datepicker.js").Identifier("datepicker").Shim().DependsOn("Infrastructure/Scripts/Vendor/jquery");
+                })
             );
             bundles.AddPerSubDirectory<ScriptBundle>(
                 "Infrastructure/Scripts/lang",
-                b => b.AmdModule()
+                b => amdModuleCollection.AddModuleFromBundle(b)
             );
             bundles.Add<StylesheetBundle>(
                 "Infrastructure/Scripts/Vendor"

@@ -1,3 +1,4 @@
+using App.Infrastructure.Amd;
 using Cassette;
 using Newtonsoft.Json;
 

@@ -7,13 +7,19 @@ namespace App.Infrastructure.Amd
 {
     class RewriteDefineCalls : StringAssetTransformer
     {
+        readonly string path;
+
+        public RewriteDefineCalls(string path)
+        {
+            this.path = path;
+        }
+
         protected override string Transform(string source, IAsset asset)
         {
             var parser = new JSParser(source);
             var ast = parser.Parse(new CodeSettings());
 
-            var amdModuleName = Regex.Match(asset.Path, @"/([^/]*)\.js$").Groups[1].Value;
-            ast.Accept(new Visitor(amdModuleName));
+            ast.Accept(new Visitor(path));
             var output = ast.ToCode();
 
             // TODO: shims
