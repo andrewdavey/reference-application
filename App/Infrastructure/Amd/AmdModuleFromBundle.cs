@@ -155,5 +155,12 @@ namespace App.Infrastructure.Amd
         {
             yield break;
         }
+
+        protected string AddNoExt(string url)
+        {
+            var index = url.IndexOf('?');
+            if (index >= 0) return url + "&noext=1";
+            return url + "?noext=1";
+        }
     }
 }

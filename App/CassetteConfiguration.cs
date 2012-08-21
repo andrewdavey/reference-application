@@ -23,6 +23,7 @@ namespace App
 
         public void Configure(BundleCollection bundles)
         {
+            amdModuleCollection.Clear();
             AddInfrastructureBundles(bundles);
             AddAppBundle(bundles);
 

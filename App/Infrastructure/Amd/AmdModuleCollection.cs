@@ -23,6 +23,12 @@ namespace App.Infrastructure.Amd
             bundles = new List<Bundle>();
         }
 
+        public void Clear()
+        {
+            modules.Clear();
+            bundles.Clear();
+        }
+
         public Require Require
         {
             get

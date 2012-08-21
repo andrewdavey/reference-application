@@ -33,7 +33,7 @@ namespace App.Infrastructure.Amd
             bundle.Pipeline.Process(bundle);
 
             urlGenerator.Setup(g => g.CreateBundleUrl(bundle)).Returns("/URL");
-            Assert.Equal("/URL", collection.Require.Paths["test"]);
+            Assert.Equal("/URL?noext=1", collection.Require.Paths["test"]);
         }
 
         [Fact]
@@ -50,7 +50,7 @@ namespace App.Infrastructure.Amd
             var shimAsset = bundle.Assets.Last();
             urlGenerator.Setup(g => g.CreateAssetUrl(shimAsset)).Returns("/URL.js");
 
-            Assert.Equal("/URL.js&noext=1", collection.Require.Paths["test"]);
+            Assert.Equal("/URL.js?noext=1", collection.Require.Paths["test"]);
         }
 
         IAsset StubAsset(string path)

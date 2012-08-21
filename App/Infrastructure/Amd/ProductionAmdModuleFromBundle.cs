@@ -63,7 +63,7 @@ namespace App.Infrastructure.Amd
 
         public override IEnumerable<KeyValuePair<string, string>> PathMaps()
         {
-            yield return new KeyValuePair<string, string>(Path, urlGenerator.CreateBundleUrl(Bundle));
+            yield return new KeyValuePair<string, string>(Path, AddNoExt(urlGenerator.CreateBundleUrl(Bundle)));
         }
     }
 }

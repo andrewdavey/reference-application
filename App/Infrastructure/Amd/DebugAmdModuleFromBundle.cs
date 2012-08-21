@@ -85,14 +85,14 @@ namespace App.Infrastructure.Amd
                     {
                         maps.Add(new KeyValuePair<string, string>(
                             Path,
-                            urlGenerator.CreateAssetUrl(asset) + "&noext=1"
+                            AddNoExt(urlGenerator.CreateAssetUrl(asset))
                         ));
                     }
                     else
                     {
                         maps.Add(new KeyValuePair<string, string>(
                             asset.Path.TrimStart('~', '/'),
-                            urlGenerator.CreateAssetUrl(asset) + "&noext=1"
+                            AddNoExt(urlGenerator.CreateAssetUrl(asset))
                         ));
                     }
                 }
