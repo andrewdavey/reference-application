@@ -12,7 +12,10 @@ namespace App.Infrastructure.Amd
         readonly ScriptBundle bundle;
         readonly Func<string, IAmdModule> resolveReferencePathIntoAmdModule;
         readonly Lazy<IAmdModule[]> dependencies;
- 
+        readonly Dictionary<IAsset, IEnumerable<string>> exportsByAsset = new Dictionary<IAsset, IEnumerable<string>>();
+        readonly List<string> allExports = new List<string>(); 
+        readonly Dictionary<IAsset, string> originalSources = new Dictionary<IAsset, string>();
+
         public AmdModuleFromBundle(ScriptBundle bundle, Func<string, IAmdModule> resolveReferencePathIntoAmdModule)
         {
             this.bundle = bundle;
@@ -22,8 +25,21 @@ namespace App.Infrastructure.Amd
             // may need to return a module that hasn't yet been created.
             // Lazy means we can avoid parsing the dependencies until all modules
             // have been created.
+            foreach (var asset in bundle.Assets)
+            {
+                originalSources[asset] = Read(asset);
+            }
             dependencies = new Lazy<IAmdModule[]>(ParseDependencies);
-            Export = new ObjectExport(GlobalJavaScriptVariables());
+            ParseExports();
+            Export = new ObjectExport(PathAsModuleIdentifier, allExports);
+        }
+
+        string Read(IAsset asset)
+        {
+            using (var reader = new StreamReader(asset.OpenStream()))
+            {
+                return reader.ReadToEnd();
+            }
         }
 
         public string Path { get; private set; }
@@ -33,22 +49,34 @@ namespace App.Infrastructure.Amd
             get { return dependencies.Value; }
         }
 
-        public object Export { get; private set; }
+        public IExport Export { get; private set; }
 
         IAmdModule[] ParseDependencies()
         {
             return bundle
                 .Assets
-                .SelectMany(ScriptReferenceParser.ParseReferences)
+                .Where(a => originalSources.ContainsKey(a))
+                .Select(a => new { source = originalSources[a], path = a.Path })
+                .SelectMany(x => ScriptReferenceParser.ParseReferences(x.source, x.path))
                 .Distinct()
                 .Select(resolveReferencePathIntoAmdModule)
                 .Distinct()
                 .ToArray();
         }
 
-        IEnumerable<string> GlobalJavaScriptVariables()
+        void ParseExports()
         {
-            return bundle.Assets.SelectMany(GlobalJavaScriptVariables);
+            foreach (var asset in bundle.Assets)
+            {
+                var exports = GlobalJavaScriptVariables(asset).ToArray();
+                exportsByAsset[asset] = exports;
+                allExports.AddRange(exports);
+            }
+        }
+
+        string PathAsModuleIdentifier
+        {
+            get { return Path.Replace('/', '_'); }
         }
 
         IEnumerable<string> GlobalJavaScriptVariables(IAsset asset)
@@ -59,15 +87,30 @@ namespace App.Infrastructure.Amd
                 return GlobalJavaScriptVariableParser.GetVariables(javaScript);
             }
         }
-    }
 
-    public class ObjectExport
-    {
-        public ObjectExport(IEnumerable<string> identifiers)
+        public IEnumerable<string> GetExportsFromAsset(IAsset asset)
         {
-            Identifiers = identifiers;
+            return exportsByAsset[asset];
         }
 
-        public IEnumerable<string> Identifiers { get; private set; }
+        public IEnumerable<string> GetExportsDefinedBeforeAsset(IAsset asset)
+        {
+            var found = false;
+            var exports = new List<string>();
+            var visitor = new BundleVisitor(a =>
+            {
+                if (found) return;
+                if (a == asset)
+                {
+                    found = true;
+                }
+                else
+                {
+                    exports.AddRange(exportsByAsset[a]);
+                }
+            });
+            bundle.Accept(visitor);
+            return exports;
+        } 
     }
 }

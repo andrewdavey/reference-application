@@ -10,7 +10,7 @@ namespace App.Infrastructure.Amd
 {
     public class ScriptReferenceParserTests
     {
-        readonly Mock<IAsset> asset;
+        string path, content;
         IEnumerable<string> parsedReferences;
 
         [Fact]
@@ -70,25 +70,19 @@ namespace App.Infrastructure.Amd
             ThenReferencesEqual(new[] { "~/sub2/example.js" });
         }
 
-
-        public ScriptReferenceParserTests()
-        {
-            asset = new Mock<IAsset>();
-        }
-
         void GivenAssetPath(string path)
         {
-            asset.SetupGet(a => a.Path).Returns(path);
+            this.path = path;
         }
 
         void WithContent(string content)
         {
-            asset.Setup(a => a.OpenStream()).Returns(() => new MemoryStream(Encoding.UTF8.GetBytes(content)));
+            this.content = content;
         }
 
         void WhenParse()
         {
-            parsedReferences = ScriptReferenceParser.ParseReferences(asset.Object).ToArray();
+            parsedReferences = ScriptReferenceParser.ParseReferences(content, path).ToArray();
         }
 
         void ThenReferencesEqual(IEnumerable<string> expectedReferences)

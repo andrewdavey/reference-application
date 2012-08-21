@@ -70,7 +70,7 @@ namespace App.Infrastructure.Amd
             var module = new AmdModuleFromBundle(bundle, path => null);
 
             var export = (ObjectExport)module.Export;
-            Assert.Equal(new[] {"a", "b"}, export.Identifiers);
+            Assert.Equal(new[] {"a", "b"}, export.Aliases);
         }
 
         IAsset StubAsset(string path, string content)

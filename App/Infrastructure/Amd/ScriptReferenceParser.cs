@@ -13,20 +13,12 @@ namespace App.Infrastructure.Amd
             RegexOptions.IgnorePatternWhitespace
             );
 
-        public static IEnumerable<string> ParseReferences(IAsset asset)
+        public static IEnumerable<string> ParseReferences(string script, string scriptPath)
         {
-            using (var reader = new StreamReader(asset.OpenStream()))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    var match = ReferenceCommentRegex.Match(line);
-                    if (match.Success)
-                    {
-                        yield return EnsureAbsolutePath(match.Groups[1].Value, asset.Path);
-                    }
-                }
-            }
+            return ReferenceCommentRegex
+                .Matches(script)
+                .Cast<Match>()
+                .Select(match => EnsureAbsolutePath(match.Groups[1].Value, scriptPath));
         }
 
         static string EnsureAbsolutePath(string path, string assetPath)

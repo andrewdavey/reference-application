@@ -55,7 +55,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\Amd\AmdModuleFromBundleTests.cs" />
+    <Compile Include="Infrastructure\Amd\DebugAmdModuleFromBundleTests.cs" />
+    <Compile Include="Infrastructure\Amd\DebugAssetWrapperTests.cs" />
+    <Compile Include="Infrastructure\Amd\ProductionAmdModuleFromBundleTests.cs" />
     <Compile Include="Infrastructure\Amd\ScriptReferenceParserTests.cs" />
+    <Compile Include="Infrastructure\Amd\SimplePipeline.cs" />
+    <Compile Include="Infrastructure\Amd\VendorAmdModuleTests.cs" />
     <Compile Include="Infrastructure\Cassette\AmdModuleTests.cs" />
     <Compile Include="Infrastructure\Cassette\DebugModuleAssetWrapperTests.cs" />
     <Compile Include="Infrastructure\Cassette\DebugModuleBuilderTests.cs" />
