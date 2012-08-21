@@ -51,22 +51,43 @@ namespace App.Infrastructure.Amd
 
         public IExport Export { get; private set; }
 
+        public bool ContainsPath(string path)
+        {
+            if (Bundle.Path == path) return true;
+
+            var foundAsset = false;
+            var visitor = new BundleVisitor
+            {
+                VisitAsset = a =>
+                {
+                    if (a.Path == path)
+                    {
+                        foundAsset = true;
+                    }
+                }
+            };
+            Bundle.Accept(visitor);
+
+            return foundAsset;
+        }
+
         IAmdModule[] ParseDependencies()
         {
-            return bundle
+            return Bundle
                 .Assets
                 .Where(a => originalSources.ContainsKey(a))
-                .Select(a => new { source = originalSources[a], path = a.Path })
+                .Select(a => new {source = originalSources[a], path = a.Path})
                 .SelectMany(x => ScriptReferenceParser.ParseReferences(x.source, x.path))
                 .Distinct()
                 .Select(resolveReferencePathIntoAmdModule)
                 .Distinct()
+                .Except(new[] {this})
                 .ToArray();
         }
 
         void ParseExports()
         {
-            foreach (var asset in bundle.Assets)
+            foreach (var asset in Bundle.Assets)
             {
                 var exports = GlobalJavaScriptVariables(asset).ToArray();
                 exportsByAsset[asset] = exports;
@@ -77,6 +98,11 @@ namespace App.Infrastructure.Amd
         string PathAsModuleIdentifier
         {
             get { return Path.Replace('/', '_'); }
+        }
+
+        public ScriptBundle Bundle
+        {
+            get { return bundle; }
         }
 
         IEnumerable<string> GlobalJavaScriptVariables(IAsset asset)
@@ -97,20 +123,28 @@ namespace App.Infrastructure.Amd
         {
             var found = false;
             var exports = new List<string>();
-            var visitor = new BundleVisitor(a =>
+            var visitor = new BundleVisitor
             {
-                if (found) return;
-                if (a == asset)
+                VisitAsset = a =>
                 {
-                    found = true;
+                    if (found) return;
+                    if (a == asset)
+                    {
+                        found = true;
+                    }
+                    else
+                    {
+                        exports.AddRange(exportsByAsset[a]);
+                    }
                 }
-                else
-                {
-                    exports.AddRange(exportsByAsset[a]);
-                }
-            });
-            bundle.Accept(visitor);
+            };
+            Bundle.Accept(visitor);
             return exports;
-        } 
+        }
+
+        public virtual IEnumerable<KeyValuePair<string, string>> PathMaps(IUrlGenerator urlGenerator)
+        {
+            yield break;
+        }
     }
 }

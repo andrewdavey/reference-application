@@ -54,6 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\Amd\AmdModuleCollectionTests.cs" />
     <Compile Include="Infrastructure\Amd\AmdModuleFromBundleTests.cs" />
     <Compile Include="Infrastructure\Amd\DebugAmdModuleFromBundleTests.cs" />
     <Compile Include="Infrastructure\Amd\DebugAssetWrapperTests.cs" />

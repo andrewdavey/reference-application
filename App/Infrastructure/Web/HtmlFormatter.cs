@@ -4,10 +4,12 @@ using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Web;
+using App.Infrastructure.Amd;
 using App.Infrastructure.Cassette;
 using Cassette.Scripts;
 using Cassette.Stylesheets;
 using Cassette.Views;
+using Newtonsoft.Json;
 
 namespace App.Infrastructure.Web
 {
@@ -41,14 +43,15 @@ namespace App.Infrastructure.Web
                 using (var reader = new StreamReader(file))
                 {
                     Bundles.Reference<StylesheetBundle>("Infrastructure/Scripts/Vendor");
+                    Bundles.Reference<ScriptBundle>("Infrastructure/Scripts/Vendor");
                     
                     var html = await reader.ReadToEndAsync();
 
                     html = html.Replace("$lang$", page.Language);
                     html = html.Replace("$styles$", Bundles.RenderStylesheets().ToHtmlString());
+                    html = html.Replace("$scripts$", Bundles.RenderScripts().ToHtmlString());
                     html = html.Replace("$styleMap$", StylesheetPathProvider.PathMapJson);
-                    html = html.Replace("$paths$", VendorAmdModulePathsProvider.Paths);
-                    html = html.Replace("$shims$", DebugModuleDefinitionsProvider.ModuleDefinitions);
+                    html = html.Replace("$requirejson$", JsonConvert.SerializeObject(AmdModuleCollection.Instance.Require));
 
                     var bytes = Encoding.UTF8.GetBytes(html);
                     await stream.WriteAsync(bytes, 0, bytes.Length);

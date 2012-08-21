@@ -194,7 +194,10 @@
     <Compile Include="Infrastructure\Amd\IExport.cs" />
     <Compile Include="Infrastructure\Amd\ObjectExport.cs" />
     <Compile Include="Infrastructure\Amd\ProductionAmdModuleFromBundle.cs" />
+    <Compile Include="Infrastructure\Amd\Require.cs" />
+    <Compile Include="Infrastructure\Amd\RewriteDefineCalls.cs" />
     <Compile Include="Infrastructure\Amd\ScriptReferenceParser.cs" />
+    <Compile Include="Infrastructure\Amd\ShimAsset.cs" />
     <Compile Include="Infrastructure\Amd\SingleValueExport.cs" />
     <Compile Include="Infrastructure\Amd\StringAssetTransformer.cs" />
     <Compile Include="Infrastructure\Amd\VendorAmdModule.cs" />

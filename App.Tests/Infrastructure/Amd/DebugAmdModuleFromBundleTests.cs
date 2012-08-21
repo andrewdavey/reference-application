@@ -11,6 +11,15 @@ namespace App.Infrastructure.Amd
     public class DebugAmdModuleFromBundleTests
     {
         ScriptBundle bundle;
+        readonly Mock<IUrlGenerator> urlGenerator;
+
+        public DebugAmdModuleFromBundleTests()
+        {
+            urlGenerator = new Mock<IUrlGenerator>();
+            urlGenerator
+                .Setup(g => g.CreateAssetUrl(It.IsAny<IAsset>()))
+                .Returns<IAsset>(a => a.Path.Substring(1));
+        }
 
         [Fact]
         public void EachAssetIsWrappedInDebugModuleDefinition()
@@ -19,7 +28,7 @@ namespace App.Infrastructure.Amd
             AddAsset("~/a.js", "var a = 1;");
             AddAsset("~/b.js", "var b = 2;");
             
-            var module = new DebugAmdModuleFromBundle(bundle, path => null);
+            var module = new DebugAmdModuleFromBundle(bundle, path => null, urlGenerator.Object);
             bundle.Pipeline.Process(bundle);
 
             AssertAssetContent(bundle.Assets[0], "define([],function(){return function(){var a = 1;this.a=a;}});");
@@ -33,15 +42,15 @@ namespace App.Infrastructure.Amd
             AddAsset("~/a.js", "var a = 1;");
             AddAsset("~/b.js", "var b = 2;");
 
-            var module = new DebugAmdModuleFromBundle(bundle, path => null);
+            var module = new DebugAmdModuleFromBundle(bundle, path => null, urlGenerator.Object);
 
-            Assert.Equal("define(\"test\",[\"a.js\",\"b.js\"],function(){\n" +
+            Assert.Equal("define(\"test\",[\"/a.js\",\"/b.js\"],function(){\n" +
                          "var exports={};\n" +
                          "var assets=Array.prototype.slice.call(arguments,0);\n" +
                          "var dependencies=Array.prototype.slice.call(arguments,0,0);\n" +
                          "assets.forEach(function(a) { a.apply(exports, dependencies); });\n" +
                          "return exports;\n" +
-                         "});", module.DefinitionShim);
+                         "});", module.DefinitionShim());
         }
 
         [Fact]
@@ -52,15 +61,15 @@ namespace App.Infrastructure.Amd
 
             var jquery = new Mock<IAmdModule>();
             jquery.SetupGet(j => j.Path).Returns("jquery");
-            var module = new DebugAmdModuleFromBundle(bundle, path => jquery.Object);
+            var module = new DebugAmdModuleFromBundle(bundle, path => jquery.Object, urlGenerator.Object);
 
-            Assert.Equal("define(\"test\",[\"jquery\",\"a.js\"],function(){\n" +
+            Assert.Equal("define(\"test\",[\"jquery\",\"/a.js\"],function(){\n" +
                          "var exports={};\n" +
                          "var assets=Array.prototype.slice.call(arguments,1);\n" +
                          "var dependencies=Array.prototype.slice.call(arguments,0,1);\n" +
                          "assets.forEach(function(a) { a.apply(exports, dependencies); });\n" +
                          "return exports;\n" +
-                         "});", module.DefinitionShim);
+                         "});", module.DefinitionShim());
         }
 
         [Fact]
@@ -69,14 +78,14 @@ namespace App.Infrastructure.Amd
             bundle = new ScriptBundle("~/test") { Pipeline = new SimplePipeline() };
             AddAsset("~/a.js", "");
 
-            var module = new DebugAmdModuleFromBundle(bundle, path => null);
+            var module = new DebugAmdModuleFromBundle(bundle, path => null, urlGenerator.Object);
 
             module.Process(bundle);
             Assert.Equal("~/test/debug-shim.js", bundle.Assets[1].Path);
 
             using (var reader = new StreamReader(bundle.Assets[1].OpenStream()))
             {
-                Assert.Equal(module.DefinitionShim, reader.ReadToEnd());
+                Assert.Equal(module.DefinitionShim(), reader.ReadToEnd());
             }
         }
 

@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.IO;
+using App.Infrastructure.Amd;
 using App.Infrastructure.Cassette;
 using Cassette;
 using Cassette.Scripts;
@@ -11,6 +13,14 @@ namespace App
     /// </summary>
     public class CassetteBundleConfiguration : IConfiguration<BundleCollection>
     {
+        readonly AmdModuleCollection amdModuleCollection;
+
+        public CassetteBundleConfiguration(AmdModuleCollection amdModuleCollection)
+        {
+            this.amdModuleCollection = amdModuleCollection;
+            AmdModuleCollection.Instance = amdModuleCollection; // TODO: Clean up this hacky global!
+        }
+
         public void Configure(BundleCollection bundles)
         {
             AddInfrastructureBundles(bundles);
@@ -29,7 +39,11 @@ namespace App
             bundles.Add<ScriptBundle>(
                 path,
                 ScriptAndHtmlTemplateFileSearch(),
-                b => b.EmbedHtmlTemplates().AmdModule()
+                b =>
+                {
+                    b.EmbedHtmlTemplates();
+                    amdModuleCollection.AddModuleFromBundle(b);
+                }
             );
             bundles.Add<StylesheetBundle>(path);
         }
@@ -40,7 +54,11 @@ namespace App
             bundles.AddPerSubDirectory<ScriptBundle>(
                 path,
                 ScriptAndHtmlTemplateFileSearch(),
-                b => b.EmbedHtmlTemplates().AmdModule()
+                b =>
+                {
+                    b.EmbedHtmlTemplates();
+                    amdModuleCollection.AddModuleFromBundle(b);
+                }
             );
             bundles.AddPerSubDirectory<StylesheetBundle>(path);
         }
@@ -49,21 +67,31 @@ namespace App
         {
             bundles.Add<ScriptBundle>(
                 "Infrastructure/Scripts/App",
-                b => b.AmdModule()
-            );
+                b => amdModuleCollection.AddModuleFromBundle(b));
         }
 
         void AddInfrastructureBundles(BundleCollection bundles)
         {
             bundles.Add<ScriptBundle>(
                 "Infrastructure/Scripts/Vendor",
-                b => b.AmdModulePerAsset()
-                      .AmdAlias("jquery.js", "$")
-                      .AmdAlias("knockout.js", "ko")
-                      .AmdAlias("moment.js", "moment") // TODO: Un-hack the define() call in moment.js!
-                      .AmdShim("bootstrap/js/bootstrap.js", "bootstrap", "jquery") // TODO: fix this shim helper
-                      .AmdAlias("bootstrap/js/datepicker.js", "datepicker") // TODO: fix this shim helper
-                      .AmdShim("jquery.history.js", "History", "jquery") // TODO: fix this shim helper
+                b =>
+                {
+                    amdModuleCollection.AddVendorModulesPerAsset(b, new Dictionary<string,string>
+                    {
+                        {"jquery.js", "$"},
+                        {"knockout.js", "ko"},
+                        {"moment.js", "moment"}
+                    });
+                    
+                    /*
+                        .AmdAlias("jquery.js", "$")
+                        .AmdAlias("knockout.js", "ko")
+                        .AmdAlias("moment.js", "moment") // TODO: Un-hack the define() call in moment.js!
+                        .AmdShim("bootstrap/js/bootstrap.js", "bootstrap", "jquery") // TODO: fix this shim helper
+                        .AmdAlias("bootstrap/js/datepicker.js", "datepicker") // TODO: fix this shim helper
+                        .AmdShim("jquery.history.js", "History", "jquery");// TODO: fix this shim helper
+                     */
+                }
             );
             bundles.AddPerSubDirectory<ScriptBundle>(
                 "Infrastructure/Scripts/lang",

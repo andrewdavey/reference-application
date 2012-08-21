@@ -7,7 +7,7 @@ namespace App.Infrastructure.Cassette
     {
         protected override string Transform(string source, IAsset asset)
         {
-            return "deps['Infrastructure/Scripts/App'].addTemplate(" +
+            return "addTemplate(" +
                    JsonConvert.SerializeObject(asset.Path.Substring(2)) + "," +
                    JsonConvert.SerializeObject(source) + 
                    ")";

@@ -6,28 +6,11 @@
         <script type="text/html" id="loading">Loading...</script>
         <script>
             var styleMap = $styleMap$;
-            var require = {
-                paths: $paths$,
-                shim: {
-                    "Infrastructure/Scripts/Vendor/jquery.history": {
-                        deps: ["Infrastructure/Scripts/Vendor/jquery"],
-                        exports: "History"
-                    },
-                    "Infrastructure/Scripts/Vendor/bootstrap/js/bootstrap": {
-                        deps: ["Infrastructure/Scripts/Vendor/jquery"],
-                        exports: "bootstrap"
-                    },
-                    "Infrastructure/Scripts/Vendor/bootstrap/js/datepicker": {
-                        deps: ["Infrastructure/Scripts/Vendor/bootstrap/js/bootstrap"],
-                        exports: "bootstrap"
-                    }
-                }
-            };
+            var require = $requirejson$;
         </script>
-        <script src="/Infrastructure/Scripts/Vendor/require.js"></script>
+        $scripts$
         <script>
-            $shims$
-            require(["Application", "Infrastructure/Scripts/lang/$lang$"], function (module) {
+            require(["Application"], function (module) {
                 var app = module.MileageStatsApplication.create(document);
                 app.start();
             });

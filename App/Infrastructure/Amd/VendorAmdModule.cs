@@ -10,9 +10,18 @@ namespace App.Infrastructure.Amd
                 .Substring(0, asset.Path.LastIndexOf('.'))
                 .TrimStart('~', '/');
             Export = new SingleValueExport(identifier);
+
+            asset.AddAssetTransformer(new RewriteDefineCalls());
         }
 
         public string Path { get; private set; }
+        
         public IExport Export { get; private set; }
+
+        public bool ContainsPath(string path)
+        {
+            if (path.EndsWith(".js")) path = path.Substring(0, path.Length - 3);
+            return path.TrimStart('~', '/') == Path;
+        }
     }
 }

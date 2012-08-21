@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using Cassette;
 using Cassette.BundleProcessing;
 using Cassette.Scripts;
@@ -13,37 +10,49 @@ namespace App.Infrastructure.Amd
 {
     public class DebugAmdModuleFromBundle : AmdModuleFromBundle, IBundleProcessor<ScriptBundle>
     {
-        readonly IEnumerable<string> assetPaths;
+        readonly IUrlGenerator urlGenerator;
+        readonly IAsset[] originalAssets;
 
-        public DebugAmdModuleFromBundle(ScriptBundle bundle, Func<string, IAmdModule> resolveReferencePathIntoAmdModule)
+        public DebugAmdModuleFromBundle(ScriptBundle bundle, Func<string, IAmdModule> resolveReferencePathIntoAmdModule, IUrlGenerator urlGenerator)
             : base(bundle, resolveReferencePathIntoAmdModule)
         {
-            assetPaths = bundle.Assets.Select(a => a.Path.TrimStart('~', '/'));
-            bundle.Pipeline.Insert(0, this);
+            this.urlGenerator = urlGenerator;
+            originalAssets = bundle.Assets.ToArray();
+            bundle.Pipeline.Insert(bundle.Pipeline.IndexOf<SortAssetsByDependency>(), this);
         }
 
-        public string DefinitionShim
+        public string DefinitionShim()
         {
-            get
-            {
-                var path = JsonConvert.SerializeObject(Path);
+            var path = JsonConvert.SerializeObject(Path);
 
-                var dependenciesAndAssets = JsonConvert.SerializeObject(
-                    Dependencies.Select(d => d.Path).Concat(assetPaths)
+            var assetUrls = new List<string>();
+            var visitor = new BundleVisitor
+            {
+                VisitAsset = asset =>
+                {
+                    if (!(asset is ShimAsset))
+                    {
+                        assetUrls.Add(urlGenerator.CreateAssetUrl(asset));
+                    }
+                }
+            };
+            Bundle.Accept(visitor);
+
+            var dependenciesAndAssets = JsonConvert.SerializeObject(
+                Dependencies.Select(d => d.Path).Concat(assetUrls)
                 );
 
-                return string.Format(
-                    "define({0},{1},function(){{\n" +
-                    "var exports={{}};\n" +
-                    "var assets=Array.prototype.slice.call(arguments,{2});\n" +
-                    "var dependencies=Array.prototype.slice.call(arguments,0,{2});\n" +
-                    "assets.forEach(function(a) {{ a.apply(exports, dependencies); }});\n" +
-                    "return exports;\n" +
-                    "}});",
-                    path,
-                    dependenciesAndAssets,
-                    Dependencies.Length);
-            }
+            return string.Format(
+                "define({0},{1},function(){{\n" +
+                "var exports={{}};\n" +
+                "var assets=Array.prototype.slice.call(arguments,{2});\n" +
+                "var dependencies=Array.prototype.slice.call(arguments,0,{2});\n" +
+                "assets.forEach(function(a) {{ a.apply(exports, dependencies); }});\n" +
+                "return exports;\n" +
+                "}});",
+                path,
+                dependenciesAndAssets,
+                Dependencies.Length);
         }
 
         public void Process(ScriptBundle bundle)
@@ -54,7 +63,7 @@ namespace App.Infrastructure.Amd
 
         void AddShimAsset(ScriptBundle bundle)
         {
-            bundle.Assets.Add(new ShimAsset(this));
+            bundle.Assets.Add(new ShimAsset(this, urlGenerator));
         }
 
         void AddDebugAssetWrapperToAssets(ScriptBundle bundle)
@@ -65,66 +74,33 @@ namespace App.Infrastructure.Amd
             }
         }
 
-        class ShimAsset : IAsset
+        public override IEnumerable<KeyValuePair<string, string>> PathMaps(IUrlGenerator urlGenerator)
         {
-            readonly DebugAmdModuleFromBundle module;
+            var maps = new List<KeyValuePair<string, string>>();
 
-            public ShimAsset(DebugAmdModuleFromBundle module)
+            var visitor = new BundleVisitor
             {
-                this.module = module;
-            }
-
-            public void Accept(IBundleVisitor visitor)
-            {
-                visitor.Visit(this);
-            }
-
-            public void AddAssetTransformer(IAssetTransformer transformer)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void AddReference(string assetRelativePath, int lineNumber)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void AddRawFileReference(string relativeFilename)
-            {
-                throw new NotImplementedException();
-            }
-
-            public Stream OpenStream()
-            {
-                var stream = new MemoryStream();
-                var bytes = Encoding.UTF8.GetBytes(module.DefinitionShim);
-                stream.Write(bytes, 0, bytes.Length);
-                stream.Position = 0;
-                return stream;
-            }
-
-            public Type AssetCacheValidatorType { get; private set; }
-
-            public byte[] Hash
-            {
-                get
+                VisitAsset = asset =>
                 {
-                    using (var sha1 = SHA1.Create())
+                    if (asset is ShimAsset)
                     {
-                        return sha1.ComputeHash(Encoding.UTF8.GetBytes(module.DefinitionShim));
+                        maps.Add(new KeyValuePair<string, string>(
+                            Path,
+                            urlGenerator.CreateAssetUrl(asset)
+                        ));
+                    }
+                    else
+                    {
+                        maps.Add(new KeyValuePair<string, string>(
+                            asset.Path.TrimStart('~', '/'),
+                            urlGenerator.CreateAssetUrl(asset)
+                        ));
                     }
                 }
-            }
+            };
+            Bundle.Accept(visitor);
 
-            public string Path
-            {
-                get { return "~/" + module.Path + "/debug-shim.js"; }
-            }
-
-            public IEnumerable<AssetReference> References
-            {
-                get { yield break; }
-            }
+            return maps;
         }
     }
 }
