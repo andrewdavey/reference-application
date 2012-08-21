@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using App.Infrastructure.Cassette;
 using Cassette;
 using Cassette.BundleProcessing;
 using Cassette.Scripts;

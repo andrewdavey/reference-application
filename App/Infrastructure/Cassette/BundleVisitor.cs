@@ -1,7 +1,7 @@
 using System;
 using Cassette;
 
-namespace App.Infrastructure.Amd
+namespace App.Infrastructure.Cassette
 {
     class BundleVisitor : IBundleVisitor
     {

@@ -185,7 +185,6 @@
   <ItemGroup>
     <Compile Include="GetCountriesController.cs" />
     <Compile Include="Infrastructure\Amd\AmdModuleCollection.cs" />
-    <Compile Include="Infrastructure\Amd\BundleVisitor.cs" />
     <Compile Include="Infrastructure\Amd\DebugAmdModuleFromBundle.cs" />
     <Compile Include="Infrastructure\Amd\DebugAssetWrapper.cs" />
     <Compile Include="Infrastructure\Amd\GlobalJavaScriptVariableParser.cs" />
@@ -202,6 +201,7 @@
     <Compile Include="Infrastructure\Amd\SingleValueExport.cs" />
     <Compile Include="Infrastructure\Amd\StringAssetTransformer.cs" />
     <Compile Include="Infrastructure\Amd\VendorAmdModule.cs" />
+    <Compile Include="Infrastructure\Cassette\BundleVisitor.cs" />
     <Compile Include="Infrastructure\Cassette\StylesheetPathProvider.cs" />
     <Compile Include="Infrastructure\Web\ModelStateDictionaryFormatter.cs" />
     <Compile Include="Infrastructure\Web\ModelStateHelpers.cs" />

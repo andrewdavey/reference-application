@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using App.Infrastructure.Cassette;
 using Cassette;
 using Cassette.Scripts;
 
@@ -74,11 +75,18 @@ namespace App.Infrastructure.Amd
 
         IAmdModule[] ParseDependencies()
         {
+            var existingReferences = Bundle
+                .Assets
+                .SelectMany(a => a.References)
+                .Where(r => r.Type == AssetReferenceType.DifferentBundle)
+                .Select(r => r.ToPath);
+
             return Bundle
                 .Assets
                 .Where(a => originalSources.ContainsKey(a))
                 .Select(a => new {source = originalSources[a], path = a.Path})
                 .SelectMany(x => ScriptReferenceParser.ParseReferences(x.source, x.path))
+                .Concat(existingReferences)
                 .Distinct()
                 .Select(resolveReferencePathIntoAmdModule)
                 .Distinct()
