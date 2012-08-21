@@ -15,7 +15,6 @@ namespace App.Infrastructure.Amd
         readonly Dictionary<IAsset, IEnumerable<string>> exportsByAsset = new Dictionary<IAsset, IEnumerable<string>>();
         readonly List<string> allExports = new List<string>(); 
         readonly Dictionary<IAsset, string> originalSources = new Dictionary<IAsset, string>();
-        List<string> presetDependencies;
 
         public AmdModuleFromBundle(ScriptBundle bundle, Func<string, IAmdModule> resolveReferencePathIntoAmdModule)
         {
@@ -32,7 +31,6 @@ namespace App.Infrastructure.Amd
             // have been created.
             dependencies = new Lazy<IAmdModule[]>(ParseDependencies);
             // TODO: Remove the following hack
-            presetDependencies = new List<string> { "~/Infrastructure/Scripts/App" };
             ParseExports();
             Export = new ObjectExport(PathAsModuleIdentifier, allExports);
         }
@@ -81,7 +79,6 @@ namespace App.Infrastructure.Amd
                 .Where(a => originalSources.ContainsKey(a))
                 .Select(a => new {source = originalSources[a], path = a.Path})
                 .SelectMany(x => ScriptReferenceParser.ParseReferences(x.source, x.path))
-                .Concat(presetDependencies)
                 .Distinct()
                 .Select(resolveReferencePathIntoAmdModule)
                 .Distinct()

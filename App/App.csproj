@@ -225,7 +225,6 @@
     <Compile Include="Vehicles\MasterPage\GetVehicleMasterPageController.cs" />
     <Compile Include="WebApiConfig.cs" />
     <Compile Include="CassetteConfiguration.cs" />
-    <Compile Include="Infrastructure\Cassette\BundleAssetFinder.cs" />
     <Compile Include="Infrastructure\Cassette\BundleExtensions.cs" />
     <Compile Include="Infrastructure\Cassette\ConvertAllHtmlTemplatesToScript.cs" />
     <Compile Include="Infrastructure\Cassette\ConvertHtmlTemplateToScript.cs" />

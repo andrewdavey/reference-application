@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using Cassette;
+using Cassette.BundleProcessing;
 using Cassette.Scripts;
 using Moq;
 using Xunit;
@@ -40,14 +41,16 @@ namespace App.Infrastructure.Amd
         {
             settings.IsDebuggingEnabled = true;
 
-            var bundle = new ScriptBundle("~/test") { Pipeline = new SimplePipeline() };
+            var pipeline = new SimplePipeline { new SortAssetsByDependency() };
+            var bundle = new ScriptBundle("~/test") { Pipeline = pipeline };
+            bundle.Assets.Add(StubAsset("~/test/a.js"));
             collection.AddModuleFromBundle(bundle);
             bundle.Pipeline.Process(bundle);
 
             var shimAsset = bundle.Assets.Last();
-            urlGenerator.Setup(g => g.CreateAssetUrl(shimAsset)).Returns("/URL");
+            urlGenerator.Setup(g => g.CreateAssetUrl(shimAsset)).Returns("/URL.js");
 
-            Assert.Equal("/URL", collection.Require.Paths["test"]);
+            Assert.Equal("/URL.js&noext=1", collection.Require.Paths["test"]);
         }
 
         IAsset StubAsset(string path)

@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 using Cassette;
+using Cassette.BundleProcessing;
 using Cassette.IO;
 using Cassette.Scripts;
 using Moq;
@@ -10,7 +11,7 @@ namespace App.Infrastructure.Amd
 {
     public class DebugAmdModuleFromBundleTests
     {
-        ScriptBundle bundle;
+        readonly ScriptBundle bundle;
         readonly Mock<IUrlGenerator> urlGenerator;
 
         public DebugAmdModuleFromBundleTests()
@@ -19,16 +20,17 @@ namespace App.Infrastructure.Amd
             urlGenerator
                 .Setup(g => g.CreateAssetUrl(It.IsAny<IAsset>()))
                 .Returns<IAsset>(a => a.Path.Substring(1));
+            var pipeline = new SimplePipeline { new SortAssetsByDependency() };
+            bundle = new ScriptBundle("~/test") { Pipeline = pipeline };
         }
 
         [Fact]
         public void EachAssetIsWrappedInDebugModuleDefinition()
         {
-            bundle = new ScriptBundle("~/test") { Pipeline = new SimplePipeline() };
             AddAsset("~/a.js", "var a = 1;");
             AddAsset("~/b.js", "var b = 2;");
             
-            var module = new DebugAmdModuleFromBundle(bundle, path => null, urlGenerator.Object);
+            new DebugAmdModuleFromBundle(bundle, path => null, urlGenerator.Object);
             bundle.Pipeline.Process(bundle);
 
             AssertAssetContent(bundle.Assets[0], "define([],function(){return function(){var a = 1;this.a=a;}});");
@@ -38,7 +40,6 @@ namespace App.Infrastructure.Amd
         [Fact]
         public void DefinitionShimHasDependencyOnAssets()
         {
-            bundle = new ScriptBundle("~/test") { Pipeline = new SimplePipeline() };
             AddAsset("~/a.js", "var a = 1;");
             AddAsset("~/b.js", "var b = 2;");
 
@@ -56,7 +57,6 @@ namespace App.Infrastructure.Amd
         [Fact]
         public void DefinitionShimHasDependencyOnModuleDependencies()
         {
-            bundle = new ScriptBundle("~/test") { Pipeline = new SimplePipeline() };
             AddAsset("~/a.js", "/// <reference path=\"~/jquery.js\"/>");
 
             var jquery = new Mock<IAmdModule>();
@@ -75,7 +75,6 @@ namespace App.Infrastructure.Amd
         [Fact]
         public void ProcessAddsShimAssetToBundle()
         {
-            bundle = new ScriptBundle("~/test") { Pipeline = new SimplePipeline() };
             AddAsset("~/a.js", "");
 
             var module = new DebugAmdModuleFromBundle(bundle, path => null, urlGenerator.Object);

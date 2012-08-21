@@ -6,7 +6,14 @@ namespace App.Infrastructure.Cassette
     {
         public static ScriptBundle EmbedHtmlTemplates(this ScriptBundle bundle)
         {
-            bundle.Pipeline.Insert<ConvertAllHtmlTemplatesToScript>(0);
+            foreach (var asset in bundle.Assets)
+            {
+                if (asset.Path.EndsWith(".htm") || asset.Path.EndsWith(".html"))
+                {
+                    asset.AddReference("~/Infrastructure/Scripts/App/addTemplate.js", 0);
+                    asset.AddAssetTransformer(new ConvertHtmlTemplateToScript());
+                }
+            }
             return bundle;
         }
     }
