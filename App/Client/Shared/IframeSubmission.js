@@ -39,7 +39,7 @@
 
     addFormInputs: function (data) {
         Object.keys(data).forEach(function (key) {
-            var value = data[key].toString();
+            var value = (data[key] || "").toString();;
             var input = this.createInput(key, value);
             this.form.appendChild(input);
         }, this);
@@ -71,11 +71,26 @@
 
     submit: function () {
         this.request = $.Deferred();
-
+        
         $(this.iframe).load(function () {
-            this.restoreFiles();
-            this.removeIframe();
-            this.request.resolveWith(this.context, []);
+            $(this.iframe.contentDocument).ready(function () {
+                var responseText = $(this.iframe.contentDocument.body).text();
+                var response;
+                try {
+                    response = JSON.parse(responseText);
+                } catch (e) {
+                    response = { headers: { }, body: null };
+                }
+                var xhr = {
+                    getResponseHeader: function (name) {
+                        return response.headers[name];
+                    }
+                };
+
+                this.restoreFiles();
+                this.removeIframe();
+                this.request.resolveWith(this.context, [response.body, "success", xhr]);
+            }.bind(this));
         }.bind(this));
 
         this.form.submit();

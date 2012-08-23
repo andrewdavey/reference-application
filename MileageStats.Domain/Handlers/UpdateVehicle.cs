@@ -44,7 +44,7 @@ namespace MileageStats.Domain.Handlers
 
                 if (existing != null)
                 {
-                    if (photoFile != null)
+                    if (photoFile != null && photoFile.ContentLength > 0)
                     {
                         if (existing.PhotoId > 0)
                         {

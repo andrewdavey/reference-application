@@ -1,10 +1,14 @@
-﻿using System.IO;
-using System.Web;
-using System.Web.Http;
-using MileageStats.Domain.Contracts;
-using MileageStats.Domain.Handlers;
+﻿using System;
+using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Http;
+using App.Infrastructure;
+using App.Infrastructure.Web;
+using MileageStats.Domain.Contracts;
+using MileageStats.Domain.Handlers;
 
 namespace App.Server.Vehicle
 {
@@ -17,86 +21,63 @@ namespace App.Server.Vehicle
             this.updateVehicle = updateVehicle;
         }
 
-        public async Task PutVehicle(int vehicleId)
+        public async Task<HttpResponseMessage> PutVehicle(int vehicleId)
         {
-            var update = new VehicleUpdate
+            var streamProvider = new MultipartFormDataStreamProvider(Path.GetTempPath());
+            await Request.Content.ReadAsMultipartAsync(streamProvider);
+            
+            using (var update = new VehicleUpdate(vehicleId, streamProvider))
             {
-                VehicleId = vehicleId
-            };
-
-            var parts = await Request.Content.ReadAsMultipartAsync();
-            foreach (var part in parts)
-            {
-                var value = await part.ReadAsStringAsync();
-                switch (part.Headers.ContentDisposition.Name.Trim('"'))
-                {
-                    case "name":
-                        update.Name = value;
-                        break;
-                    case "year":
-                        update.Year = int.Parse(value);
-                        break;
-                    case "make":
-                        update.Make = value;
-                        break;
-                    case "model":
-                        update.Model = value;
-                        break;
-                    case "photo":
-                        update.Photo = new PhotoFile(part);
-                        break;
-                }
+                updateVehicle.Execute(1, update, update.Photo);
             }
-            updateVehicle.Execute(1, update, update.Photo);
-        }
-    }
 
-    public class VehicleUpdate : ICreateVehicleCommand
-    {
-        public int VehicleId { get; set; }
-        public string Name { get; set; }
-        public int SortOrder { get; set; }
-        public int? Year { get; set; }
-        public string Make { get; set; }
-        public string Model { get; set; }
-        public HttpPostedFileBase Photo { get; set; }
-
-        string ICreateVehicleCommand.MakeName
-        {
-            get { return Make; }
-            set { Make = value; }
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        string ICreateVehicleCommand.ModelName
+        class VehicleUpdate : ICreateVehicleCommand, IDisposable
         {
-            get { return Model; }
-            set { Model = value; }
-        }
-    }
+            readonly FileStream file;
+            readonly string localFileName;
 
-    class PhotoFile : HttpPostedFileBase
-    {
-        readonly Stream stream;
-        readonly string contentType;
-
-        public PhotoFile(HttpContent part)
-        {
-            contentType = part.Headers.ContentType.MediaType;
-            stream = new MemoryStream();
-            part.CopyToAsync(stream).Wait();
-        }
-
-        public override Stream InputStream
-        {
-            get
+            public VehicleUpdate(int vehicleId, MultipartFormDataStreamProvider streamProvider)
             {
-                return stream;
-            }
-        }
+                VehicleId = vehicleId;
+                Name = streamProvider.FormData["Name"];
+                Year = int.Parse(streamProvider.FormData["Year"]);
+                Make = streamProvider.FormData["Make"];
+                Model = streamProvider.FormData["Model"];
 
-        public override string ContentType
-        {
-            get { return contentType; }
+                localFileName = streamProvider.FileData[0].LocalFileName;
+                file = File.OpenRead(localFileName);
+                var mediaType = streamProvider.FileData[0].Headers.ContentType.MediaType;
+                Photo = new FileWrapper(file, mediaType);
+            }
+
+            public int VehicleId { get; set; }
+            public string Name { get; set; }
+            public int SortOrder { get; set; }
+            public int? Year { get; set; }
+            public string Make { get; set; }
+            public string Model { get; set; }
+            public HttpPostedFileBase Photo { get; set; }
+
+            string ICreateVehicleCommand.MakeName
+            {
+                get { return Make; }
+                set { Make = value; }
+            }
+
+            string ICreateVehicleCommand.ModelName
+            {
+                get { return Model; }
+                set { Model = value; }
+            }
+
+            public void Dispose()
+            {
+                file.Dispose();
+                File.Delete(localFileName);
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -21,13 +22,13 @@ namespace App.Infrastructure.Web
             return type == typeof(ModelStateDictionary);
         }
 
-        public override void SetDefaultContentHeaders(Type type, HttpContentHeaders headers, string mediaType)
+        public override void SetDefaultContentHeaders(Type type, HttpContentHeaders headers, MediaTypeHeaderValue mediaType)
         {
             base.SetDefaultContentHeaders(type, headers, mediaType);
             headers.ContentType = new MediaTypeHeaderValue("application/x-validation-errors+json");
         }
 
-        public override Task WriteToStreamAsync(Type type, object value, Stream stream, HttpContentHeaders contentHeaders, TransportContext transportContext)
+        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
         {
             // Convert the model state dictionary into a simpler format that will serialize nicely into JSON.
             // Output is something like:
@@ -42,7 +43,7 @@ namespace App.Infrastructure.Web
                     x => CamelCase(x.Key),
                     x => x.Value.Errors.Select(e => e.ErrorMessage)
                 );
-            return base.WriteToStreamAsync(type, objectToSend, stream, contentHeaders, transportContext);
+            return base.WriteToStreamAsync(type, objectToSend, writeStream, content, transportContext);
         }
 
         static string CamelCase(string input)

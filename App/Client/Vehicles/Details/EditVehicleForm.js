@@ -120,7 +120,9 @@ var EditVehicleForm = Object.inherit({
         var files = [ this.photo() ];
         this.http(this.saveCommand, vehicleData, files)
             .done(function () {
-                this.saved(vehicleData);
+                var args = Array.prototype.slice.call(arguments);
+                args[0] = vehicleData;
+                this.saved.apply(this, args);
             });
     },
     
