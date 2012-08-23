@@ -202,7 +202,6 @@
     <Compile Include="Infrastructure\Web\ModelStateDictionaryFormatter.cs" />
     <Compile Include="Infrastructure\Web\ModelStateHelpers.cs" />
     <Compile Include="Infrastructure\Web\OverrideableHttpMethodConstraint.cs" />
-    <Compile Include="Infrastructure\Web\PageConventionsFilter.cs" />
     <Compile Include="Infrastructure\Web\PageFilterBase.cs" />
     <Compile Include="Infrastructure\Web\PageLanguageFilter.cs" />
     <Compile Include="Infrastructure\Web\PageVaryHeaderFilter.cs" />

@@ -14,7 +14,6 @@ namespace App
             GlobalConfiguration.Configuration.Formatters.Insert(0, new ModelStateDictionaryFormatter());
             GlobalConfiguration.Configuration.Filters.Add(new PageLanguageFilter());
             GlobalConfiguration.Configuration.Filters.Add(new PageVaryHeaderFilter());
-            GlobalConfiguration.Configuration.Filters.Add(new PageConventionsFilter());
         }
     }
 }
