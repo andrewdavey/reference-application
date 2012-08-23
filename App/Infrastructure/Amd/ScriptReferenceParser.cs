@@ -1,12 +1,10 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Cassette;
 
 namespace App.Infrastructure.Amd
 {
-    public class ScriptReferenceParser
+    public static class ScriptReferenceParser
     {
         static readonly Regex ReferenceCommentRegex = new Regex(
             @"/// \s* <reference \s+ path \s* = \s* ""([^""]*)"" \s* />",

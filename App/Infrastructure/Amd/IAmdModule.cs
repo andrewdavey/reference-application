@@ -1,5 +1,3 @@
-using Cassette;
-
 namespace App.Infrastructure.Amd
 {
     public interface IAmdModule

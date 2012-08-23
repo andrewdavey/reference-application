@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using Cassette;
+﻿using Cassette;
 using Microsoft.Ajax.Utilities;
 
 namespace App.Infrastructure.Amd
@@ -25,16 +23,6 @@ namespace App.Infrastructure.Amd
             // TODO: shims
 
             return output;
-        }
-
-        string CreateShimDefine(string shim, string amdModuleName)
-        {
-            return string.Format(
-                "{0};define('{1}',[],function(){{return {2}}});",
-                Environment.NewLine,
-                amdModuleName,
-                shim
-            );
         }
 
         class Visitor : TreeVisitor

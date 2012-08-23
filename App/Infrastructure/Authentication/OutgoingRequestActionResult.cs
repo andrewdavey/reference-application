@@ -18,7 +18,7 @@ limitations under the License. */
 using System.Web.Mvc;
 using DotNetOpenAuth.Messaging;
 
-namespace MileageStats.Web.Authentication
+namespace App.Infrastructure.Authentication
 {
     public class OutgoingRequestActionResult : ActionResult
     {

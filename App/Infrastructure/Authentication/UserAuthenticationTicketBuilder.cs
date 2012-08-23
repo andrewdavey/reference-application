@@ -18,9 +18,8 @@ limitations under the License. */
 using System;
 using System.Web.Security;
 using MileageStats.Domain.Models;
-using System.Web;
 
-namespace MileageStats.Web.Authentication
+namespace App.Infrastructure.Authentication
 {
     public class UserAuthenticationTicketBuilder
     {

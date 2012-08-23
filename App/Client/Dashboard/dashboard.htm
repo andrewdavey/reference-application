@@ -1,0 +1,22 @@
+﻿<div class="row">
+    
+    <div class="span3">
+        <!-- ko if: profile -->
+        <section data-bind="template: { data: profile, name: 'Client/Profile/ProfileForm.htm' }"></section>
+        <!-- /ko -->
+
+        <section data-bind="template: { data: statistics, name: 'Client/Dashboard/statistics.htm' }"></section>
+        <section data-bind="template: { data: reminders, name: 'Client/Dashboard/reminders.htm' }"></section>
+    </div>
+
+    <div class="span9">
+        
+        <!-- ko template: { data: vehicles, name: 'Client/Vehicles/List/VehicleSummaryList.htm' } --><!-- /ko -->
+
+        <div>
+            <a data-bind="attr: { href: addVehicleUrl }">Add Vehicle</a>
+        </div>
+
+    </div>
+    
+</div>

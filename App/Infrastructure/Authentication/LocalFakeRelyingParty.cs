@@ -25,7 +25,7 @@ using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
 using DotNetOpenAuth.OpenId.Messages;
 using DotNetOpenAuth.OpenId.RelyingParty;
 
-namespace MileageStats.Web.Authentication
+namespace App.Infrastructure.Authentication
 {
     /// <summary>
     /// A fake OpenIdRelyingParty to provide an 'offline' authentication capability.

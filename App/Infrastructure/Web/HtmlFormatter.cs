@@ -42,8 +42,8 @@ namespace App.Infrastructure.Web
             {
                 using (var reader = new StreamReader(file))
                 {
-                    Bundles.Reference<StylesheetBundle>("Infrastructure/Scripts/Vendor");
-                    Bundles.Reference<ScriptBundle>("Infrastructure/Scripts/Vendor");
+                    Bundles.Reference<StylesheetBundle>("Client/Vendor");
+                    Bundles.Reference<ScriptBundle>("Client/Vendor");
                     
                     var html = await reader.ReadToEndAsync();
 

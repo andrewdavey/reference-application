@@ -19,7 +19,7 @@ using System.Web.Mvc;
 using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
 using DotNetOpenAuth.OpenId.RelyingParty;
 
-namespace MileageStats.Web.Authentication
+namespace App.Infrastructure.Authentication
 {
     public interface IOpenIdRelyingParty
     {

@@ -1,0 +1,22 @@
+﻿<form data-bind="submit: save" class="modal form-horizontal">
+    
+    <div class="modal-header">
+        <h3>Edit Vehicle</h3>
+    </div>
+
+    <div class="modal-body">        
+        <!-- ko template: 'Client/Vehicles/Details/VehicleFormInputs.htm' --><!-- /ko -->
+    
+        <p class="alert alert-info">
+            Note: Year, Make, Model and Photo are optional, 
+            but by providing them you get access to vehicle 
+            performance reports.
+        </p>
+    </div>
+    
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <button class="btn" data-bind="click: cancel">Cancel</button>
+    </div>
+
+</form>

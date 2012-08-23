@@ -18,13 +18,12 @@ limitations under the License. */
 using System;
 using System.Web;
 using System.Web.Mvc;
-using App.Infrastructure;
 using App.Infrastructure.Web;
 using DotNetOpenAuth.OpenId;
 using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
 using DotNetOpenAuth.OpenId.RelyingParty;
 
-namespace MileageStats.Web.Authentication
+namespace App.Infrastructure.Authentication
 {
     internal class DefaultOpenIdRelyingParty : IOpenIdRelyingParty, IDisposable
     {

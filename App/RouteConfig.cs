@@ -4,29 +4,74 @@ using App.Infrastructure.Web;
 
 namespace App
 {
-    public static class RouteConfig
+    public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.RouteExistingFiles = true;
+            new RouteConfig(routes).RegisterRoutes();
+        }
 
+        readonly RouteCollection routes;
+
+        RouteConfig(RouteCollection routes)
+        {
+            this.routes = routes;
+        }
+
+        void RegisterRoutes()
+        {
+            routes.RouteExistingFiles = true;
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            Dashboard();
+            Vehicles();
+            FillUps();
+            Reminders();
+            Profile();
+            ReferenceData();
+            Specs();
+        }
+
+        void Dashboard()
+        {
             routes.Resource("Dashboard", "");
+        }
+
+        void Vehicles()
+        {
             routes.Resource("Vehicles", "vehicles");
             routes.Resource("NewVehicle", "vehicles/new");
             routes.Resource("VehicleMasterPage", "vehicles/master");
             routes.Resource("Vehicle", "vehicles/{vehicleId}");
             routes.Resource("VehiclePhoto", "vehicles/{vehicleId}/photo");
+        }
+
+        void FillUps()
+        {
             routes.Resource("FillUps", "vehicles/{vehicleId}/fillUps");
+        }
+
+        void Reminders()
+        {
             routes.Resource("Reminders", "vehicles/{vehicleId}/reminders");
             routes.Resource("Reminder", "vehicles/{vehicleId}/reminders/{reminderId}");
+        }
+
+        void Profile()
+        {
             routes.Resource("Profile", "profile");
+        }
+
+        void ReferenceData()
+        {
             routes.Resource("Years", "reference/years");
             routes.Resource("Makes", "reference/years/{year}");
             routes.Resource("Models", "reference/years/{year}/{make}");
             routes.Resource("Countries", "reference/countries");
+        }
 
+        void Specs()
+        {
             routes.Resource("Specs", "specs");
         }
     }

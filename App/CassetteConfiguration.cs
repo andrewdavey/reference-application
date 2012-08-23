@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.IO;
 using App.Infrastructure.Amd;
 using App.Infrastructure.Cassette;
@@ -14,6 +13,7 @@ namespace App
     public class CassetteBundleConfiguration : IConfiguration<BundleCollection>
     {
         readonly AmdModuleCollection amdModuleCollection;
+        BundleCollection bundles;
 
         public CassetteBundleConfiguration(AmdModuleCollection amdModuleCollection)
         {
@@ -23,20 +23,32 @@ namespace App
 
         public void Configure(BundleCollection bundles)
         {
-            amdModuleCollection.Clear();
-            AddInfrastructureBundles(bundles);
-            AddAppBundle(bundles);
+            this.bundles = bundles;
+            amdModuleCollection.Clear(); // TODO: change AmdModuleCollection to be transient to avoid needing to clear singleton?
 
-            AddBundle("Application", bundles);
-            AddBundle("Dashboard", bundles);
-            AddBundle("Profile", bundles);
-            AddBundlePerSubDirectory("Vehicles", bundles);
-
-            AddBundle("Specs", bundles);
+            AddVendorBundles();
+            AddSharedBundle();
+            AddPageBundles();
+            // TODO: Only do this when debugging.
+            AddPageBundle("Specs");
         }
 
-        void AddBundle(string path, BundleCollection bundles)
+        void AddSharedBundle()
         {
+            AddBundle("Shared");
+        }
+
+        void AddPageBundles()
+        {
+            AddPageBundle("Application");
+            AddPageBundle("Dashboard");
+            AddPageBundle("Profile");
+            AddPageBundlePerSubDirectory("Vehicles"); // Details, FillUps, List, etc.
+        }
+
+        void AddPageBundle(string path)
+        {
+            path = "Client/" + path;
             bundles.Add<ScriptBundle>(
                 path,
                 ScriptAndHtmlTemplateFileSearch(),
@@ -50,8 +62,9 @@ namespace App
         }
 
 
-        void AddBundlePerSubDirectory(string path, BundleCollection bundles)
+        void AddPageBundlePerSubDirectory(string path)
         {
+            path = "Client/" + path;
             bundles.AddPerSubDirectory<ScriptBundle>(
                 path,
                 ScriptAndHtmlTemplateFileSearch(),
@@ -64,33 +77,33 @@ namespace App
             bundles.AddPerSubDirectory<StylesheetBundle>(path);
         }
 
-        void AddAppBundle(BundleCollection bundles)
+        void AddBundle(string path)
         {
             bundles.Add<ScriptBundle>(
-                "Infrastructure/Scripts/App",
+                "Client/" + path,
                 b => amdModuleCollection.AddModuleFromBundle(b));
         }
 
-        void AddInfrastructureBundles(BundleCollection bundles)
+        void AddVendorBundles()
         {
             bundles.Add<ScriptBundle>(
-                "Infrastructure/Scripts/Vendor",
+                "Client/Vendor",
                 b => amdModuleCollection.AddVendorModulesPerAsset(b, config =>
                 {
                     config("jquery.js").Identifier("$");
                     config("knockout.js").Identifier("ko");
                     config("moment.js").Identifier("moment");// TODO: Un-hack the define() call in moment.js!
-                    config("jquery.history.js").Identifier("History").Shim("History").DependsOn("Infrastructure/Scripts/Vendor/jquery");
-                    config("bootstrap.js").Identifier("bootstrap").Shim().DependsOn("Infrastructure/Scripts/Vendor/jquery");
-                    config("datepicker.js").Identifier("datepicker").Shim().DependsOn("Infrastructure/Scripts/Vendor/jquery");
+                    config("jquery.history.js").Identifier("History").Shim("History").DependsOn("Client/Vendor/jquery");
+                    config("bootstrap.js").Identifier("bootstrap").Shim().DependsOn("Client/Vendor/jquery");
+                    config("datepicker.js").Identifier("datepicker").Shim().DependsOn("Client/Vendor/jquery");
                 })
             );
             bundles.AddPerSubDirectory<ScriptBundle>(
-                "Infrastructure/Scripts/lang",
+                "Client/lang",
                 b => amdModuleCollection.AddModuleFromBundle(b)
             );
             bundles.Add<StylesheetBundle>(
-                "Infrastructure/Scripts/Vendor"
+                "Client/Vendor"
             );
         }
 

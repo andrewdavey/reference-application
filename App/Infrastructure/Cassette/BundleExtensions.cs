@@ -10,7 +10,7 @@ namespace App.Infrastructure.Cassette
             {
                 if (asset.Path.EndsWith(".htm") || asset.Path.EndsWith(".html"))
                 {
-                    asset.AddReference("~/Infrastructure/Scripts/App/addTemplate.js", 0);
+                    asset.AddReference("~/Client/Shared/addTemplate.js", 0);
                     asset.AddAssetTransformer(new ConvertHtmlTemplateToScript());
                 }
             }

@@ -2,38 +2,20 @@
 <html lang="en">
 <head>
     <title>MileStats Sample Application</title>
-    <link href="/Specs/jasmine/jasmine.css" type="text/css" rel="stylesheet"/>
+    <link href="/Client/Specs/jasmine/jasmine.css" type="text/css" rel="stylesheet"/>
+    $styles$
+    <script type="text/html" id="loading">Loading...</script>
+    <script>
+        var styleMap = $styleMap$;
+        var require = $requirejson$;
+    </script>
+    $scripts$
+    <script>
+        require(["Client/Specs"], function (module) {
+            module.init();
+        });
+    </script>
 </head>
-    <body>
-        <script type="text/html" id="loading">Loading...</script>
-        
-        
-        <script>
-            var styleMap = $styleMap$;
-            var require = {
-                paths: $paths$,
-                shim: {
-                    "Infrastructure/Scripts/Vendor/jquery.history": {
-                        deps: ["Infrastructure/Scripts/Vendor/jquery"],
-                        exports: "History"
-                    },
-                    "Infrastructure/Scripts/Vendor/bootstrap/js/bootstrap": {
-                        deps: ["Infrastructure/Scripts/Vendor/jquery"]
-                    },
-                    "Infrastructure/Scripts/Vendor/bootstrap/js/datepicker": {
-                        deps: ["Infrastructure/Scripts/Vendor/bootstrap/js/bootstrap"],
-                        exports: "bootstrap"
-                    }
-                }
-            };
-        </script>
-        <script src="/Infrastructure/Scripts/Vendor/require.js"></script>
-        <script>
-            $shims$
-
-            require(["Specs", "Infrastructure/Scripts/lang/$lang$"], function (module) {
-                module.init();
-            });
-        </script>
-    </body>
+<body>
+</body>
 </html>

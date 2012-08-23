@@ -19,7 +19,7 @@ using System;
 using System.Web;
 using System.Web.Security;
 
-namespace MileageStats.Web.Authentication
+namespace App.Infrastructure.Authentication
 {
     public class DefaultFormsAuthentication : IFormsAuthentication
     {
