@@ -2,6 +2,7 @@
 /// <reference path="Object.js" />
 /// <reference path="http.js" />
 /// <reference path="ViewModelStack.js" />
+/// <reference path="UrlStack.js" />
 /// <reference path="../Vendor/jquery.history.js" />
 /// <reference path="../Vendor/jquery.js" />
 /// <reference path="../Vendor/knockout.js" />
@@ -46,12 +47,7 @@ var Application = Object.inherit({
         this.viewModelStack
             .navigate(url)
             .done(function () {
-                var viewModels = this.viewModelStack.toArray();
-                // e.g. [ FillUps, VehicleMasterPage, App ]
-                for (var i = 1; i < viewModels.length; i++) {
-                    viewModels[i].content(viewModels[i - 1]);
-                }
-                this.content(viewModels[viewModels.length - 1]);
+                this.content(this.viewModelStack.rootViewModel());
                 this.updateStylesheets();
             }.bind(this));
     },

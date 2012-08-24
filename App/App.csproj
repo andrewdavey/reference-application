@@ -265,14 +265,15 @@
     <Content Include="Client\Shared\IframeSubmission.js" />
     <Content Include="Client\Shared\knockout-helpers.js" />
     <Content Include="Client\Shared\Modal.js" />
+    <Content Include="Client\Shared\UrlStack.js" />
     <Content Include="Client\Shared\validation\objectWithValidateableProperties.js" />
     <Content Include="Client\Shared\validation\validation-binding-handler.js" />
     <Content Include="Client\Shared\validation\validation-extender.js" />
     <Content Include="Client\Shared\validation\validators.js" />
-    <Content Include="Client\Shared\ViewDataStack.js" />
     <Content Include="Client\Shared\ViewModelStack.js" />
     <Content Include="Client\lang\en-GB\moment.js" />
     <Content Include="Client\lang\en-US\todo.js" />
+    <Content Include="Client\Specs\UrlStackSpecs.js" />
     <Content Include="Client\Vendor\bootstrap\css\datepicker.css" />
     <Content Include="Client\Vendor\bootstrap\js\datepicker.js" />
     <Content Include="Client\Vendor\moment.js" />
@@ -309,7 +310,6 @@
     <Content Include="Client\Specs\jasmine\jasmine.css" />
     <Content Include="Client\Specs\jasmine\jasmine.js" />
     <Content Include="Client\Specs\VehicleSummaryList.js" />
-    <Content Include="Client\Specs\ViewDataStackSpecs.js" />
     <Content Include="Client\Vehicles\Details\VehicleFormInputs.htm" />
     <Content Include="Client\Vehicles\FillUps\FillUp.js" />
     <Content Include="Client\Vehicles\FillUps\FillUpDetails.htm" />

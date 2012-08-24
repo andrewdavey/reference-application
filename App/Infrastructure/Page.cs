@@ -1,8 +1,11 @@
-﻿namespace App.Infrastructure
+﻿using Newtonsoft.Json;
+
+namespace App.Infrastructure
 {
     public class Page
     {
         public string HtmlFile { get; set; }
+        [JsonProperty("parent")]
         public string Master { get; set; }
         public string Title { get; set; }
         public string Script { get; set; }
