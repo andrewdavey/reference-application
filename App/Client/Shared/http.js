@@ -31,12 +31,22 @@ var http = (function () {
         }
     };
 
-    var ajaxRequest = function(action, data) {
+    var appendContentTypeToQueryString = function (url, contentType) {
+        // Chrome doesn't obey the HTTP Vary header when using the back button.
+        // http://code.google.com/p/chromium/issues/detail?id=94369
+        // So we have to differentiate requests by URL.
+        // Otherwise, application/json responses can be displayed in place of text/html!
+        return url + (url.indexOf("?") < 0 ? "?" : "&") + contentType;
+    };
+    
+    var ajaxRequest = function (action, data) {
+        var url = appendContentTypeToQueryString(action.url, "application/json");
+        
         var request = $.ajax({
             // Assign context for chained callbacks.
             context: this,
             type: action.method,
-            url: action.url,
+            url: url,
             // Send data as JSON.
             data: JSON.stringify(data, replaceJsonValues),
             beforeSend: function (xhr) {

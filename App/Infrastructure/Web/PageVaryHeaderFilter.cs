@@ -12,8 +12,8 @@ namespace App.Infrastructure.Web
 
         void VaryByContentType(HttpResponseMessage response)
         {
-            // Vary by Content-Type so that browsers cache HTML and JSON responses separately.
-            response.Headers.Vary.Add("Content-Type");
+            // Vary by Accept so that browsers cache HTML and JSON responses separately.
+            response.Headers.Vary.Add("Accept");
         }
     }
 }
