@@ -8,9 +8,8 @@ namespace App.Server.Vehicle
     {
         public object GetMasterPage()
         {
-            return new Page
+            return new Page("Vehicles/MasterPage")
             {
-                Script = "Client/Vehicles/MasterPage",
                 Data = new
                 {
                     vehicles = Url.Get<GetVehiclesController>()

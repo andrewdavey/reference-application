@@ -20,11 +20,10 @@ namespace App.Server.Vehicle.Reminders
         public object GetReminders(int vehicleId)
         {
             var reminders = getAllRemindersForVehicle.Execute(vehicleId).Where(r => !r.IsFulfilled);
-            
-            return new Page
+
+            return new Page("Vehicles/Reminders")
             {
                 Master = Url.Resource<GetVehicleMasterPageController>(),
-                Script = "Client/Vehicles/Reminders",
                 Data = new
                 {
                     // TODO: Seems like a nasty SELECT N+1 bug here!

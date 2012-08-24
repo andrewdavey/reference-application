@@ -178,6 +178,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\PageHelper.cs" />
     <Compile Include="Infrastructure\Web\FileWrapper.cs" />
     <Compile Include="Server\ReferenceData\GetCountriesController.cs" />
     <Compile Include="Infrastructure\Amd\AmdModuleCollection.cs" />

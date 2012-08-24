@@ -18,10 +18,9 @@ namespace App.Server.Vehicle
         public object GetVehicle(int vehicleId)
         {
             var vehicle = getVehicleById.Execute(1, vehicleId);
-            return new Page
+            return new Page("Vehicles/Details")
             {
                 Title = vehicle.Name,
-                Script = "Client/Vehicles/Details",
                 Master = Url.Resource<GetVehicleMasterPageController>(),
                 Data = new
                 {

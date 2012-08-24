@@ -7,10 +7,8 @@ namespace App.Specs
     {
         public object GetSpecs()
         {
-            return new Page
+            return new Page("Specs")
             {
-                Script = "Specs",
-                Stylesheet = "Specs",
                 Data = new {},
                 HtmlFile = "specs.html"
             };

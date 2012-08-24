@@ -26,9 +26,8 @@ namespace App.Server.Dashboard
             var statistics = getFleetSummaryStatistics.Execute(1);
             var reminders = GetReminders();
 
-            var resource = new Page
+            var resource = new Page("Dashboard")
             {
-                Script = "Client/Dashboard",
                 Data = new
                 {
                     statistics,

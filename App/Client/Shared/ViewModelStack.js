@@ -6,8 +6,9 @@ var ViewModelStack = UrlStack.inherit({
     init: function (app, http) {
         this.app = app;
         this.http = http;
-        this.viewModels = {};
-
+        this.viewModels = {}; // { "/page/url": view-model, ... }
+        this.stylesheets = {}; // { "/page/url": [ array-of-CSS-URLS, ... ], ... }
+        
         UrlStack.init.call(this, this.downloadUrl, this.disposeViewModel);
     },
     
@@ -41,6 +42,12 @@ var ViewModelStack = UrlStack.inherit({
         // Call prototype
         var process = UrlStack.processDownloadResponse.apply(this, arguments);
 
+        var useStylesheets = function() {
+            this.stylesheets[response.url] = response.body.stylesheets.map(function (url) {
+                return this.app.addStylesheet(url);
+            }, this);
+        };
+        
         var downloadModule = function () {
             // Use require.js to download the view model module.
             var moduleResult = $.Deferred();
@@ -66,6 +73,7 @@ var ViewModelStack = UrlStack.inherit({
         }.bind(this);
         
         return process
+            .pipe(useStylesheets)
             .pipe(downloadModule)
             .pipe(createViewModel)
             .pipe(setViewModelContent)
@@ -78,6 +86,11 @@ var ViewModelStack = UrlStack.inherit({
                 this.viewModels[url].dispose();
             }
             delete this.viewModels[url];
+        }
+        if (this.stylesheets[url]) {
+            this.stylesheets[url].forEach(function(stylesheet) {
+                stylesheet.remove();
+            });
         }
     },
     

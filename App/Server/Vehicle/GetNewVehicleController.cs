@@ -9,10 +9,9 @@ namespace App.Server.Vehicle
     {
         public object Get()
         {
-            return new Page
+            return new Page("Vehicles/New")
             {
                 Title = "New Vehicle",
-                Script = "Client/Vehicles/New",
                 Data = new
                 {
                     years = Url.Get<GetYearsController>(),

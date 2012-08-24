@@ -48,7 +48,6 @@ var Application = Object.inherit({
             .navigate(url)
             .done(function () {
                 this.content(this.viewModelStack.rootViewModel());
-                this.updateStylesheets();
             }.bind(this));
     },
 
@@ -56,55 +55,18 @@ var Application = Object.inherit({
         History.pushState(null, null, url);
     },
     
-    updateStylesheets: function () {
-        var currentViewModel = this.content();
+    addStylesheet: function (stylesheetUrl) {
         var head = document.querySelector("head");
+        var link = document.createElement("link");
+        link.setAttribute("type", "text/css");
+        link.setAttribute("rel", "stylesheet");
+        link.setAttribute("href", stylesheetUrl);
+        head.appendChild(link);
         
-        while (currentViewModel) {
-            if (currentViewModel.stylesheets) {
-                currentViewModel.stylesheets.forEach(function(url) {
-                    var existing = document.querySelector("link[href='" + url + "']");
-                    if (!existing) {
-                        var link = document.createElement("link");
-                        link.setAttribute("type", "text/css");
-                        link.setAttribute("rel", "stylesheet");
-                        link.setAttribute("href", url);
-                        head.appendChild(link);
-                    }
-                });
-            }
-            
-            if (currentViewModel.content) {
-                currentViewModel = currentViewModel.content();
-            } else {
-                currentViewModel = null;
-            }
-        }
-    },
-    
-    addPageStylesheet: function (stylesheetPath) {
-        var stylesheetUrls = styleMap[stylesheetPath];
-
-        var head = document.querySelector("head");
-        var links = stylesheetUrls.map(function(url) {
-            var link = document.createElement("link");
-            link.setAttribute("type", "text/css");
-            link.setAttribute("rel", "stylesheet");
-            link.setAttribute("href", url);
-            head.appendChild(link);
-            return link;
-        });
-        
-        this.currentPageStylesheets = links;
-    },
-    
-    removePageStylesheets: function () {
-        if (this.currentPageStylesheets) {
-            var head = document.querySelector("head");
-            this.currentPageStylesheets.forEach(function (linkElement) {
-                head.removeChild(linkElement);
-            });
-            this.currentPageStylesheets = [];
-        }
+        // Return an object we can use later to remove the stylesheet.
+        var remove = function () {
+            head.removeChild(link);
+        };
+        return { remove: remove };
     }
 });

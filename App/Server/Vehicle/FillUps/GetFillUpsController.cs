@@ -17,11 +17,10 @@ namespace App.Server.Vehicle.FillUps
         public object GetFillUps(int vehicleId)
         {
             var fillUps = getFillupsForVehicle.Execute(vehicleId);
-            return new Page
+            return new Page("Vehicles/FillUps")
             {
                 Title = "Fill ups",
                 Master = Url.Resource<GetVehicleMasterPageController>(),
-                Script = "Client/Vehicles/FillUps",
                 Data = new
                 {
                     fillUps,
