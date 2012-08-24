@@ -91,7 +91,7 @@ var ViewModelStack = UrlStack.inherit({
             });
     },
     
-    onPop: function (url) {
+    onUrlPopped: function (url) {
         this.disposeViewModelForUrl(url);
         this.removeStylesheetForUrl(url);
     },

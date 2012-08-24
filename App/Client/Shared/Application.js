@@ -31,8 +31,11 @@ var Application = Object.inherit({
 
     handleClick: function(event) {
         var clickedLink = event.srcElement || event.target;
-        var href = clickedLink.getAttribute("href");
-        if (href && href.indexOf("/") === 0) {
+        var href = clickedLink.getAttribute("href") || "";
+        var rel = clickedLink.getAttribute("rel") || "";
+        var isAppLink = href.indexOf("/") === 0;
+        var hijaxNotDisabled = !rel.match(/\bnohijax\b/);
+        if (href && isAppLink && hijaxNotDisabled) {
             event.preventDefault();
             History.pushState(null, null, href);
         }
@@ -61,6 +64,7 @@ var Application = Object.inherit({
         // Return an object we can use later to remove the stylesheet.
         var remove = function () {
             head.removeChild(link);
+            delete link;
         };
         return { remove: remove };
     }

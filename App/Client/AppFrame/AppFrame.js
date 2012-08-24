@@ -6,6 +6,7 @@ var AppFrame = Object.inherit({
     
     init: function (viewData) {
         this.links = viewData.links;
+        this.links.forEach(function (link) { link.rel = link.rel || null; });
         this.flashMessage = flashMessage;
         this.content = ko.observable();
     },
