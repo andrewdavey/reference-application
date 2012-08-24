@@ -14,7 +14,7 @@ var Application = Object.inherit({
         History.init();
         this.onHistoryStateChangeLoadPage();
         this.onAnyClickPushState();
-        this.loadPage(History.getPageUrl());
+        this.loadPage(History.getShortUrl(History.getPageUrl()));
         ko.applyBindings(this);
     },
     
