@@ -1,8 +1,7 @@
-﻿/// <reference path="jasmine/specs.js"/>
-/// <reference path="jasmine/matchers.js"/>
-/// <reference path="jasmine/jasmine.js"/>
-/// <reference path="jasmine/mockHttp.js"/>
-/// <reference path="../Shared/UrlStack.js"/>
+﻿/// <reference path="../jasmine/specs.js"/>
+/// <reference path="../jasmine/matchers.js"/>
+/// <reference path="../jasmine/jasmine.js"/>
+/// <reference path="~/Client/Shared/UrlStack.js"/>
 
 specs.define([], function() {
 

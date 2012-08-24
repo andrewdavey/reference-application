@@ -1,6 +1,6 @@
-﻿/// <reference path="jasmine/jasmine.js" />
-/// <reference path="jasmine/specs.js"/>
-/// <reference path="jasmine/mockHttp.js"/>
+﻿/// <reference path="../../jasmine/jasmine.js" />
+/// <reference path="../../jasmine/specs.js"/>
+/// <reference path="../../jasmine/mockHttp.js"/>
 /// <reference path="~/Client/Shared/EventHub.js" />
 
 specs.define(["Client/Vehicles/List"], function (module) {

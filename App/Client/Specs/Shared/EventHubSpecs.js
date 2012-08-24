@@ -1,5 +1,5 @@
-﻿/// <reference path="jasmine/specs.js" />
-/// <reference path="jasmine/jasmine.js" />
+﻿/// <reference path="../jasmine/specs.js" />
+/// <reference path="../jasmine/jasmine.js" />
 
 specs.define(["Client/Shared"], function(module) {
 

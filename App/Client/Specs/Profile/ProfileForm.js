@@ -1,7 +1,7 @@
-﻿/// <reference path="jasmine/jasmine.js" />
-/// <reference path="jasmine/matchers.js" />
-/// <reference path="jasmine/specs.js"/>
-/// <reference path="jasmine/mockHttp.js"/>
+﻿/// <reference path="../jasmine/jasmine.js" />
+/// <reference path="../jasmine/matchers.js" />
+/// <reference path="../jasmine/specs.js"/>
+/// <reference path="../jasmine/mockHttp.js"/>
 
 specs.define(["Client/Profile"], function (profile) {
     var ProfileForm = profile.ProfileForm;

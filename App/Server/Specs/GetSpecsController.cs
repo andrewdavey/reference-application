@@ -1,7 +1,7 @@
 ﻿using System.Web.Http;
 using App.Infrastructure;
 
-namespace App.Specs
+namespace App.Server.Specs
 {
     public class GetSpecsController : ApiController
     {
@@ -9,7 +9,6 @@ namespace App.Specs
         {
             return new Page("Specs")
             {
-                Data = new {},
                 HtmlFile = "specs.html"
             };
         }
