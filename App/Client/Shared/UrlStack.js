@@ -21,7 +21,7 @@ var UrlStack = Object.inherit({
         /// <param name="onUrlPopped">A callback function, called when a URL is popped from the stack.</param>
 
         this.urls = []; // the URL currently on the stack.
-        this.downloaded = {}; // the downloaded data for each URL.
+        this.downloaded = {}; // set of downloaded URLs { "/url1": true, "/url2": true }
         this.download = download;
         this.onUrlPopped = onUrlPopped;
     },
@@ -78,15 +78,11 @@ var UrlStack = Object.inherit({
         
         var process = $.Deferred();
         
-        this.recordDownloadedData(response.url, response.body);
+        this.downloaded[response.url] = true;
         response.parentUrl = response.body.parent;
 
         process.resolveWith(this, [response]);
         return process;
-    },
-    
-    recordDownloadedData: function (url, data) {
-        this.downloaded[url] = data;
     },
     
     contains: function (url) {
@@ -118,7 +114,7 @@ var UrlStack = Object.inherit({
     },
 
     removeUrl: function (url) {
-        this.onUrlPopped(url, this.downloaded[url]);
         delete this.downloaded[url];
+        this.onUrlPopped(url);
     }
 });

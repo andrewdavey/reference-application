@@ -19,8 +19,8 @@ specs.define([], function() {
             return $.Deferred().resolveWith(this, [stubUrlData[url]]);
         };
         var popped;
-        var onUrlPopped = function(url, data) {
-            popped.push({ url: url, data: data });
+        var onUrlPopped = function(url) {
+            popped.push(url);
         };
         
         beforeEach(function() {
@@ -41,7 +41,7 @@ specs.define([], function() {
 
                 it("downloads /page data", function () {
                     navigation.then(function() {
-                        expect(stack.downloaded["/page"]).toBe(stubUrlData["/page"]);
+                        expect(stack.downloaded["/page"]).toBeTruthy();
                     });
                 });
 
@@ -66,13 +66,13 @@ specs.define([], function() {
 
                 it("downloads /child data", function () {
                     navigation.then(function () {
-                        expect(stack.downloaded["/child"]).toBe(stubUrlData["/child"]);
+                        expect(stack.downloaded["/child"]).toBeTruthy();
                     });
                 });
 
                 it("downloads /parent data", function () {
                     navigation.then(function () {
-                        expect(stack.downloaded["/parent"]).toBe(stubUrlData["/parent"]);
+                        expect(stack.downloaded["/parent"]).toBeTruthy();
                     });
                 });
             });
@@ -84,7 +84,7 @@ specs.define([], function() {
                 });
 
                 it("pops /page", function () {
-                    expect(popped).toEqual([{ url: "/page", data: stubUrlData["/page"] }]);
+                    expect(popped).toEqual(["/page"]);
                 });
 
                 it("contains /parent and /child", function() {
@@ -99,7 +99,7 @@ specs.define([], function() {
                 });
 
                 it("only pops /child, not /parent", function() {
-                    expect(popped).toEqual([{ url: "/child", data: stubUrlData["/child"] }]);
+                    expect(popped).toEqual(["/child"]);
                 });
             });
         });
