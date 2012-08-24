@@ -18,6 +18,7 @@ var ViewModelStack = UrlStack.inherit({
 
     navigate: function (newUrl) {
         var navigation = UrlStack.navigate.call(this, newUrl);
+        this.hasSetPageTitle = false;
         navigation.done(function (commonParentUrl) {
             if (commonParentUrl) {
                 // The parent view model has not changed, but we've loaded a new child.
@@ -71,13 +72,23 @@ var ViewModelStack = UrlStack.inherit({
                 viewModel.content(childViewModel);
             }
         }.bind(this);
+
+        var setPageTitle = function () {
+            if (!this.hasSetPageTitle) {
+                document.title = response.body.title;
+                this.hasSetPageTitle = true;
+            }
+        }.bind(this);
         
         return process
+            .pipe(setPageTitle)
             .pipe(useStylesheets)
             .pipe(downloadModule)
             .pipe(createViewModel)
             .pipe(setViewModelContent)
-            .pipe(function () { return response; });
+            .pipe(function () {
+                return response;
+            });
     },
     
     onPop: function (url) {

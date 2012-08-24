@@ -23,7 +23,8 @@ namespace App.Server.Vehicle.Reminders
 
             return new Page("Vehicles/Reminders")
             {
-                Master = Url.Resource<GetVehicleMasterPageController>(),
+                Title = "Reminders",
+                MasterPage = Url.Resource<GetVehicleMasterPageController>(),
                 Data = new
                 {
                     // TODO: Seems like a nasty SELECT N+1 bug here!

@@ -28,6 +28,7 @@ namespace App.Server.Dashboard
 
             var resource = new Page("Dashboard")
             {
+                Title = "MileageStats Sample Application",
                 Data = new
                 {
                     statistics,

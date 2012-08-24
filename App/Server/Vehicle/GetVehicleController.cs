@@ -21,7 +21,7 @@ namespace App.Server.Vehicle
             return new Page("Vehicles/Details")
             {
                 Title = vehicle.Name,
-                Master = Url.Resource<GetVehicleMasterPageController>(),
+                MasterPage = Url.Resource<GetVehicleMasterPageController>(),
                 Data = new
                 {
                     name = vehicle.Name,

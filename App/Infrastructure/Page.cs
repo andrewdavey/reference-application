@@ -12,12 +12,14 @@ namespace App.Infrastructure
             var path = "Client/" + clientModule;
             Script = path;
             Stylesheets = Helper.GetStylesheetUrls(path).ToArray();
-            Master = "/appframe";
+            Title = "MileageStats Sample Application";
+            MasterPage = "/appframe";
         }
 
         public string HtmlFile { get; set; }
         [JsonProperty("parent")]
-        public string Master { get; set; }
+        public string MasterPage { get; set; }
+        [JsonProperty("title")]
         public string Title { get; set; }
         public string Script { get; set; }
         [JsonProperty("stylesheets")]

@@ -20,7 +20,7 @@ namespace App.Server.Vehicle.FillUps
             return new Page("Vehicles/FillUps")
             {
                 Title = "Fill ups",
-                Master = Url.Resource<GetVehicleMasterPageController>(),
+                MasterPage = Url.Resource<GetVehicleMasterPageController>(),
                 Data = new
                 {
                     fillUps,
