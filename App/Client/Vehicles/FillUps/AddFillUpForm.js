@@ -6,7 +6,7 @@
 /// <reference path="~/Client/Shared/Modal.js" />
 /// <reference path="~/Client/Shared/Object.js"/>
 
-var AddFillUpForm = Object.inherit({
+var AddFillUpForm = Base.inherit({
     
     templateId: "Client/Vehicles/FillUps/AddFillUpForm.htm",
     

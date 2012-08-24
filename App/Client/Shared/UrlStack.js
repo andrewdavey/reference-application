@@ -14,7 +14,7 @@
 // and update the stack to be:
 //     [ "/application", "/vehicles/masterpage", "/vehicle/456/reminders" ]
 
-var UrlStack = Object.inherit({
+var UrlStack = Base.inherit({
 
     init: function (download) {
         /// <param name="download">Function that downloads a URL and returns a deferred object representing the download.</param>

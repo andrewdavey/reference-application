@@ -3,7 +3,7 @@
 /// <reference path="~/Client/Vendor/moment.js"/>
 /// <reference path="AddReminderForm.js"/>
 
-var Reminder = Object.inherit({
+var Reminder = Base.inherit({
     init: function (data) {
         this.http = http;
         this.title = data.Title;

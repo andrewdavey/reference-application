@@ -2,7 +2,7 @@
 /// <reference path="~/Client/Shared/Object.js"/>
 /// <reference path="~/Client/Shared/knockout-helpers.js"/>
 
-var VehicleSummary = Object.inherit({
+var VehicleSummary = Base.inherit({
     init: function(data) {
         this.name = ko.observable(data.name);
         this.photo = ko.observable(data.photo ? data.photo.url : "");

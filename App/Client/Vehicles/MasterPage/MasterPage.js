@@ -1,7 +1,7 @@
 ﻿/// <reference path="~/Client/Vendor/knockout.js"/>
 /// <reference path="../List/VehicleSummaryList.js" />
 
-var MasterPage = Object.inherit({
+var MasterPage = Base.inherit({
     
     init: function (viewData, eventHub) {
         this.vehicles = VehicleSummaryList.create(viewData.vehicles, eventHub);

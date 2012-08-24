@@ -1,4 +1,4 @@
-﻿var EventHub = Object.inherit({
+﻿var EventHub = Base.inherit({
     init: function () {
         this.handlers = { };
     },

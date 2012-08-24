@@ -3,7 +3,7 @@
 /// <reference path="FillUp.js"/>
 /// <reference path="AddFillUpForm.js" />
 
-var FillUpsPage = Object.inherit({
+var FillUpsPage = Base.inherit({
     
     templateId: "Client/Vehicles/FillUps/FillUpsPage.htm",
     

@@ -4,7 +4,7 @@
 /// <reference path="~/Client/Shared/validation/objectWithValidateableProperties.js"/>
 /// <reference path="~/Client/Shared/Modal.js" />
 
-var AddReminderForm = Object.inherit({
+var AddReminderForm = Base.inherit({
     init: function (viewData) {
         this.http = http;
         this.addCommand = viewData.add;

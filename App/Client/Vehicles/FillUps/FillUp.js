@@ -1,7 +1,7 @@
 ﻿/// <reference path="~/Client/Vendor/moment.js"/>
 /// <reference path="~/Client/Shared/Object.js"/>
 
-var FillUp = Object.inherit({
+var FillUp = Base.inherit({
     init: function (data) {
         var units = ["gallon", "litre"];
         var currency = "$";

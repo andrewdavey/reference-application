@@ -4,7 +4,7 @@
 /// <reference path="~/Client/Shared/validation/objectWithValidateableProperties.js"/>
 /// <reference path="~/Client/Vendor/knockout.js"/>
 
-var EditVehicleForm = Object.inherit({
+var EditVehicleForm = Base.inherit({
 
     templateId: "Client/Vehicles/Details/EditVehicleForm.htm",
 

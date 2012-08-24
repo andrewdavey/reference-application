@@ -3,7 +3,7 @@
 /// <reference path="~/Client/Vendor/knockout.js"/>
 /// <reference path="VehicleSummary.js" />
 
-var VehicleSummaryList = Object.inherit({
+var VehicleSummaryList = Base.inherit({
     
     init: function (vehiclesLink, eventHub) {
         this.http = http;

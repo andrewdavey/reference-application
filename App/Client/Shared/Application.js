@@ -7,7 +7,7 @@
 /// <reference path="../Vendor/jquery.js" />
 /// <reference path="../Vendor/knockout.js" />
 
-var Application = Object.inherit({
+var Application = Base.inherit({
     init: function() {
         this.viewModelStack = ViewModelStack.create(this, http);
         this.content = ko.observable({ templateId: "loading" });

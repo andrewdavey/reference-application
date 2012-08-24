@@ -1,6 +1,6 @@
 ﻿/// <reference path="Object.js" />
 
-var Event = Object.inherit({
+var Event = Base.inherit({
 
     init: function () {
         this.handlers = [];

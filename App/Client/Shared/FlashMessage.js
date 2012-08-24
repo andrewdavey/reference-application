@@ -1,7 +1,7 @@
 ﻿/// <reference path="../Vendor/knockout.js" />
 /// <reference path="Object.js" />
 
-var FlashMessage = Object.inherit({
+var FlashMessage = Base.inherit({
 
     init: function () {
         this.message = ko.observable();

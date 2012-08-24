@@ -1,4 +1,4 @@
-﻿var IframeSubmission = Object.inherit({
+﻿var IframeSubmission = Base.inherit({
 
     init: function (method, url, data, files, context) {
         this.files = files;

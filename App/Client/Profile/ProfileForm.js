@@ -3,7 +3,7 @@
 /// <reference path="~/Client/Shared/http.js"/>
 /// <reference path="~/Client/Shared/validation/objectWithValidateableProperties.js" />
 
-var ProfileForm = Object.inherit({
+var ProfileForm = Base.inherit({
     
     init: function (data) {
         this.http = http;

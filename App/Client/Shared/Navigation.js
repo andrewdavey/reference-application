@@ -1,7 +1,7 @@
 ﻿/// <reference path="../Vendor/knockout.js" />
 /// <reference path="Object.js" />
 
-var Navigation = Object.inherit({
+var Navigation = Base.inherit({
 
     init: function (app) {
         this.app = app;

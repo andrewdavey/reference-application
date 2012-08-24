@@ -4,7 +4,7 @@
 /// <reference path="Reminder.js"/>
 /// <reference path="AddReminderForm.js"/>
 
-var RemindersPage = Object.inherit({
+var RemindersPage = Base.inherit({
     init: function (viewData, flashMessage) {
         this.flashMessage = flashMessage;
         this.reminders = ko.observableArray(viewData.reminders.map(this.createReminderViewModel, this));

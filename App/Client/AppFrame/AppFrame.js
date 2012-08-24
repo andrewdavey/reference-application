@@ -2,7 +2,7 @@
 /// <reference path="~/Client/Shared/EventHub.js"/>
 /// <reference path="~/Client/Shared/FlashMessage.js"/>
 
-var AppFrame = Object.inherit({
+var AppFrame = Base.inherit({
     
     init: function (viewData) {
         this.links = viewData.links;

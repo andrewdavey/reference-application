@@ -4,7 +4,7 @@
 /// <reference path="~/Client/Shared/knockout-helpers.js"/>
 /// <reference path="EditVehicleForm.js" />
 
-var Vehicle = Object.inherit({
+var Vehicle = Base.inherit({
 
     init: function (viewData, app, eventHub, flashMessage) {
         this.app = app;

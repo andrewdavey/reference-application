@@ -4,7 +4,7 @@
 
 // Creating a Modal displays a modal dialog UI.
 // The contents are rendered from a template, which is data bound to a view model.
-var Modal = Object.inherit({
+var Modal = Base.inherit({
     
     init: function (viewModel, templateId) {
         this.viewModel = viewModel;
