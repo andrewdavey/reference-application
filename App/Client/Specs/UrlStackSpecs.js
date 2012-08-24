@@ -25,7 +25,8 @@ specs.define([], function() {
         
         beforeEach(function() {
             popped = [];
-            stack = UrlStack.create(download, onUrlPopped);
+            stack = UrlStack.create(download);
+            stack.onUrlPopped = onUrlPopped;
         });
 
         describe("empty UrlStack", function() {

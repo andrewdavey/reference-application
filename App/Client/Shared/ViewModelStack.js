@@ -9,7 +9,7 @@ var ViewModelStack = UrlStack.inherit({
         this.viewModels = {}; // { "/page/url": view-model, ... }
         this.stylesheets = {}; // { "/page/url": [ array-of-CSS-URLS, ... ], ... }
         
-        UrlStack.init.call(this, this.downloadUrl, this.disposeViewModel);
+        UrlStack.init.call(this, this.downloadUrl, this.onPop);
     },
     
     downloadUrl: function (url) {
@@ -80,18 +80,24 @@ var ViewModelStack = UrlStack.inherit({
             .pipe(function () { return response; });
     },
     
-    disposeViewModel: function (url) {
-        if (this.viewModels[url]) {
-            if (typeof this.viewModels[url].dispose === "function") {
-                this.viewModels[url].dispose();
-            }
-            delete this.viewModels[url];
+    onPop: function (url) {
+        this.disposeViewModelForUrl(url);
+        this.removeStylesheetForUrl(url);
+    },
+    
+    disposeViewModelForUrl: function (url) {
+        var viewModel = this.viewModels[url];
+        if (typeof viewModel.dispose === "function") {
+            viewModel.dispose();
         }
-        if (this.stylesheets[url]) {
-            this.stylesheets[url].forEach(function(stylesheet) {
-                stylesheet.remove();
-            });
-        }
+        delete this.viewModels[url];
+    },
+    
+    removeStylesheetForUrl: function (url) {
+        var stylesheetsForUrl = this.stylesheets[url];
+        stylesheetsForUrl.forEach(function (stylesheet) {
+            stylesheet.remove();
+        });
     },
     
     rootViewModel: function () {

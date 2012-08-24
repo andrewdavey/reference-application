@@ -16,14 +16,12 @@
 
 var UrlStack = Object.inherit({
 
-    init: function (download, onUrlPopped) {
+    init: function (download) {
         /// <param name="download">Function that downloads a URL and returns a deferred object representing the download.</param>
-        /// <param name="onUrlPopped">A callback function, called when a URL is popped from the stack.</param>
 
         this.urls = []; // the URL currently on the stack.
         this.downloaded = {}; // set of downloaded URLs { "/url1": true, "/url2": true }
         this.download = download;
-        this.onUrlPopped = onUrlPopped;
     },
 
     navigate: function (newUrl) {
@@ -115,6 +113,8 @@ var UrlStack = Object.inherit({
 
     removeUrl: function (url) {
         delete this.downloaded[url];
-        this.onUrlPopped(url);
+        if (typeof this.onUrlPopped === "function") {
+            this.onUrlPopped(url);
+        }
     }
 });
