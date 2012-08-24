@@ -1,5 +1,4 @@
 ﻿/// <reference path="~/Client/Vendor/knockout.js"/>
-/// <reference path="~/Client/Shared/Application.js"/>
 /// <reference path="~/Client/Shared/EventHub.js"/>
 /// <reference path="~/Client/Shared/FlashMessage.js"/>
 

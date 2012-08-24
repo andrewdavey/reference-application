@@ -262,8 +262,6 @@
     <Content Include="Client\AppFrame\AppFrame.js" />
     <Content Include="Client\AppFrame\init.js" />
     <Content Include="Client\AppFrame\NavBar.html" />
-    <Content Include="Client\Application\MileageStatsApplication.css" />
-    <Content Include="Client\Application\MileageStatsApplication.htm" />
     <Content Include="Client\Shared\as-extender.js" />
     <Content Include="Client\Shared\bindingHandlers\datepicker.js" />
     <Content Include="Client\Shared\EventHub.js" />
@@ -283,7 +281,6 @@
     <Content Include="Client\Vendor\bootstrap\css\datepicker.css" />
     <Content Include="Client\Vendor\bootstrap\js\datepicker.js" />
     <Content Include="Client\Vendor\moment.js" />
-    <Content Include="Client\Application\MileageStatsApplication.js" />
     <Content Include="specs.html" />
     <Content Include="Client\Shared\addTemplate.js" />
     <Content Include="Client\Vendor\bootstrap\css\bootstrap.css" />
