@@ -3,7 +3,17 @@
 /// <reference path="jasmine/jasmine.js"/>
 /// <reference path="jasmine/mockHttp.js"/>
 
-specs.define(["Client/Vehicles/FillUps"], function (module) {
+specs.define(["Client/Vehicles/FillUps", "Client/Shared"], function (module, shared) {
+
+    // Stub out the Modal constructor, since the real object creates UI.
+    shared.Modal.create = function() {
+        return {
+            showing: $.Deferred(),
+            close: function () { },
+            closeWithResult: function () {}
+        };
+    };
+
     var AddFillUpForm = module.AddFillUpForm;
     
     describe("AddFillUpForm", function () {
@@ -14,6 +24,7 @@ specs.define(["Client/Vehicles/FillUps"], function (module) {
                 moment.fn.sod = function() { return moment(new Date(2012, 6, 22, 0, 0, 0)); };
             });
             form = AddFillUpForm.create({ method: "post", url: "/fillups" });
+            form.show();
         });
 
 
