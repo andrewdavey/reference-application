@@ -40,7 +40,7 @@ namespace App
 
         void AddPageBundles()
         {
-            AddPageBundle("Application");
+            AddPageBundle("AppFrame");
             AddPageBundle("Dashboard");
             AddPageBundle("Profile");
             AddPageBundlePerSubDirectory("Vehicles"); // Details, FillUps, List, etc.

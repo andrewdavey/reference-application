@@ -4,19 +4,14 @@
         <title>MileageStats Sample Application</title>
         $styles$
         <script type="text/html" id="loading">Loading...</script>
-        <script>
-            var styleMap = $styleMap$;
-            var require = $requirejson$;
-        </script>
         $scripts$
         <script>
-            require(["Client/Application"], function (module) {
-                var app = module.MileageStatsApplication.create(document);
-                app.start();
+            require(["Client/Shared"], function (module) {
+                module.Application.create();
             });
         </script>
     </head>
-    <body data-bind="template: { name: templateId }" style="padding-top: 60px">
+    <body data-bind="template: { name: content().templateId, data: content }">
         Loading...
     </body>
 </html>

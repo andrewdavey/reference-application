@@ -19,3 +19,5 @@ var FlashMessage = Object.inherit({
     }
 
 });
+
+var flashMessage = FlashMessage.create();

@@ -23,6 +23,7 @@ namespace App
             routes.RouteExistingFiles = true;
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            AppFrame();
             Dashboard();
             Vehicles();
             FillUps();
@@ -30,6 +31,11 @@ namespace App
             Profile();
             ReferenceData();
             Specs();
+        }
+
+        void AppFrame()
+        {
+            routes.Resource("AppFrame", "appframe");
         }
 
         void Dashboard()

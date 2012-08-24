@@ -1,21 +1,15 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>MileStats Sample Application</title>
-    <link href="/Client/Specs/jasmine/jasmine.css" type="text/css" rel="stylesheet"/>
-    $styles$
-    <script type="text/html" id="loading">Loading...</script>
-    <script>
-        var styleMap = $styleMap$;
-        var require = $requirejson$;
-    </script>
-    $scripts$
-    <script>
-        require(["Client/Specs"], function (module) {
-            module.init();
-        });
-    </script>
-</head>
-<body>
-</body>
+    <head>
+        <title>Specs</title>
+        <link href="/Client/Specs/jasmine/jasmine.css" type="text/css" rel="stylesheet" />
+        $scripts$
+        <script>
+            require(["Client/Specs"], function (module) {
+                module.init();
+            });
+        </script>
+    </head>
+    <body>
+    </body>
 </html>

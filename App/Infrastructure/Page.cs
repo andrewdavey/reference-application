@@ -12,6 +12,7 @@ namespace App.Infrastructure
             var path = "Client/" + clientModule;
             Script = path;
             Stylesheets = Helper.GetStylesheetUrls(path).ToArray();
+            Master = "/appframe";
         }
 
         public string HtmlFile { get; set; }

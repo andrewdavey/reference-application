@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using App.Infrastructure.Amd;
-using App.Infrastructure.Cassette;
 using Cassette.Scripts;
 using Cassette.Stylesheets;
 using Cassette.Views;
@@ -66,9 +65,11 @@ namespace App.Infrastructure.Web
 
                 html = html.Replace("$lang$", page.Language);
                 html = html.Replace("$styles$", Bundles.RenderStylesheets().ToHtmlString());
-                html = html.Replace("$scripts$", Bundles.RenderScripts().ToHtmlString());
-                html = html.Replace("$styleMap$", StylesheetPathProvider.PathMapJson);
-                html = html.Replace("$requirejson$", JsonConvert.SerializeObject(AmdModuleCollection.Instance.Require));
+                var requireJson = "<script>var require=" + 
+                                  JsonConvert.SerializeObject(AmdModuleCollection.Instance.Require) +
+                                  ";</script>";
+                var scripts = Bundles.RenderScripts().ToHtmlString();
+                html = html.Replace("$scripts$", requireJson + scripts);
 
                 var bytes = Encoding.UTF8.GetBytes(html);
                 await writeStream.WriteAsync(bytes, 0, bytes.Length);

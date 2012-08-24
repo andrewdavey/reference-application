@@ -1,5 +1,7 @@
 ﻿/// <reference path="DashboardViewModel.js"/>
+/// <reference path="../Shared/FlashMessage.js"/>
+/// <reference path="../Shared/EventHub.js"/>
 
-var init = function (pageData, app) {
-    return DashboardViewModel.create(pageData, app.flashMessage, app.eventHub);
+var init = function (pageData) {
+    return DashboardViewModel.create(pageData, flashMessage, eventHub);
 };

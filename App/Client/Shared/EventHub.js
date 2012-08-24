@@ -18,3 +18,5 @@
         });
     }
 });
+
+var eventHub = EventHub.create();

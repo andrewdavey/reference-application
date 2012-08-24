@@ -41,7 +41,7 @@ var Vehicle = Object.inherit({
             years: this.years,
             save: this.saveCommand
         };
-        var form = EditVehicleForm.create(formData, this.app);
+        var form = EditVehicleForm.create(formData, this.flashMessage);
         form.show()
             .done(this.updateProperties.bind(this));
     },

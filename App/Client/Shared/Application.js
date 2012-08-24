@@ -8,21 +8,16 @@
 /// <reference path="../Vendor/knockout.js" />
 
 var Application = Object.inherit({
-    init: function(document) {
-        this.document = document;
+    init: function() {
         this.viewModelStack = ViewModelStack.create(this, http);
-        this.pageLoaded = Event.create();
         this.content = ko.observable({ templateId: "loading" });
-    },
-    
-    start: function() {
         History.init();
         this.onHistoryStateChangeLoadPage();
         this.onAnyClickPushState();
         this.loadPage(History.getPageUrl());
         ko.applyBindings(this);
     },
-
+    
     onHistoryStateChangeLoadPage: function() {
         History.Adapter.bind(window, "statechange", function() {
             var state = History.getState();
@@ -31,7 +26,7 @@ var Application = Object.inherit({
     },
     
     onAnyClickPushState: function() {
-        this.document.addEventListener("click", this.handleClick.bind(this), false);
+        document.addEventListener("click", this.handleClick.bind(this), false);
     },
 
     handleClick: function(event) {

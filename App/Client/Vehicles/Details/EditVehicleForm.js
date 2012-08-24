@@ -8,9 +8,9 @@ var EditVehicleForm = Object.inherit({
 
     templateId: "Client/Vehicles/Details/EditVehicleForm.htm",
 
-    init: function (viewData, app) {
+    init: function (viewData, flashMessage) {
         this.viewData = viewData;
-        this.app = app;
+        this.flashMessage = flashMessage;
         this.http = http;
         this.saveCommand = viewData.save;
 
@@ -137,7 +137,7 @@ var EditVehicleForm = Object.inherit({
     },
 
     saved: function (vehicleData) {
-        this.app.flashMessage.show("Saved");
+        this.flashMessage.show("Saved");
         this.close(vehicleData);
     },
     

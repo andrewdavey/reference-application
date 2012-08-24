@@ -180,6 +180,7 @@
   <ItemGroup>
     <Compile Include="Infrastructure\PageHelper.cs" />
     <Compile Include="Infrastructure\Web\FileWrapper.cs" />
+    <Compile Include="Server\GetAppFrameController.cs" />
     <Compile Include="Server\ReferenceData\GetCountriesController.cs" />
     <Compile Include="Infrastructure\Amd\AmdModuleCollection.cs" />
     <Compile Include="Infrastructure\Amd\DebugAmdModuleFromBundle.cs" />
@@ -199,7 +200,6 @@
     <Compile Include="Infrastructure\Amd\StringAssetTransformer.cs" />
     <Compile Include="Infrastructure\Amd\VendorAmdModule.cs" />
     <Compile Include="Infrastructure\Cassette\BundleVisitor.cs" />
-    <Compile Include="Infrastructure\Cassette\StylesheetPathProvider.cs" />
     <Compile Include="Infrastructure\Web\ModelStateDictionaryFormatter.cs" />
     <Compile Include="Infrastructure\Web\ModelStateHelpers.cs" />
     <Compile Include="Infrastructure\Web\OverrideableHttpMethodConstraint.cs" />
@@ -257,6 +257,11 @@
   <ItemGroup>
     <Compile Include="RouteConfig.cs" />
     <Content Include="app.html" />
+    <Content Include="Client\AppFrame\AppFrame.css" />
+    <Content Include="Client\AppFrame\AppFrame.htm" />
+    <Content Include="Client\AppFrame\AppFrame.js" />
+    <Content Include="Client\AppFrame\init.js" />
+    <Content Include="Client\AppFrame\NavBar.html" />
     <Content Include="Client\Application\MileageStatsApplication.css" />
     <Content Include="Client\Application\MileageStatsApplication.htm" />
     <Content Include="Client\Shared\as-extender.js" />
@@ -299,18 +304,18 @@
     <Content Include="Client\Vendor\knockout.js" />
     <Content Include="Client\Vendor\require.js" />
     <Content Include="Client\Profile\ProfileForm.js" />
-    <Content Include="Client\Specs\Shared\as-extender.js" />
+    <Content Include="Client\Specs\Shared\as-extender-specs.js" />
     <Content Include="Client\Specs\Shared\EventHubSpecs.js" />
     <Content Include="Client\Specs\jasmine\mockHttp.js" />
     <Content Include="Client\Specs\jasmine\specs.js" />
     <Content Include="Client\Specs\jasmine\matchers.js" />
-    <Content Include="Client\Specs\Vehicles\FillUps\AddFillUpForm.js" />
-    <Content Include="Client\Specs\Profile\ProfileForm.js" />
+    <Content Include="Client\Specs\Vehicles\FillUps\AddFillUpFormSpecs.js" />
+    <Content Include="Client\Specs\Profile\ProfileFormSpecs.js" />
     <Content Include="Client\Specs\jasmine\init.js" />
     <Content Include="Client\Specs\jasmine\jasmine-html.js" />
     <Content Include="Client\Specs\jasmine\jasmine.css" />
     <Content Include="Client\Specs\jasmine\jasmine.js" />
-    <Content Include="Client\Specs\Vehicles\List\VehicleSummaryList.js" />
+    <Content Include="Client\Specs\Vehicles\List\VehicleSummaryListSpecs.js" />
     <Content Include="Client\Vehicles\Details\VehicleFormInputs.htm" />
     <Content Include="Client\Vehicles\FillUps\FillUp.js" />
     <Content Include="Client\Vehicles\FillUps\FillUpDetails.htm" />
