@@ -265,6 +265,7 @@
     <Content Include="Client\AppFrame\init.js" />
     <Content Include="Client\AppFrame\NavBar.html" />
     <Content Include="Client\AppFrame\_readme.txt" />
+    <Content Include="Client\Dashboard\_readme.txt" />
     <Content Include="Client\Profile\init.js" />
     <Content Include="Client\Profile\ProfilePage.htm" />
     <Content Include="Client\Profile\ProfilePage.js" />
@@ -286,6 +287,7 @@
     <Content Include="Client\Shared\ViewModelStack.js" />
     <Content Include="Client\lang\en-GB\moment.js" />
     <Content Include="Client\lang\en-US\todo.js" />
+    <Content Include="Client\Specs\Dashboard\DashboardSpecs.js" />
     <Content Include="Client\Specs\Shared\BaseSpecs.js" />
     <Content Include="Client\Specs\Shared\ko\converters\money-specs.js" />
     <Content Include="Client\Specs\Shared\UrlStackSpecs.js" />
@@ -340,7 +342,7 @@
     <Content Include="Client\Vehicles\New\init.js" />
     <Content Include="Client\Vehicles\New\page.css" />
     <Content Include="Client\Dashboard\dashboard.css" />
-    <Content Include="Client\Dashboard\DashboardViewModel.js" />
+    <Content Include="Client\Dashboard\Dashboard.js" />
     <Content Include="Client\Dashboard\reminders.htm" />
     <Content Include="Client\Dashboard\statistics.htm" />
     <Content Include="Client\Dashboard\init.js" />

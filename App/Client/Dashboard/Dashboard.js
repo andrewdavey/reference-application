@@ -4,7 +4,7 @@
 /// <reference path="../Profile/ProfileForm.js" />
 /// <reference path="../Vehicles/List/VehicleSummaryList.js" />
 
-var DashboardViewModel = Base.inherit({
+var Dashboard = Base.inherit({
 
     templateId: "Client/Dashboard/dashboard.htm",
 
