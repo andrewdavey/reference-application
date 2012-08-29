@@ -1,4 +1,4 @@
-﻿/// <reference path="Object.js" />
+﻿/// <reference path="Base.js" />
 
 var Event = Base.inherit({
 

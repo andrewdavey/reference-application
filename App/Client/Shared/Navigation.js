@@ -1,5 +1,5 @@
 ﻿/// <reference path="../Vendor/knockout.js" />
-/// <reference path="Object.js" />
+/// <reference path="Base.js" />
 
 var Navigation = Base.inherit({
 

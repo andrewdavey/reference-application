@@ -23,6 +23,7 @@ namespace App.Server
             var links = new List<object>
             {
                 new {text = "Dashboard", url = "/"},
+                new {text = "Profile", url = "/profile"},
                 new {text = "Log Out", url = "#"}
             };
             if (HttpContext.Current != null && HttpContext.Current.IsDebuggingEnabled)

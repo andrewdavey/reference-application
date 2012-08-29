@@ -1,5 +1,5 @@
 ﻿/// <reference path="Event.js" />
-/// <reference path="Object.js" />
+/// <reference path="Base.js" />
 /// <reference path="http.js" />
 /// <reference path="ViewModelStack.js" />
 /// <reference path="UrlStack.js" />

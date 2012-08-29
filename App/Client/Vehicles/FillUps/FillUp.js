@@ -1,5 +1,5 @@
 ﻿/// <reference path="~/Client/Vendor/moment.js"/>
-/// <reference path="~/Client/Shared/Object.js"/>
+/// <reference path="~/Client/Shared/Base.js"/>
 
 var FillUp = Base.inherit({
     init: function (data) {

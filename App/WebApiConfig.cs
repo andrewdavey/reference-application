@@ -11,6 +11,8 @@ namespace App
         {
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
             GlobalConfiguration.Configuration.Formatters.Add(new HtmlFormatter());
+            GlobalConfiguration.Configuration.Formatters.Insert(0, new PageJsonFormatter());
+            GlobalConfiguration.Configuration.Formatters.Insert(0, new CustomJsonMediaTypeFormatter());
             GlobalConfiguration.Configuration.Formatters.Insert(0, new ModelStateDictionaryFormatter());
             GlobalConfiguration.Configuration.Filters.Add(new PageLanguageFilter());
             GlobalConfiguration.Configuration.Filters.Add(new PageVaryHeaderFilter());

@@ -1,5 +1,5 @@
 ﻿/// <reference path="~/Client/Vendor/knockout.js"/>
-/// <reference path="~/Client/Shared/Object.js"/>
+/// <reference path="~/Client/Shared/Base.js"/>
 /// <reference path="FillUp.js"/>
 /// <reference path="AddFillUpForm.js" />
 

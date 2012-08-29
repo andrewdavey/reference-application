@@ -51,8 +51,7 @@ var http = (function () {
             data: JSON.stringify(data, replaceJsonValues),
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Content-Type", "application/json");
-                // We want the server to send back responses as JSON.
-                xhr.setRequestHeader("Accept", "application/json");
+                xhr.setRequestHeader("Accept", action.accept || "application/json");
             }
         });
 

@@ -1,4 +1,4 @@
-﻿/// <reference path="~/Client/Shared/Object.js"/>
+﻿/// <reference path="~/Client/Shared/Base.js"/>
 /// <reference path="~/Client/Shared/http.js"/>
 /// <reference path="~/Client/Shared/Modal.js"/>
 /// <reference path="~/Client/Shared/validation/objectWithValidateableProperties.js"/>

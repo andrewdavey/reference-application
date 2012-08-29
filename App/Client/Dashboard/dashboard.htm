@@ -1,9 +1,10 @@
 ﻿<div class="row">
     
     <div class="span3">
-        <!-- ko if: profile -->
-        <section data-bind="template: { data: profile, name: 'Client/Profile/ProfileForm.htm' }"></section>
-        <!-- /ko -->
+        <section data-bind="if: profile">
+            <h2>Complete your registration</h2>
+            <!-- ko template: { data: profile, name: 'Client/Profile/ProfileForm.htm' } --><!-- /ko -->
+        </section>
 
         <section data-bind="template: { data: statistics, name: 'Client/Dashboard/statistics.htm' }"></section>
         <section data-bind="template: { data: reminders, name: 'Client/Dashboard/reminders.htm' }"></section>

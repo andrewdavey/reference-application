@@ -1,5 +1,5 @@
 ﻿/// <reference path="~/Client/Shared/http.js"/>
-/// <reference path="~/Client/Shared/Object.js"/>
+/// <reference path="~/Client/Shared/Base.js"/>
 /// <reference path="~/Client/Vendor/knockout.js"/>
 /// <reference path="../Profile/ProfileForm.js" />
 /// <reference path="../Vehicles/List/VehicleSummaryList.js" />
@@ -38,10 +38,10 @@ var DashboardViewModel = Base.inherit({
     },
     
     displayProfileFormIfProfileIncomplete: function (profileData) {
-        if (profileData.name) return;
+        if (profileData.hasRegistered) return;
         
         var profileForm = ProfileForm.create(profileData);
-        profileForm.saved = this.hideProfile.bind(this);
+        profileForm.onSaved.subscribe(this.hideProfile.bind(this));
         this.profile(profileForm);
     },
     

@@ -4,7 +4,7 @@
 /// <reference path="~/Client/Shared/validation/validation-extender.js" />
 /// <reference path="~/Client/Shared/validation/objectWithValidateableProperties.js" />
 /// <reference path="~/Client/Shared/Modal.js" />
-/// <reference path="~/Client/Shared/Object.js"/>
+/// <reference path="~/Client/Shared/Base.js"/>
 
 var AddFillUpForm = Base.inherit({
     

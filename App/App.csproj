@@ -180,6 +180,7 @@
   <ItemGroup>
     <Compile Include="Infrastructure\PageHelper.cs" />
     <Compile Include="Infrastructure\Web\FileWrapper.cs" />
+    <Compile Include="Infrastructure\Web\PageJsonFormatter.cs" />
     <Compile Include="Server\GetAppFrameController.cs" />
     <Compile Include="Server\ReferenceData\GetCountriesController.cs" />
     <Compile Include="Infrastructure\Amd\AmdModuleCollection.cs" />
@@ -262,6 +263,9 @@
     <Content Include="Client\AppFrame\AppFrame.js" />
     <Content Include="Client\AppFrame\init.js" />
     <Content Include="Client\AppFrame\NavBar.html" />
+    <Content Include="Client\Profile\init.js" />
+    <Content Include="Client\Profile\ProfilePage.htm" />
+    <Content Include="Client\Profile\ProfilePage.js" />
     <Content Include="Client\Shared\as-extender.js" />
     <Content Include="Client\Shared\bindingHandlers\datepicker.js" />
     <Content Include="Client\Shared\EventHub.js" />
@@ -293,7 +297,7 @@
     <Content Include="Client\Shared\Event.js" />
     <Content Include="Client\Shared\FlashMessage.js" />
     <Content Include="Client\Shared\Navigation.js" />
-    <Content Include="Client\Shared\Object.js" />
+    <Content Include="Client\Shared\Base.js" />
     <Content Include="Client\Vendor\ScriptBundle.txt" />
     <Content Include="Client\Vendor\domReady.js" />
     <Content Include="Client\Vendor\jquery.history.js" />
