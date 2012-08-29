@@ -22,8 +22,6 @@ var AddReminderForm = Base.inherit({
     },
     
     initValidation: function () {
-        this.validate = objectWithValidateableProperties.validate;
-        
         this.title.extend({
             validation: { required: "Title is required" }
         });
@@ -83,4 +81,4 @@ var AddReminderForm = Base.inherit({
             alert("There was a problem adding the reminder. Please try again.");
         }
     }
-});
+}).mixin(objectWithValidateableProperties);

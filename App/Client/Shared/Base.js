@@ -27,4 +27,8 @@
 
         return prototype;
     };
+    Base.mixin = function(additionalProperties) {
+        copyOwnProperties(additionalProperties, this);
+        return this;
+    };
 } ());

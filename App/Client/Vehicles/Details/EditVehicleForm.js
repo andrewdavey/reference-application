@@ -39,8 +39,6 @@ var EditVehicleForm = Base.inherit({
     },
     
     initValidation: function () {
-        this.validate = objectWithValidateableProperties.validate;
-        
         this.name.extend({
             validation: {
                 required: "Name is required"
@@ -144,4 +142,4 @@ var EditVehicleForm = Base.inherit({
     cancel: function () {
         this.modal.close();
     }
-});
+}).mixin(objectWithValidateableProperties);

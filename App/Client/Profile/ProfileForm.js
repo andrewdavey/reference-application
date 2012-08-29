@@ -37,7 +37,6 @@ var ProfileForm = Base.inherit({
     },
     
     initValidation: function () {
-        this.validate = objectWithValidateableProperties.validate;
         this.name.extend({
             validation: {
                 required: "Name is required"
@@ -59,4 +58,4 @@ var ProfileForm = Base.inherit({
     saved: function () {
         this.onSaved.trigger();
     }
-});
+}).mixin(objectWithValidateableProperties);

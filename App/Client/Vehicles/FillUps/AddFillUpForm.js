@@ -31,8 +31,6 @@ var AddFillUpForm = Base.inherit({
     },
     
     initValidation: function () {
-        this.validate = objectWithValidateableProperties.validate;
-        
         this.date.extend({
             validation: {
                 required: "Date is required"
@@ -124,4 +122,4 @@ var AddFillUpForm = Base.inherit({
         }
     }
     
-});
+}).mixin(objectWithValidateableProperties);
