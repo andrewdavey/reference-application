@@ -1,16 +1,28 @@
 ﻿/// <reference path="~/Client/Vendor/knockout.js"/>
-/// <reference path="~/Client/Shared/EventHub.js"/>
-/// <reference path="~/Client/Shared/FlashMessage.js"/>
 
 var AppFrame = Base.inherit({
     
-    init: function (viewData) {
+    init: function (viewData, flashMessage) {
+        // Navigation links
         this.links = viewData.links;
-        this.links.forEach(function (link) { link.rel = link.rel || null; });
+        
+        // Flash message used to display a short notification of some action.
+        // e.g. "Profile saved"
         this.flashMessage = flashMessage;
+
+        // The view model of whatever the AppFrame is containing.
         this.content = ko.observable();
+
+        this.ensureLinksHaveRels();
     },
     
-    templateId: "Client/AppFrame/AppFrame.htm"
+    templateId: "Client/AppFrame/AppFrame.htm",
+    
+    ensureLinksHaveRels: function () {
+        // Binding `rel` to <a rel="..."> in the UI will fail if `rel` is undefined.
+        this.links.forEach(function (link) {
+            link.rel = link.rel || null;
+        });
+    }
     
 });

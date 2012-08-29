@@ -261,8 +261,10 @@
     <Content Include="Client\AppFrame\AppFrame.css" />
     <Content Include="Client\AppFrame\AppFrame.htm" />
     <Content Include="Client\AppFrame\AppFrame.js" />
+    <Content Include="Client\AppFrame\FlashMessage.html" />
     <Content Include="Client\AppFrame\init.js" />
     <Content Include="Client\AppFrame\NavBar.html" />
+    <Content Include="Client\AppFrame\_readme.txt" />
     <Content Include="Client\Profile\init.js" />
     <Content Include="Client\Profile\ProfilePage.htm" />
     <Content Include="Client\Profile\ProfilePage.js" />

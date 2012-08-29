@@ -1,6 +1,5 @@
 ﻿<!-- ko template: 'Client/AppFrame/NavBar.html' --><!-- /ko -->
-
 <div class="container">
-    <div class="alert alert-info" data-bind="visible: flashMessage.visible, text: flashMessage.message"></div>
-    <div data-bind="template: { data: content, name: content().templateId }"></div>
+    <!-- ko template: { data: flashMessage, name: 'Client/AppFrame/FlashMessage.html' } --><!-- /ko -->
+    <!-- ko template: { data: content, name: content().templateId } --><!-- /ko -->
 </div>
