@@ -301,7 +301,6 @@
     <Content Include="Client\Shared\Application.js" />
     <Content Include="Client\Shared\Event.js" />
     <Content Include="Client\Shared\FlashMessage.js" />
-    <Content Include="Client\Shared\Navigation.js" />
     <Content Include="Client\Shared\Base.js" />
     <Content Include="Client\Vendor\ScriptBundle.txt" />
     <Content Include="Client\Vendor\domReady.js" />
