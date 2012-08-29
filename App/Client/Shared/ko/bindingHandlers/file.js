@@ -1,4 +1,4 @@
-﻿/// <reference path="../../Vendor/knockout.js"/>
+﻿/// <reference path="../../../Vendor/knockout.js"/>
 
 ko.bindingHandlers["file"] = {
     init: function (element, valueAccessor) {

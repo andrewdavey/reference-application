@@ -1,12 +1,21 @@
-﻿var converters = {}; // Converters are added to this object in ./converters/*.js
+﻿/// <reference path="../../Vendor/knockout.js"/>
 
-(function() {
+var converters = {}; // Converters are added to this object in ./converters/*.js
+
+(function () {
+
+    // A convertingObservable wraps an underlying observable.
+    // It provides a string representation of the underlying observable.
+    // A converter object is used to convert to and from strings.
     var convertingObservable = function(underlying, converter) {
         var invalidString = ko.observable();
         var updating = false;
         
         underlying.subscribe(function () {
             if (updating) return;
+            // The underlying observable was changed by something other than us.
+            // So clear any previous invalid string.
+            // This will trigger the `read` funtion below.
             invalidString(null);
         });
         

@@ -1,7 +1,7 @@
 ﻿/// <reference path="~/Client/Vendor/knockout.js"/>
 /// <reference path="~/Client/Shared/Base.js"/>
 /// <reference path="~/Client/Shared/http.js"/>
-/// <reference path="~/Client/Shared/validation/objectWithValidateableProperties.js" />
+/// <reference path="~/Client/Shared/ko/validation/objectWithValidateableProperties.js" />
 /// <reference path="~/Client/Shared/Event.js"/>
 
 var ProfileForm = Base.inherit({

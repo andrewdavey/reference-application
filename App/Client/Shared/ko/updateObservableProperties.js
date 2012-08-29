@@ -1,4 +1,4 @@
-﻿/// <reference path="../Vendor/knockout.js"/>
+﻿/// <reference path="../../Vendor/knockout.js"/>
 
 var updateObservableProperties = function (source, target) {
     var updateProperty = function(propertyName) {

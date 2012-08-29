@@ -1,7 +1,7 @@
 ﻿/// <reference path="~/Client/Vendor/knockout.js"/>
 /// <reference path="~/Client/Vendor/moment.js"/>
 /// <reference path="~/Client/Shared/http.js"/>
-/// <reference path="~/Client/Shared/validation/objectWithValidateableProperties.js"/>
+/// <reference path="~/Client/Shared/ko/validation/objectWithValidateableProperties.js"/>
 /// <reference path="~/Client/Shared/Modal.js" />
 
 var AddReminderForm = Base.inherit({

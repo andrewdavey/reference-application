@@ -1,11 +1,22 @@
 ﻿/// <reference path="../convert.js"/>
 
+// The integer converter displays integer numbers as strings.
+// Any fractional values are discarded when converting strings into numbers.
+// e.g. 10     -> "10"
+//      "10.5" -> 10
+
 converters["integer"] = {
-    fromString: function (s) {
-        var i = parseInt(s, 10);
-        return { error: isNaN(i), value: i };
+    
+    fromString: function (string) {
+        var value = parseInt(string, 10);
+        return {
+            error: isNaN(value),
+            value: value
+        };
     },
-    toString: function (i) {
-        return typeof i === "number" ? i.toString() : "";
+    
+    toString: function (value) {
+        return typeof value === "number" ? value.toString() : "";
     }
+    
 }

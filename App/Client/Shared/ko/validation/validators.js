@@ -1,4 +1,4 @@
-﻿/// <reference path="~/Client/Vendor/knockout.js"/>
+﻿/// <reference path="../../../Vendor/knockout.js"/>
 /// <reference path="validation-extender.js" />
 
 ko.extenders.validation.validators = {

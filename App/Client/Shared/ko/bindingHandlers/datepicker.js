@@ -1,6 +1,6 @@
-﻿/// <reference path="../../Vendor/knockout.js"/>
-/// <reference path="../../Vendor/moment.js"/>
-/// <reference path="../../Vendor/bootstrap/js/datepicker.js"/>
+﻿/// <reference path="../../../Vendor/knockout.js"/>
+/// <reference path="../../../Vendor/moment.js"/>
+/// <reference path="../../../Vendor/bootstrap/js/datepicker.js"/>
 
 ko.bindingHandlers["datepicker"] = {
     init: function(element, valueAccessor) {

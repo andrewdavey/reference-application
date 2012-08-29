@@ -1,6 +1,6 @@
 ﻿/// <reference path="~/Client/Vendor/knockout.js"/>
 /// <reference path="~/Client/Shared/Base.js"/>
-/// <reference path="~/Client/Shared/knockout-helpers.js"/>
+/// <reference path="~/Client/Shared/ko/updateObservableProperties.js"/>
 
 var VehicleSummary = Base.inherit({
     init: function(data) {

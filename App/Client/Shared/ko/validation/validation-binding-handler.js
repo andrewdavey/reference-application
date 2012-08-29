@@ -1,4 +1,4 @@
-﻿/// <reference path="~/Client/Vendor/knockout.js"/>
+﻿/// <reference path="../../../Vendor/knockout.js"/>
 
 // A KnockoutJS binding handler called `validation`.
 // Usage:
@@ -39,7 +39,7 @@
         ko.bindingHandlers.text.update(span, validation.message);
     };
     
-    ko.bindingHandlers.validation = {
+    ko.bindingHandlers["validation"] = {
         init: function (element, valueAccessor) {
             var validation = valueAccessor().validation;
             if (!validation) return;

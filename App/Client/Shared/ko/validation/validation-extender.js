@@ -1,4 +1,4 @@
-﻿/// <reference path="~/Client/Vendor/knockout.js"/>
+﻿/// <reference path="../../../Vendor/knockout.js"/>
 
 // The validation extender adds validation to an observable.
 //
@@ -11,7 +11,7 @@
 //     {
 //         message:   <observable-string>, // The current error message, or empty string if valid.
 //         validate:  <function>,          // Function that runs all validations against the current value. Returns true if all are valid.
-//         isInvalid: <observable-boolean> // True when all validations are valid for the current value.
+//         isInvalid: <observable-boolean> // True when any validations are invalid for the current value.
 //     }
 //
 // Changing value of target will trigger validation. Or validate() can be called, which returns true if valid.

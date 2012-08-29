@@ -81,17 +81,24 @@ namespace App.Infrastructure.Amd
                 .Where(r => r.Type == AssetReferenceType.DifferentBundle)
                 .Select(r => r.ToPath);
 
-            return Bundle
-                .Assets
-                .Where(a => originalSources.ContainsKey(a))
-                .Select(a => new {source = originalSources[a], path = a.Path})
-                .SelectMany(x => ScriptReferenceParser.ParseReferences(x.source, x.path))
-                .Concat(existingReferences)
-                .Distinct()
-                .Select(resolveReferencePathIntoAmdModule)
-                .Distinct()
-                .Except(new[] {this})
-                .ToArray();
+            try
+            {
+                return Bundle
+                    .Assets
+                    .Where(a => originalSources.ContainsKey(a))
+                    .Select(a => new {source = originalSources[a], path = a.Path})
+                    .SelectMany(x => ScriptReferenceParser.ParseReferences(x.source, x.path))
+                    .Concat(existingReferences)
+                    .Distinct()
+                    .Select(resolveReferencePathIntoAmdModule)
+                    .Distinct()
+                    .Except(new[] {this})
+                    .ToArray();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error when parsing dependencies of " + Path, ex);
+            }
         }
 
         void ParseExports()
