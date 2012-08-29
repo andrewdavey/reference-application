@@ -24,7 +24,7 @@
         <div class="control-group" data-bind="validation: dueDistance">
             <label class="control-label">Due when odometer reads</label>
             <div class="controls">
-                <input type="text" data-bind="value: dueDistance.asString"/>                
+                <input type="text" data-bind="value: dueDistance.convert('integer')"/>                
             </div>
         </div>
     </div>

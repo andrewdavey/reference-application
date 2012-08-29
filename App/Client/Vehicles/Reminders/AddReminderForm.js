@@ -18,7 +18,7 @@ var AddReminderForm = Base.inherit({
         this.title = ko.observable();
         this.remarks = ko.observable();
         this.dueDate = ko.observable();
-        this.dueDistance = ko.observable().extend({ as: "integer" });
+        this.dueDistance = ko.observable();
     },
     
     initValidation: function () {

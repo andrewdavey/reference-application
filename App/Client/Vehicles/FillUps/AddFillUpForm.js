@@ -22,11 +22,11 @@ var AddFillUpForm = Base.inherit({
     initInputs: function () {
         var today = moment().sod().toDate();
         this.date = ko.observable(today);
-        this.odometer = ko.observable().extend({ as: "integer" });
-        this.pricePerUnit = ko.observable().extend({ as: "money" });
-        this.totalUnits = ko.observable().extend({ as: "integer" });
+        this.odometer = ko.observable();
+        this.pricePerUnit = ko.observable();
+        this.totalUnits = ko.observable();
         this.vendor = ko.observable();
-        this.transactionFee = ko.observable().extend({ as: "money" });
+        this.transactionFee = ko.observable();
         this.remarks = ko.observable();
     },
     
