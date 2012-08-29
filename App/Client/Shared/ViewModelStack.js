@@ -45,7 +45,7 @@ var ViewModelStack = UrlStack.inherit({
 
         var useStylesheets = function() {
             this.stylesheets[response.url] = response.body.stylesheets.map(function (url) {
-                return this.app.addStylesheet(url);
+                return this.addStylesheet(url);
             }, this);
         };
         
@@ -102,6 +102,22 @@ var ViewModelStack = UrlStack.inherit({
             viewModel.dispose();
         }
         delete this.viewModels[url];
+    },
+    
+    addStylesheet: function (stylesheetUrl) {
+        var head = document.querySelector("head");
+        var link = document.createElement("link");
+        link.setAttribute("type", "text/css");
+        link.setAttribute("rel", "stylesheet");
+        link.setAttribute("href", stylesheetUrl);
+        head.appendChild(link);
+        
+        // Return an object we can use later to remove the stylesheet.
+        var remove = function () {
+            head.removeChild(link);
+            delete link;
+        };
+        return { remove: remove };
     },
     
     removeStylesheetForUrl: function (url) {

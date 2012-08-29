@@ -51,7 +51,7 @@ var Application = Base.inherit({
         var hijaxNotDisabled = !rel.match(/\bnohijax\b/); // Ignore links like <a rel="nohijax">
         if (href && isAppLink && hijaxNotDisabled) {
             event.preventDefault();
-            History.pushState(null, null, href);
+            this.navigate(href);
         }
     },
 
@@ -75,21 +75,6 @@ var Application = Base.inherit({
         // The History API's statechange callback defined in onHistoryStateChangeLoadPage
         // will trigger the actual page download.
         History.pushState(null, null, url);
-    },
-    
-    addStylesheet: function (stylesheetUrl) {
-        var head = document.querySelector("head");
-        var link = document.createElement("link");
-        link.setAttribute("type", "text/css");
-        link.setAttribute("rel", "stylesheet");
-        link.setAttribute("href", stylesheetUrl);
-        head.appendChild(link);
-        
-        // Return an object we can use later to remove the stylesheet.
-        var remove = function () {
-            head.removeChild(link);
-            delete link;
-        };
-        return { remove: remove };
     }
+    
 });
