@@ -1,4 +1,7 @@
-﻿var mockHttp = function (action) {
+﻿/// <reference path="../jasmine/jasmine.js"/>
+/// <reference path="../jasmine/matchers.js"/>
+
+var mockHttp = function (action) {
     var matches = mockHttp.recordedActions.filter(function (recordedAction) {
         return recordedAction.method === action.method
             && recordedAction.url === action.url;
@@ -8,6 +11,7 @@
             matches[0].callback.apply(this, arguments);
         }
         var response = matches[0].response;
+        mockHttp.requested.push(action);
         return $.Deferred().resolveWith(this, [response]);
     }
     
@@ -15,9 +19,11 @@
 };
 
 mockHttp.recordedActions = [];
+mockHttp.requested = [];
 
 mockHttp.reset = function() {
     mockHttp.recordedActions = [];
+    mockHttp.requested = [];
 };
 
 function defineHelper(httpMethod) {
@@ -43,4 +49,14 @@ defineHelper("delete");
 // Replace the real `http` function with the mock.
 require(["Client/Shared"], function (app) {
     app.http = mockHttp;
+});
+
+beforeEach(function() {
+    this.addMatchers({
+        requested: function(method, url) {
+            return mockHttp.requested
+                .filter(function(r) { return r.method === method && r.url === url; })
+                .length;
+        }
+    });
 });
