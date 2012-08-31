@@ -18,14 +18,13 @@ namespace App
         public CassetteBundleConfiguration(AmdModuleCollection amdModuleCollection)
         {
             this.amdModuleCollection = amdModuleCollection;
-            AmdModuleCollection.Instance = amdModuleCollection; // TODO: Clean up this hacky global!
         }
 
         public void Configure(BundleCollection bundles)
         {
-            this.bundles = bundles;
-            amdModuleCollection.Clear(); // TODO: change AmdModuleCollection to be transient to avoid needing to clear singleton?
+            amdModuleCollection.Clear();
 
+            this.bundles = bundles;
             AddVendorBundles();
             AddSharedBundle();
             AddPageBundles();

@@ -5,7 +5,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using App.Infrastructure;
 using App.Infrastructure.Web;
 using MileageStats.Domain.Contracts;
 using MileageStats.Domain.Handlers;

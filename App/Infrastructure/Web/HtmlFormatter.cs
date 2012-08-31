@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using App.Infrastructure.Amd;
+using Cassette.Aspnet;
 using Cassette.Scripts;
 using Cassette.Stylesheets;
 using Cassette.Views;
@@ -17,10 +18,14 @@ namespace App.Infrastructure.Web
 {
     public class HtmlFormatter : MediaTypeFormatter
     {
+        readonly Func<AmdModuleCollection> amdModules;
+
         public HtmlFormatter()
         {
             SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/xhtml+xml"));
+
+            amdModules = () => CassetteHttpModule.Host.RequestContainer.Resolve<AmdModuleCollection>();
         }
 
         public override bool CanReadType(Type type)
@@ -66,7 +71,7 @@ namespace App.Infrastructure.Web
                 html = html.Replace("$lang$", page.Language);
                 html = html.Replace("$styles$", Bundles.RenderStylesheets().ToHtmlString());
                 var requireJson = "<script>var require=" + 
-                                  JsonConvert.SerializeObject(AmdModuleCollection.Instance.Require) +
+                                  JsonConvert.SerializeObject(amdModules().Require) +
                                   ";</script>";
                 var scripts = Bundles.RenderScripts().ToHtmlString();
                 html = html.Replace("$scripts$", requireJson + scripts);

@@ -8,8 +8,6 @@ namespace App.Infrastructure.Amd
 {
     public class AmdModuleCollection
     {
-        public static AmdModuleCollection Instance;
-
         readonly IUrlGenerator urlGenerator;
         readonly CassetteSettings settings;
         readonly List<IAmdModule> modules;
@@ -61,12 +59,12 @@ namespace App.Infrastructure.Amd
             }
         }
 
-        public void AddVendorModulesPerAsset(Bundle bundle, Action<Func<string, VendorModuleConfiguration>> build)
+        public void AddVendorModulesPerAsset(Bundle bundle, Action<Func<string, VendorModuleConfiguration>> buildConfigurations)
         {
             var configurations = new Dictionary<string, VendorModuleConfiguration>();
-            build(assetFilename =>
+            buildConfigurations(assetFilename =>
             {
-                var configuration = new VendorModuleConfiguration(assetFilename);
+                var configuration = new VendorModuleConfiguration();
                 configurations[assetFilename] = configuration;
                 return configuration;
             });
@@ -88,21 +86,10 @@ namespace App.Infrastructure.Amd
 
         public class VendorModuleConfiguration
         {
-            readonly string assetFilename;
             string identifier;
             bool shim;
             string shimExports;
             string[] dependencies;
-
-            public VendorModuleConfiguration(string assetFilename)
-            {
-                this.assetFilename = assetFilename;
-            }
-
-            public string AssetFilename
-            {
-                get { return assetFilename; }
-            }
 
             public VendorModuleConfiguration Identifier(string identifier)
             {
