@@ -4,8 +4,8 @@
 describe("Profile form", function() {
 
     var pageData = {
-        countries: { method: "get", url: "/countries" },
-        save: { method: "post", url: "/save" }
+        countries: { get: "/countries" },
+        save: { post: "/save" }
     };
     var mockHttp, form;
 

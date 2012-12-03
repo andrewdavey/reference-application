@@ -60,8 +60,19 @@ var http = (function () {
 
         return request;
     };
+
+    var getAction = function (object) {
+        if (object.method && object.url) return object;
+        
+        var httpMethod = Object.keys(object)[0];
+        return { method: httpMethod, url: object[httpMethod] };
+    };
     
-    return function(action, data, files) {
+    return function (actionObject, data, files) {
+        // actionObject has the format { <http-method>: <url-string> }
+        // e.g. { get: "/resource" }
+        
+        var action = getAction(actionObject);
         if (files) {
             return IframeSubmission.create(action.method, action.url, data, files, this).request;
         } else {

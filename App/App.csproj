@@ -220,7 +220,6 @@
     <Compile Include="Infrastructure\Web\HtmlFormatter.cs" />
     <Compile Include="Infrastructure\Web\RoutingExtensions.cs" />
     <Compile Include="Server\Profile\GetProfileController.cs" />
-    <Compile Include="Server\Specs\GetSpecsController.cs" />
     <Compile Include="Server\Vehicle\FillUps\GetFillUpsController.cs" />
     <Compile Include="Server\ReferenceData\GetMakesController.cs" />
     <Compile Include="Server\ReferenceData\GetModelsController.cs" />

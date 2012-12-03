@@ -7,7 +7,7 @@
 describe("Vehicle page", function() {
     var vehicle, mockHttp;
     var pageData = {
-        "delete": { method: "delete", url: "/vehicles/1" }
+        "delete": { "delete": "/vehicles/1" }
     };
     var app = {
         navigate: function() {

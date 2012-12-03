@@ -1,12 +1,11 @@
 ﻿/// <reference path="~/Client/Vendor/knockout.js"/>
 /// <reference path="~/Client/Vendor/moment.js"/>
-/// <reference path="~/Client/Shared/http.js"/>
 /// <reference path="~/Client/Shared/ko/validation/objectWithValidateableProperties.js"/>
 /// <reference path="~/Client/Shared/Modal.js" />
 /// <reference path="~/Client/Shared/Base.js" />
 
 var AddReminderForm = Base.inherit({
-    init: function (viewData) {
+    init: function (viewData, http) {
         this.http = http;
         this.addCommand = viewData.add;
         this.initInputs();

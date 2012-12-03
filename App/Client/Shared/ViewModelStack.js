@@ -13,7 +13,7 @@ var ViewModelStack = UrlStack.inherit({
     },
     
     downloadUrl: function (url) {
-        return this.http({ method: "GET", url: url, accept: "application/x-page+json" });
+        return this.http({ method: "get", url: url, accept: "application/x-page+json" });
     },
 
     navigate: function (newUrl) {

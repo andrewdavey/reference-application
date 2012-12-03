@@ -11,7 +11,10 @@ var MockHttp = Base.inherit({
         this.requested = [];
     },
     
-    http: function (action) {
+    http: function (actionObject) {
+        var httpMethod = Object.keys(actionObject)[0];
+        var action = { method: httpMethod, url: actionObject[httpMethod] };
+        
         var matches = this.recordedActions.filter(function (recordedAction) {
             return recordedAction.method === action.method
                 && recordedAction.url === action.url;

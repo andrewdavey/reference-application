@@ -18,7 +18,7 @@ describe("AddFillUpForm", function () {
     beforeEach(function () {
         moment.fn.sod = function () { return moment(new Date(2012, 6, 22, 0, 0, 0)); };
         mockHttp = MockHttp.create();
-        form = AddFillUpForm.create({ method: "post", url: "/fillups" }, mockHttp.http);
+        form = AddFillUpForm.create({ post: "/fillups" }, mockHttp.http);
         form.show();
     });
 

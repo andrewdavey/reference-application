@@ -1,11 +1,10 @@
-﻿/// <reference path="~/Client/Shared/http.js"/>
-/// <reference path="~/Client/Vendor/knockout.js"/>
+﻿/// <reference path="~/Client/Vendor/knockout.js"/>
 /// <reference path="~/Client/Vendor/moment.js"/>
 /// <reference path="~/Client/Shared/Base.js" />
 /// <reference path="AddReminderForm.js"/>
 
 var Reminder = Base.inherit({
-    init: function (data) {
+    init: function (data, http) {
         this.http = http;
         this.title = data.Title;
         this.remarks = data.Remarks;
@@ -38,6 +37,6 @@ var Reminder = Base.inherit({
         this.http(this.updateCommand, { isFulfilled: true })
             .done(function() {
                 this.isFulfilled(true);
-            });
+            }.bind(this));
     }
 });

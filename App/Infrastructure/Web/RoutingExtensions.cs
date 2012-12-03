@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Routing;
 using System.Web.Routing;
@@ -52,12 +53,12 @@ namespace App.Infrastructure.Web
             return HttpLink<T>(url, "delete", routeValues);
         }
 
-        static object HttpLink<T>(UrlHelper url, string httpMethod, object routeValues = null)
+        static object HttpLink<T>(UrlHelper urlHelper, string httpMethod, object routeValues = null)
         {
-            return new
+            var url = urlHelper.Resource<T>(routeValues);
+            return new Dictionary<string, string>
             {
-                method = httpMethod,
-                url = url.Resource<T>(routeValues)
+                {httpMethod, url}
             };
         }
 

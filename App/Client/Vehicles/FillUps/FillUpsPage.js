@@ -7,9 +7,10 @@ var FillUpsPage = Base.inherit({
     
     templateId: "Client/Vehicles/FillUps/FillUpsPage.htm",
     
-    init: function (viewData, flashMessage) {
+    init: function (viewData, flashMessage, http) {
         this.addCommand = viewData.add;
         this.flashMessage = flashMessage;
+        this.http = http;
         this.fillUps = ko.observableArray(viewData.fillUps.map(FillUp.create));
         this.selectedFillUp = ko.observable();
         
@@ -23,7 +24,7 @@ var FillUpsPage = Base.inherit({
     },
     
     showAddFillUpForm: function () {
-        var form = AddFillUpForm.create(this.addCommand);
+        var form = AddFillUpForm.create(this.addCommand, this.http);
         form.show()
             .done(this.insertNewFillUpAtTop.bind(this));
     },

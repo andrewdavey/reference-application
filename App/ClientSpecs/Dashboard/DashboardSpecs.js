@@ -5,9 +5,9 @@
 
 describe("Dashboard", function () {
     var pageData = {
-        profile: { method: "get", url: "/profile" },
-        vehicles: { method: "get", url: "/vehicles" },
-        addVehicle: { method: "get", url: "/vehicles/add" },
+        profile: { get: "/profile" },
+        vehicles: { get: "/vehicles" },
+        addVehicle: { get: "/vehicles/add" },
         statistics: {}
     };
     var dashboard, mockHttp;
@@ -24,7 +24,7 @@ describe("Dashboard", function () {
                 name: "",
                 country: "",
                 hasRegistered: false,
-                countries: { method: "get", url: "/countries" }
+                countries: { get: "/countries" }
             };
             mockHttp.get("/profile").respondsWith(incompleteProfile);
             dashboard = Dashboard.create(pageData, flashMessage, eventHub, mockHttp.http);
@@ -52,7 +52,7 @@ describe("Dashboard", function () {
     describe("given profile is complete", function () {
         var completeProfile = {
             hasRegistered: true,
-            countries: { method: "get", url: "/countries" }
+            countries: { get: "/countries" }
         };
 
         beforeEach(function() {

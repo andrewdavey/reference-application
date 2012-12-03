@@ -6,8 +6,9 @@
 /// <reference path="AddReminderForm.js"/>
 
 var RemindersPage = Base.inherit({
-    init: function (viewData, flashMessage) {
+    init: function (viewData, flashMessage, http) {
         this.flashMessage = flashMessage;
+        this.http = http;
         this.reminders = ko.observableArray(viewData.reminders.map(this.createReminderViewModel, this));
         this.selectedReminder = ko.observable(this.reminders()[0]);
         this.add = viewData.add;
@@ -37,7 +38,7 @@ var RemindersPage = Base.inherit({
     },
     
     createReminderViewModel: function (data) {
-        var reminder = Reminder.create(data);
+        var reminder = Reminder.create(data, this.http);
         reminder.isFulfilled.subscribe(function () {
             this.flashMessage.show("Reminder fulfilled");
             this.reminders.remove(reminder);
