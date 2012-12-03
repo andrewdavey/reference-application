@@ -1,5 +1,4 @@
 ﻿/// <reference path="~/Client/Shared/Base.js"/>
-/// <reference path="~/Client/Shared/http.js"/>
 /// <reference path="~/Client/Shared/Modal.js"/>
 /// <reference path="~/Client/Shared/ko/validation/objectWithValidateableProperties.js"/>
 /// <reference path="~/Client/Vendor/knockout.js"/>
@@ -8,7 +7,7 @@ var EditVehicleForm = Base.inherit({
 
     templateId: "Client/Vehicles/Details/EditVehicleForm.htm",
 
-    init: function (viewData, flashMessage) {
+    init: function (viewData, flashMessage, http) {
         this.viewData = viewData;
         this.flashMessage = flashMessage;
         this.http = http;
@@ -63,7 +62,7 @@ var EditVehicleForm = Base.inherit({
 
         // Download the years now.
         this.http(viewData.years)
-            .done(this.displayYears);
+            .done(this.displayYears.bind(this));
     },
     
     downloadMakes: function (year) {
@@ -79,7 +78,7 @@ var EditVehicleForm = Base.inherit({
     downloadModels: function (make) {
         if (make) {
             this.http(make.models)
-                .done(this.displayModels);
+                .done(this.displayModels.bind(this));
         } else {
             this.displayModels([]);
             this.model(null);
@@ -121,7 +120,7 @@ var EditVehicleForm = Base.inherit({
                 var args = Array.prototype.slice.call(arguments);
                 args[0] = vehicleData;
                 this.saved.apply(this, args);
-            });
+            }.bind(this));
     },
     
     serializeForm: function () {

@@ -1,5 +1,4 @@
-﻿/// <reference path="~/Client/Shared/http.js"/>
-/// <reference path="~/Client/Vendor/knockout.js"/>
+﻿/// <reference path="~/Client/Vendor/knockout.js"/>
 /// <reference path="~/Client/Vendor/moment.js"/>
 /// <reference path="~/Client/Shared/ko/validation/validation-extender.js" />
 /// <reference path="~/Client/Shared/ko/validation/objectWithValidateableProperties.js" />
@@ -10,7 +9,7 @@ var AddFillUpForm = Base.inherit({
     
     templateId: "Client/Vehicles/FillUps/AddFillUpForm.htm",
     
-    init: function (addCommand) {
+    init: function (addCommand, http) {
         this.addCommand = addCommand;
         this.http = http;
 
@@ -85,8 +84,8 @@ var AddFillUpForm = Base.inherit({
                 var newFillUp = Object.create(data);
                 newFillUp.TotalCost = newFillUp.TotalUnits * newFillUp.PricePerUnit + newFillUp.TransactionFee;
                 this.close(newFillUp);
-            })
-            .fail(this.saveFailed);
+            }.bind(this))
+            .fail(this.saveFailed.bind(this));
     },
     
     getSaveData: function () {

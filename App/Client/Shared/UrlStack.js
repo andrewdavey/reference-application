@@ -1,4 +1,6 @@
-﻿// UrlStack contains a stack of URLs that form a parent-child hirerarchy.
+﻿/// <reference path="Base.js"/>
+
+// UrlStack contains a stack of URLs that form a parent-child hirerarchy.
 // For example: [ "/application", "/vehicles/masterpage", "/vehicle/123/fillups" ]
 //
 // Each URLs is downloaded, and the response data is stored.

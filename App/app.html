@@ -5,11 +5,6 @@
         $styles$
         <script type="text/html" id="loading">Loading...</script>
         $scripts$
-        <script>
-            require(["Client/Shared"], function (module) {
-                module.Application.create();
-            });
-        </script>
     </head>
     <body data-bind="template: { name: content().templateId, data: content }">
         Loading...

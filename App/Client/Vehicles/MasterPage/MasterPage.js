@@ -1,4 +1,5 @@
 ﻿/// <reference path="~/Client/Vendor/knockout.js"/>
+/// <reference path="../../Shared/Base.js"/>
 /// <reference path="../List/VehicleSummaryList.js" />
 
 var MasterPage = Base.inherit({

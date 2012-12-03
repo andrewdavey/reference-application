@@ -63,3 +63,5 @@ ko.extenders.validation = function (target, options) {
 
     return target;
 };
+
+ko.extenders.validation.validators = {};

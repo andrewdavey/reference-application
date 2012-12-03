@@ -17,9 +17,9 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -41,21 +41,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxMin, Version=4.60.4609.17023, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
+    <Reference Include="AjaxMin, Version=4.76.4714.20545, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AjaxMin.4.60.4609.17023\lib\net20\AjaxMin.dll</HintPath>
+      <HintPath>..\packages\AjaxMin.4.76.4714.20550\lib\net40\AjaxMin.dll</HintPath>
     </Reference>
-    <Reference Include="Cassette, Version=2.0.0.17974, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Cassette, Version=2.1.0.29037, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cassette.2.0.0\lib\net40-client\Cassette.dll</HintPath>
+      <HintPath>..\packages\Cassette.2.1.0-beta3\lib\net35\Cassette.dll</HintPath>
     </Reference>
-    <Reference Include="Cassette.Aspnet, Version=2.0.0.17975, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Cassette.Aspnet, Version=2.1.0.29035, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cassette.Aspnet.2.0.0\lib\net40\Cassette.Aspnet.dll</HintPath>
+      <HintPath>..\packages\Cassette.Aspnet.2.1.0-beta3\lib\net40\Cassette.Aspnet.dll</HintPath>
     </Reference>
-    <Reference Include="Cassette.Views, Version=2.0.0.17975, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Cassette.RequireJS, Version=2.1.0.29035, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cassette.Views.2.0.0\lib\net40\Cassette.Views.dll</HintPath>
+      <HintPath>..\packages\Cassette.RequireJS.2.1.0-beta3\lib\net40\Cassette.RequireJS.dll</HintPath>
+    </Reference>
+    <Reference Include="Cassette.Views, Version=2.1.0.29035, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Cassette.Views.2.1.0-beta3\lib\net40\Cassette.Views.dll</HintPath>
     </Reference>
     <Reference Include="DotNetOpenAuth.Core">
       <HintPath>..\packages\DotNetOpenAuth.Core.4.1.0.12182\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
@@ -104,6 +108,9 @@
     </Reference>
     <Reference Include="DotNetOpenAuth.OpenIdOAuth">
       <HintPath>..\packages\DotNetOpenAuth.OpenIdOAuth.4.1.0.12182\lib\net45-full\DotNetOpenAuth.OpenIdOAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.1.0.1\lib\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
@@ -181,29 +188,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\Amd\CassetteContainerConfiguration.cs" />
+    <Compile Include="Infrastructure\Cassette\StringAssetTransformer.cs" />
     <Compile Include="Infrastructure\PageHelper.cs" />
     <Compile Include="Infrastructure\Web\FileWrapper.cs" />
     <Compile Include="Infrastructure\Web\PageJsonFormatter.cs" />
     <Compile Include="Server\GetAppFrameController.cs" />
     <Compile Include="Server\ReferenceData\GetCountriesController.cs" />
-    <Compile Include="Infrastructure\Amd\AmdModuleCollection.cs" />
-    <Compile Include="Infrastructure\Amd\DebugAmdModuleFromBundle.cs" />
-    <Compile Include="Infrastructure\Amd\DebugAssetWrapper.cs" />
-    <Compile Include="Infrastructure\Amd\GlobalJavaScriptVariableParser.cs" />
-    <Compile Include="Infrastructure\Amd\IAmdModule.cs" />
-    <Compile Include="Infrastructure\Amd\AmdModuleFromBundle.cs" />
-    <Compile Include="Infrastructure\Amd\IExport.cs" />
-    <Compile Include="Infrastructure\Amd\ObjectExport.cs" />
-    <Compile Include="Infrastructure\Amd\ProductionAmdModuleFromBundle.cs" />
-    <Compile Include="Infrastructure\Amd\Require.cs" />
-    <Compile Include="Infrastructure\Amd\RewriteDefineCalls.cs" />
-    <Compile Include="Infrastructure\Amd\ScriptReferenceParser.cs" />
-    <Compile Include="Infrastructure\Amd\ShimAsset.cs" />
-    <Compile Include="Infrastructure\Amd\ShimVendorModule.cs" />
-    <Compile Include="Infrastructure\Amd\SingleValueExport.cs" />
-    <Compile Include="Infrastructure\Amd\StringAssetTransformer.cs" />
-    <Compile Include="Infrastructure\Amd\VendorAmdModule.cs" />
     <Compile Include="Infrastructure\Cassette\BundleVisitor.cs" />
     <Compile Include="Infrastructure\Web\ModelStateDictionaryFormatter.cs" />
     <Compile Include="Infrastructure\Web\ModelStateHelpers.cs" />
@@ -262,24 +252,40 @@
   <ItemGroup>
     <Compile Include="RouteConfig.cs" />
     <Content Include="app.html" />
+    <Content Include="ClientSpecs\Dashboard\DashboardSpecs.js" />
+    <Content Include="ClientSpecs\default.aspx" />
+    <Content Include="ClientSpecs\init.js" />
+    <Content Include="ClientSpecs\Profile\ProfileFormSpecs.js" />
+    <Content Include="ClientSpecs\Shared\BaseSpecs.js" />
+    <Content Include="ClientSpecs\Shared\EventHubSpecs.js" />
+    <Content Include="ClientSpecs\Shared\ko\converters\integer-specs.js" />
+    <Content Include="ClientSpecs\Shared\ko\converters\money-specs.js" />
+    <Content Include="ClientSpecs\Shared\MockHttp.js" />
+    <Content Include="ClientSpecs\Shared\UrlStackSpecs.js" />
+    <Content Include="ClientSpecs\Vehicles\Details\VehicleSpecs.js" />
+    <Content Include="ClientSpecs\Vehicles\FillUps\AddFillUpFormSpecs.js" />
+    <Content Include="ClientSpecs\Vehicles\List\VehicleSummaryListSpecs.js" />
     <Content Include="Client\AppFrame\AppFrame.css" />
     <Content Include="Client\AppFrame\AppFrame.htm" />
     <Content Include="Client\AppFrame\AppFrame.js" />
-    <Content Include="Client\AppFrame\FlashMessage.html" />
+    <Content Include="Client\AppFrame\FlashMessage.htm" />
     <Content Include="Client\AppFrame\init.js" />
-    <Content Include="Client\AppFrame\NavBar.html" />
+    <Content Include="Client\AppFrame\NavBar.htm" />
     <Content Include="Client\AppFrame\_readme.txt" />
     <Content Include="Client\Dashboard\_readme.txt" />
+    <Content Include="Client\Shared\EventHubFactory.js" />
+    <Content Include="Client\Shared\init.js" />
     <Content Include="Client\Profile\init.js" />
     <Content Include="Client\Profile\ProfilePage.htm" />
     <Content Include="Client\Profile\ProfilePage.js" />
     <Content Include="Client\Shared\ko\bindingHandlers\datepicker.js" />
     <Content Include="Client\Shared\ko\converters\money.js" />
     <Content Include="Client\Shared\ko\converters\integer.js" />
-    <Content Include="Client\Shared\EventHub.js" />
+    <Content Include="Client\Shared\eventHub.js" />
     <Content Include="Client\Shared\ko\bindingHandlers\file.js" />
     <Content Include="Client\Shared\http.js" />
     <Content Include="Client\Shared\IframeSubmission.js" />
+    <Content Include="Client\Shared\ko\requireJsTemplateEngine.js" />
     <Content Include="Client\Shared\ko\updateObservableProperties.js" />
     <Content Include="Client\Shared\ko\convert.js" />
     <Content Include="Client\Shared\Modal.js" />
@@ -291,15 +297,9 @@
     <Content Include="Client\Shared\ViewModelStack.js" />
     <Content Include="Client\lang\en-GB\moment.js" />
     <Content Include="Client\lang\en-US\todo.js" />
-    <Content Include="Client\Specs\Dashboard\DashboardSpecs.js" />
-    <Content Include="Client\Specs\Shared\BaseSpecs.js" />
-    <Content Include="Client\Specs\Shared\ko\converters\money-specs.js" />
-    <Content Include="Client\Specs\Shared\UrlStackSpecs.js" />
-    <Content Include="Client\Specs\Vehicles\Details\VehicleSpecs.js" />
     <Content Include="Client\Vendor\bootstrap\css\datepicker.css" />
     <Content Include="Client\Vendor\bootstrap\js\datepicker.js" />
     <Content Include="Client\Vendor\moment.js" />
-    <Content Include="specs.html" />
     <Content Include="Client\Shared\addTemplate.js" />
     <Content Include="Client\Vendor\bootstrap\css\bootstrap.css" />
     <Content Include="Client\Vendor\bootstrap\img\glyphicons-halflings-white.png" />
@@ -309,7 +309,7 @@
     <Content Include="Global.asax" />
     <Content Include="Client\Shared\Application.js" />
     <Content Include="Client\Shared\Event.js" />
-    <Content Include="Client\Shared\FlashMessage.js" />
+    <Content Include="Client\Shared\flashMessage.js" />
     <Content Include="Client\Shared\Base.js" />
     <Content Include="Client\Vendor\ScriptBundle.txt" />
     <Content Include="Client\Vendor\domReady.js" />
@@ -318,18 +318,6 @@
     <Content Include="Client\Vendor\knockout.js" />
     <Content Include="Client\Vendor\require.js" />
     <Content Include="Client\Profile\ProfileForm.js" />
-    <Content Include="Client\Specs\Shared\ko\converters\integer-specs.js" />
-    <Content Include="Client\Specs\Shared\EventHubSpecs.js" />
-    <Content Include="Client\Specs\jasmine\mockHttp.js" />
-    <Content Include="Client\Specs\jasmine\specs.js" />
-    <Content Include="Client\Specs\jasmine\matchers.js" />
-    <Content Include="Client\Specs\Vehicles\FillUps\AddFillUpFormSpecs.js" />
-    <Content Include="Client\Specs\Profile\ProfileFormSpecs.js" />
-    <Content Include="Client\Specs\jasmine\init.js" />
-    <Content Include="Client\Specs\jasmine\jasmine-html.js" />
-    <Content Include="Client\Specs\jasmine\jasmine.css" />
-    <Content Include="Client\Specs\jasmine\jasmine.js" />
-    <Content Include="Client\Specs\Vehicles\List\VehicleSummaryListSpecs.js" />
     <Content Include="Client\Vehicles\Details\VehicleFormInputs.htm" />
     <Content Include="Client\Vehicles\FillUps\FillUp.js" />
     <Content Include="Client\Vehicles\FillUps\FillUpDetails.htm" />
@@ -368,6 +356,10 @@
     <Content Include="Client\Vehicles\Details\init.js" />
     <Content Include="Client\Vehicles\Details\Vehicle.htm" />
     <Content Include="Client\Vehicles\Details\Vehicle.js" />
+    <Content Include="jasmine\jasmine-html.js" />
+    <Content Include="jasmine\jasmine.css" />
+    <Content Include="jasmine\jasmine.js" />
+    <Content Include="jasmine\matchers.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -388,6 +380,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="jasmine\MIT.LICENSE" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

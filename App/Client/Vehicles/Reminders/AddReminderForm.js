@@ -3,6 +3,7 @@
 /// <reference path="~/Client/Shared/http.js"/>
 /// <reference path="~/Client/Shared/ko/validation/objectWithValidateableProperties.js"/>
 /// <reference path="~/Client/Shared/Modal.js" />
+/// <reference path="~/Client/Shared/Base.js" />
 
 var AddReminderForm = Base.inherit({
     init: function (viewData) {

@@ -1,7 +1,9 @@
+using System;
 using System.IO;
-using App.Infrastructure.Amd;
+using System.Linq;
 using App.Infrastructure.Cassette;
 using Cassette;
+using Cassette.RequireJS;
 using Cassette.Scripts;
 using Cassette.Stylesheets;
 
@@ -12,24 +14,51 @@ namespace App
     /// </summary>
     public class CassetteBundleConfiguration : IConfiguration<BundleCollection>
     {
-        readonly AmdModuleCollection amdModuleCollection;
+        readonly CassetteSettings settings;
         BundleCollection bundles;
 
-        public CassetteBundleConfiguration(AmdModuleCollection amdModuleCollection)
+        public CassetteBundleConfiguration(CassetteSettings settings)
         {
-            this.amdModuleCollection = amdModuleCollection;
+            this.settings = settings;
         }
 
         public void Configure(BundleCollection bundles)
         {
-            amdModuleCollection.Clear();
-
             this.bundles = bundles;
             AddVendorBundles();
             AddSharedBundle();
             AddPageBundles();
-            // TODO: Only do this when debugging.
-            AddPageBundle("Specs");
+
+            if (settings.IsDebuggingEnabled)
+            {
+                bundles.Add<ScriptBundle>("ClientSpecs");
+            }
+
+            bundles.InitializeRequireJsModules("Client/Vendor/require.js", amd =>
+            {
+                amd.SetImportAlias("Client/Vendor/jquery.js", "$");
+                amd.SetImportAlias("Client/Vendor/knockout.js", "ko");
+                amd.SetImportAlias("Client/Vendor/jquery.history.js", "History");
+                amd.SetModuleReturnExpression("Client/Vendor/jquery.history.js", "History");
+
+                foreach (var module in amd)
+                {
+                    if (module.Asset.Path.EndsWith(".htm") || module.Asset.Path.EndsWith(".html"))
+                    {
+                        module.ModulePath += "-template";
+                    }
+                }
+
+                /*
+                 b => amdModuleCollection.AddVendorModulesPerAsset(b, config =>
+                {
+                    config("moment.js").Identifier("moment");// TODO: Un-hack the define() call in moment.js!
+                    config("jquery.history.js").Identifier("History").Shim("History").DependsOn("Client/Vendor/jquery");
+                    config("bootstrap.js").Identifier("bootstrap").Shim().DependsOn("Client/Vendor/jquery");
+                    config("datepicker.js").Identifier("datepicker").Shim().DependsOn("Client/Vendor/jquery");
+                }
+                 */
+            });
         }
 
         void AddSharedBundle()
@@ -51,15 +80,10 @@ namespace App
             bundles.Add<ScriptBundle>(
                 path,
                 ScriptAndHtmlTemplateFileSearch(),
-                b =>
-                {
-                    b.EmbedHtmlTemplates();
-                    amdModuleCollection.AddModuleFromBundle(b);
-                }
+                b => b.EmbedHtmlTemplates()
             );
             bundles.Add<StylesheetBundle>(path);
         }
-
 
         void AddPageBundlePerSubDirectory(string path)
         {
@@ -67,43 +91,21 @@ namespace App
             bundles.AddPerSubDirectory<ScriptBundle>(
                 path,
                 ScriptAndHtmlTemplateFileSearch(),
-                b =>
-                {
-                    b.EmbedHtmlTemplates();
-                    amdModuleCollection.AddModuleFromBundle(b);
-                }
+                b => b.EmbedHtmlTemplates()
             );
             bundles.AddPerSubDirectory<StylesheetBundle>(path);
         }
 
         void AddBundle(string path)
         {
-            bundles.Add<ScriptBundle>(
-                "Client/" + path,
-                b => amdModuleCollection.AddModuleFromBundle(b));
+            bundles.Add<ScriptBundle>("Client/" + path);
         }
 
         void AddVendorBundles()
         {
-            bundles.Add<ScriptBundle>(
-                "Client/Vendor",
-                b => amdModuleCollection.AddVendorModulesPerAsset(b, config =>
-                {
-                    config("jquery.js").Identifier("$");
-                    config("knockout.js").Identifier("ko");
-                    config("moment.js").Identifier("moment");// TODO: Un-hack the define() call in moment.js!
-                    config("jquery.history.js").Identifier("History").Shim("History").DependsOn("Client/Vendor/jquery");
-                    config("bootstrap.js").Identifier("bootstrap").Shim().DependsOn("Client/Vendor/jquery");
-                    config("datepicker.js").Identifier("datepicker").Shim().DependsOn("Client/Vendor/jquery");
-                })
-            );
-            bundles.AddPerSubDirectory<ScriptBundle>(
-                "Client/lang",
-                b => amdModuleCollection.AddModuleFromBundle(b)
-            );
-            bundles.Add<StylesheetBundle>(
-                "Client/Vendor"
-            );
+            bundles.Add<ScriptBundle>("Client/Vendor");
+            bundles.AddPerSubDirectory<ScriptBundle>("Client/lang");
+            bundles.Add<StylesheetBundle>("Client/Vendor");
         }
 
         /// <summary>

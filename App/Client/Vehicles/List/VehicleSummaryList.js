@@ -1,11 +1,10 @@
 ﻿/// <reference path="~/Client/Shared/Base.js"/>
-/// <reference path="~/Client/Shared/http.js"/>
 /// <reference path="~/Client/Vendor/knockout.js"/>
 /// <reference path="VehicleSummary.js" />
 
 var VehicleSummaryList = Base.inherit({
     
-    init: function (vehiclesLink, eventHub) {
+    init: function (vehiclesLink, eventHub, http) {
         this.http = http;
         this.vehicles = ko.observableArray();
         this.downloadVehicles(vehiclesLink);
@@ -14,7 +13,7 @@ var VehicleSummaryList = Base.inherit({
     
     downloadVehicles: function (vehiclesLink) {
         this.http(vehiclesLink)
-            .then(this.displayVehicles);
+            .then(this.displayVehicles.bind(this));
     },
     
     displayVehicles: function (response) {

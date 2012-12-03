@@ -52,16 +52,16 @@ var ViewModelStack = UrlStack.inherit({
         var downloadModule = function () {
             // Use require.js to download the view model module.
             var moduleResult = $.Deferred();
-            var modulePath = response.body.Script;
+            var modulePath = response.body.Script + "/init";
             require([modulePath], function (module) {
                 moduleResult.resolveWith(this, [module]);
             }.bind(this));
             return moduleResult;
         }.bind(this);
         
-        var createViewModel = function (module) {
+        var createViewModel = function (init) {
             var viewData = response.body.Data;
-            var viewModel = module.init(viewData, this.app);
+            var viewModel = init(viewData, this.app);
             this.viewModels[response.url] = viewModel;
             return viewModel;
         }.bind(this);

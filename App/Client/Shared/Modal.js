@@ -1,6 +1,7 @@
 ﻿/// <reference path="~/Client/Vendor/jquery.js"/>
 /// <reference path="~/Client/Vendor/knockout.js"/>
 /// <reference path="~/Client/Vendor/bootstrap/js/bootstrap.js"/>
+/// <reference path="Base.js"/>
 
 // Creating a Modal displays a modal dialog UI.
 // The contents are rendered from a template, which is data bound to a view model.

@@ -1,12 +1,12 @@
 ﻿/// <reference path="~/Client/Vendor/knockout.js"/>
 /// <reference path="~/Client/Shared/Base.js"/>
-/// <reference path="~/Client/Shared/http.js"/>
 /// <reference path="~/Client/Shared/ko/validation/objectWithValidateableProperties.js" />
+/// <reference path="~/Client/Shared/ko/validation/validators.js" />
 /// <reference path="~/Client/Shared/Event.js"/>
 
 var ProfileForm = Base.inherit({
     
-    init: function (data) {
+    init: function (data, http) {
         this.http = http;
         this.initInputs(data);
         this.initCountries(data.countries);
@@ -33,7 +33,7 @@ var ProfileForm = Base.inherit({
         this.http(countriesLink)
             .done(function (countriesResponse) {
                 this.countries(countriesResponse.countries);
-            });
+            }.bind(this));
     },
     
     initValidation: function () {
@@ -52,7 +52,7 @@ var ProfileForm = Base.inherit({
             country: this.country()
         };
         this.http(this.saveCommand, profileData)
-            .done(this.saved);
+            .done(this.saved.bind(this));
     },
     
     saved: function () {

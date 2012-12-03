@@ -6,6 +6,7 @@
 /// <reference path="../Vendor/jquery.history.js" />
 /// <reference path="../Vendor/jquery.js" />
 /// <reference path="../Vendor/knockout.js" />
+/// <reference path="ko/requireJsTemplateEngine.js"/>
 
 // An Application object is the root view model of the application.
 var Application = Base.inherit({
@@ -28,7 +29,8 @@ var Application = Base.inherit({
         this.onAnyClickPushState();
 
         this.loadInitialPage();
-        
+
+        ko.setTemplateEngine(requireJsTemplateEngine);
         ko.applyBindings(this);
     },
     

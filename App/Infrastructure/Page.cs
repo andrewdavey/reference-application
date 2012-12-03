@@ -14,9 +14,15 @@ namespace App.Infrastructure
             Stylesheets = Helper.GetStylesheetUrls(path).ToArray();
             Title = "MileageStats Sample Application";
             MasterPage = "/appframe";
+            InitializationModule = "Client/Shared/init";
+            HtmlFile = "app.html";
         }
 
+        [JsonIgnore]
         public string HtmlFile { get; set; }
+        [JsonIgnore]
+        public string InitializationModule { get; set; }
+
         [JsonProperty("parent")]
         public string MasterPage { get; set; }
         [JsonProperty("title")]

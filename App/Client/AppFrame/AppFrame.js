@@ -1,4 +1,5 @@
 ﻿/// <reference path="~/Client/Vendor/knockout.js"/>
+/// <reference path="../Shared/Base.js"/>
 
 var AppFrame = Base.inherit({
     

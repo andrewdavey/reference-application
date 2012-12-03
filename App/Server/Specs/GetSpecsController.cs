@@ -9,7 +9,8 @@ namespace App.Server.Specs
         {
             return new Page("Specs")
             {
-                HtmlFile = "specs.html"
+                InitializationModule = "Client/Specs/init",
+                Stylesheets = new[] { "/Client/Specs/jasmine/jasmine.css" }
             };
         }
     }

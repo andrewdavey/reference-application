@@ -7,9 +7,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using App.Infrastructure.Amd;
-using Cassette.Aspnet;
-using Cassette.Scripts;
 using Cassette.Stylesheets;
 using Cassette.Views;
 using Newtonsoft.Json;
@@ -18,14 +15,10 @@ namespace App.Infrastructure.Web
 {
     public class HtmlFormatter : MediaTypeFormatter
     {
-        readonly Func<AmdModuleCollection> amdModules;
-
         public HtmlFormatter()
         {
             SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/xhtml+xml"));
-
-            amdModules = () => CassetteHttpModule.Host.RequestContainer.Resolve<AmdModuleCollection>();
         }
 
         public override bool CanReadType(Type type)
@@ -59,22 +52,18 @@ namespace App.Infrastructure.Web
 
         async Task WritePageToStreamAsync(Stream writeStream, Page page)
         {
-            var filename = Path.Combine(HttpRuntime.AppDomainAppPath, page.HtmlFile ?? "app.html");
+            var filename = Path.Combine(HttpRuntime.AppDomainAppPath, page.HtmlFile);
             using (var file = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
             using (var reader = new StreamReader(file))
             {
+                var scripts = RequireJs.RenderScripts(page.InitializationModule).ToHtmlString();
                 Bundles.Reference<StylesheetBundle>("Client/Vendor");
-                Bundles.Reference<ScriptBundle>("Client/Vendor");
+                var styles = Bundles.RenderStylesheets().ToHtmlString();
 
                 var html = await reader.ReadToEndAsync();
-
                 html = html.Replace("$lang$", page.Language);
-                html = html.Replace("$styles$", Bundles.RenderStylesheets().ToHtmlString());
-                var requireJson = "<script>var require=" + 
-                                  JsonConvert.SerializeObject(amdModules().Require) +
-                                  ";</script>";
-                var scripts = Bundles.RenderScripts().ToHtmlString();
-                html = html.Replace("$scripts$", requireJson + scripts);
+                html = html.Replace("$styles$", styles);
+                html = html.Replace("$scripts$", scripts);
 
                 var bytes = Encoding.UTF8.GetBytes(html);
                 await writeStream.WriteAsync(bytes, 0, bytes.Length);

@@ -1,6 +1,7 @@
 ﻿/// <reference path="~/Client/Shared/http.js"/>
 /// <reference path="~/Client/Vendor/knockout.js"/>
 /// <reference path="~/Client/Vendor/moment.js"/>
+/// <reference path="~/Client/Shared/Base.js" />
 /// <reference path="AddReminderForm.js"/>
 
 var Reminder = Base.inherit({

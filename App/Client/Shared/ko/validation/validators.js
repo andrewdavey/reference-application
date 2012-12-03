@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../Vendor/knockout.js"/>
-/// <reference path="validation-extender.js" />
+/// <reference path="validation-extender.js"/>
 
-ko.extenders.validation.validators = {
+ko.utils.extend(ko.extenders.validation.validators, {
     
     required: function (value, message) {
         return value ? true : message;
@@ -25,4 +25,4 @@ ko.extenders.validation.validators = {
         return value > min ? true : ("Must be greater than " + min);
     }
     
-};
+});

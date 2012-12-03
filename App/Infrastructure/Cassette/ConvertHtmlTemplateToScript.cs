@@ -1,4 +1,3 @@
-using App.Infrastructure.Amd;
 using Cassette;
 using Newtonsoft.Json;
 
@@ -8,10 +7,9 @@ namespace App.Infrastructure.Cassette
     {
         protected override string Transform(string source, IAsset asset)
         {
-            return "addTemplate(" +
-                   JsonConvert.SerializeObject(asset.Path.Substring(2)) + "," +
-                   JsonConvert.SerializeObject(source) + 
-                   ")";
+            return "define(function(){" +
+                   "return " + JsonConvert.SerializeObject(source) + ";" +
+                   "})";
         }
     }
 }

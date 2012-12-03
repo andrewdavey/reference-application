@@ -1,12 +1,11 @@
 ﻿/// <reference path="~/Client/Vendor/knockout.js"/>
 /// <reference path="~/Client/Shared/Base.js"/>
-/// <reference path="~/Client/Shared/http.js"/>
 /// <reference path="~/Client/Shared/ko/updateObservableProperties.js"/>
 /// <reference path="EditVehicleForm.js" />
 
 var Vehicle = Base.inherit({
 
-    init: function (viewData, app, eventHub, flashMessage) {
+    init: function (viewData, app, eventHub, flashMessage, http) {
         this.app = app;
         this.eventHub = eventHub;
         this.flashMessage = flashMessage;
@@ -56,7 +55,7 @@ var Vehicle = Base.inherit({
     confirmDelete: function () {
         if (!confirm("Delete " + this.name() + "?")) return;
         this.http(this.deleteCommand)
-            .done(this.afterDelete);
+            .done(this.afterDelete.bind(this));
     },
     
     afterDelete: function () {
