@@ -1,4 +1,4 @@
-﻿/// <reference path="../convert.js"/>
+﻿/// <reference path="../converters.js"/>
 
 // The money converter displays numbers as strings rounded to 2 decimal places.
 // e.g. 10.5 -> "10.50"

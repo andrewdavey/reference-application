@@ -1,5 +1,5 @@
 ﻿/// <reference path="~/Client/Vendor/knockout.js"/>
-/// <reference path="~/Client/Shared/ko/convert.js"/>
+/// <reference path="~/Client/Shared/ko/converters.js"/>
 /// <reference path="~/Client/Shared/ko/converters/integer.js"/>
 
 describe("integer converter", function () {

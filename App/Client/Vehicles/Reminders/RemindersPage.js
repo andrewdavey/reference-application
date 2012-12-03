@@ -17,7 +17,7 @@ var RemindersPage = Base.inherit({
     templateId: "Client/Vehicles/Reminders/RemindersPage.htm",
     
     showAddReminderForm: function () {
-        var form = AddReminderForm.create({ add: this.add });
+        var form = AddReminderForm.create({ add: this.add }, this.http);
         form.show()
             .done(this.displayAddedReminder.bind(this));
     },

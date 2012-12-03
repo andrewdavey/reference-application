@@ -286,7 +286,7 @@
     <Content Include="Client\Shared\IframeSubmission.js" />
     <Content Include="Client\Shared\ko\requireJsTemplateEngine.js" />
     <Content Include="Client\Shared\ko\updateObservableProperties.js" />
-    <Content Include="Client\Shared\ko\convert.js" />
+    <Content Include="Client\Shared\ko\converters.js" />
     <Content Include="Client\Shared\Modal.js" />
     <Content Include="Client\Shared\UrlStack.js" />
     <Content Include="Client\Shared\ko\validation\objectWithValidateableProperties.js" />

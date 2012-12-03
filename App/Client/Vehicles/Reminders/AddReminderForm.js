@@ -43,9 +43,9 @@ var AddReminderForm = Base.inherit({
         if (!this.validate()) return;
         var formData = this.formData();
         this.http(this.addCommand, formData)
-            .pipe(this.getCreatedReminder)
-            .done(this.close)
-            .fail(this.submitFailed);
+            .pipe(this.getCreatedReminder.bind(this))
+            .done(this.close.bind(this))
+            .fail(this.submitFailed.bind(this));
     },
     
     getCreatedReminder: function (response, status, xhr) {
