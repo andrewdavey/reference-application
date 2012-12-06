@@ -21,7 +21,7 @@ namespace App.Server.Vehicle.Reminders
         {
             var reminders = getAllRemindersForVehicle.Execute(vehicleId).Where(r => !r.IsFulfilled);
 
-            return new Page("Vehicles/Reminders")
+            return new Page("Vehicles/Reminders/init")
             {
                 Title = "Reminders",
                 MasterPage = Url.Resource<GetVehicleMasterPageController>(),

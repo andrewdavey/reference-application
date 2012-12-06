@@ -17,7 +17,7 @@ namespace App.Server.Vehicle.FillUps
         public object GetFillUps(int vehicleId)
         {
             var fillUps = getFillupsForVehicle.Execute(vehicleId);
-            return new Page("Vehicles/FillUps")
+            return new Page("Vehicles/FillUps/init")
             {
                 Title = "Fill ups",
                 MasterPage = Url.Resource<GetVehicleMasterPageController>(),

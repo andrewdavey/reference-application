@@ -26,7 +26,7 @@ namespace App.Server.Dashboard
             var statistics = getFleetSummaryStatistics.Execute(1);
             var reminders = GetReminders();
 
-            var resource = new Page("Dashboard")
+            var resource = new Page("Dashboard/init")
             {
                 Title = "MileageStats Sample Application",
                 Data = new

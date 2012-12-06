@@ -18,7 +18,7 @@ namespace App.Server.Vehicle
         public object GetVehicle(int vehicleId)
         {
             var vehicle = getVehicleById.Execute(1, vehicleId);
-            return new Page("Vehicles/Details")
+            return new Page("Vehicles/Details/init")
             {
                 Title = vehicle.Name,
                 MasterPage = Url.Resource<GetVehicleMasterPageController>(),

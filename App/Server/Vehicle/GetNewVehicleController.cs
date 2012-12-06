@@ -9,7 +9,7 @@ namespace App.Server.Vehicle
     {
         public object Get()
         {
-            return new Page("Vehicles/New")
+            return new Page("Vehicles/New/init")
             {
                 Title = "New Vehicle",
                 Data = new

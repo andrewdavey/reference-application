@@ -18,7 +18,7 @@ namespace App.Server.Profile
         public object GetProfile()
         {
             var user = getUser.Execute("http://not/a/real/openid/url");
-            return new Page("Profile")
+            return new Page("Profile/init")
             {
                 Data = new
                 {

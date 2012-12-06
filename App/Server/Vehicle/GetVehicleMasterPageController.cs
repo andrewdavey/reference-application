@@ -8,7 +8,7 @@ namespace App.Server.Vehicle
     {
         public object GetMasterPage()
         {
-            return new Page("Vehicles/MasterPage")
+            return new Page("Vehicles/MasterPage/init")
             {
                 Data = new
                 {

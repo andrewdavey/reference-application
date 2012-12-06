@@ -9,7 +9,7 @@ namespace App.Server
     {
         public object GetAppFrame()
         {
-            return new Page("AppFrame")
+            return new Page("AppFrame/init")
             {
                 Data = new
                 {
