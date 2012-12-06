@@ -1,6 +1,6 @@
 ﻿/// <reference path="ProfilePage.js"/>
 /// <reference path="../Shared/http.js"/>
 
-var init = function (viewData) {
-    return ProfilePage.create(viewData, http);
+var init = function (viewData, app) {
+    return ProfilePage.create(viewData, app, http);
 };
