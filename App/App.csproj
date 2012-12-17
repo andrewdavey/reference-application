@@ -259,6 +259,7 @@
     <Content Include="ClientSpecs\Shared\EventHubSpecs.js" />
     <Content Include="ClientSpecs\Shared\ko\converters\integer-specs.js" />
     <Content Include="ClientSpecs\Shared\ko\converters\money-specs.js" />
+    <Content Include="ClientSpecs\Shared\linkUtilsSpecs.js" />
     <Content Include="ClientSpecs\Shared\MockHttp.js" />
     <Content Include="ClientSpecs\Shared\UrlStackSpecs.js" />
     <Content Include="ClientSpecs\Vehicles\Details\VehicleSpecs.js" />
@@ -287,6 +288,7 @@
     <Content Include="Client\Shared\ko\requireJsTemplateEngine.js" />
     <Content Include="Client\Shared\ko\updateObservableProperties.js" />
     <Content Include="Client\Shared\ko\converters.js" />
+    <Content Include="Client\Shared\linkUtils.js" />
     <Content Include="Client\Shared\Modal.js" />
     <Content Include="Client\Shared\UrlStack.js" />
     <Content Include="Client\Shared\ko\validation\objectWithValidateableProperties.js" />

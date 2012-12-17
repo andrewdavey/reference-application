@@ -1,6 +1,7 @@
 ﻿/// <reference path="../Vendor/jquery.js"/>
 /// <reference path="../Vendor/moment.js"/>
 /// <reference path="IframeSubmission.js"/>
+/// <reference path="linkUtils.js" />
 
 var http = (function () {
     var toIso8601DateString = function (date) {
@@ -64,8 +65,10 @@ var http = (function () {
     var getAction = function (object) {
         if (object.method && object.url) return object;
         
-        var httpMethod = Object.keys(object)[0];
-        return { method: httpMethod, url: object[httpMethod] };
+        return {
+            method: linkUtils.getMethod(object),
+            url: linkUtils.getUrl(object)
+        };
     };
     
     return function (actionObject, data, files) {

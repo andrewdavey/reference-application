@@ -1,5 +1,6 @@
 ﻿/// <reference path="~/Client/Shared/Base.js"/>
 /// <reference path="~/Client/Shared/Modal.js"/>
+/// <reference path="~/Client/Shared/linkUtils.js"/>
 /// <reference path="~/Client/Shared/ko/validation/objectWithValidateableProperties.js"/>
 /// <reference path="~/Client/Vendor/knockout.js"/>
 
@@ -125,7 +126,7 @@ var EditVehicleForm = Base.inherit({
     
     serializeForm: function () {
         return {
-            href: this.saveCommand.url,
+            href: linkUtils.getUrl(this.saveCommand),
             name: this.name(),
             year: this.year() ? parseInt(this.year().year, 10) : null,
             make: this.make() ? this.make().make : null,

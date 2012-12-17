@@ -3,7 +3,8 @@
 /// <reference path="~/Client/Shared/ko/updateObservableProperties.js"/>
 
 var VehicleSummary = Base.inherit({
-    init: function(data) {
+    init: function (data) {
+        this.href = data.href;
         this.name = ko.observable(data.name);
         this.photo = ko.observable(data.photo ? data.photo.get : "");
         this.year = ko.observable(data.year ? data.year : "");

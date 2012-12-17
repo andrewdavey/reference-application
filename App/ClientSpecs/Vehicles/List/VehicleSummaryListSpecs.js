@@ -4,8 +4,8 @@
 
 describe("VehicleSummaryList", function () {
     var vehicles = [
-        { name: "Vehicle1", year: 2012, make: "Test1", model: "Model1", details: { url: "/vehicles/1" }, fillUps: { }, reminders: { } },
-        { name: "Vehicle2", year: 2011, make: "Test2", model: "Model2", details: { url: "/vehicles/2" }, fillUps: { }, reminders: { } }
+        { name: "Vehicle1", year: 2012, make: "Test1", model: "Model1", details: { get: "/vehicles/1" }, fillUps: {}, reminders: {} },
+        { name: "Vehicle2", year: 2011, make: "Test2", model: "Model2", details: { get: "/vehicles/2" }, fillUps: {}, reminders: {} }
     ];
     var vehiclesLink = { get: "/vehicles" };
     var summaryList, mockHttp, eventHub;
