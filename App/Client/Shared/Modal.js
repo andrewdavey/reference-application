@@ -10,73 +10,77 @@ var Modal = Base.inherit({
     init: function (viewModel, templateId) {
         this.viewModel = viewModel;
         this.templateId = templateId || viewModel.templateId;
-        this.element = this.createModalElement();
-        
         // Create a Deferred object that is resolved when the modal is closed.
         // This allows calling code to chain callbacks to be run after the modal is closed.
-        this.showing = $.Deferred();
-
-        this.show();
-    },
-    
-    closeWithResult: function (result) {
-        this.hideModalElement();
-        this.showing.resolve(result);
-    },
-    
-    close: function () {
-        this.hideModalElement();
-        this.showing.resolve();
+        this.result = $.Deferred();
+        this.createAndShowModal();
     },
 
+    createAndShowModal: function () {
+        this.createModalElement()
+            .pipe($)
+            .done(this.show.bind(this));
+    },
     
-    show: function () {
-        var element = this.element;
-        
+    show: function (element) {
+        this.element = element;
         // Use the Twitter Bootstrap modal plugin to display the UI.
-        element
+        this.element
             .modal()
             .on("hidden", function () {
-                element.remove();
-            });
+                this.element.remove();
+                if (!this.result.isResolved && !this.result.isRejected) {
+                    this.result.resolve();
+                }
+            }.bind(this));
     },
-    
-    createModalElement: function () {
-        var temporaryDiv;
-        try {
-            temporaryDiv = this.createHiddenDiv();
-            this.applyTemplateBinding(temporaryDiv);
-            var modalElement = this.firstChildElement(temporaryDiv);
-            modalElement
-                .hide()
-                .appendTo("body");
 
-            return modalElement;
-            
-        } finally {
-            if (temporaryDiv) temporaryDiv.remove();
-        }
-    },
-    
-    createHiddenDiv: function () {
-        return $("<div/>").hide().appendTo("body");
-    },
-    
-    applyTemplateBinding: function (targetElement) {
-        ko.applyBindingsToNode(
-            targetElement[0],
-            { template: { name: this.templateId, data: this.viewModel } },
-            {}
+    createModalElement: function () {
+        var temporaryDiv = this.addHiddenDivToBody();
+        var deferredElement = $.Deferred();
+        ko.renderTemplate(
+            this.templateId,
+            this.viewModel,
+            // We need to know when the template has been rendered,
+            // so we can get the resulting DOM element.
+            // The resolve function receives the element.
+            {
+                afterRender: function (nodes) {
+                    // Ignore any #text nodes before and after the modal element.
+                    // We only want the modal's <div> element.
+                    var elements = [].filter.call(nodes, function (node) {
+                        return node.nodeType === 1; // Element
+                    });
+                    deferredElement.resolve(elements[0]);
+                }
+            },
+            // The temporary div will get replaced by the rendered template output.
+            temporaryDiv,
+            "replaceNode"
         );
+        // Return the deferred DOM element so callers can wait until it's ready for use.
+        return deferredElement;
     },
-    
-    firstChildElement: function (parent) {
-        return parent.children().eq(0);
+
+    addHiddenDivToBody: function () {
+        var div = document.createElement("div");
+        div.style.display = "none";
+        document.body.appendChild(div);
+        return div;
     },
-    
+
+    closeWithResult: function (result) {
+        this.hideModalElement();
+        this.result.resolve(result);
+    },
+
+    close: function () {
+        this.hideModalElement();
+        this.result.resolve();
+    },
+
     hideModalElement: function () {
         // Hiding the modal will trigger removal, due to the "hidden" handler defined in `this.show()`.
         this.element.modal("hide");
     }
-    
 });

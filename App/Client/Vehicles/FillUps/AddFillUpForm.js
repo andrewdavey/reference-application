@@ -72,7 +72,7 @@ var AddFillUpForm = Base.inherit({
     
     show: function () {
         this.modal = Modal.create(this);
-        return this.modal.showing;
+        return this.modal.result;
     },
     
     save: function () {

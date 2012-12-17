@@ -47,7 +47,7 @@ var EditVehicleForm = Base.inherit({
     
     show: function () {
         this.modal = Modal.create(this);
-        return this.modal.showing;
+        return this.modal.result;
     },
     
     close: function (vehicleData) {

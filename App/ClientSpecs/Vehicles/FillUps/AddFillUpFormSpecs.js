@@ -6,7 +6,7 @@
 // Stub out the Modal constructor, since the real object creates UI.
 Modal.create = function() {
     return {
-        showing: $.Deferred(),
+        result: $.Deferred(),
         close: function () { },
         closeWithResult: function () {}
     };
