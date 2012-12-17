@@ -28,7 +28,7 @@ namespace App.Server
             };
             if (HttpContext.Current != null && HttpContext.Current.IsDebuggingEnabled)
             {
-                links.Add(new {text = "Specs", url = "/specs", rel="nohijax"});
+                links.Add(new {text = "Specs", url = "/clientspecs", rel="nohijax"});
             }
             return links;
         }
