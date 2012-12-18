@@ -34,6 +34,12 @@ namespace App
                 bundles.Add<ScriptBundle>("ClientSpecs");
             }
 
+            InitRequireJsModules();
+        }
+
+        void InitRequireJsModules()
+        {
+            // Convert basic bundles into AMD modules for use with require.js.
             bundles.InitializeRequireJsModules("Client/Vendor/require.js", amd =>
             {
                 amd.SetImportAlias("Client/Vendor/jquery.js", "$");
@@ -48,22 +54,13 @@ namespace App
                         module.ModulePath += "-template";
                     }
                 }
-
-                /*
-                 b => amdModuleCollection.AddVendorModulesPerAsset(b, config =>
-                {
-                    config("moment.js").Identifier("moment");// TODO: Un-hack the define() call in moment.js!
-                    config("jquery.history.js").Identifier("History").Shim("History").DependsOn("Client/Vendor/jquery");
-                    config("bootstrap.js").Identifier("bootstrap").Shim().DependsOn("Client/Vendor/jquery");
-                    config("datepicker.js").Identifier("datepicker").Shim().DependsOn("Client/Vendor/jquery");
-                }
-                 */
             });
         }
 
         void AddSharedBundle()
         {
             AddBundle("Shared");
+            AddBundle("lang");
         }
 
         void AddPageBundles()

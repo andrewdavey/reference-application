@@ -56,12 +56,12 @@ namespace App.Infrastructure.Web
             using (var file = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
             using (var reader = new StreamReader(file))
             {
-                var scripts = RequireJs.RenderScripts(page.InitializationModule).ToHtmlString();
+                var langModule = "Client/lang/" + page.Language + "/moment";
+                var scripts = RequireJs.RenderScripts(page.InitializationModule, langModule).ToHtmlString();
                 Bundles.Reference<StylesheetBundle>("Client/Vendor");
                 var styles = Bundles.RenderStylesheets().ToHtmlString();
 
                 var html = await reader.ReadToEndAsync();
-                html = html.Replace("$lang$", page.Language);
                 html = html.Replace("$styles$", styles);
                 html = html.Replace("$scripts$", scripts);
 
