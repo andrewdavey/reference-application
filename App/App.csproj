@@ -41,25 +41,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxMin, Version=4.76.4714.20545, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
+    <Reference Include="AjaxMin, Version=4.78.4724.23863, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AjaxMin.4.76.4714.20550\lib\net40\AjaxMin.dll</HintPath>
+      <HintPath>..\packages\AjaxMin.4.78.4724.23869\lib\net40\AjaxMin.dll</HintPath>
     </Reference>
-    <Reference Include="Cassette, Version=2.1.0.29037, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Cassette, Version=2.1.0.28834, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cassette.2.1.0-beta3\lib\net35\Cassette.dll</HintPath>
+      <HintPath>..\packages\Cassette.2.1.0-beta4\lib\net35\Cassette.dll</HintPath>
     </Reference>
-    <Reference Include="Cassette.Aspnet, Version=2.1.0.29035, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Cassette.Aspnet, Version=2.1.0.28827, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cassette.Aspnet.2.1.0-beta3\lib\net40\Cassette.Aspnet.dll</HintPath>
+      <HintPath>..\packages\Cassette.Aspnet.2.1.0-beta4\lib\net40\Cassette.Aspnet.dll</HintPath>
     </Reference>
-    <Reference Include="Cassette.RequireJS, Version=2.1.0.29035, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Cassette.RequireJS, Version=2.1.0.29306, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cassette.RequireJS.2.1.0-beta3\lib\net40\Cassette.RequireJS.dll</HintPath>
+      <HintPath>..\packages\Cassette.RequireJS.2.1.0-beta4\lib\net40\Cassette.RequireJS.dll</HintPath>
     </Reference>
-    <Reference Include="Cassette.Views, Version=2.1.0.29035, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Cassette.Views, Version=2.1.0.28827, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cassette.Views.2.1.0-beta3\lib\net40\Cassette.Views.dll</HintPath>
+      <HintPath>..\packages\Cassette.Views.2.1.0-beta4\lib\net40\Cassette.Views.dll</HintPath>
     </Reference>
     <Reference Include="DotNetOpenAuth.Core">
       <HintPath>..\packages\DotNetOpenAuth.Core.4.1.0.12182\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
